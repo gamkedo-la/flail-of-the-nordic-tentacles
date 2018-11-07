@@ -3,6 +3,9 @@ const NUM_PATROLLABLE_PIXELS_X = TILE_W * 2;
 const NUM_PATROLLABLE_PIXELS_Y = TILE_H * 2;
 const DETECTION_RADIUS = TILE_W * 2;
 const LEASH_LENGTH = 120;
+const FRAME_DIMENSIONS = 40;
+const FRAME_DELAY = 4;
+
 function slimeClass()
 {
 	this.centerX = 75;
@@ -15,6 +18,8 @@ function slimeClass()
 	this.stats = new statsClass();
 
 	this.directionFaced;
+	this.animFrame = 0;
+	this.animDelay = FRAME_DELAY;
 	
 	this.numOfPxMoved = 0;
 	this.currentWaitTime = 0;
@@ -262,6 +267,20 @@ function slimeClass()
 
 	this.draw = function()
 	{
-		drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
+		this.animDelay--;
+
+		if(this.animDelay < 0)
+		{
+			this.animDelay = FRAME_DELAY;
+			this.animFrame++;
+			if(this.animFrame >= 4)
+			{
+				this.animFrame = 0;
+			}
+		}
+	
+		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
+		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
+			this.centerX - this.bitmap.width/2, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}
 }
