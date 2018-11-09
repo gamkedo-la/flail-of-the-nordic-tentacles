@@ -45,6 +45,7 @@ function slimeClass()
 		this.reset();
 	}
 
+	//I think the issue is been cause either in the reset or setHome function
 	this.reset = function()
 	{
 		if(this.homeX == undefined)
@@ -74,6 +75,9 @@ function slimeClass()
 
 	this.move = function()
 	{
+		// console.log("enemy hitbox center is at: " + this.hitbox.x + "," + this.hitbox.y);
+		// console.log("enemy image center is at: " + this.centerX + "," + this.centerY);
+
 		this.hitbox.x = this.centerX;
 		this.hitbox.y = this.centerY;
 
@@ -82,8 +86,8 @@ function slimeClass()
 
 		if(!this.isSentryModeOn())
 		{
-			nextX += this.velX;
-			nextY += this.velY;
+			// nextX += this.velX;
+			// nextY += this.velY;
 			if(this.velX > 0)
 			{
 				if(this.canMoveToNextTile(nextX, nextY))
@@ -279,7 +283,10 @@ function slimeClass()
 			}
 		}
 	
+		
 		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
+
+		//bug is causing centerX,centerY to be set a full FRAME_DIMENSIONS to right instead of the center of where the enemy is being drawn
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/2, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}

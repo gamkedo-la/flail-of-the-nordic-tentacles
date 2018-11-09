@@ -57,6 +57,9 @@ function playerClass()
 
 	this.move = function()
 	{
+		// console.log("player hitbox center is at: " + this.hitbox.x + "," + this.hitbox.y);
+		// console.log("player image center is at: " + this.centerX + "," + this.centerY);
+		
 		//not a good solution; what happens when we need to talk with multiple NPCs in the same small area;
 		// OPINION: I could just check them for collision against the player and run the dialog code? 
 		this.directionFaced = undefined;
