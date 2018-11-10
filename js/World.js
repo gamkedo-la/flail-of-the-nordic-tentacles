@@ -15,7 +15,7 @@ var worldMap = [
 				2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,6,5,5,5,5,1,2,
 				2,2,2,2,2,2,2,2,1,1,1,1,6,1,1,6,5,5,5,1,1,2,
 				2,1,1,2,2,2,2,2,1,1,1,1,1,1,6,1,1,3,1,1,1,2,
-				2,1,1,2,2,2,2,2,1,1,1,1,1,1,1,1,1,3,1,1,1,2,
+				2,1,1,2,2,2,2,2,1,1,13,1,1,1,1,1,1,3,1,1,1,2,
 				2,1,1,1,1,2,2,2,1,1,8,0,12,1,1,1,3,3,1,1,1,2,
 				2,1,1,1,2,2,2,3,1,1,9,10,11,1,1,3,3,1,1,2,1,2,
 				2,1,6,1,2,2,2,1,3,1,1,1,1,3,3,3,1,1,4,2,2,2,
@@ -42,6 +42,7 @@ const TILE_EYEPATCH = 9;
 const TILE_TENCTACLE = 10;
 const TILE_WORMHOLE = 11;
 const TILE_DICTIONARY = 12;
+const TILE_BEACON = 13;
 
 function drawVisibleWorld()
 {
@@ -132,6 +133,9 @@ function moveCharIfAble(tileType)
 			return true;
 			break;
 		case TILE_WORMHOLE:
+			return true;
+			break;
+		case TILE_BEACON:
 			return true;
 			break;
 		case TILE_OCEAN:

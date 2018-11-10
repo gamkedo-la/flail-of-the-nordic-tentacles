@@ -29,15 +29,6 @@ function slimeClass()
 
 	this.isDefeated = false;
 
-	/* 
-	TODO: use bools (until I figure out a better solution if it's within my skill level) to make enemy move one direction a time only
-	train of thought so far:
-	this.isPatrollingEast = false;
-	this.isPatrollingWest = false;
-	this.isPatrollingNorth = false;
-	this.isPatrollingSouth = false;
-	*/
-
 	this.init = function(image, name)
 	{
 		this.bitmap = image;
@@ -45,7 +36,6 @@ function slimeClass()
 		this.reset();
 	}
 
-	//I think the issue is been cause either in the reset or setHome function
 	this.reset = function()
 	{
 		if(this.homeX == undefined)
@@ -75,19 +65,13 @@ function slimeClass()
 
 	this.move = function()
 	{
-		// console.log("enemy hitbox center is at: " + this.hitbox.x + "," + this.hitbox.y);
-		// console.log("enemy image center is at: " + this.centerX + "," + this.centerY);
-
-		this.hitbox.x = this.centerX;
-		this.hitbox.y = this.centerY;
-
 		var nextX = this.centerX;
 		var nextY = this.centerY;
 
 		if(!this.isSentryModeOn())
 		{
-			// nextX += this.velX;
-			// nextY += this.velY;
+			nextX += this.velX;
+			nextY += this.velY;
 			if(this.velX > 0)
 			{
 				if(this.canMoveToNextTile(nextX, nextY))
@@ -117,7 +101,7 @@ function slimeClass()
 				{
 					this.velX = -this.velX;
 				}
-			}
+			}//end  x movement
 			if(this.velY > 0)
 			{
 				if(this.canMoveToNextTile(nextX, nextY))
@@ -147,8 +131,11 @@ function slimeClass()
 				{
 					this.velY = -this.velY;
 				}
-			}
-		}
+			}//end of y movement
+		}//end of sentry check
+
+		this.hitbox.x = this.centerX;
+		this.hitbox.y = this.centerY + this.bitmap.height/4;
 	}//end of this.move
 
 	this.randomizeInitAI = function()
@@ -165,21 +152,16 @@ function slimeClass()
 
 	this.battle = function(player)
 	{
-		/*TODO: find a way to reference enemies; once enemy can detected, check which player edge collide with which enemy edge;
-			if collision was player front on enemy front, dmg player; if collision was player front on enemy back or sides then dmg enemy
-			THINK OF Ys I and II
-			NOTE: use this.directionFaced and check it against player's direction faced to find zone of collision
-		*/
+		//improve collisions here
 		let dx = this.hitbox.x - player.hitbox.x;
 		let dy = this.hitbox.y - player.hitbox.y;
 		let distance = Math.sqrt(dx*dx + dy*dy);
 
 		if(distance < this.hitbox.radius + player.hitbox.radius)
-		{
-			//TODO: after implementing stats and XP, check stats and lvls to have somewhat appropriate dmg values
+		{ 
 			if(this.doesPlayerHaveAdvantage(player))
 			{
-				console.log(player.charName + " attacking enemy");
+				console.log(player.charName + " attacking " + this.charName);
 			}
 			else
 			{
@@ -286,8 +268,9 @@ function slimeClass()
 		
 		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
 
-		//bug is causing centerX,centerY to be set a full FRAME_DIMENSIONS to right instead of the center of where the enemy is being drawn
+		// drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
+		
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
-			this.centerX - this.bitmap.width/2, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
+			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}
 }

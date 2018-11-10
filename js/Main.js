@@ -3,7 +3,7 @@ var gameLoop;
 var gameIsRunning = false;
 var fps = 30;
 var enemiesList = [];
-const NUM_OF_ENEMIES_ON_SCREEN = 1;
+const NUM_OF_ENEMIES_ON_SCREEN = 14;
 
 var player = new playerClass();
 /*
@@ -76,7 +76,7 @@ function drawAll()
 	player.draw();
 
 	canvasContext.restore();
-	gameDebugTools();
+	// gameDebugTools();
 }
 
 function popEnemyList()

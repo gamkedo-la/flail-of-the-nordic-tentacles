@@ -24,6 +24,7 @@ function loadImages()
 		{worldType: TILE_TENCTACLE, fileName: "decaying_tentacle_quick.png"},
 		{worldType: TILE_WORMHOLE, fileName: "wormhole_quick.png"},
 		{worldType: TILE_DICTIONARY, fileName: "dig_dictionary_quick.png"},
+		{worldType: TILE_BEACON, fileName: "beacon.png"},
 		{worldType: TILE_ENEMY, fileName: "slime_quick.png"},
 
 		//Item Pics Go Here... maybe?
