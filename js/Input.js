@@ -44,6 +44,7 @@ var mouseY = 0;
 function setupInput()
 {
 	canvas.addEventListener('mousemove', updateMousePos);
+	canvas.addEventListener('click', checkIfEditorIsOnAndSetTile);
 	document.addEventListener('keydown', keyPressed);
 	document.addEventListener('keyup', keyReleased);
 
@@ -57,6 +58,14 @@ function updateMousePos(evt)
 
 	mouseX = evt.clientX - rect.left - root.scrollLeft;
 	mouseY = evt.clientY - rect.top - root.scrollTop;
+}
+
+function checkIfEditorIsOnAndSetTile()
+{
+	if(!gameIsRunning)
+	{
+		editor.setTile();
+	}
 }
 
 function keySet (keyEvent, player, setTo)
@@ -81,26 +90,6 @@ function keySet (keyEvent, player, setTo)
 
 function editorScreenMove(evt)
 {
-	// var mouseDistFromFocusX = Math.abs(mouseX - cfcX);
-	// var mouseDistFromFocusY = Math.abs(mouseY - cfcY);
-
-	// if(mouseDistFromFocusX > DIST_BEFORE_X_PAN)
-	// {
-	// 	console.log("Camera is moving");
-	// 	if(cfcX < mouseX)
-	// 		camPanX += CAM_SPEED;
-	// 	else
-	// 		camPanX -= CAM_SPEED;
-	// }
-	// if(mouseDistFromFocusY > DIST_BEFORE_Y_PAN)
-	// {
-	// 	console.log("Camera is moving");
-	// 	if(cfcY < mouseY)
-	// 		camPanY += CAM_SPEED;
-	// 	else
-	// 		camPanY -= CAM_SPEED;
-	// }
-
 	if(evt.keyCode === KEY_F)
 	{
 		camPanX -= CAM_SPEED;

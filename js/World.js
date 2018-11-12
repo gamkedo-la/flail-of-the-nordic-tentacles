@@ -59,24 +59,36 @@ function drawVisibleWorld(gridCols)
 	{
 		for(var row = camTopMostRow; row < camBottomMostRow; row++)
 		{
-			if(doesTileExistAtTileCoord(col,row, gridCols))
+			if(gameIsRunning)
 			{
-				var tileIndex = roomTileToIndex(col,row, gridCols);
-				var tileType = worldMap[tileIndex];
-				var tileLeftEgdeX = col * TILE_W;
-				var tileTopEdgeY = row * TILE_H;
-
-				if(tileType != undefined)
-				{
-					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
-					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
-				}	
-				else
-				{
-					console.log("Trying to draw an undefined tile: " + tileType);
-				}			
+				drawVisibleWorldHelper(col,row,gridCols,worldMap);
 			}
+			else
+			{
+				drawVisibleWorldHelper(col,row,gridCols,editor.grid.map);
+			}			
 		}
+	}
+}
+
+function drawVisibleWorldHelper(col,row,gridCols,map)
+{
+	if(doesTileExistAtTileCoord(col,row, gridCols))
+	{
+		var tileIndex = roomTileToIndex(col,row, gridCols);
+		var tileType = map[tileIndex];
+		var tileLeftEgdeX = col * TILE_W;
+		var tileTopEdgeY = row * TILE_H;
+
+		if(tileType != undefined)
+		{
+			canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
+			canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
+		}	
+		else
+		{
+			console.log("Trying to draw an undefined tile: " + tileType);
+		}			
 	}
 }
 
