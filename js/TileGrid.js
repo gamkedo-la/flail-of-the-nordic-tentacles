@@ -21,9 +21,37 @@ function TileGrid()
 		}
 	}
 
-	this.setTile = function(mouseX, mouseY, xTile, yTile)
+	this.setTile = function(mouseX, mouseY, tileIndex, tileTypes)
 	{
+		// function getTileIndexAtRowCol(pxX, pxY, gridCols, gridRows)
+		// {
+		// 	var tileCol = pxX / TILE_W;
+		// 	var tileRow = pxY / TILE_H;
 
+		// 	tileCol = Math.floor(tileCol);
+		// 	tileRow = Math.floor(tileRow);
+
+		// 	if(tileCol < 0 || tileCol >= gridCols ||
+		// 		tileRow < 0 || tileRow >= gridRows)
+		// 	{
+		// 		console.log("TILE does not exist");
+		// 		return undefined;
+		// 	}
+
+		// 	var tileIndex = roomTileToIndex(tileCol, tileRow, gridCols);
+		// 	return tileIndex;
+		// }
+
+		// function roomTileToIndex(tileCol, tileRow, gridCols)
+		// {
+		// 	return (tileCol + gridCols * tileRow);
+		// }
+
+		// function doesTileExistAtTileCoord(tileCol, tileRow, gridCols)
+		// {
+		// 	var tileIndex = roomTileToIndex(tileCol, tileRow, gridCols);
+		// 	return	(worldMap[tileIndex] != undefined);
+		// }
 	}
 
 	this.draw = function()

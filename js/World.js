@@ -44,7 +44,7 @@ const TILE_WORMHOLE = 11;
 const TILE_DICTIONARY = 12;
 const TILE_BEACON = 13;
 
-function drawVisibleWorld()
+function drawVisibleWorld(gridCols)
 {
 	var camLeftMostCol = Math.floor(camPanX/TILE_W);
 	var camTopMostRow = Math.floor(camPanY/TILE_H);
@@ -59,9 +59,9 @@ function drawVisibleWorld()
 	{
 		for(var row = camTopMostRow; row < camBottomMostRow; row++)
 		{
-			if(doesTileExistAtTileCoord(col,row))
+			if(doesTileExistAtTileCoord(col,row, gridCols))
 			{
-				var tileIndex = roomTileToIndex(col,row);
+				var tileIndex = roomTileToIndex(col,row, gridCols);
 				var tileType = worldMap[tileIndex];
 				var tileLeftEgdeX = col * TILE_W;
 				var tileTopEdgeY = row * TILE_H;
@@ -80,7 +80,7 @@ function drawVisibleWorld()
 	}
 }
 
-function getTileIndexAtRowCol(pxX, pxY)
+function getTileIndexAtRowCol(pxX, pxY, gridCols, gridRows)
 {
 	var tileCol = pxX / TILE_W;
 	var tileRow = pxY / TILE_H;
@@ -88,25 +88,25 @@ function getTileIndexAtRowCol(pxX, pxY)
 	tileCol = Math.floor(tileCol);
 	tileRow = Math.floor(tileRow);
 
-	if(tileCol < 0 || tileCol >= W_COLS ||
-		tileRow < 0 || tileRow >= W_ROWS)
+	if(tileCol < 0 || tileCol >= gridCols ||
+		tileRow < 0 || tileRow >= gridRows)
 	{
 		console.log("TILE does not exist");
 		return undefined;
 	}
 
-	var tileIndex = roomTileToIndex(tileCol, tileRow);
+	var tileIndex = roomTileToIndex(tileCol, tileRow, gridCols);
 	return tileIndex;
 }
 
-function roomTileToIndex(tileCol, tileRow)
+function roomTileToIndex(tileCol, tileRow, gridCols)
 {
-	return (tileCol + W_COLS * tileRow);
+	return (tileCol + gridCols * tileRow);
 }
 
-function doesTileExistAtTileCoord(tileCol, tileRow)
+function doesTileExistAtTileCoord(tileCol, tileRow, gridCols)
 {
-	var tileIndex = roomTileToIndex(tileCol, tileRow);
+	var tileIndex = roomTileToIndex(tileCol, tileRow, gridCols);
 	return	(worldMap[tileIndex] != undefined);
 }
 

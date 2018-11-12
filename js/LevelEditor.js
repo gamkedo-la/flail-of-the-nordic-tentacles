@@ -27,14 +27,13 @@ function Editor()
 		this.grid.draw();
 		moveCamera(this.grid.mapCols, this.grid.mapRows);
 		editorDebugTools();
-		//handle canvas dragging or scrolling
 		//check for changes to tiles and reflect them
 		//check for saves/deletes
 	}
 
 	this.setTile = function()
 	{
-
+		this.grid.setTile();
 	}
 }
 
@@ -61,6 +60,10 @@ function runGameInstance()
 
 function editorDebugTools()
 {
+	var tileCol =  Math.floor(mouseX/TILE_W);
+	var tileRow =  Math.floor(mouseY/TILE_H);
+	var tileIndex = roomTileToIndex(tileCol, tileRow, editor.grid.mapCols);
+
 	drawCircle(camPanX, camPanY, 5, 'red');
-	drawText("mouse: " + Math.floor(mouseX/TILE_W) + "," + Math.floor(mouseY/TILE_H), mouseX, mouseY, "red");
+	drawText("mouse x: " + tileCol + ", y: " + tileRow + ", tileIndex: " + tileIndex, mouseX, mouseY, "red");
 }

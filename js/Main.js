@@ -68,7 +68,7 @@ function drawAll()
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
 
-	drawVisibleWorld();
+	drawVisibleWorld(W_COLS);
 	for(var i = 0; i < enemiesList.length; i++)
 	{
 		enemiesList[i].draw();

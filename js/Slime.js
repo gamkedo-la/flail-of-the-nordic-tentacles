@@ -229,7 +229,7 @@ function slimeClass()
 
 	this.canMoveToNextTile = function(nextCenterX,nextCenterY)
 	{
-		var nextTileIndex = getTileIndexAtRowCol(nextCenterX, nextCenterY);
+		var nextTileIndex = getTileIndexAtRowCol(nextCenterX, nextCenterY, W_COLS, W_ROWS);
 		var nextTileType = TILE_SNOW;
 
 		if(nextTileIndex != undefined)

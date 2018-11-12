@@ -80,7 +80,7 @@ function playerClass()
 		}
 		this.setDirectionFaced();
 
-		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY);
+		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, W_COLS, W_ROWS);
 		var nextTileType = TILE_SNOW;
 
 		if(nextTileIndex != undefined)
