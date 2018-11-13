@@ -18,7 +18,9 @@ function Editor()
 	this.grid = new TileGrid(TILE_SNOW);
 	this.selectedTileType;
 	this.selectedIdx;
-	//set up tiles array to select from 
+	this.usableTiles = {
+		placeholderTileset: [TILE_SNOW,TILE_OCEAN,TILE_TREE,TILE_ROAD,TILE_MOUNTAIN],
+	};
 
 	this.init = function()
 	{
@@ -31,7 +33,6 @@ function Editor()
 		this.grid.draw();
 		moveCamera(this.grid.mapCols, this.grid.mapRows);
 		editorDebugTools();
-		//check for changes to tile selection and reflect them
 		//check for saves/deletes
 	}
 
@@ -40,6 +41,11 @@ function Editor()
 		console.log("setting tile to: " + this.selectedTileType);
 
 		this.grid.setTile(mouseX, mouseY, this.selectedTileType);
+	}
+
+	this.changeTilesetAndTileToPlace = function()
+	{
+
 	}
 }
 

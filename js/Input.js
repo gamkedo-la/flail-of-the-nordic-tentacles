@@ -124,6 +124,18 @@ function keyPressed(evt)
 		case KEY_P:
 			isPaused = !isPaused;
 			break;
+		case LEFT_ARROW:
+			//change to specific tile left of currently selected tile
+			break;
+		case RIGHT_ARROW:
+			//change to specific tile right of currently selected tile
+			break;
+		case UP_ARROW:
+			//change to tile set above current tile set
+			break;
+		case UP_ARROW:
+			//change to different tile set below current tile set
+			break;
 	}
 
 	evt.preventDefault();
