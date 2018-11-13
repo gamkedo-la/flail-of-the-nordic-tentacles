@@ -10,7 +10,7 @@ var itemSpawnSpots = [];
 var worldMap = [
 				2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 				2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
-				2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,5,5,5,5,1,2,
+				2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,7,5,5,5,5,1,2,
 				2,2,2,2,2,2,1,1,1,1,1,1,1,6,1,5,5,5,5,5,1,2,
 				2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,6,5,5,5,5,1,2,
 				2,2,2,2,2,2,2,2,1,1,1,1,6,1,1,6,5,5,5,1,1,2,
@@ -32,11 +32,11 @@ const TILE_OCEAN = 2;
 const TILE_ROAD = 3;
 const TILE_TREE = 4;
 const TILE_MOUNTAIN = 5;
+const TILE_AREA_DOOR = 7;
 
 const TILE_PLAYER = 0;
 const TILE_ENEMY = 6;
 
-const TILE_AREA_DOOR = 7;
 const TILE_HORN = 8;
 const TILE_EYEPATCH = 9;
 const TILE_TENCTACLE = 10;
@@ -92,7 +92,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 
 		if(!gameIsRunning)
 		{
-			if(editor.selectedIdx == tileIndex)
+			if(editor.tileToBeReplaced == tileIndex)
 			{
 				outlineRect(tileLeftEgdeX, tileTopEdgeY, TILE_W, TILE_H, 'red');
 			}
@@ -134,30 +134,6 @@ function moveCharIfAble(tileType)
 {
 	switch(tileType)
 	{
-		case TILE_SNOW:
-			return true;
-			break;
-		case TILE_ROAD:
-			return true;
-			break;
-		case TILE_HORN:
-			return true;
-			break;
-		case TILE_EYEPATCH:
-			return true;
-			break;
-		case TILE_DICTIONARY:
-			return true;
-			break;
-		case TILE_TENCTACLE:
-			return true;
-			break;
-		case TILE_WORMHOLE:
-			return true;
-			break;
-		case TILE_BEACON:
-			return true;
-			break;
 		case TILE_OCEAN:
 			return false;
 			break;
@@ -168,7 +144,7 @@ function moveCharIfAble(tileType)
 			return false;
 			break;
 		default:
-			return false;
+			return true;
 			break;
 	}
 }

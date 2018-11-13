@@ -19,12 +19,15 @@ function loadImages()
 		{worldType: TILE_SNOW, fileName: "snow_quick.png"},
 		{worldType: TILE_MOUNTAIN, fileName: "mountain_quick.png"},
 		{worldType: TILE_TREE, fileName: "tree_quick.png"},
+		{worldType: TILE_AREA_DOOR, fileName: "door.png"},
+
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "odins_eyepatch_quick.png"},
 		{worldType: TILE_TENCTACLE, fileName: "decaying_tentacle_quick.png"},
 		{worldType: TILE_WORMHOLE, fileName: "wormhole_quick.png"},
 		{worldType: TILE_DICTIONARY, fileName: "dig_dictionary_quick.png"},
 		{worldType: TILE_BEACON, fileName: "beacon.png"},
+
 		{worldType: TILE_ENEMY, fileName: "slime_quick.png"},
 
 		//Item Pics Go Here... maybe?
