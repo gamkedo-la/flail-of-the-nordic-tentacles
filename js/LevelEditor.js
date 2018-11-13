@@ -17,6 +17,7 @@ function Editor()
 {
 	this.grid = new TileGrid(TILE_SNOW);
 	this.selectedTileType;
+	this.selectedIdx;
 	//set up tiles array to select from 
 
 	this.init = function()
@@ -65,11 +66,10 @@ function runGameInstance()
 
 function editorDebugTools()
 {
-	//tile index being shown is wrong!
-	var tileCol =  Math.floor(mouseX/TILE_W);
-	var tileRow =  Math.floor(mouseY/TILE_H);
-	var tileIndex = roomTileToIndex(tileCol, tileRow, editor.grid.mapCols);
+	var tileCol =  Math.floor((mouseX + camPanX)/TILE_W);
+	var tileRow =  Math.floor((mouseY + camPanY)/TILE_H);
+	editor.selectedIdx = roomTileToIndex(tileCol, tileRow, editor.grid.mapCols);
 
 	// drawCircle(camPanX, camPanY, 5, 'red');
-	drawText("mouse x: " + tileCol + ", y: " + tileRow + ", tileIndex: " + tileIndex, mouseX, mouseY, "red");
+	drawText("mouse x: " + mouseX + ", y: " + mouseY + ", tileIndex: " + editor.selectedIdx, mouseX, mouseY, "red");
 }

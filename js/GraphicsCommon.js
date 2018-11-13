@@ -26,3 +26,12 @@ function drawText(text, x,y, color)
 	canvasContext.fillStyle = color;
 	canvasContext.fillText(text, x,y);
 }
+
+function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor) 
+{
+	canvasContext.beginPath();
+	canvasContext.strokeStyle = lineColor;
+	canvasContext.lineWidth = "3";
+	canvasContext.rect(topLeftX, topLeftY, boxWidth, boxHeight);
+	canvasContext.stroke();
+}

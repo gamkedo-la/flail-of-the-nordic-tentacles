@@ -88,7 +88,15 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 		else
 		{
 			console.log("Trying to draw an undefined tile: " + tileType);
-		}			
+		}
+
+		if(!gameIsRunning)
+		{
+			if(editor.selectedIdx == tileIndex)
+			{
+				outlineRect(tileLeftEgdeX, tileTopEdgeY, TILE_W, TILE_H, 'red');
+			}
+		}		
 	}
 }
 
