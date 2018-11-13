@@ -5,6 +5,8 @@ var fps = 30;
 var enemiesList = [];
 const NUM_OF_ENEMIES_ON_SCREEN = 14;
 
+var isPaused = false;
+
 var player = new playerClass();
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
@@ -39,8 +41,14 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
-	moveAll();
-	battleAll();
+	
+	if (isPaused == false){
+		moveAll();
+		battleAll();
+	} else {
+		console.log("Pause");
+			}
+
 	drawAll();
 }
 

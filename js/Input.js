@@ -120,6 +120,10 @@ function keyPressed(evt)
 		case TAB:
 			useEditorMode();
 			break;
+	
+		case KEY_P:
+			isPaused = !isPaused;
+			break;
 	}
 
 	evt.preventDefault();
