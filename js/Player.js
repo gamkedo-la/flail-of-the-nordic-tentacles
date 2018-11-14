@@ -15,6 +15,8 @@ function playerClass()
 	this.goingEast = false;
 
 	this.directionFaced;
+	this.animFrame = 0;
+	this.animDelay = FRAME_DELAY;
 
 	this.setupInput = function(north,south,west,east)
 	{
@@ -92,6 +94,10 @@ function playerClass()
 				this.centerX = nextX;
 				this.centerY = nextY;
 			}
+			else
+			{
+				handleLevelTransition(nextTileType);
+			}
 		}
 
 		this.hitbox.x = this.centerX;
@@ -138,8 +144,23 @@ function playerClass()
 
 	this.draw = function()
 	{
+		this.animDelay--;
+
+		if(this.animDelay < 0)
+		{
+			this.animDelay = FRAME_DELAY;
+			this.animFrame++;
+			if(this.animFrame >= 4)
+			{
+				this.animFrame = 0;
+			}
+		}
+
 		// drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
 		
-		drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
+		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
+
+		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
+			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}
 }

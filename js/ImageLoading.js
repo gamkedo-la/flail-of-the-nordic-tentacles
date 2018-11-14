@@ -10,7 +10,7 @@ function loadImages()
 	var imageList = [
 
 		// Character Pics Go Here
-		{charName: vikingPic, fileName: "viking_quick.png"},
+		{charName: vikingPic, fileName: "viking_quick_sheet.png"},
 		{charName: slimePic, fileName: "slime_quick_sheet.png"},
 
 		// World Pics Go Here
@@ -19,7 +19,7 @@ function loadImages()
 		{worldType: TILE_SNOW, fileName: "snow_quick.png"},
 		{worldType: TILE_MOUNTAIN, fileName: "mountain_quick.png"},
 		{worldType: TILE_TREE, fileName: "tree_quick.png"},
-		{worldType: TILE_AREA_DOOR, fileName: "door.png"},
+		{worldType: TILE_MT_ENTRY_DOOR, fileName: "mountain_entrance_door.png"},
 
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "odins_eyepatch_quick.png"},
@@ -29,6 +29,7 @@ function loadImages()
 		{worldType: TILE_BEACON, fileName: "beacon.png"},
 
 		{worldType: TILE_ENEMY, fileName: "slime_quick.png"},
+		{worldType: TILE_PLAYER, fileName: "viking_quick.png"},
 
 		//Item Pics Go Here... maybe?
 		]

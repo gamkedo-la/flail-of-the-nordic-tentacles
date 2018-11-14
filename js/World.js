@@ -9,7 +9,7 @@ const TILE_OCEAN = 2;
 const TILE_ROAD = 3;
 const TILE_TREE = 4;
 const TILE_MOUNTAIN = 5;
-const TILE_AREA_DOOR = 7;
+const TILE_MT_ENTRY_DOOR = 7;
 
 const TILE_PLAYER = 0;
 const TILE_ENEMY = 6;
@@ -152,8 +152,21 @@ function moveCharIfAble(tileType)
 		case TILE_MOUNTAIN:
 			return false;
 			break;
+		case TILE_MT_ENTRY_DOOR:
+			return false;
+			break;
 		default:
 			return true;
+			break;
+	}
+}
+
+function handleLevelTransition(doorType)
+{
+	switch(doorType)
+	{
+		case TILE_MT_ENTRY_DOOR:
+			levels.loadMap("testMap");
 			break;
 	}
 }
@@ -164,7 +177,7 @@ function findSpawnSpots()
 	{
 		if(worldMap[i] == TILE_ENEMY)
 		{
-			console.log("found enemy spawn at: " + i);
+			// console.log("found enemy spawn at: " + i);
 			var tileRow = Math.floor(i/W_COLS);
 			var tileCol = i%W_COLS;
 			enemiesStartSpots.push({col: tileCol, row: tileRow});
