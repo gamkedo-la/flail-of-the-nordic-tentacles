@@ -4,6 +4,23 @@ const TILE_H = 80;
 const W_ROWS = 17;
 const W_COLS = 22;
 
+const TILE_SNOW = 1;
+const TILE_OCEAN = 2;
+const TILE_ROAD = 3;
+const TILE_TREE = 4;
+const TILE_MOUNTAIN = 5;
+const TILE_MT_ENTRY_DOOR = 7;
+
+const TILE_PLAYER = 0;
+const TILE_ENEMY = 6;
+
+const TILE_HORN = 8;
+const TILE_EYEPATCH = 9;
+const TILE_TENCTACLE = 10;
+const TILE_WORMHOLE = 11;
+const TILE_DICTIONARY = 12;
+const TILE_BEACON = 13;
+
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
 /*--TODO: implement saved level maps data from lvl editor--*/
@@ -26,23 +43,6 @@ var worldMap = [
 				2,1,1,1,1,1,1,1,1,1,6,1,1,1,1,1,1,1,2,2,2,2,
 				2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 				];	
-
-const TILE_SNOW = 1;
-const TILE_OCEAN = 2;
-const TILE_ROAD = 3;
-const TILE_TREE = 4;
-const TILE_MOUNTAIN = 5;
-const TILE_AREA_DOOR = 7;
-
-const TILE_PLAYER = 0;
-const TILE_ENEMY = 6;
-
-const TILE_HORN = 8;
-const TILE_EYEPATCH = 9;
-const TILE_TENCTACLE = 10;
-const TILE_WORMHOLE = 11;
-const TILE_DICTIONARY = 12;
-const TILE_BEACON = 13;
 
 function drawVisibleWorld(gridCols)
 {
@@ -83,7 +83,16 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 		if(tileType != undefined)
 		{
 			canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
-			canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
+
+			if(tileType == TILE_HORN || tileType == TILE_EYEPATCH || tileType == TILE_BEACON ||
+			tileType == TILE_TENCTACLE || tileType == TILE_DICTIONARY || tileType == TILE_WORMHOLE)
+			{
+				canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX + 20, tileTopEdgeY + 20);
+			}
+			else
+			{
+				canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
+			}
 		}	
 		else
 		{
@@ -143,8 +152,21 @@ function moveCharIfAble(tileType)
 		case TILE_MOUNTAIN:
 			return false;
 			break;
+		case TILE_MT_ENTRY_DOOR:
+			return false;
+			break;
 		default:
 			return true;
+			break;
+	}
+}
+
+function handleLevelTransition(doorType)
+{
+	switch(doorType)
+	{
+		case TILE_MT_ENTRY_DOOR:
+			levels.loadMap("testMap");
 			break;
 	}
 }
@@ -155,7 +177,7 @@ function findSpawnSpots()
 	{
 		if(worldMap[i] == TILE_ENEMY)
 		{
-			console.log("found enemy spawn at: " + i);
+			// console.log("found enemy spawn at: " + i);
 			var tileRow = Math.floor(i/W_COLS);
 			var tileCol = i%W_COLS;
 			enemiesStartSpots.push({col: tileCol, row: tileRow});

@@ -8,6 +8,8 @@ const NUM_OF_ENEMIES_ON_SCREEN = 14;
 var isPaused = false;
 
 var player = new playerClass();
+
+var levels = new levelsClass();
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
 */

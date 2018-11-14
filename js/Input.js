@@ -117,14 +117,16 @@ function keyPressed(evt)
 
 	switch(evt.keyCode)
 	{
-		case TAB:
-			useEditorMode();
-			break;
-	
+		//game input
 		case KEY_P:
 			isPaused = !isPaused;
 			break;
 
+		case TAB:
+			useEditorMode();
+			break;
+
+		//editor input
 		case LEFT_ARROW:
 			editor.tileIndex--;
 			editor.changeSelectedTileInTileSet();
@@ -143,6 +145,10 @@ function keyPressed(evt)
 		case DOWN_ARROW:
 			editor.tileSetIndex--;
 			editor.changeTileSet();
+			break;
+
+		case KEY_V:
+			levels.saveMap("testMap", editor.grid);
 			break;
 	}
 
