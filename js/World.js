@@ -10,6 +10,7 @@ const TILE_TREE = 103;
 const TILE_MOUNTAIN = 104;
 const TILE_MT_ENTRY_DOOR = 105;
 const TILE_SNOW_GRASS = 106;
+const TILE_MT_EXIT_DOOR = 107;
 
 //Characters from 300 - 450;
 const TILE_PLAYER = 300;

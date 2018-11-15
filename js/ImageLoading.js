@@ -21,6 +21,7 @@ function loadImages()
 		{worldType: TILE_MOUNTAIN, fileName: "mountain_quick.png"},
 		{worldType: TILE_TREE, fileName: "tree_quick.png"},
 		{worldType: TILE_MT_ENTRY_DOOR, fileName: "mountain_entrance_door.png"},
+		{worldType: TILE_MT_EXIT_DOOR, fileName: "exit_from_mountains.png"},
 
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "odins_eyepatch_quick.png"},
