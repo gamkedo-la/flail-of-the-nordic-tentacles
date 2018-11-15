@@ -64,7 +64,7 @@ function beginLoadingImages(imgVar, fileName)
 function countLoadedImgsAndLaunchIfAble()
 {
 	picsToLoad--;
-	console.log(picsToLoad);
+	// console.log(picsToLoad);
 	if(picsToLoad == 0)
 	{
 		imgsDoneLoadingSoStartGame();

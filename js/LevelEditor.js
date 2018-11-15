@@ -23,20 +23,17 @@ function Editor()
 	this.tileIndex = 0;
 	
 	this.usableTiles = [
-		//Placeholder land tiles
-		[TILE_SNOW,TILE_OCEAN,TILE_ROAD,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR],
-		//Placeholder item tiles
-		[TILE_HORN,TILE_EYEPATCH,TILE_TENCTACLE,TILE_WORMHOLE,TILE_DICTIONARY,TILE_BEACON],
-		//character spawn tokens
-		[TILE_PLAYER,TILE_ENEMY]
+		{setName: "placeholderTiles", tileSet: [TILE_SNOW,TILE_OCEAN,TILE_ROAD,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR]},
+		{setName: "placeholderItems", tileSet: [TILE_HORN,TILE_EYEPATCH,TILE_TENCTACLE,TILE_WORMHOLE,TILE_DICTIONARY,TILE_BEACON]},
+		{setName: "placeholderCharacters", tileSet: [TILE_PLAYER,TILE_ENEMY]},
 	];
-
+	
 	this.tileToBeReplaced;
 
 	this.init = function()
 	{
 		this.grid.init(window.prompt("Enter the number of rows for this level:"), window.prompt("Enter the number of columns for this level:"));
-		this.selectedTileSet = this.usableTiles[this.tileSetIndex];
+		this.selectedTileSet = this.usableTiles[this.tileSetIndex].tileSet;
 		this.selectedTileType = this.selectedTileSet[this.tileIndex];
 	}
 
@@ -76,7 +73,7 @@ function Editor()
 	{
 		if(this.tileSetIndex >= 0 && this.tileSetIndex <= this.usableTiles.length - 1)
 		{
-			this.selectedTileSet = this.usableTiles[this.tileSetIndex];
+			this.selectedTileSet = this.usableTiles[this.tileSetIndex].tileSet;
 		}
 		else if(this.tileSetIndex < 0)
 		{
@@ -87,7 +84,7 @@ function Editor()
 			this.tileSetIndex = this.usableTiles.length - 1;
 		}
 		
-		console.log(this.tileSetIndex);
+		console.log("Switched to: " + this.usableTiles[this.tileSetIndex].setName);
 	}
 }
 
