@@ -16,7 +16,8 @@ function loadImages()
 		// World Pics Go Here
 		{worldType: TILE_ROAD, fileName: "road_quick.png"},
 		{worldType: TILE_OCEAN, fileName: "ocean_quick.png"},
-		{worldType: TILE_SNOW, fileName: "snowyGrass.png"},
+		{worldType: TILE_SNOW_GRASS, fileName: "snowyGrass.png"},
+		{worldType: TILE_SNOW, fileName: "snow_quick.png"},
 		{worldType: TILE_MOUNTAIN, fileName: "mountain_quick.png"},
 		{worldType: TILE_TREE, fileName: "tree_quick.png"},
 		{worldType: TILE_MT_ENTRY_DOOR, fileName: "mountain_entrance_door.png"},

@@ -2,22 +2,26 @@
 const TILE_W = 80;
 const TILE_H = 80;
 
-const TILE_SNOW = 1;
-const TILE_OCEAN = 2;
-const TILE_ROAD = 3;
-const TILE_TREE = 4;
-const TILE_MOUNTAIN = 5;
-const TILE_MT_ENTRY_DOOR = 7;
+//Tiles from 100 - 250;
+const TILE_SNOW = 100;
+const TILE_OCEAN = 101;
+const TILE_ROAD = 102;
+const TILE_TREE = 103;
+const TILE_MOUNTAIN = 104;
+const TILE_MT_ENTRY_DOOR = 105;
+const TILE_SNOW_GRASS = 106;
 
-const TILE_PLAYER = 0;
-const TILE_ENEMY = 6;
+//Characters from 300 - 450;
+const TILE_PLAYER = 300;
+const TILE_ENEMY = 301;
 
-const TILE_HORN = 8;
-const TILE_EYEPATCH = 9;
-const TILE_TENCTACLE = 10;
-const TILE_WORMHOLE = 11;
-const TILE_DICTIONARY = 12;
-const TILE_BEACON = 13;
+//Items from 500 - 650;
+const TILE_HORN = 500;
+const TILE_EYEPATCH = 501;
+const TILE_TENCTACLE = 502;
+const TILE_WORMHOLE = 503;
+const TILE_DICTIONARY = 504;
+const TILE_BEACON = 505;
 
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
