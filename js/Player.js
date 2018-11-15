@@ -45,8 +45,8 @@ function playerClass()
 			{
 				if(worldMap[i] == TILE_PLAYER)
 				{
-					var tileRow = Math.floor(i/W_COLS);
-					var tileCol = i%W_COLS;
+					var tileRow = Math.floor(i/currentMapCols);
+					var tileCol = i%currentMapCols;
 					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
 					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
 					worldMap[i] = TILE_SNOW;
@@ -84,7 +84,7 @@ function playerClass()
 		}
 		this.setDirectionFaced();
 
-		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, W_COLS, W_ROWS);
+		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);
 		var nextTileType = TILE_SNOW;
 
 		if(nextTileIndex != undefined)

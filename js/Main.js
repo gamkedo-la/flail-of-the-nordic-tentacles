@@ -9,7 +9,6 @@ var isPaused = false;
 
 var player = new playerClass();
 
-var levels = new levelsClass();
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
 */
@@ -61,7 +60,7 @@ function moveAll()
 	{
 		enemiesList[i].move();
 	}
-	moveCamera(W_COLS, W_ROWS);
+	moveCamera(currentMapCols, currentMapRows);
 }
 
 function battleAll()
@@ -79,7 +78,7 @@ function drawAll()
 	canvasContext.translate(-camPanX, -camPanY);
 
 	//draw world func will have to take the replacement grid's cols instead once it's implemented
-	drawVisibleWorld(W_COLS);
+	drawVisibleWorld(currentMapCols);
 	for(var i = 0; i < enemiesList.length; i++)
 	{
 		enemiesList[i].draw();

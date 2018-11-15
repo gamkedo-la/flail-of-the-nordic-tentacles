@@ -1,8 +1,6 @@
 //TODO: implement transitions between scenes like going from a dungeon to a town if town isn't in dungeon
 const TILE_W = 80;
 const TILE_H = 80;
-const W_ROWS = 17;
-const W_COLS = 22;
 
 const TILE_SNOW = 1;
 const TILE_OCEAN = 2;
@@ -24,25 +22,15 @@ const TILE_BEACON = 13;
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
 /*--TODO: implement saved level maps data from lvl editor--*/
-var worldMap = [
-				2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-				2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
-				2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,7,5,5,5,5,1,2,
-				2,2,2,2,2,2,1,1,1,1,1,1,1,6,1,5,5,5,5,5,1,2,
-				2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,6,5,5,5,5,1,2,
-				2,2,2,2,2,2,2,2,1,1,1,1,6,1,1,6,5,5,5,1,1,2,
-				2,1,1,2,2,2,2,2,1,1,1,1,1,1,6,1,1,3,1,1,1,2,
-				2,1,1,2,2,2,2,2,1,1,13,1,1,1,1,1,1,3,1,1,1,2,
-				2,1,1,1,1,2,2,2,1,1,8,0,12,1,1,1,3,3,1,1,1,2,
-				2,1,1,1,2,2,2,3,1,1,9,10,11,1,1,3,3,1,1,2,1,2,
-				2,1,6,1,2,2,2,1,3,1,1,1,1,3,3,3,1,1,4,2,2,2,
-				2,1,1,6,1,1,1,1,1,3,3,3,3,3,1,1,1,4,4,2,2,2,
-				2,1,1,1,6,1,1,1,1,1,1,1,3,1,1,4,4,4,4,2,2,2,
-				2,1,1,6,1,1,1,1,1,1,1,6,3,3,4,4,4,4,4,2,2,2,
-				2,6,1,1,1,1,1,1,1,6,1,1,6,1,4,4,4,4,4,2,2,2,
-				2,1,1,1,1,1,1,1,1,1,6,1,1,1,1,1,1,1,2,2,2,2,
-				2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-				];	
+var allLvls = [testMap];
+var currentLvlIndex = 0;
+
+var currentMapRows = allLvls[currentLvlIndex].rows;
+var currentMapCols = allLvls[currentLvlIndex].cols;
+
+var worldMap = [];
+
+worldMap = Array.from(allLvls[currentLvlIndex].grid);
 
 function drawVisibleWorld(gridCols)
 {
@@ -167,7 +155,7 @@ function handleLevelTransition(doorType)
 	switch(doorType)
 	{
 		case TILE_MT_ENTRY_DOOR:
-			levels.loadMap("testMap");
+			loadMap("testMap");
 			break;
 	}
 }
@@ -179,8 +167,8 @@ function findSpawnSpots()
 		if(worldMap[i] == TILE_ENEMY)
 		{
 			// console.log("found enemy spawn at: " + i);
-			var tileRow = Math.floor(i/W_COLS);
-			var tileCol = i%W_COLS;
+			var tileRow = Math.floor(i/currentMapCols);
+			var tileCol = i%currentMapCols;
 			enemiesStartSpots.push({col: tileCol, row: tileRow});
 			worldMap[i] = TILE_SNOW;
 		}

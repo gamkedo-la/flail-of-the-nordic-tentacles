@@ -1,67 +1,74 @@
-//for saving,loading, etc. regarding maps
-function levelsClass()
+//Levels Go Here
+var testMap = {
+	grid:[
+		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+		2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+		2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,7,5,5,5,5,1,2,
+		2,2,2,2,2,2,1,1,1,1,1,1,1,6,1,5,5,5,5,5,1,2,
+		2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,6,5,5,5,5,1,2,
+		2,2,2,2,2,2,2,2,1,1,1,1,6,1,1,6,5,5,5,1,1,2,
+		2,1,1,2,2,2,2,2,1,1,1,1,1,1,6,1,1,3,1,1,1,2,
+		2,1,1,2,2,2,2,2,1,1,13,1,1,1,1,1,1,3,1,1,1,2,
+		2,1,1,1,1,2,2,2,1,1,8,0,12,1,1,1,3,3,1,1,1,2,
+		2,1,1,1,2,2,2,3,1,1,9,10,11,1,1,3,3,1,1,2,1,2,
+		2,1,6,1,2,2,2,1,3,1,1,1,1,3,3,3,1,1,4,2,2,2,
+		2,1,1,6,1,1,1,1,1,3,3,3,3,3,1,1,1,4,4,2,2,2,
+		2,1,1,1,6,1,1,1,1,1,1,1,3,1,1,4,4,4,4,2,2,2,
+		2,1,1,6,1,1,1,1,1,1,1,6,3,3,4,4,4,4,4,2,2,2,
+		2,6,1,1,1,1,1,1,1,6,1,1,6,1,4,4,4,4,4,2,2,2,
+		2,1,1,1,1,1,1,1,1,1,6,1,1,1,1,1,1,1,2,2,2,2,
+		2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+		],
+	rows: 17,
+	cols: 22,
+	levelName: "testMap"
+}
+
+function saveMap(mapName, grid)
 {
-	//lvl objs go into levels array
-	this.levelsContainer = [];
+	console.log("saving map: " + mapName, grid);
+	
+	//string var for tile grid data
+	// for(var col = 0; col < grid.mapCols; col++)
+	// {
+	// 	for(var row = 0; row < grid.mapRows; row++)
+	// 	{
+			//convert tile at col,row to string
+	// 	}
+	// }	
+}
 
-	this.saveMap = function(mapName, grid)
+//convertTileToStringId()
+//convertStringToTileType()
+
+function loadMap(mapName)
+{
+	for(var i = 0; i < allLvls.length; i++)
 	{
-		console.log("saving map: " + mapName, grid);
-		
-		this.levelsContainer.push({levelName: mapName, grid: grid});
-
-		//string var for tile grid data
-		// for(var col = 0; col < grid.mapCols; col++)
-		// {
-		// 	for(var row = 0; row < grid.mapRows; row++)
-		// 	{
-				//convert tile at col,row to string
-		// 	}
-		// }	
-	}
-
-	//this.convertTileToStringId()
-
-	//this.convertStringToTileType()
-
-	this.loadMap = function(mapName)
-	{
-		//loop through levels container and change map if found
-		if(this.levelsContainer.length >= 1)
+		if(allLvls[i].levelName == mapName)
 		{
-			console.log("loading map");
-			for(var i = 0; i < this.levelsContainer.length; i++)
-			{
-				if(this.levelsContainer[i].levelName == mapName)
-				{
-					worldMap = this.levelsContainer[i].grid.map;
-					this.handleCharacterPositions();
-				}
-				else
-				{
-					console.log("map doesn't exist!");
-				}
-			}
+			worldMap = Array.from(allLvls[currentLvlIndex].grid);
+			this.handleCharacterPositions();
 		}
 		else
 		{
-			console.log("no maps available");
+			console.log("map doesn't exist!");
 		}
-		
 	}
+	
+}
 
-	this.handleCharacterPositions = function()
+function handleCharacterPositions()
+{
+	player.hasEnterAnotherLevel = true;
+	enemiesStartSpots = [];
+	enemiesList = [];
+	player.reset();
+	findSpawnSpots();
+	popEnemyList();
+	for(var i = 0; i < enemiesList.length; i++)
 	{
-		player.hasEnterAnotherLevel = true;
-		enemiesStartSpots = [];
-		enemiesList = [];
-		player.reset();
-		findSpawnSpots();
-		popEnemyList();
-		for(var i = 0; i < enemiesList.length; i++)
-		{
-			enemiesList[i].init(slimePic, "Slime " + i);
-		}
-		player.hasEnterAnotherLevel = false;
+		enemiesList[i].init(slimePic, "Slime " + i);
 	}
+	player.hasEnterAnotherLevel = false;
 }

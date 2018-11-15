@@ -44,8 +44,8 @@ function slimeClass()
 			{
 				if(worldMap[i] == TILE_ENEMY)
 				{
-					var tileRow = Math.floor(i/W_COLS);
-					var tileCol = i%W_COLS;
+					var tileRow = Math.floor(i/currentMapCols);
+					var tileCol = i%currentMapCols;
 					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
 					this.homeY = tileRow * TILE_H + 0.25 * TILE_H;
 					worldMap[i] = TILE_SNOW;
@@ -229,7 +229,7 @@ function slimeClass()
 
 	this.canMoveToNextTile = function(nextCenterX,nextCenterY)
 	{
-		var nextTileIndex = getTileIndexAtRowCol(nextCenterX, nextCenterY, W_COLS, W_ROWS);
+		var nextTileIndex = getTileIndexAtRowCol(nextCenterX, nextCenterY, currentMapCols, currentMapRows);
 		var nextTileType = TILE_SNOW;
 
 		if(nextTileIndex != undefined)
