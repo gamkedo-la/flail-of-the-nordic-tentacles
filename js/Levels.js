@@ -35,7 +35,7 @@ function levelsClass()
 				if(this.levelsContainer[i].levelName == mapName)
 				{
 					worldMap = this.levelsContainer[i].grid.map;
-					player.reset();
+					this.handleCharacterPositions();
 				}
 				else
 				{
@@ -48,5 +48,20 @@ function levelsClass()
 			console.log("no maps available");
 		}
 		
+	}
+
+	this.handleCharacterPositions = function()
+	{
+		player.hasEnterAnotherLevel = true;
+		enemiesStartSpots = [];
+		enemiesList = [];
+		player.reset();
+		findSpawnSpots();
+		popEnemyList();
+		for(var i = 0; i < enemiesList.length; i++)
+		{
+			enemiesList[i].init(slimePic, "Slime " + i);
+		}
+		player.hasEnterAnotherLevel = false;
 	}
 }

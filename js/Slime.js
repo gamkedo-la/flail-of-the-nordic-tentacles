@@ -15,6 +15,8 @@ function slimeClass()
 	this.exp = new xpClass();//only for init level within a bracket appropriate to enemy
 	this.stats = new statsClass();
 
+	this.hasEnterAnotherLevel = false;
+
 	this.directionFaced;
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
@@ -36,7 +38,7 @@ function slimeClass()
 
 	this.reset = function()
 	{
-		if(this.homeX == undefined)
+		if(this.homeX == undefined || this.hasEnterAnotherLevel)
 		{
 			for(var i = 0; i < worldMap.length; i++)
 			{

@@ -18,6 +18,8 @@ function playerClass()
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
 
+	this.hasEnterAnotherLevel = false;
+
 	this.setupInput = function(north,south,west,east)
 	{
 		this.ctrlNorth = north;
@@ -37,7 +39,7 @@ function playerClass()
 	{
 		//reset player stats to last saved stats
 		//reset player health, buffs, etc
-		if(this.homeX == undefined)
+		if(this.homeX == undefined || this.hasEnterAnotherLevel)
 		{
 			for(var i = 0; i < worldMap.length; i++)
 			{
