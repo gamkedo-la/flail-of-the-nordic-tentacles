@@ -77,7 +77,6 @@ function drawAll()
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
 
-	//draw world func will have to take the replacement grid's cols instead once it's implemented
 	drawVisibleWorld(currentMapCols);
 	for(var i = 0; i < enemiesList.length; i++)
 	{

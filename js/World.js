@@ -22,7 +22,7 @@ const TILE_BEACON = 13;
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
 /*--TODO: implement saved level maps data from lvl editor--*/
-var allLvls = [testMap];
+var allLvls = [testMap,saveLoadTest];
 var currentLvlIndex = 0;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
@@ -155,7 +155,7 @@ function handleLevelTransition(doorType)
 	switch(doorType)
 	{
 		case TILE_MT_ENTRY_DOOR:
-			loadMap("testMap");
+			loadMap("saveLoadTest");
 			break;
 	}
 }

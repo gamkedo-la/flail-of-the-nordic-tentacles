@@ -24,22 +24,56 @@ var testMap = {
 	levelName: "testMap"
 }
 
+var saveLoadTest = {
+	grid: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+           ],
+    rows: 17,
+    cols: 22,
+    levelName: "saveLoadTest"
+}
+
 function saveMap(mapName, grid)
 {
 	console.log("saving map: " + mapName, grid);
 	
-	//string var for tile grid data
-	// for(var col = 0; col < grid.mapCols; col++)
-	// {
-	// 	for(var row = 0; row < grid.mapRows; row++)
-	// 	{
-			//convert tile at col,row to string
-	// 	}
-	// }	
-}
+	var gridString = "[";
 
-//convertTileToStringId()
-//convertStringToTileType()
+	for(var col = 0; col < grid.mapCols; col++)
+	{
+		for(var row = 0; row < grid.mapRows; row++)
+		{
+			var tileIndex = roomTileToIndex(col,row, grid.mapCols);
+			var tileType = grid.map[tileIndex];
+
+			gridString += "" + tileType + ",";
+		}
+		gridString += "\n           ";
+	}
+	gridString += "],";
+
+	console.log("grid: " + gridString + "\n    rows: " + grid.mapRows + "," + "\n    cols: " + grid.mapCols + "," + "\n    levelName: \"" + mapName + "\"" );	
+}
 
 function loadMap(mapName)
 {
@@ -47,7 +81,7 @@ function loadMap(mapName)
 	{
 		if(allLvls[i].levelName == mapName)
 		{
-			worldMap = Array.from(allLvls[currentLvlIndex].grid);
+			worldMap = Array.from(allLvls[i].grid);
 			this.handleCharacterPositions();
 		}
 		else
