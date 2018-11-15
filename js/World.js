@@ -1,48 +1,41 @@
 //TODO: implement transitions between scenes like going from a dungeon to a town if town isn't in dungeon
 const TILE_W = 80;
 const TILE_H = 80;
-const W_ROWS = 17;
-const W_COLS = 22;
 
-const TILE_SNOW = 1;
-const TILE_OCEAN = 2;
-const TILE_ROAD = 3;
-const TILE_TREE = 4;
-const TILE_MOUNTAIN = 5;
-const TILE_MT_ENTRY_DOOR = 7;
+//Tiles from 100 - 250;
+const TILE_SNOW = 100;
+const TILE_OCEAN = 101;
+const TILE_ROAD = 102;
+const TILE_TREE = 103;
+const TILE_MOUNTAIN = 104;
+const TILE_MT_ENTRY_DOOR = 105;
+const TILE_SNOW_GRASS = 106;
+const TILE_MT_EXIT_DOOR = 107;
 
-const TILE_PLAYER = 0;
-const TILE_ENEMY = 6;
+//Characters from 300 - 450;
+const TILE_PLAYER = 300;
+const TILE_ENEMY = 301;
 
-const TILE_HORN = 8;
-const TILE_EYEPATCH = 9;
-const TILE_TENCTACLE = 10;
-const TILE_WORMHOLE = 11;
-const TILE_DICTIONARY = 12;
-const TILE_BEACON = 13;
+//Items from 500 - 650;
+const TILE_HORN = 500;
+const TILE_EYEPATCH = 501;
+const TILE_TENCTACLE = 502;
+const TILE_WORMHOLE = 503;
+const TILE_DICTIONARY = 504;
+const TILE_BEACON = 505;
 
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
 /*--TODO: implement saved level maps data from lvl editor--*/
-var worldMap = [
-				2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-				2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
-				2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,7,5,5,5,5,1,2,
-				2,2,2,2,2,2,1,1,1,1,1,1,1,6,1,5,5,5,5,5,1,2,
-				2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,6,5,5,5,5,1,2,
-				2,2,2,2,2,2,2,2,1,1,1,1,6,1,1,6,5,5,5,1,1,2,
-				2,1,1,2,2,2,2,2,1,1,1,1,1,1,6,1,1,3,1,1,1,2,
-				2,1,1,2,2,2,2,2,1,1,13,1,1,1,1,1,1,3,1,1,1,2,
-				2,1,1,1,1,2,2,2,1,1,8,0,12,1,1,1,3,3,1,1,1,2,
-				2,1,1,1,2,2,2,3,1,1,9,10,11,1,1,3,3,1,1,2,1,2,
-				2,1,6,1,2,2,2,1,3,1,1,1,1,3,3,3,1,1,4,2,2,2,
-				2,1,1,6,1,1,1,1,1,3,3,3,3,3,1,1,1,4,4,2,2,2,
-				2,1,1,1,6,1,1,1,1,1,1,1,3,1,1,4,4,4,4,2,2,2,
-				2,1,1,6,1,1,1,1,1,1,1,6,3,3,4,4,4,4,4,2,2,2,
-				2,6,1,1,1,1,1,1,1,6,1,1,6,1,4,4,4,4,4,2,2,2,
-				2,1,1,1,1,1,1,1,1,1,6,1,1,1,1,1,1,1,2,2,2,2,
-				2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-				];	
+var allLvls = [testMap,saveLoadTest];
+var currentLvlIndex = 0;
+
+var currentMapRows = allLvls[currentLvlIndex].rows;
+var currentMapCols = allLvls[currentLvlIndex].cols;
+
+var worldMap = [];
+
+worldMap = Array.from(allLvls[currentLvlIndex].grid);
 
 function drawVisibleWorld(gridCols)
 {
@@ -52,6 +45,7 @@ function drawVisibleWorld(gridCols)
 	var colsThatFitOnScreen = Math.floor(canvas.width/TILE_W);
 	var rowsThatFitOnScreen = Math.floor(canvas.height/TILE_H);
 
+	//bug with editor not supporting grids bigger than 17x22 is most likely happening here.
 	var camRightMostCol = camLeftMostCol + colsThatFitOnScreen + 4;
 	var camBottomMostRow = camTopMostRow + rowsThatFitOnScreen + 2;
 
@@ -166,7 +160,7 @@ function handleLevelTransition(doorType)
 	switch(doorType)
 	{
 		case TILE_MT_ENTRY_DOOR:
-			levels.loadMap("testMap");
+			loadMap("saveLoadTest");
 			break;
 	}
 }
@@ -178,8 +172,8 @@ function findSpawnSpots()
 		if(worldMap[i] == TILE_ENEMY)
 		{
 			// console.log("found enemy spawn at: " + i);
-			var tileRow = Math.floor(i/W_COLS);
-			var tileCol = i%W_COLS;
+			var tileRow = Math.floor(i/currentMapCols);
+			var tileCol = i%currentMapCols;
 			enemiesStartSpots.push({col: tileCol, row: tileRow});
 			worldMap[i] = TILE_SNOW;
 		}

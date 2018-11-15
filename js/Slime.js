@@ -15,6 +15,8 @@ function slimeClass()
 	this.exp = new xpClass();//only for init level within a bracket appropriate to enemy
 	this.stats = new statsClass();
 
+	this.hasEnterAnotherLevel = false;
+
 	this.directionFaced;
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
@@ -36,14 +38,14 @@ function slimeClass()
 
 	this.reset = function()
 	{
-		if(this.homeX == undefined)
+		if(this.homeX == undefined || this.hasEnterAnotherLevel)
 		{
 			for(var i = 0; i < worldMap.length; i++)
 			{
 				if(worldMap[i] == TILE_ENEMY)
 				{
-					var tileRow = Math.floor(i/W_COLS);
-					var tileCol = i%W_COLS;
+					var tileRow = Math.floor(i/currentMapCols);
+					var tileCol = i%currentMapCols;
 					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
 					this.homeY = tileRow * TILE_H + 0.25 * TILE_H;
 					worldMap[i] = TILE_SNOW;
@@ -227,7 +229,7 @@ function slimeClass()
 
 	this.canMoveToNextTile = function(nextCenterX,nextCenterY)
 	{
-		var nextTileIndex = getTileIndexAtRowCol(nextCenterX, nextCenterY, W_COLS, W_ROWS);
+		var nextTileIndex = getTileIndexAtRowCol(nextCenterX, nextCenterY, currentMapCols, currentMapRows);
 		var nextTileType = TILE_SNOW;
 
 		if(nextTileIndex != undefined)

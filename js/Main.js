@@ -3,13 +3,12 @@ var gameLoop;
 var gameIsRunning = false;
 var fps = 30;
 var enemiesList = [];
-const NUM_OF_ENEMIES_ON_SCREEN = 14;
+const NUM_OF_ENEMIES_ON_SCREEN = 50;
 
 var isPaused = false;
 
 var player = new playerClass();
 
-var levels = new levelsClass();
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
 */
@@ -61,7 +60,7 @@ function moveAll()
 	{
 		enemiesList[i].move();
 	}
-	moveCamera(W_COLS, W_ROWS);
+	moveCamera(currentMapCols, currentMapRows);
 }
 
 function battleAll()
@@ -78,7 +77,7 @@ function drawAll()
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
 
-	drawVisibleWorld(W_COLS);
+	drawVisibleWorld(currentMapCols);
 	for(var i = 0; i < enemiesList.length; i++)
 	{
 		enemiesList[i].draw();

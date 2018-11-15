@@ -148,7 +148,7 @@ function keyPressed(evt)
 			break;
 
 		case KEY_V:
-			levels.saveMap("testMap", editor.grid);
+			saveMap(window.prompt("Enter the level name in a string format:"), editor.grid);
 			break;
 	}
 
