@@ -8,9 +8,9 @@ function TileGrid(initTile)
 
 	this.init = function(rows, cols)
 	{
-		this.map = new Array(rows * cols);
 		this.mapRows = rows;
 		this.mapCols = cols;
+		this.map = new Array(rows * cols);
 		this.reset(this.initTileType);
 	}
 

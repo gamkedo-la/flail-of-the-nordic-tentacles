@@ -52,6 +52,7 @@ function drawVisibleWorld(gridCols)
 	var colsThatFitOnScreen = Math.floor(canvas.width/TILE_W);
 	var rowsThatFitOnScreen = Math.floor(canvas.height/TILE_H);
 
+	//bug with editor not supporting grids bigger than 17x22 is most likely happening here.
 	var camRightMostCol = camLeftMostCol + colsThatFitOnScreen + 4;
 	var camBottomMostRow = camTopMostRow + rowsThatFitOnScreen + 2;
 

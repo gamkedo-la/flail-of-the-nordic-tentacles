@@ -27,7 +27,7 @@ function Editor()
 		[TILE_SNOW,TILE_OCEAN,TILE_ROAD,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR],
 		//Placeholder item tiles
 		[TILE_HORN,TILE_EYEPATCH,TILE_TENCTACLE,TILE_WORMHOLE,TILE_DICTIONARY,TILE_BEACON],
-		//enemy spawn tokens
+		//character spawn tokens
 		[TILE_PLAYER,TILE_ENEMY]
 	];
 
@@ -35,8 +35,7 @@ function Editor()
 
 	this.init = function()
 	{
-		//give user control over size of map. use some html, css, and js magic for this
-		this.grid.init(17, 22);
+		this.grid.init(window.prompt("Enter the number of rows for this level:"), window.prompt("Enter the number of columns for this level:"));
 		this.selectedTileSet = this.usableTiles[this.tileSetIndex];
 		this.selectedTileType = this.selectedTileSet[this.tileIndex];
 	}
