@@ -25,6 +25,12 @@ function imgsDoneLoadingSoStartGame()
 	gameIsRunning = true;
 	gameLoop = setInterval(updateAll, 1000/fps);
 
+	for(var i = 0; i < allLvls[0].enemies.length; i++)
+	{
+		console.log(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y);
+		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y);
+	}
+
 	player.init(vikingPic, "Ragnar");
 
 	findSpawnSpots();

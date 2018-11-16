@@ -47,9 +47,14 @@ function Editor()
 
 	this.setTile = function()
 	{
-		console.log("setting tile to: " + this.selectedTileType);
-
-		this.grid.setTile(mouseX, mouseY, this.selectedTileType);
+		if(this.selectedTileType == TILE_ENEMY)
+		{
+			addEnemyToSpawnList(mouseX + camPanX,mouseY + camPanY);
+		}
+		else
+		{
+			this.grid.setTile(mouseX, mouseY, this.selectedTileType);
+		}
 	}
 
 	this.changeSelectedTileInTileSet = function()
@@ -93,7 +98,11 @@ function runEditorInstance()
 	clearInterval(gameLoop);
 	gameIsRunning = !gameIsRunning;
 
+	clearSpawnList();
 	editor = new Editor();
+	console.log("EDITOR GUIDE: \n" + "X: Deletes Spawns" + "\nV: Save maps to console for copy/paste to code" + 
+		"\nTAB: Exits editor mode" + "\nUp/Down Arrow: Changes tile set" + "\nLeft/Right Arrow: Change to specific tile within set" +
+		"\nMouse click: Set tiles");
 	editor.init();
 
 	editorLoop = setInterval(editor.update.bind(editor), 1000/fps);

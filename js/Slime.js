@@ -38,7 +38,7 @@ function slimeClass()
 
 	this.reset = function()
 	{
-		if(this.homeX == undefined || this.hasEnterAnotherLevel)
+		if(this.homeX == undefined)
 		{
 			for(var i = 0; i < worldMap.length; i++)
 			{
@@ -70,8 +70,8 @@ function slimeClass()
 
 		if(!this.isSentryModeOn())
 		{
-			nextX += this.velX;
-			nextY += this.velY;
+			// nextX += this.velX;
+			// nextY += this.velY;
 			if(this.velX > 0)
 			{
 				if(this.canMoveToNextTile(nextX, nextY))

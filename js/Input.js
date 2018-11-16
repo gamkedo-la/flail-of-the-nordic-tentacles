@@ -44,7 +44,7 @@ var mouseY = 0;
 function setupInput()
 {
 	canvas.addEventListener('mousemove', updateMousePos);
-	canvas.addEventListener('click', checkIfEditorIsOnAndSetTile);
+	canvas.addEventListener('mousedown', checkIfEditorIsOnAndSetTile);
 	document.addEventListener('keydown', keyPressed);
 	document.addEventListener('keyup', keyReleased);
 
@@ -60,7 +60,7 @@ function updateMousePos(evt)
 	mouseY = evt.clientY - rect.top - root.scrollTop;
 }
 
-function checkIfEditorIsOnAndSetTile()
+function checkIfEditorIsOnAndSetTile(evt)
 {
 	if(!gameIsRunning)
 	{
@@ -149,6 +149,10 @@ function keyPressed(evt)
 
 		case KEY_V:
 			saveMap(window.prompt("Enter the level name in a string format:"), editor.grid);
+			break;
+
+		case KEY_X:
+			removeSpawnNearMouse();
 			break;
 	}
 

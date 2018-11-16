@@ -27,7 +27,7 @@ const TILE_BEACON = 505;
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
 /*--TODO: implement saved level maps data from lvl editor--*/
-var allLvls = [testMap,saveLoadTest];
+var allLvls = [testMap,saveLoadTest,enemyTest];
 var currentLvlIndex = 0;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
@@ -62,6 +62,11 @@ function drawVisibleWorld(gridCols)
 				drawVisibleWorldHelper(col,row,gridCols,editor.grid.map);
 			}			
 		}
+	}
+
+	if(gameIsRunning === false)
+	{
+		drawEnemySpawns();
 	}
 }
 
@@ -114,7 +119,7 @@ function getTileIndexAtRowCol(pxX, pxY, gridCols, gridRows)
 	if(tileCol < 0 || tileCol >= gridCols ||
 		tileRow < 0 || tileRow >= gridRows)
 	{
-		console.log("TILE does not exist");
+		// console.log("TILE does not exist");
 		return undefined;
 	}
 
@@ -160,31 +165,27 @@ function handleLevelTransition(doorType)
 	switch(doorType)
 	{
 		case TILE_MT_ENTRY_DOOR:
-			loadMap("saveLoadTest");
+			loadMap("test");
 			break;
 	}
 }
 
 function findSpawnSpots()
 {
-	for(var i = 0; i < worldMap.length; i++)
-	{
-		if(worldMap[i] == TILE_ENEMY)
-		{
-			// console.log("found enemy spawn at: " + i);
-			var tileRow = Math.floor(i/currentMapCols);
-			var tileCol = i%currentMapCols;
-			enemiesStartSpots.push({col: tileCol, row: tileRow});
-			worldMap[i] = TILE_SNOW;
-		}
-		// else if(worldMap[i] == TILE_ITEM)
-		// {
-		// 	var tileRow = Math.floor(i/W_COLS);
-		// 	var tileCol = i%W_COLS;
-		// 	itemSpawnSpots.push({col: tileCol, row: tileRow});
-		// 	worldMap[i] = TILE_SNOW;
-		// }
-	}
+	spawnEnemiesSpawnList();
+
+	//old tile based approach will be obsolete soon
+	// for(var i = 0; i < worldMap.length; i++)
+	// {
+	// 	if(worldMap[i] == TILE_ENEMY)
+	// 	{
+	// 		// console.log("found enemy spawn at: " + i);
+	// 		var tileRow = Math.floor(i/currentMapCols);
+	// 		var tileCol = i%currentMapCols;
+	// 		enemiesStartSpots.push({col: tileCol, row: tileRow});
+	// 		worldMap[i] = TILE_SNOW;
+	// 	}
+	// }
 }
 
 function randomSpawn()
