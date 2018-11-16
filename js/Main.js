@@ -27,7 +27,7 @@ function imgsDoneLoadingSoStartGame()
 
 	for(var i = 0; i < allLvls[0].enemies.length; i++)
 	{
-		console.log(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y);
+		// console.log("homeX, homeY from map: ", allLvls[0].enemies[i].x,allLvls[0].enemies[i].y);
 		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y);
 	}
 
@@ -41,6 +41,7 @@ function imgsDoneLoadingSoStartGame()
 		/*
 			enemiesList[i].init(getPicForThisSpecificEnemy(), name of enemy)
 		*/
+		// console.log("homeX, homeY prior init: ", enemiesList[i].homeX,enemiesList[i].homeY);
 		enemiesList[i].init(slimePic, "Slime " + i);
 	}
 	setupInput();
@@ -91,7 +92,7 @@ function drawAll()
 	player.draw();
 
 	canvasContext.restore();
-	// gameDebugTools();
+	gameDebugTools();
 }
 
 function popEnemyList()
@@ -104,6 +105,6 @@ function popEnemyList()
 
 function gameDebugTools()
 {
-	drawCircle(camPanX, camPanY, 5, 'red');
-	drawText("mouse: " + mouseX + "," + mouseY, mouseX, mouseY, "red");
+	// drawCircle(camPanX, camPanY, 5, 'red');
+	drawText("mouse: " + (mouseX + camPanX) + "," + (mouseY + camPanY), mouseX, mouseY, "red");
 }

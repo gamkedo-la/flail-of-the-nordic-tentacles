@@ -125,5 +125,5 @@ function editorDebugTools()
 	editor.tileToBeReplaced = roomTileToIndex(tileCol, tileRow, editor.grid.mapCols);
 
 	// drawCircle(camPanX, camPanY, 5, 'red');
-	drawText("mouse x: " + mouseX + ", y: " + mouseY + ", tileIndex: " + editor.tileToBeReplaced, mouseX, mouseY, "red");
+	drawText("mouse x: " + (mouseX + camPanX) + ", y: " + (mouseY + camPanY) + ", tileIndex: " + editor.tileToBeReplaced, mouseX, mouseY, "red");
 }

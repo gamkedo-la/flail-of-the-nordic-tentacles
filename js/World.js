@@ -26,8 +26,7 @@ const TILE_BEACON = 505;
 
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
-/*--TODO: implement saved level maps data from lvl editor--*/
-var allLvls = [testMap,saveLoadTest,enemyTest];
+var allLvls = [testMap,enemyTest];
 var currentLvlIndex = 0;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
@@ -199,6 +198,7 @@ function randomSpawn()
 	var tempEnemy = new slimeClass();
 
 	tempEnemy.randomizeInitAI();
+	// console.log("homeX,homeY prior randSpawn: ", enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
 	tempEnemy.setHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
 	enemiesStartSpots.splice(randSpot, 1);
 	enemiesList.push(tempEnemy);

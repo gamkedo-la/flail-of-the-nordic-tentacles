@@ -60,7 +60,7 @@ function slimeClass()
 	this.setHome = function(startCol, startRow)
 	{
 		this.homeX = startCol * TILE_W + 0.5 * TILE_W;
-		this.homeY = startRow * TILE_H + 0.25 * TILE_H;
+		this.homeY = startRow * TILE_H;
 	}
 
 	this.move = function()
@@ -70,8 +70,8 @@ function slimeClass()
 
 		if(!this.isSentryModeOn())
 		{
-			// nextX += this.velX;
-			// nextY += this.velY;
+			nextX += this.velX;
+			nextY += this.velY;
 			if(this.velX > 0)
 			{
 				if(this.canMoveToNextTile(nextX, nextY))
