@@ -14,14 +14,16 @@ function loadImages()
 		{charName: slimePic, fileName: "slime_quick_sheet.png"},
 
 		// World Pics Go Here
-		{worldType: TILE_ROAD, fileName: "placeholder_terrain_sheet.png"},
-		{worldType: TILE_OCEAN, fileName: "placeholder_terrain_sheet.png"},
+		{worldType: TILE_ROAD, fileName: "terrain_spritesheet.png"},
+		{worldType: TILE_OCEAN, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_SNOW_GRASS, fileName: "snowyGrass.png"},
-		{worldType: TILE_SNOW, fileName: "placeholder_terrain_sheet.png"},
-		{worldType: TILE_MOUNTAIN, fileName: "placeholder_terrain_sheet.png"},
-		{worldType: TILE_TREE, fileName: "placeholder_terrain_sheet.png"},
-		{worldType: TILE_MT_ENTRY_DOOR, fileName: "placeholder_terrain_sheet.png"},
-		{worldType: TILE_MT_EXIT_DOOR, fileName: "placeholder_terrain_sheet.png"},
+		{worldType: TILE_SNOW, fileName: "terrain_spritesheet.png"},
+		{worldType: TILE_MOUNTAIN, fileName: "terrain_spritesheet.png"},
+		{worldType: TILE_TREE, fileName: "terrain_spritesheet.png"},
+		{worldType: TILE_MT_ENTRY_DOOR, fileName: "terrain_spritesheet.png"},
+		{worldType: TILE_MT_EXIT_DOOR, fileName: "terrain_spritesheet.png"},
+		{worldType: TILE_SNOW_TO_BEACH, fileName: "terrain_spritesheet.png"},
+		{worldType: TILE_BEACH_TO_OCEAN, fileName: "terrain_spritesheet.png"},
 
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "odins_eyepatch_quick.png"},

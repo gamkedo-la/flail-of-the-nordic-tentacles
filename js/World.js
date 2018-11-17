@@ -11,6 +11,8 @@ const TILE_MOUNTAIN = 104;
 const TILE_MT_ENTRY_DOOR = 105;
 const TILE_SNOW_GRASS = 106;
 const TILE_MT_EXIT_DOOR = 107;
+const TILE_SNOW_TO_BEACH = 108;
+const TILE_BEACH_TO_OCEAN = 109;
 
 //Characters from 300 - 450;
 const TILE_PLAYER = 300;
@@ -59,7 +61,7 @@ function drawVisibleWorld(gridCols)
 			else
 			{
 				drawVisibleWorldHelper(col,row,gridCols,editor.grid.map);
-			}			
+			}
 		}
 	}
 
@@ -85,7 +87,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 			if(tileType == TILE_HORN || tileType == TILE_EYEPATCH || tileType == TILE_BEACON ||
 			tileType == TILE_TENCTACLE || tileType == TILE_DICTIONARY || tileType == TILE_WORMHOLE)
 			{
-				canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20, 
+				canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 					worldPics[tileType].width,worldPics[tileType].height);
 			}
 			else
@@ -93,7 +95,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 				// canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
 				drawTileBasedOnType(tileType, tileLeftEgdeX, tileTopEdgeY);
 			}
-		}	
+		}
 		else
 		{
 			console.log("Trying to draw an undefined tile: " + tileType);
@@ -105,7 +107,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 			{
 				outlineRect(tileLeftEgdeX, tileTopEdgeY, TILE_W, TILE_H, 'red');
 			}
-		}		
+		}
 	}
 }
 
@@ -136,13 +138,19 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_MT_EXIT_DOOR:
 			xClipping = TILE_W * 6;
 			break;
+		case TILE_SNOW_TO_BEACH:
+			xClipping = TILE_W * 7;
+			break;
+		case TILE_BEACH_TO_OCEAN:
+			xClipping = TILE_W * 8;
+			break;
 		default:
 			xClipping = 0;
 			yClipping = 0;
 			break;
 	}
 
-	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY, 
+	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
 					TILE_W, TILE_H);
 }
 
