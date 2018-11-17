@@ -23,7 +23,7 @@ function Editor()
 	this.tileIndex = 0;
 	
 	this.usableTiles = [
-		{setName: "placeholderTiles", tileSet: [TILE_SNOW,TILE_OCEAN,TILE_ROAD,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR]},
+		{setName: "placeholderTiles", tileSet: [TILE_SNOW,TILE_OCEAN,TILE_ROAD,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR,TILE_MT_EXIT_DOOR]},
 		{setName: "placeholderItems", tileSet: [TILE_HORN,TILE_EYEPATCH,TILE_TENCTACLE,TILE_WORMHOLE,TILE_DICTIONARY,TILE_BEACON]},
 		{setName: "placeholderCharacters", tileSet: [TILE_PLAYER,TILE_ENEMY]},
 	];

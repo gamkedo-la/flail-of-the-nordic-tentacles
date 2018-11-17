@@ -85,11 +85,13 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 			if(tileType == TILE_HORN || tileType == TILE_EYEPATCH || tileType == TILE_BEACON ||
 			tileType == TILE_TENCTACLE || tileType == TILE_DICTIONARY || tileType == TILE_WORMHOLE)
 			{
-				canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX + 20, tileTopEdgeY + 20);
+				canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20, 
+					worldPics[tileType].width,worldPics[tileType].height);
 			}
 			else
 			{
-				canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
+				// canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
+				drawTileBasedOnType(tileType, tileLeftEgdeX, tileTopEdgeY);
 			}
 		}	
 		else
@@ -105,6 +107,43 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 			}
 		}		
 	}
+}
+
+function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
+{
+	var xClipping = 0;
+	var yClipping = 0;
+
+	switch(tileType)
+	{
+		case TILE_SNOW:
+			break;
+		case TILE_OCEAN:
+			xClipping = TILE_W;
+			break;
+		case TILE_ROAD:
+			xClipping = TILE_W * 2;
+			break;
+		case TILE_TREE:
+			xClipping = TILE_W * 3;
+			break;
+		case TILE_MOUNTAIN:
+			xClipping = TILE_W * 4;
+			break;
+		case TILE_MT_ENTRY_DOOR:
+			xClipping = TILE_W * 5;
+			break;
+		case TILE_MT_EXIT_DOOR:
+			xClipping = TILE_W * 6;
+			break;
+		default:
+			xClipping = 0;
+			yClipping = 0;
+			break;
+	}
+
+	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY, 
+					TILE_W, TILE_H);
 }
 
 function getTileIndexAtRowCol(pxX, pxY, gridCols, gridRows)

@@ -14,14 +14,14 @@ function loadImages()
 		{charName: slimePic, fileName: "slime_quick_sheet.png"},
 
 		// World Pics Go Here
-		{worldType: TILE_ROAD, fileName: "road_quick.png"},
-		{worldType: TILE_OCEAN, fileName: "ocean_quick.png"},
+		{worldType: TILE_ROAD, fileName: "placeholder_terrain_sheet.png"},
+		{worldType: TILE_OCEAN, fileName: "placeholder_terrain_sheet.png"},
 		{worldType: TILE_SNOW_GRASS, fileName: "snowyGrass.png"},
-		{worldType: TILE_SNOW, fileName: "snow_quick.png"},
-		{worldType: TILE_MOUNTAIN, fileName: "mountain_quick.png"},
-		{worldType: TILE_TREE, fileName: "tree_quick.png"},
-		{worldType: TILE_MT_ENTRY_DOOR, fileName: "mountain_entrance_door.png"},
-		{worldType: TILE_MT_EXIT_DOOR, fileName: "exit_from_mountains.png"},
+		{worldType: TILE_SNOW, fileName: "placeholder_terrain_sheet.png"},
+		{worldType: TILE_MOUNTAIN, fileName: "placeholder_terrain_sheet.png"},
+		{worldType: TILE_TREE, fileName: "placeholder_terrain_sheet.png"},
+		{worldType: TILE_MT_ENTRY_DOOR, fileName: "placeholder_terrain_sheet.png"},
+		{worldType: TILE_MT_EXIT_DOOR, fileName: "placeholder_terrain_sheet.png"},
 
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "odins_eyepatch_quick.png"},
