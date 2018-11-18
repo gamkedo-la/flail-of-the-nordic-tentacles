@@ -91,7 +91,7 @@ function drawAll()
 	}
 	player.draw();
 
-	// drawVisibleWorld(currentMapCols, 1);
+	drawVisibleWorld(currentMapCols, 1);
 	canvasContext.restore();
 	gameDebugTools();
 }

@@ -58,7 +58,7 @@ function drawVisibleWorld(gridCols, layer)
 		{
 			if(gameIsRunning)
 			{
-				drawVisibleWorldHelper(col,row,gridCols,worldMap,0);
+				drawVisibleWorldHelper(col,row,gridCols,worldMap,layer);
 			}
 			else
 			{
