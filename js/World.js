@@ -31,8 +31,8 @@ const TILE_CUBE = 900;
 
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
-var allLvls = [testMap,enemyTest,layersTestMap];
-var currentLvlIndex = 2;
+var allLvls = [testMap,layersTestMap];
+var currentLvlIndex = 0;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
 var currentMapCols = allLvls[currentLvlIndex].cols;
@@ -62,7 +62,7 @@ function drawVisibleWorld(gridCols, layer)
 			}
 			else
 			{
-				drawVisibleWorldHelper(col,row,gridCols,editor.grid.map);
+				drawVisibleWorldHelper(col,row,gridCols,editor.grid.map, layer);
 			}
 		}
 	}
@@ -93,9 +93,14 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
 				}
+				else if(tileType == TILE_PLAYER && !gameIsRunning)
+				{
+					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
+					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
+				}
 				else
 				{
-					// canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
+					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
 					drawTileBasedOnType(tileType, tileLeftEgdeX, tileTopEdgeY);
 				}
 			}		
@@ -219,7 +224,7 @@ function handleLevelTransition(doorType)
 	switch(doorType)
 	{
 		case TILE_MT_ENTRY_DOOR:
-			loadMap("test");
+			loadMap("layerTest");
 			break;
 	}
 }

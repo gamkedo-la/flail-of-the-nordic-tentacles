@@ -24,7 +24,18 @@ const KEY_U = 85;
 const KEY_V = 86; 
 const KEY_X = 88; 
 const KEY_Y = 89; 
-const KEY_Z = 90; 
+const KEY_Z = 90;
+
+const NUM_0 = 48; 
+const NUM_1 = 49; 
+const NUM_2 = 50; 
+const NUM_3 = 51; 
+const NUM_4 = 52; 
+const NUM_5 = 53; 
+const NUM_6 = 54; 
+const NUM_7 = 55; 
+const NUM_8 = 56; 
+const NUM_9 = 57;  
 
 //Arrow Keycodes
 const LEFT_ARROW =  37;
@@ -32,6 +43,7 @@ const UP_ARROW =  38;
 const RIGHT_ARROW =  39;
 const DOWN_ARROW =  40;
 
+//Misc.
 const TAB = 9;
 const SHIFT = 16;
 const SPACE = 32;
@@ -153,6 +165,16 @@ function keyPressed(evt)
 
 		case KEY_X:
 			removeSpawnNearMouse();
+			break;
+
+		case NUM_1:
+			editor.currentLayer--;
+			editor.changeLayer();
+			break;
+
+		case NUM_2:
+			editor.currentLayer++;
+			editor.changeLayer();
 			break;
 	}
 
