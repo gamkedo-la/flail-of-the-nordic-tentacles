@@ -91,6 +91,8 @@ function playerClass()
 		{
 			nextTileType = worldMap[0][nextTileIndex];
 
+			this.pickupItemsIfAble(nextTileType, nextTileIndex);
+
 			if(moveCharIfAble(nextTileType))
 			{
 				this.centerX = nextX;
@@ -104,6 +106,22 @@ function playerClass()
 
 		this.hitbox.x = this.centerX;
 		this.hitbox.y = this.centerY;
+	}
+
+	this.pickupItemsIfAble = function(itemType, itemIndex)
+	{
+		switch(itemType)
+		{
+			case TILE_HORN:
+			case TILE_EYEPATCH:
+			case TILE_BEACON:
+			case TILE_TENCTACLE:
+			case TILE_DICTIONARY:
+			case TILE_WORMHOLE:
+				worldMap[0][itemIndex] = TILE_SNOW;
+				console.log("picked up item: " + itemType);
+				break;
+		}
 	}
 
 	this.setDirectionFaced = function()

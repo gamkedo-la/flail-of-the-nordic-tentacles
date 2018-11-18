@@ -93,7 +93,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
 				}
-				else if(tileType == TILE_PLAYER && !gameIsRunning)
+				else if(tileType == TILE_PLAYER && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
 				{
 					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
 					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
