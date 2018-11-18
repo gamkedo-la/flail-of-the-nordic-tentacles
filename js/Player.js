@@ -41,15 +41,15 @@ function playerClass()
 		//reset player health, buffs, etc
 		if(this.homeX == undefined || this.hasEnterAnotherLevel)
 		{
-			for(var i = 0; i < worldMap.length; i++)
+			for(var i = 0; i < worldMap[0].length; i++)
 			{
-				if(worldMap[i] == TILE_PLAYER)
+				if(worldMap[0][i] == TILE_PLAYER)
 				{
 					var tileRow = Math.floor(i/currentMapCols);
 					var tileCol = i%currentMapCols;
 					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
 					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-					worldMap[i] = TILE_SNOW;
+					worldMap[0][i] = TILE_SNOW;
 					break;
 				}
 			}
@@ -89,7 +89,7 @@ function playerClass()
 
 		if(nextTileIndex != undefined)
 		{
-			nextTileType = worldMap[nextTileIndex];
+			nextTileType = worldMap[0][nextTileIndex];
 
 			if(moveCharIfAble(nextTileType))
 			{

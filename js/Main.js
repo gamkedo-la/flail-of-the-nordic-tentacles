@@ -84,13 +84,14 @@ function drawAll()
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
 
-	drawVisibleWorld(currentMapCols);
+	drawVisibleWorld(currentMapCols, 0);
 	for(var i = 0; i < enemiesList.length; i++)
 	{
 		enemiesList[i].draw();
 	}
 	player.draw();
 
+	// drawVisibleWorld(currentMapCols, 1);
 	canvasContext.restore();
 	gameDebugTools();
 }
@@ -105,6 +106,10 @@ function popEnemyList()
 
 function gameDebugTools()
 {
+	var tileCol =  Math.floor((mouseX + camPanX)/TILE_W);
+	var tileRow =  Math.floor((mouseY + camPanY)/TILE_H);
+
 	// drawCircle(camPanX, camPanY, 5, 'red');
-	drawText("mouse: " + (mouseX + camPanX) + "," + (mouseY + camPanY), mouseX, mouseY, "red");
+	drawText("mouse: " + (mouseX + camPanX) + "," + (mouseY + camPanY) + "index: " + roomTileToIndex(tileCol, tileRow, currentMapCols), 
+		mouseX, mouseY, "red");
 }

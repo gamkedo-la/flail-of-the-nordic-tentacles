@@ -39,8 +39,8 @@ function Editor()
 
 	this.update = function()
 	{
-		this.grid.draw();
 		moveCamera(this.grid.mapCols, this.grid.mapRows);
+		this.grid.draw();
 		editorDebugTools();
 		//check for saves/deletes
 	}
@@ -100,9 +100,13 @@ function runEditorInstance()
 
 	clearSpawnList();
 	editor = new Editor();
+
+	console.log("WARNING!!! \n" + "Grid smaller than 8 rows by 10 columns are not supported!\n" + 
+		"Anything bigger than that should be okay.");
 	console.log("EDITOR GUIDE: \n" + "X: Deletes Spawns" + "\nV: Save maps to console for copy/paste to code" + 
 		"\nTAB: Exits editor mode" + "\nUp/Down Arrow: Changes tile set" + "\nLeft/Right Arrow: Change to specific tile within set" +
 		"\nMouse click: Set tiles");
+
 	editor.init();
 
 	editorLoop = setInterval(editor.update.bind(editor), 1000/fps);

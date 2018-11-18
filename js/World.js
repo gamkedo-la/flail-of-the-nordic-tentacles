@@ -26,19 +26,22 @@ const TILE_WORMHOLE = 503;
 const TILE_DICTIONARY = 504;
 const TILE_BEACON = 505;
 
+//Layer Tests 900 - 999
+const TILE_CUBE = 900;
+
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
-var allLvls = [testMap,enemyTest];
-var currentLvlIndex = 0;
+var allLvls = [testMap,enemyTest,layersTestMap];
+var currentLvlIndex = 2;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
 var currentMapCols = allLvls[currentLvlIndex].cols;
 
 var worldMap = [];
 
-worldMap = Array.from(allLvls[currentLvlIndex].grid);
+worldMap = Array.from(allLvls[currentLvlIndex].gridLayers);
 
-function drawVisibleWorld(gridCols)
+function drawVisibleWorld(gridCols, layer)
 {
 	var camLeftMostCol = Math.floor(camPanX/TILE_W);
 	var camTopMostRow = Math.floor(camPanY/TILE_H);
@@ -46,8 +49,7 @@ function drawVisibleWorld(gridCols)
 	var colsThatFitOnScreen = Math.floor(canvas.width/TILE_W);
 	var rowsThatFitOnScreen = Math.floor(canvas.height/TILE_H);
 
-	//bug with editor not supporting grids bigger than 17x22 is most likely happening here.
-	var camRightMostCol = camLeftMostCol + colsThatFitOnScreen + 4;
+	var camRightMostCol = camLeftMostCol + colsThatFitOnScreen + 2;
 	var camBottomMostRow = camTopMostRow + rowsThatFitOnScreen + 2;
 
 	for(var col = camLeftMostCol; col < camRightMostCol; col++)
@@ -56,7 +58,7 @@ function drawVisibleWorld(gridCols)
 		{
 			if(gameIsRunning)
 			{
-				drawVisibleWorldHelper(col,row,gridCols,worldMap);
+				drawVisibleWorldHelper(col,row,gridCols,worldMap,0);
 			}
 			else
 			{
@@ -71,30 +73,32 @@ function drawVisibleWorld(gridCols)
 	}
 }
 
-function drawVisibleWorldHelper(col,row,gridCols,map)
+function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 {
-	if(doesTileExistAtTileCoord(col,row, gridCols))
+	if(doesTileExistAtTileCoord(col,row, gridCols,map,layer))
 	{
 		var tileIndex = roomTileToIndex(col,row, gridCols);
-		var tileType = map[tileIndex];
+		var tileType = map[layer][tileIndex];
 		var tileLeftEgdeX = col * TILE_W;
 		var tileTopEdgeY = row * TILE_H;
 
 		if(tileType != undefined)
 		{
-			canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
-
-			if(tileType == TILE_HORN || tileType == TILE_EYEPATCH || tileType == TILE_BEACON ||
-			tileType == TILE_TENCTACLE || tileType == TILE_DICTIONARY || tileType == TILE_WORMHOLE)
+			if(tileType != 000)
 			{
-				canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
-					worldPics[tileType].width,worldPics[tileType].height);
-			}
-			else
-			{
-				// canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
-				drawTileBasedOnType(tileType, tileLeftEgdeX, tileTopEdgeY);
-			}
+				if(tileType == TILE_HORN || tileType == TILE_EYEPATCH || tileType == TILE_BEACON ||
+				tileType == TILE_TENCTACLE || tileType == TILE_DICTIONARY || tileType == TILE_WORMHOLE)
+				{
+					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
+					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
+						worldPics[tileType].width,worldPics[tileType].height);
+				}
+				else
+				{
+					// canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
+					drawTileBasedOnType(tileType, tileLeftEgdeX, tileTopEdgeY);
+				}
+			}		
 		}
 		else
 		{
@@ -108,6 +112,10 @@ function drawVisibleWorldHelper(col,row,gridCols,map)
 				outlineRect(tileLeftEgdeX, tileTopEdgeY, TILE_W, TILE_H, 'red');
 			}
 		}
+	}
+	else
+	{
+		// console.log("tile doesn't exist");
 	}
 }
 
@@ -178,10 +186,10 @@ function roomTileToIndex(tileCol, tileRow, gridCols)
 	return (tileCol + gridCols * tileRow);
 }
 
-function doesTileExistAtTileCoord(tileCol, tileRow, gridCols)
+function doesTileExistAtTileCoord(tileCol, tileRow, gridCols, map, layer)
 {
 	var tileIndex = roomTileToIndex(tileCol, tileRow, gridCols);
-	return	(worldMap[tileIndex] != undefined);
+	return	(map[layer][tileIndex] != undefined);
 }
 
 function moveCharIfAble(tileType)

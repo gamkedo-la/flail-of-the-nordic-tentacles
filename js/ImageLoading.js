@@ -24,6 +24,7 @@ function loadImages()
 		{worldType: TILE_MT_EXIT_DOOR, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_SNOW_TO_BEACH, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_BEACH_TO_OCEAN, fileName: "terrain_spritesheet.png"},
+		{worldType: TILE_CUBE, fileName: "cube.png"},
 
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "odins_eyepatch_quick.png"},

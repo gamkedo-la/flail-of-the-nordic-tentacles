@@ -40,15 +40,15 @@ function slimeClass()
 	{
 		if(this.homeX == undefined)
 		{
-			for(var i = 0; i < worldMap.length; i++)
+			for(var i = 0; i < worldMap[0].length; i++)
 			{
-				if(worldMap[i] == TILE_ENEMY)
+				if(worldMap[0][i] == TILE_ENEMY)
 				{
 					var tileRow = Math.floor(i/currentMapCols);
 					var tileCol = i%currentMapCols;
 					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
 					this.homeY = tileRow * TILE_H + 0.25 * TILE_H;
-					worldMap[i] = TILE_SNOW;
+					worldMap[0][i] = TILE_SNOW;
 					break;
 				}
 			}
@@ -234,7 +234,7 @@ function slimeClass()
 
 		if(nextTileIndex != undefined)
 		{
-			nextTileType = worldMap[nextTileIndex];
+			nextTileType = worldMap[0][nextTileIndex];
 			if(moveCharIfAble(nextTileType))
 			{
 				this.centerX = nextCenterX;
