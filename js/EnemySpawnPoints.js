@@ -84,7 +84,7 @@ function enemySpawnPointClass()
 	{
 		this.x = startX;
 		this.y = startY;
-		this.bitmap = slimePic;
+		this.bitmap = slimePic;//handle different enemy types pics later
 		this.charType = enemyKind;
 	}
 

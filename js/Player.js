@@ -41,15 +41,15 @@ function playerClass()
 		//reset player health, buffs, etc
 		if(this.homeX == undefined || this.hasEnterAnotherLevel)
 		{
-			for(var i = 0; i < worldMap.length; i++)
+			for(var i = 0; i < worldMap[0].length; i++)
 			{
-				if(worldMap[i] == TILE_PLAYER)
+				if(worldMap[0][i] == TILE_PLAYER)
 				{
 					var tileRow = Math.floor(i/currentMapCols);
 					var tileCol = i%currentMapCols;
 					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
 					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-					worldMap[i] = TILE_SNOW;
+					worldMap[0][i] = TILE_SNOW;
 					break;
 				}
 			}
@@ -89,7 +89,9 @@ function playerClass()
 
 		if(nextTileIndex != undefined)
 		{
-			nextTileType = worldMap[nextTileIndex];
+			nextTileType = worldMap[0][nextTileIndex];
+
+			this.pickupItemsIfAble(nextTileType, nextTileIndex);
 
 			if(moveCharIfAble(nextTileType))
 			{
@@ -104,6 +106,22 @@ function playerClass()
 
 		this.hitbox.x = this.centerX;
 		this.hitbox.y = this.centerY;
+	}
+
+	this.pickupItemsIfAble = function(itemType, itemIndex)
+	{
+		switch(itemType)
+		{
+			case TILE_HORN:
+			case TILE_EYEPATCH:
+			case TILE_BEACON:
+			case TILE_TENCTACLE:
+			case TILE_DICTIONARY:
+			case TILE_WORMHOLE:
+				worldMap[0][itemIndex] = TILE_SNOW;
+				console.log("picked up item: " + itemType);
+				break;
+		}
 	}
 
 	this.setDirectionFaced = function()

@@ -21,9 +21,13 @@ function Editor()
 	this.selectedTileSet;
 	this.tileSetIndex = 0;
 	this.tileIndex = 0;
+
+	this.currentLayer = 0;
+	this.selectedLayer;
 	
 	this.usableTiles = [
-		{setName: "placeholderTiles", tileSet: [TILE_SNOW,TILE_OCEAN,TILE_ROAD,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR,TILE_MT_EXIT_DOOR]},
+		{setName: "placeholderTiles", tileSet: [TILE_SNOW,TILE_OCEAN,TILE_ROAD,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR,TILE_MT_EXIT_DOOR,
+												TILE_SNOW_TO_BEACH,TILE_BEACH_TO_OCEAN,TILE_CUBE]},
 		{setName: "placeholderItems", tileSet: [TILE_HORN,TILE_EYEPATCH,TILE_TENCTACLE,TILE_WORMHOLE,TILE_DICTIONARY,TILE_BEACON]},
 		{setName: "placeholderCharacters", tileSet: [TILE_PLAYER,TILE_ENEMY]},
 	];
@@ -35,12 +39,13 @@ function Editor()
 		this.grid.init(window.prompt("Enter the number of rows for this level:"), window.prompt("Enter the number of columns for this level:"));
 		this.selectedTileSet = this.usableTiles[this.tileSetIndex].tileSet;
 		this.selectedTileType = this.selectedTileSet[this.tileIndex];
+		this.selectedLayer = 0;
 	}
 
 	this.update = function()
 	{
-		this.grid.draw();
 		moveCamera(this.grid.mapCols, this.grid.mapRows);
+		this.grid.draw();
 		editorDebugTools();
 		//check for saves/deletes
 	}
@@ -53,7 +58,7 @@ function Editor()
 		}
 		else
 		{
-			this.grid.setTile(mouseX, mouseY, this.selectedTileType);
+			this.grid.setTile(mouseX, mouseY, this.selectedTileType, this.selectedLayer);
 		}
 	}
 
@@ -91,6 +96,24 @@ function Editor()
 		
 		console.log("Switched to: " + this.usableTiles[this.tileSetIndex].setName);
 	}
+
+	this.changeLayer = function()
+	{
+		if(this.currentLayer >= 0 && this.currentLayer <= this.grid.map.length - 1)
+		{
+			this.selectedLayer = this.currentLayer;
+		}
+		else if(this.currentLayer < 0)
+		{
+			this.currentLayer = 0;
+		}
+		else
+		{
+			this.currentLayer = this.grid.map.length - 1;
+		}
+
+		console.log("Switched to layer: " + this.selectedLayer);
+	}
 }
 
 function runEditorInstance()
@@ -100,9 +123,13 @@ function runEditorInstance()
 
 	clearSpawnList();
 	editor = new Editor();
+
+	console.log("WARNING!!! \n" + "Grid smaller than 8 rows by 10 columns are not supported!\n" + 
+		"Anything bigger than that should be okay.");
 	console.log("EDITOR GUIDE: \n" + "X: Deletes Spawns" + "\nV: Save maps to console for copy/paste to code" + 
 		"\nTAB: Exits editor mode" + "\nUp/Down Arrow: Changes tile set" + "\nLeft/Right Arrow: Change to specific tile within set" +
-		"\nMouse click: Set tiles");
+		"\nMouse click: Set tiles" + "\nF/H: Pans camera left/right" + "\nT/G: Pans camera up/down" + "\nNum 1/Num 2: Changes layers");
+
 	editor.init();
 
 	editorLoop = setInterval(editor.update.bind(editor), 1000/fps);
