@@ -5,7 +5,7 @@ const TILE_H = 80;
 //Tiles from 100 - 250;
 const TILE_SNOW = 100;
 const TILE_OCEAN = 101;
-const TILE_ROAD = 102;
+//const TILE_ROAD = 102; // TODO: Replace tile on spritesheet with single tile type
 const TILE_TREE = 103;
 const TILE_MOUNTAIN = 104;
 const TILE_MT_ENTRY_DOOR = 105;
@@ -13,6 +13,13 @@ const TILE_SNOW_GRASS = 106;
 const TILE_MT_EXIT_DOOR = 107;
 const TILE_SNOW_TO_BEACH = 108;
 const TILE_BEACH_TO_OCEAN = 109;
+const TILE_ROAD_HORIZONTAL = 110;
+const TILE_ROAD_VERTICAL = 111;
+const TILE_ROAD_TOP_RIGHT_TURN = 112;
+const TILE_ROAD_TOP_LEFT_TURN = 113;
+const TILE_ROAD_BOTTOM_RIGHT_TURN = 114;
+const TILE_ROAD_BOTTOM_LEFT_TURN = 115;
+
 
 //Characters from 300 - 450;
 const TILE_PLAYER = 300;
@@ -113,7 +120,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 		if(!gameIsRunning)
 		{
 			if(editor.tileToBeReplaced == tileIndex)
-			{
+			{	
 				outlineRect(tileLeftEgdeX, tileTopEdgeY, TILE_W, TILE_H, 'red');
 			}
 		}
@@ -136,9 +143,9 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_OCEAN:
 			xClipping = TILE_W;
 			break;
-		case TILE_ROAD:
+		/*case TILE_ROAD: // TODO: Replace tile on spritesheet with single tile type
 			xClipping = TILE_W * 2;
-			break;
+			break;*/
 		case TILE_TREE:
 			xClipping = TILE_W * 3;
 			break;
@@ -156,6 +163,23 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 			break;
 		case TILE_BEACH_TO_OCEAN:
 			xClipping = TILE_W * 8;
+			break;
+		case TILE_ROAD_HORIZONTAL:
+			break;
+		case TILE_ROAD_VERTICAL:
+			xClipping = TILE_W;
+			break;
+		case TILE_ROAD_TOP_LEFT_TURN:
+			xClipping = TILE_W * 2;
+			break;
+		case TILE_ROAD_TOP_RIGHT_TURN:
+			xClipping = TILE_W * 3;
+			break;
+		case TILE_ROAD_BOTTOM_RIGHT_TURN:
+			xClipping = TILE_W * 4;
+			break;
+		case TILE_ROAD_BOTTOM_LEFT_TURN:
+			xClipping = TILE_W * 5;
 			break;
 		default:
 			xClipping = 0;

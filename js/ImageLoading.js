@@ -14,7 +14,7 @@ function loadImages()
 		{charName: slimePic, fileName: "slime_quick_sheet.png"},
 
 		// World Pics Go Here
-		{worldType: TILE_ROAD, fileName: "terrain_spritesheet.png"},
+		//{worldType: TILE_ROAD, fileName: "terrain_spritesheet.png"}, // TODO: Replace tile on spritesheet with single tile type
 		{worldType: TILE_OCEAN, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_SNOW_GRASS, fileName: "snowyGrass.png"},
 		{worldType: TILE_SNOW, fileName: "terrain_spritesheet.png"},
@@ -25,6 +25,12 @@ function loadImages()
 		{worldType: TILE_SNOW_TO_BEACH, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_BEACH_TO_OCEAN, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_CUBE, fileName: "cube.png"},
+		{worldType: TILE_ROAD_HORIZONTAL, fileName: "road_spritesheet.png"},
+		{worldType: TILE_ROAD_VERTICAL, fileName: "road_spritesheet.png"},
+		{worldType: TILE_ROAD_TOP_LEFT_TURN, fileName: "road_spritesheet.png"},
+		{worldType: TILE_ROAD_TOP_RIGHT_TURN, fileName: "road_spritesheet.png"},
+		{worldType: TILE_ROAD_BOTTOM_RIGHT_TURN, fileName: "road_spritesheet.png"},
+		{worldType: TILE_ROAD_BOTTOM_LEFT_TURN, fileName: "road_spritesheet.png"},
 
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "odins_eyepatch_quick.png"},
