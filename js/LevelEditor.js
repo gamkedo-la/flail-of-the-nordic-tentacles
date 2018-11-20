@@ -26,10 +26,12 @@ function Editor()
 	this.selectedLayer;
 	
 	this.usableTiles = [
-		{setName: "placeholderTiles", tileSet: [TILE_SNOW,TILE_OCEAN,TILE_ROAD,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR,TILE_MT_EXIT_DOOR,
+		{setName: "placeholderTiles", tileSet: [TILE_SNOW,TILE_OCEAN,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR,TILE_MT_EXIT_DOOR,
 												TILE_SNOW_TO_BEACH,TILE_BEACH_TO_OCEAN,TILE_CUBE]},
 		{setName: "placeholderItems", tileSet: [TILE_HORN,TILE_EYEPATCH,TILE_TENCTACLE,TILE_WORMHOLE,TILE_DICTIONARY,TILE_BEACON]},
 		{setName: "placeholderCharacters", tileSet: [TILE_PLAYER,TILE_ENEMY]},
+		{setName: "roadTiles", tileSet: [TILE_ROAD_HORIZONTAL,TILE_ROAD_VERTICAL,TILE_ROAD_BOTTOM_LEFT_TURN,TILE_ROAD_BOTTOM_RIGHT_TURN,
+										TILE_ROAD_TOP_RIGHT_TURN,TILE_ROAD_TOP_LEFT_TURN]},
 	];
 	
 	this.tileToBeReplaced;
