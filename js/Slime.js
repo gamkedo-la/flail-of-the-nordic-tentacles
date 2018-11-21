@@ -258,10 +258,20 @@ function slimeClass()
 		if(this.animDelay < 0)
 		{
 			this.animDelay = FRAME_DELAY;
-			this.animFrame++;
-			if(this.animFrame >= 4)
-			{
-				this.animFrame = 0;
+			
+			switch(this.directionFaced) {
+				case "South":
+					this.animFrame = 0;
+					break;
+				case "East":
+					this.animFrame = 1;
+					break;
+				case "West":
+					this.animFrame = 2;
+					break;
+				case "North":
+					this.animFrame = 3;
+					break;
 			}
 		}
 	
