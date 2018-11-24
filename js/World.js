@@ -5,7 +5,7 @@ const TILE_H = 80;
 //Tiles from 100 - 250;
 const TILE_SNOW = 100;
 const TILE_OCEAN = 101;
-//const TILE_ROAD = 102; // TODO: Replace tile on spritesheet with single tile type
+// const TILE_ROAD = 102; // TODO: Replace tile on spritesheet with single tile type
 const TILE_TREE = 103;
 const TILE_MOUNTAIN = 104;
 const TILE_MT_ENTRY_DOOR = 105;
@@ -41,7 +41,7 @@ const TILE_CUBE = 900;
 
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
-var allLvls = [testMap,layersTestMap];
+var allLvls = [testMap,layerTest];
 var currentLvlIndex = 0;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
@@ -146,9 +146,9 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_OCEAN:
 			xClipping = TILE_W;
 			break;
-		/*case TILE_ROAD: // TODO: Replace tile on spritesheet with single tile type
-			xClipping = TILE_W * 2;
-			break;*/
+		// case TILE_ROAD: // TODO: Replace tile on spritesheet with single tile type
+		// 	xClipping = TILE_W * 2;
+		// 	break;
 		case TILE_TREE:
 			xClipping = TILE_W * 3;
 			break;
