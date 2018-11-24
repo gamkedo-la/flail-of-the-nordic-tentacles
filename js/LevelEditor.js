@@ -128,7 +128,7 @@ function runEditorInstance()
 
 	console.log("WARNING!!! \n" + "Grid smaller than 8 rows by 10 columns are not supported!\n" + 
 		"Anything bigger than that should be okay.");
-	console.log("EDITOR GUIDE: \n" + "X: Deletes Spawns" + "\nV: Save maps to console for copy/paste to code" + 
+	console.log("EDITOR GUIDE: \n" + "X: Deletes Spawns" + "\nMouse 0 (left click) sets tile" + "\nV: Save maps to console for copy/paste to code" + 
 		"\nTAB: Exits editor mode" + "\nUp/Down Arrow: Changes tile set" + "\nLeft/Right Arrow: Change to specific tile within set" +
 		"\nMouse click: Set tiles" + "\nF/H: Pans camera left/right" + "\nT/G: Pans camera up/down" + "\nNum 1/Num 2: Changes layers");
 
