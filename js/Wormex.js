@@ -4,7 +4,7 @@ const LEASH_LENGTH = 120;
 const FRAME_DIMENSIONS = 40;
 const FRAME_DELAY = 4;
 
-function slimeClass()
+function wormexClass()
 {
 	this.centerX = 75;
 	this.centerY = 75;
@@ -42,7 +42,7 @@ function slimeClass()
 		{
 			for(var i = 0; i < worldMap[0].length; i++)
 			{
-				if(worldMap[0][i] == TILE_ENEMY)
+				if(worldMap[0][i] == TILE_WORMEX)
 				{
 					var tileRow = Math.floor(i/currentMapCols);
 					var tileCol = i%currentMapCols;
@@ -215,7 +215,7 @@ function slimeClass()
 		}
 	}
 
-	//check if slime is acting as sentry
+	//check if acting as sentry
 	this.isSentryModeOn = function()
 	{
 		this.currentWaitTime--;

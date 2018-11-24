@@ -42,7 +42,7 @@ function imgsDoneLoadingSoStartGame()
 			enemiesList[i].init(getPicForThisSpecificEnemy(), name of enemy)
 		*/
 		// console.log("homeX, homeY prior init: ", enemiesList[i].homeX,enemiesList[i].homeY);
-		enemiesList[i].init(slimePic, "Slime " + i);
+		enemiesList[i].init(wormexPic, "Slime " + i);
 	}
 	setupInput();
 }

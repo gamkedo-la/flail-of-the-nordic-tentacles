@@ -168,7 +168,7 @@ function handleCharacterPositions(whichLevel)
 	popEnemyList();
 	for(var i = 0; i < enemiesList.length; i++)
 	{
-		enemiesList[i].init(slimePic, "Slime " + i);
+		enemiesList[i].init(wormexPic, "Wormex " + i);
 	}
 	player.hasEnterAnotherLevel = false;
 }

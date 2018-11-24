@@ -23,7 +23,10 @@ const TILE_ROAD_BOTTOM_LEFT_TURN = 115;
 
 //Characters from 300 - 450;
 const TILE_PLAYER = 300;
-const TILE_ENEMY = 301;
+const TILE_WORMEX = 301;
+const TILE_TANK = 302;
+const TILE_FALLEN = 303;
+const TILE_VANGUARD = 304;
 
 //Items from 500 - 650;
 const TILE_HORN = 500;
@@ -260,7 +263,7 @@ function findSpawnSpots()
 	//old tile based approach will be obsolete soon
 	// for(var i = 0; i < worldMap.length; i++)
 	// {
-	// 	if(worldMap[i] == TILE_ENEMY)
+	// 	if(worldMap[i] == TILE_WORMEX)
 	// 	{
 	// 		// console.log("found enemy spawn at: " + i);
 	// 		var tileRow = Math.floor(i/currentMapCols);
@@ -279,7 +282,7 @@ function randomSpawn()
 		return;
 	}
 	var randSpot = Math.floor(Math.random() * enemiesStartSpots.length);
-	var tempEnemy = new slimeClass();
+	var tempEnemy = new wormexClass();
 
 	tempEnemy.randomizeInitAI();
 	// console.log("homeX,homeY prior randSpawn: ", enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);

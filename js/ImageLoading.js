@@ -1,7 +1,10 @@
 var worldPics = [];
 var vikingPic = document.createElement("img");
 //TODO: have array of enemies instead of single var for each enemy
-var slimePic = document.createElement("img");
+var wormexPic = document.createElement("img");
+var tankPic = document.createElement("img");
+var fallenPic = document.createElement("img");
+var vanguardPic = document.createElement("img");
 
 var picToLoad = 0;
 
@@ -9,12 +12,14 @@ function loadImages()
 {
 	var imageList = [
 
-		// Character Pics Go Here
+		// Characters
 		{charName: vikingPic, fileName: "viking_quick_sheet.png"},
-		{charName: slimePic, fileName: "slime_quick_sheet.png"},
+		{charName: wormexPic, fileName: "slime_quick_sheet.png"},
+		{charName: tankPic, fileName: "slime_blue_sheet.png"},
+		{charName: fallenPic, fileName: "slime_red_sheet.png"},
+		{charName: vanguardPic, fileName: "slime_yellow_sheet.png"},
 
-		// World Pics Go Here
-		//{worldType: TILE_ROAD, fileName: "terrain_spritesheet.png"}, // TODO: Replace tile on spritesheet with single tile type
+		// Terrain Tiles
 		{worldType: TILE_OCEAN, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_SNOW_GRASS, fileName: "snowyGrass.png"},
 		{worldType: TILE_SNOW, fileName: "terrain_spritesheet.png"},
@@ -32,6 +37,7 @@ function loadImages()
 		{worldType: TILE_ROAD_BOTTOM_RIGHT_TURN, fileName: "road_spritesheet.png"},
 		{worldType: TILE_ROAD_BOTTOM_LEFT_TURN, fileName: "road_spritesheet.png"},
 
+		// Items
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "odins_eyepatch_quick.png"},
 		{worldType: TILE_TENCTACLE, fileName: "decaying_tentacle_quick.png"},
@@ -39,10 +45,12 @@ function loadImages()
 		{worldType: TILE_DICTIONARY, fileName: "dig_dictionary_quick.png"},
 		{worldType: TILE_BEACON, fileName: "beacon.png"},
 
-		{worldType: TILE_ENEMY, fileName: "slime_quick.png"},
+		// Editor Specific Pics
+		{worldType: TILE_WORMEX, fileName: "slime_quick.png"},
+		{worldType: TILE_TANK, fileName: "slime_blue.png"},
+		{worldType: TILE_FALLEN, fileName: "slime_red.png"},
+		{worldType: TILE_VANGUARD, fileName: "slime_yellow.png"},
 		{worldType: TILE_PLAYER, fileName: "viking_quick.png"},
-
-		//Item Pics Go Here... maybe?
 		]
 
 	picsToLoad = imageList.length;
