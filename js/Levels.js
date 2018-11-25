@@ -118,45 +118,63 @@ function saveLayers(layer,grid)
 
 function loadMap(mapName)
 {
-	for(var i = 0; i < allLvls.length; i++)
-	{
-		if(allLvls[i].levelName == mapName)
-		{
-      worldMap = [];
+  if(gameIsRunning)
+  {
+    for(var i = 0; i < allLvls.length; i++)
+    {
+      if(allLvls[i].levelName == mapName)
+      {
+        worldMap = [];
 
-      currentLvlIndex = i;
-      currentMapRows = allLvls[currentLvlIndex].rows;
-      currentMapCols = allLvls[currentLvlIndex].cols;
+        currentLvlIndex = i;
+        currentMapRows = allLvls[currentLvlIndex].rows;
+        currentMapCols = allLvls[currentLvlIndex].cols;
 
-			worldMap = Array.from(allLvls[i].gridLayers);
-			handleCharacterPositions(i);
-		}
-		else
-		{
-			console.log("map doesn't exist!");
-		}
-	}
+        worldMap = Array.from(allLvls[i].gridLayers);
+        handleCharacterPositions(i);
+      }
+      else
+      {
+        console.log("map doesn't exist!");
+      }
+    }
+  }
+	else
+  {
+    //we are in editor mode
+    //find level
+    //clear and replace grid, cols, and rows from editor
+    //handleCharPositions for editor case
+  }
 }
 
 function handleCharacterPositions(whichLevel)
 {
-	player.hasEnterAnotherLevel = true;
-	clearSpawnList();
-	enemiesStartSpots = [];
-	enemiesList = [];
+  if(gameIsRunning)
+  {
+    player.hasEnterAnotherLevel = true;
+    clearSpawnList();
+    enemiesStartSpots = [];
+    enemiesList = [];
 
-	for(var i = 0; i < allLvls[whichLevel].enemies.length; i++)
-	{
-    //TODO: uncomment last argurment once code to handle pics/class based on charType is implemented both in inital map and a another test level
-		addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, /*allLvls[i].enemies.charType*/);
-	}
+    for(var i = 0; i < allLvls[whichLevel].enemies.length; i++)
+    {
+      //TODO: uncomment last argurment once code to handle pics/class based on charType is implemented both in inital map and a another test level
+      addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, /*allLvls[i].enemies.charType*/);
+    }
 
-	player.reset();
-	findSpawnSpots();
-	popEnemyList();
-	for(var i = 0; i < enemiesList.length; i++)
-	{
-		enemiesList[i].init(wormexPic, "Wormex " + i);
-	}
-	player.hasEnterAnotherLevel = false;
+    player.reset();
+    findSpawnSpots();
+    popEnemyList();
+    for(var i = 0; i < enemiesList.length; i++)
+    {
+      enemiesList[i].init(wormexPic, "Wormex " + i);
+    }
+    player.hasEnterAnotherLevel = false;
+  }
+	else
+  {
+    //we are in editor mode and now need to load enemies
+    //need a way to store player start tile as it will be upon level transitions
+  }
 }

@@ -133,7 +133,6 @@ function keyPressed(evt)
 		case KEY_P:
 			isPaused = !isPaused;
 			break;
-
 		case TAB:
 			useEditorMode();
 			break;
@@ -143,35 +142,31 @@ function keyPressed(evt)
 			editor.tileIndex--;
 			editor.changeSelectedTileInTileSet();
 			break;
-
 		case RIGHT_ARROW:
 			editor.tileIndex++;
 			editor.changeSelectedTileInTileSet();
 			break;
-
 		case UP_ARROW:
 			editor.tileSetIndex++;
 			editor.changeTileSet();
 			break;
-
 		case DOWN_ARROW:
 			editor.tileSetIndex--;
 			editor.changeTileSet();
 			break;
-
 		case KEY_V:
 			saveMap(window.prompt("Enter the level name in a string format:"), editor.grid);
 			break;
-
 		case KEY_X:
 			removeSpawnNearMouse();
 			break;
-
+		case KEY_L:
+			//loadMap(window.prompt("What's the name of the map?"));
+			break;
 		case NUM_1:
 			editor.currentLayer--;
 			editor.changeLayer();
 			break;
-
 		case NUM_2:
 			editor.currentLayer++;
 			editor.changeLayer();

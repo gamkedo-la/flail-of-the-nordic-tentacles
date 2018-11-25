@@ -288,8 +288,6 @@ function getNameOfTile(tileType)
 		case TILE_FOREST_TREES_10: tileName = "trees 10"; break;
 		case TILE_FOREST_TREES_11: tileName = "trees 11"; break;
 		case TILE_FOREST_TREES_12: tileName = "trees 12"; break;
-		case TILE_FOREST_TREES_13: tileName = "trees 13"; break;
-		case TILE_FOREST_TREES_14: tileName = "trees 14"; break;
 		case TILE_PLAYER_NEW_GAME: tileName = "player new game start pos"; break;
 		case TILE_WORMEX: tileName = "wormex"; break;
 		case TILE_TANK: tileName = "tank"; break;

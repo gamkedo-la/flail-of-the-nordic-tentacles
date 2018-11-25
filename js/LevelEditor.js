@@ -91,6 +91,7 @@ function Editor()
 	{
 		if(this.tileSetIndex >= 0 && this.tileSetIndex <= this.usableTiles.length - 1)
 		{
+			this.tileIndex = 0;
 			this.selectedTileSet = this.usableTiles[this.tileSetIndex].tileSet;
 			this.selectedTileType = this.selectedTileSet[this.tileIndex];
 		}
