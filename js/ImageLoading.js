@@ -36,6 +36,18 @@ function loadImages()
 		{worldType: TILE_ROAD_TOP_RIGHT_TURN, fileName: "road_spritesheet.png"},
 		{worldType: TILE_ROAD_BOTTOM_RIGHT_TURN, fileName: "road_spritesheet.png"},
 		{worldType: TILE_ROAD_BOTTOM_LEFT_TURN, fileName: "road_spritesheet.png"},
+		{worldType: TILE_FOREST_TREES_1, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_2, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_3, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_4, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_5, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_6, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_7, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_8, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_9, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_10, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_11, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_12, fileName: "forestImpaasibleTrees-sheet_crop.png"},
 
 		// Items
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
