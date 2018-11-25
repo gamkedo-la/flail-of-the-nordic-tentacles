@@ -1,10 +1,10 @@
-const PLAYER_SPEED = 12.0;
-
 function playerClass()
 {
 	this.centerX = 75;
 	this.centerY = 75;
 	this.hitbox = {radius: 15, x: this.centerX, y: this.centerY};
+	this.velX = 12.0;
+	this.velY = 12.0;
 
 	this.exp = new xpClass();
 	this.stats = new statsClass();
@@ -68,19 +68,19 @@ function playerClass()
 
 		if(this.goingNorth)
 		{
-			nextY -= PLAYER_SPEED;
+			nextY -= this.velY;
 		}	
 		if(this.goingSouth)
 		{
-			nextY += PLAYER_SPEED;
+			nextY += this.velY;
 		}
 		if(this.goingWest)
 		{
-			nextX -= PLAYER_SPEED;
+			nextX -= this.velX;
 		}
 		if(this.goingEast)
 		{
-			nextX += PLAYER_SPEED;
+			nextX += this.velX;
 		}
 		this.setDirectionFaced();
 		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);

@@ -282,11 +282,11 @@ function randomSpawn()
 		return;
 	}
 	var randSpot = Math.floor(Math.random() * enemiesStartSpots.length);
+	//get type of enemy and set temp to that class
 	var tempEnemy = new wormexClass();
 
 	tempEnemy.randomizeInitAI();
-	// console.log("homeX,homeY prior randSpawn: ", enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
-	tempEnemy.setHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
+	tempEnemy.superClassSetHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
 	enemiesStartSpots.splice(randSpot, 1);
 	enemiesList.push(tempEnemy);
 }

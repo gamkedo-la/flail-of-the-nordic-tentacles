@@ -27,7 +27,6 @@ function imgsDoneLoadingSoStartGame()
 
 	for(var i = 0; i < allLvls[0].enemies.length; i++)
 	{
-		// console.log("homeX, homeY from map: ", allLvls[0].enemies[i].x,allLvls[0].enemies[i].y);
 		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y);
 	}
 
@@ -41,7 +40,6 @@ function imgsDoneLoadingSoStartGame()
 		/*
 			enemiesList[i].init(getPicForThisSpecificEnemy(), name of enemy)
 		*/
-		// console.log("homeX, homeY prior init: ", enemiesList[i].homeX,enemiesList[i].homeY);
 		enemiesList[i].init(wormexPic, "Slime " + i);
 	}
 	setupInput();

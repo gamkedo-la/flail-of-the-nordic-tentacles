@@ -1,5 +1,6 @@
 var enemySpawnList = [];
 
+//could push an object literal that using the spawn point class and the char type property found there
 function addEnemyToSpawnList(atX,atY)
 {
 	var tempEnemy = new enemySpawnPointClass();
