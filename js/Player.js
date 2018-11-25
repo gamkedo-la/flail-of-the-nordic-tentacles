@@ -43,7 +43,7 @@ function playerClass()
 		{
 			for(var i = 0; i < worldMap[0].length; i++)
 			{
-				if(worldMap[0][i] == TILE_PLAYER)
+				if(worldMap[0][i] == TILE_PLAYER_NEW_GAME)
 				{
 					var tileRow = Math.floor(i/currentMapCols);
 					var tileCol = i%currentMapCols;

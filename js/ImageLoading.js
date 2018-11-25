@@ -50,7 +50,7 @@ function loadImages()
 		{worldType: TILE_TANK, fileName: "slime_blue.png"},
 		{worldType: TILE_FALLEN, fileName: "slime_red.png"},
 		{worldType: TILE_VANGUARD, fileName: "slime_yellow.png"},
-		{worldType: TILE_PLAYER, fileName: "viking_quick.png"},
+		{worldType: TILE_PLAYER_NEW_GAME, fileName: "viking_quick.png"},
 		]
 
 	picsToLoad = imageList.length;
@@ -112,10 +112,5 @@ function getEnemyPicBasedOnType(charType)
 			return fallenPic;
 		case TILE_VANGUARD:
 			return vanguardPic;
-	}
-
-	if(charType == null || undefined)
-	{
-		console.log("Character Type doesn't exist!");
 	}
 }

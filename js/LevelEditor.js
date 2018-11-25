@@ -29,7 +29,7 @@ function Editor()
 		{setName: "placeholderTiles", tileSet: [TILE_SNOW,TILE_OCEAN,TILE_TREE,TILE_MOUNTAIN,TILE_MT_ENTRY_DOOR,TILE_MT_EXIT_DOOR,
 												TILE_SNOW_TO_BEACH,TILE_BEACH_TO_OCEAN,TILE_CUBE]},
 		{setName: "placeholderItems", tileSet: [TILE_HORN,TILE_EYEPATCH,TILE_TENCTACLE,TILE_WORMHOLE,TILE_DICTIONARY,TILE_BEACON]},
-		{setName: "placeholderCharacters", tileSet: [TILE_PLAYER,TILE_WORMEX,TILE_TANK,TILE_FALLEN,TILE_VANGUARD]},
+		{setName: "placeholderCharacters", tileSet: [TILE_PLAYER_NEW_GAME,TILE_WORMEX,TILE_TANK,TILE_FALLEN,TILE_VANGUARD]},
 		{setName: "roadTiles", tileSet: [TILE_ROAD_HORIZONTAL,TILE_ROAD_VERTICAL,TILE_ROAD_BOTTOM_LEFT_TURN,TILE_ROAD_BOTTOM_RIGHT_TURN,
 										TILE_ROAD_TOP_RIGHT_TURN,TILE_ROAD_TOP_LEFT_TURN]},
 	];
@@ -54,7 +54,10 @@ function Editor()
 
 	this.setTile = function()
 	{
-		if(this.selectedTileType == TILE_WORMEX || TILE_TANK || TILE_FALLEN || TILE_VANGUARD)
+		if(this.selectedTileType == TILE_WORMEX || 
+			this.selectedTileType == TILE_TANK || 
+			this.selectedTileType == TILE_FALLEN || 
+			this.selectedTileType == TILE_VANGUARD)
 		{
 			addEnemyToSpawnList(mouseX + camPanX,mouseY + camPanY, this.selectedTileType);
 		}
@@ -78,7 +81,7 @@ function Editor()
 		{
 			this.tileIndex = this.selectedTileSet.length - 1;
 		}
-		console.log(getNameOfTile(this.selectedTileType));
+		console.log("Tile const: " + this.selectedTileType + " ," + getNameOfTile(this.selectedTileType));
 	}
 
 	this.changeTileSet = function()

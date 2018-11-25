@@ -196,3 +196,34 @@ function enemyClass()
 		}
 	}
 }
+
+function findSpawnSpots()
+{
+	spawnEnemiesSpawnList();
+}
+
+function randomSpawn()
+{
+	if(enemiesStartSpots.length <= 0)
+	{
+		console.log("TRIED TO SPAWN MORE ENEMIES THAN ALLOWED");
+		return;
+	}
+	var randSpot = Math.floor(Math.random() * enemiesStartSpots.length);
+	//get type of enemy and set temp to that class
+	// var tempEnemy = getClassBasedOnType(enemiesStartSpots[randSpot].charType);
+	var tempEnemy = new wormexClass();
+
+	tempEnemy.randomizeInitAI();
+	tempEnemy.superClassSetHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
+	enemiesStartSpots.splice(randSpot, 1);
+	enemiesList.push(tempEnemy);
+}
+
+function getClassBasedOnType(charType)
+{
+	// declare var classType as undefined
+	// check char type against constants
+	// set classType according to conditional checks against charType
+	//return classType
+}

@@ -1,11 +1,9 @@
-//TODO: implement transitions between scenes like going from a dungeon to a town if town isn't in dungeon
 const TILE_W = 80;
 const TILE_H = 80;
 
 //Tiles from 100 - 250;
 const TILE_SNOW = 100;
 const TILE_OCEAN = 101;
-// const TILE_ROAD = 102; // TODO: Replace tile on spritesheet with single tile type
 const TILE_TREE = 103;
 const TILE_MOUNTAIN = 104;
 const TILE_MT_ENTRY_DOOR = 105;
@@ -22,7 +20,7 @@ const TILE_ROAD_BOTTOM_LEFT_TURN = 115;
 
 
 //Characters from 300 - 450;
-const TILE_PLAYER = 300;
+const TILE_PLAYER_NEW_GAME = 300;
 const TILE_WORMEX = 301;
 const TILE_TANK = 302;
 const TILE_FALLEN = 303;
@@ -103,7 +101,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
 				}
-				else if(tileType == TILE_PLAYER && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
+				else if(tileType == TILE_PLAYER_NEW_GAME && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
 				{
 					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
 					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
@@ -146,9 +144,6 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_OCEAN:
 			xClipping = TILE_W;
 			break;
-		// case TILE_ROAD: // TODO: Replace tile on spritesheet with single tile type
-		// 	xClipping = TILE_W * 2;
-		// 	break;
 		case TILE_TREE:
 			xClipping = TILE_W * 3;
 			break;
@@ -256,41 +251,6 @@ function handleLevelTransition(doorType)
 	}
 }
 
-function findSpawnSpots()
-{
-	spawnEnemiesSpawnList();
-
-	//old tile based approach will be obsolete soon
-	// for(var i = 0; i < worldMap.length; i++)
-	// {
-	// 	if(worldMap[i] == TILE_WORMEX)
-	// 	{
-	// 		// console.log("found enemy spawn at: " + i);
-	// 		var tileRow = Math.floor(i/currentMapCols);
-	// 		var tileCol = i%currentMapCols;
-	// 		enemiesStartSpots.push({col: tileCol, row: tileRow});
-	// 		worldMap[i] = TILE_SNOW;
-	// 	}
-	// }
-}
-
-function randomSpawn()
-{
-	if(enemiesStartSpots.length <= 0)
-	{
-		console.log("TRIED TO SPAWN MORE ENEMIES THAN ALLOWED");
-		return;
-	}
-	var randSpot = Math.floor(Math.random() * enemiesStartSpots.length);
-	//get type of enemy and set temp to that class
-	var tempEnemy = new wormexClass();
-
-	tempEnemy.randomizeInitAI();
-	tempEnemy.superClassSetHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
-	enemiesStartSpots.splice(randSpot, 1);
-	enemiesList.push(tempEnemy);
-}
-
 function getNameOfTile(tileType)
 {
 	var tileName = "";
@@ -312,7 +272,7 @@ function getNameOfTile(tileType)
 		case TILE_ROAD_TOP_LEFT_TURN: tileName = "top left road"; break;
 		case TILE_ROAD_BOTTOM_RIGHT_TURN: tileName = "bottom right road"; break;
 		case TILE_ROAD_BOTTOM_LEFT_TURN: tileName = "bottom left road"; break;
-		case TILE_PLAYER: tileName = "player"; break;
+		case TILE_PLAYER_NEW_GAME: tileName = "player new game start pos"; break;
 		case TILE_WORMEX: tileName = "wormex"; break;
 		case TILE_TANK: tileName = "tank"; break;
 		case TILE_FALLEN: tileName = "fallen"; break;

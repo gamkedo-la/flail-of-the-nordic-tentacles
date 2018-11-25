@@ -30,7 +30,8 @@ function spawnEnemiesSpawnList()
 		// console.log("found enemy spawn at: " + i);
 		var tileCol = Math.floor(enemySpawnList[i].x/TILE_W);
 		var tileRow = enemySpawnList[i].y/TILE_H;
-		enemiesStartSpots.push({col: tileCol, row: tileRow});
+		//possibly push the enemySpawnList[i].charType to start spots
+		enemiesStartSpots.push({col: tileCol, row: tileRow/*, type: enemySpawnList[i].charType*/});
 	}
 }
 

@@ -27,7 +27,7 @@ function imgsDoneLoadingSoStartGame()
 
 	for(var i = 0; i < allLvls[0].enemies.length; i++)
 	{
-		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y);
+		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y, allLvls[0].enemies.charType);
 	}
 
 	player.init(vikingPic, "Ragnar");
@@ -40,7 +40,7 @@ function imgsDoneLoadingSoStartGame()
 		/*
 			enemiesList[i].init(getPicForThisSpecificEnemy(), name of enemy)
 		*/
-		enemiesList[i].init(wormexPic, "Slime " + i);
+		enemiesList[i].init(wormexPic, "Enemy " + i);
 	}
 	setupInput();
 }

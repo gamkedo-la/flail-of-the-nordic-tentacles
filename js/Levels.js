@@ -147,8 +147,8 @@ function handleCharacterPositions(whichLevel)
 
 	for(var i = 0; i < allLvls[whichLevel].enemies.length; i++)
 	{
-		console.log(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y);
-		addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y);
+    //TODO: uncomment last argurment once code to handle pics/class based on charType is implemented both in inital map and a another test level
+		addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, /*allLvls[i].enemies.charType*/);
 	}
 
 	player.reset();
