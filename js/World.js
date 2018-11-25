@@ -290,3 +290,42 @@ function randomSpawn()
 	enemiesStartSpots.splice(randSpot, 1);
 	enemiesList.push(tempEnemy);
 }
+
+function getNameOfTile(tileType)
+{
+	var tileName = "";
+
+	switch(tileType)
+	{
+		case TILE_SNOW: tileName = "snow"; break;
+		case TILE_OCEAN: tileName = "ocean"; break;
+		case TILE_TREE: tileName = "tree"; break;
+		case TILE_MOUNTAIN: tileName = "mountain"; break;
+		case TILE_MT_ENTRY_DOOR: tileName = "mountain entry"; break;
+		case TILE_SNOW_GRASS: tileName = "snowy grass"; break;
+		case TILE_MT_EXIT_DOOR: tileName = "mountain exit"; break;
+		case TILE_SNOW_TO_BEACH: tileName = "snowy beach"; break;
+		case TILE_BEACH_TO_OCEAN: tileName = "beach"; break;
+		case TILE_ROAD_HORIZONTAL: tileName = "horizontal road"; break;
+		case TILE_ROAD_VERTICAL: tileName = "vertical road"; break;
+		case TILE_ROAD_TOP_RIGHT_TURN: tileName = "top right road"; break;
+		case TILE_ROAD_TOP_LEFT_TURN: tileName = "top left road"; break;
+		case TILE_ROAD_BOTTOM_RIGHT_TURN: tileName = "bottom right road"; break;
+		case TILE_ROAD_BOTTOM_LEFT_TURN: tileName = "bottom left road"; break;
+		case TILE_PLAYER: tileName = "player"; break;
+		case TILE_WORMEX: tileName = "wormex"; break;
+		case TILE_TANK: tileName = "tank"; break;
+		case TILE_FALLEN: tileName = "fallen"; break;
+		case TILE_VANGUARD: tileName = "vanguard"; break;
+		case TILE_HORN: tileName = "horn"; break;
+		case TILE_EYEPATCH: tileName = "eye patch"; break;
+		case TILE_TENCTACLE: tileName = "tentacle"; break;
+		case TILE_WORMHOLE: tileName = "wormhole"; break;
+		case TILE_DICTIONARY: tileName = "dictionary"; break;
+		case TILE_BEACON: tileName = "beacon"; break;
+		case TILE_CUBE: tileName = "cube"; break;
+		default: console.log("No name has been set for this tile!"); break;
+	}
+
+	return tileName;
+}

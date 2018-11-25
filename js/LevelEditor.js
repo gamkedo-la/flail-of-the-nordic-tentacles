@@ -54,9 +54,9 @@ function Editor()
 
 	this.setTile = function()
 	{
-		if(this.selectedTileType == TILE_WORMEX)
+		if(this.selectedTileType == TILE_WORMEX || TILE_TANK || TILE_FALLEN || TILE_VANGUARD)
 		{
-			addEnemyToSpawnList(mouseX + camPanX,mouseY + camPanY);
+			addEnemyToSpawnList(mouseX + camPanX,mouseY + camPanY, this.selectedTileType);
 		}
 		else
 		{
@@ -78,7 +78,7 @@ function Editor()
 		{
 			this.tileIndex = this.selectedTileSet.length - 1;
 		}
-		console.log(this.tileIndex);
+		console.log(getNameOfTile(this.selectedTileType));
 	}
 
 	this.changeTileSet = function()

@@ -1,11 +1,11 @@
 var enemySpawnList = [];
 
 //could push an object literal that using the spawn point class and the char type property found there
-function addEnemyToSpawnList(atX,atY)
+function addEnemyToSpawnList(atX,atY, enemyKind)
 {
 	var tempEnemy = new enemySpawnPointClass();
 
-	tempEnemy.setup(atX, atY, 0);
+	tempEnemy.setup(atX, atY, enemyKind);
 	enemySpawnList.push(tempEnemy);
 	// console.log(enemySpawnList);
 }
@@ -85,12 +85,13 @@ function enemySpawnPointClass()
 	{
 		this.x = startX;
 		this.y = startY;
-		this.bitmap = wormexPic;//handle different enemy types pics later
 		this.charType = enemyKind;
+		this.bitmap = getEnemyPicBasedOnType(this.charType);//handle different enemy types pics later
 	}
 
 	this.draw = function()
 	{
+		//will have to make this draw enemies based on their respective bitmap to avoid drawing bugs
 		canvasContext.drawImage(this.bitmap, 0 * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.x - this.bitmap.width/8, this.y - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}
