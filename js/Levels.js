@@ -118,11 +118,11 @@ function saveLayers(layer,grid)
 
 function loadMap(mapName)
 {
-  if(gameIsRunning)
+  for(var i = 0; i < allLvls.length; i++)
   {
-    for(var i = 0; i < allLvls.length; i++)
+    if(allLvls[i].levelName == mapName)
     {
-      if(allLvls[i].levelName == mapName)
+      if(gameIsRunning)
       {
         worldMap = [];
 
@@ -135,17 +135,17 @@ function loadMap(mapName)
       }
       else
       {
-        console.log("map doesn't exist!");
+        //we are in editor mode
+        //find level
+        //clear and replace grid, cols, and rows from editor
+        //handleCharPositions for editor case
       }
+    }//end of map name check
+    else
+    {
+      console.log("map doesn't exist!");
     }
-  }
-	else
-  {
-    //we are in editor mode
-    //find level
-    //clear and replace grid, cols, and rows from editor
-    //handleCharPositions for editor case
-  }
+  }//end of for loop
 }
 
 function handleCharacterPositions(whichLevel)
@@ -159,7 +159,7 @@ function handleCharacterPositions(whichLevel)
 
     for(var i = 0; i < allLvls[whichLevel].enemies.length; i++)
     {
-      //TODO: uncomment last argurment once code to handle pics/class based on charType is implemented both in inital map and a another test level
+      //TODO: uncomment last argurment once code to handle pics/class based on charType is implemented both in inital map and another test level
       addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, /*allLvls[i].enemies.charType*/);
     }
 

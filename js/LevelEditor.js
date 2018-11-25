@@ -15,7 +15,7 @@ function useEditorMode()
 
 function Editor()
 {
-	this.grid = new TileGrid(TILE_SNOW);
+	this.grid = new TileGrid(window.prompt("Choose initial canvas blanket (use const value from world js): "));
 
 	this.selectedTileType;
 	this.selectedTileSet;
@@ -52,7 +52,6 @@ function Editor()
 		moveCamera(this.grid.mapCols, this.grid.mapRows);
 		this.grid.draw();
 		editorDebugTools();
-		//check for saves/deletes
 	}
 
 	this.setTile = function()
