@@ -135,6 +135,11 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 		{
 			if(editor.tileToBeReplaced == tileIndex)
 			{	
+				canvasContext.save();
+				canvasContext.globalAlpha = 0.5;
+				drawTileBasedOnType(editor.selectedTileType, tileLeftEgdeX,tileTopEdgeY)
+				canvasContext.restore();
+				
 				outlineRect(tileLeftEgdeX, tileTopEdgeY, TILE_W, TILE_H, 'red');
 			}
 		}

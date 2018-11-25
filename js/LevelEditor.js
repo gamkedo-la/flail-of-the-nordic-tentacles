@@ -161,4 +161,14 @@ function editorDebugTools()
 
 	// drawCircle(camPanX, camPanY, 5, 'red');
 	drawText("mouse x: " + (mouseX + camPanX) + ", y: " + (mouseY + camPanY) + ", tileIndex: " + editor.tileToBeReplaced, mouseX, mouseY, "red");
+	drawText(`Layer: ${editor.selectedLayer}`, 20, 550, "black", "20px sans-serif");
+	drawText(`Tileset: ${editor.usableTiles[editor.tileSetIndex].setName}`, 20, 570, "black", "20px sans-serif");
+	drawText(`Tile: ${editor.selectedTileType}, ${getNameOfTile(editor.selectedTileType)}`, 20, 590, "black", "20px sans-serif");
+
+	//console.log("Tile const: " + this.selectedTileType + " ," + getNameOfTile(this.selectedTileType));
+	//console.log("Switched to: " + this.usableTiles[this.tileSetIndex].setName);
+	/*
+	Tileset: ${editor.usableTiles[editor.tileSetIndex].setName}
+	Tile: ${editor.selectedTileType}, ${getNameOfTile(editor.selectedTileType)}
+	*/
 }

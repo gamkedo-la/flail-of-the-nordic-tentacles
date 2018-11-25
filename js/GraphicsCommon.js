@@ -21,8 +21,9 @@ function drawCircle(centerX,centerY, radius, color)
 	canvasContext.fill();
 }
 
-function drawText(text, x,y, color)
+function drawText(text, x,y, color, font="10px sans-serif")
 {
+	canvasContext.font = font;
 	canvasContext.fillStyle = color;
 	canvasContext.fillText(text, x,y);
 }
