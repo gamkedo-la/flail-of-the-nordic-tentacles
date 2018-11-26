@@ -29,6 +29,8 @@ const TILE_FOREST_TREES_9 = 124;
 const TILE_FOREST_TREES_10 = 125;
 const TILE_FOREST_TREES_11 = 126;
 const TILE_FOREST_TREES_12 = 127;
+const TILE_FOREST_TREES_13 = 128;
+const TILE_FOREST_TREES_14 = 129;
 
 
 //Characters from 300 - 450;
@@ -172,17 +174,18 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_ROAD_BOTTOM_RIGHT_TURN: xClipping = TILE_W * 4; break;
 		case TILE_ROAD_BOTTOM_LEFT_TURN: xClipping = TILE_W * 5; break;
 		case TILE_FOREST_TREES_1: ;break;
-		case TILE_FOREST_TREES_2: xClipping = TILE_W * 2; break;
-		case TILE_FOREST_TREES_3: xClipping = TILE_W * 3; break;
-		case TILE_FOREST_TREES_4: xClipping = TILE_W * 4; break;
-		case TILE_FOREST_TREES_5: xClipping = TILE_W * 5; break;
-		case TILE_FOREST_TREES_6: xClipping = TILE_W * 6; break;
-		case TILE_FOREST_TREES_7: xClipping = TILE_W * 7; break;
-		case TILE_FOREST_TREES_8: xClipping = TILE_W * 8; break;
-		case TILE_FOREST_TREES_9: xClipping = TILE_W * 9; break;
-		case TILE_FOREST_TREES_10: xClipping = TILE_W * 10; break;
-		case TILE_FOREST_TREES_11: xClipping = TILE_W * 11; break;
-		case TILE_FOREST_TREES_12: xClipping = TILE_W * 12; break;
+		case TILE_FOREST_TREES_2: xClipping = TILE_W; break;
+		case TILE_FOREST_TREES_3: xClipping = TILE_W * 2; break;
+		case TILE_FOREST_TREES_4: xClipping = TILE_W * 3; break;
+		case TILE_FOREST_TREES_5: xClipping = TILE_W * 4; break;
+		case TILE_FOREST_TREES_6: xClipping = TILE_W * 5; break;
+		case TILE_FOREST_TREES_7: xClipping = TILE_W * 6; break;
+		case TILE_FOREST_TREES_8: xClipping = TILE_W * 7; break;
+		case TILE_FOREST_TREES_9: xClipping = TILE_W * 8; break;
+		case TILE_FOREST_TREES_10: xClipping = TILE_W * 9; break;
+		case TILE_FOREST_TREES_11: xClipping = TILE_W * 10; break;
+		case TILE_FOREST_TREES_12: xClipping = TILE_W * 11; break;
+		case TILE_FOREST_TREES_13: xClipping = TILE_W * 12; break;
 		default:
 			xClipping = 0;
 			yClipping = 0;
@@ -288,6 +291,7 @@ function getNameOfTile(tileType)
 		case TILE_FOREST_TREES_10: tileName = "trees 10"; break;
 		case TILE_FOREST_TREES_11: tileName = "trees 11"; break;
 		case TILE_FOREST_TREES_12: tileName = "trees 12"; break;
+		case TILE_FOREST_TREES_13: tileName = "trees 13"; break;
 		case TILE_PLAYER_NEW_GAME: tileName = "player new game start pos"; break;
 		case TILE_WORMEX: tileName = "wormex"; break;
 		case TILE_TANK: tileName = "tank"; break;

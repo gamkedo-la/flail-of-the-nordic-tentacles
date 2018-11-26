@@ -48,6 +48,7 @@ function loadImages()
 		{worldType: TILE_FOREST_TREES_10, fileName: "forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_TREES_11, fileName: "forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_TREES_12, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_TREES_13, fileName: "forestImpaasibleTrees-sheet_crop.png"},
 
 		// Items
 		{worldType: TILE_HORN, fileName: "chaos_horn_quick.png"},
