@@ -122,8 +122,8 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 				}
 				else
 				{
-					canvasContext.drawImage(worldPics[TILE_SNOW], 0, 0, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
-					TILE_W, TILE_H);
+					// canvasContext.drawImage(worldPics[TILE_SNOW], 0, 0, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
+					// TILE_W, TILE_H);
 					drawTileBasedOnType(tileType, tileLeftEgdeX, tileTopEdgeY);
 				}
 			}		

@@ -27,7 +27,7 @@ function imgsDoneLoadingSoStartGame()
 
 	for(var i = 0; i < allLvls[0].enemies.length; i++)
 	{
-		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y, allLvls[0].enemies.charType);
+		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y, allLvls[0].enemies[i].charType);
 	}
 
 	player.init(vikingPic, "Ragnar");

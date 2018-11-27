@@ -41,7 +41,7 @@ function spawnListSaveText()
 
 	for(var i = 0; i < enemySpawnList.length; i++)
 	{
-		outputString += "{x:" + enemySpawnList[i].x + ",y:" + enemySpawnList[i].y + ",type:" + enemySpawnList[i].charType + "}, ";
+		outputString += "{x:" + enemySpawnList[i].x + ",y:" + enemySpawnList[i].y + ", charType:" + enemySpawnList[i].charType + "}, ";
 		if(i%4 === 0 && i !== 0)
 		{
 			outputString += "\n";
@@ -92,7 +92,7 @@ function enemySpawnPointClass()
 
 	this.draw = function()
 	{
-		//will have to make this draw enemies based on their respective bitmap to avoid drawing bugs
+		//will have to make this divided the enemies bitmap based on their size
 		canvasContext.drawImage(this.bitmap, 0 * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.x - this.bitmap.width/8, this.y - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}

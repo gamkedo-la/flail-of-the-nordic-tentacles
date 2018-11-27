@@ -161,7 +161,8 @@ function keyPressed(evt)
 			removeSpawnNearMouse();
 			break;
 		case KEY_L:
-			//loadMap(window.prompt("What's the name of the map?"));
+			if(!gameIsRunning)
+				loadMap(window.prompt("What's the name of the map?"));
 			break;
 		case NUM_1:
 			editor.currentLayer--;

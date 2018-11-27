@@ -42,7 +42,7 @@ var testMap = {
     cols: 22,
     levelName: "testMap",
         enemies:[
-{x:1001,y:440,type:0}, {x:918,y:599,type:0}, {x:756,y:598,type:0}, ]
+{x:1001,y:440,charType:301}, {x:918,y:599,charType:301}, {x:756,y:598,charType:301}, ]
 };
 
 var layerTest = {
@@ -69,7 +69,7 @@ gridLayers: [[
     cols: 10,
     levelName: "layerTest",
         enemies:[
-{x:696,y:167,type:0}, {x:683,y:119,type:0}, {x:600,y:101,type:0}, {x:631,y:131,type:0}, ]};
+{x:696,y:167,charType:301}, {x:683,y:119,charType:301}, {x:600,y:101,charType:301}, {x:631,y:131,charType:301}, ]};
 
 function saveMap(mapName, grid)
 {
@@ -135,16 +135,16 @@ function loadMap(mapName)
       }
       else
       {
-        //we are in editor mode
-        //find level
-        //clear and replace grid, cols, and rows from editor
+        console.log("loading map " + allLvls[i].levelName + " in editor: ");
+        editor.grid.map = [];
+
+        editor.grid.rows = allLvls[i].rows;
+        editor.grid.cols = allLvls[i].cols;
+        editor.grid.map = Array.from(allLvls[i].gridLayers);
         //handleCharPositions for editor case
+        handleCharacterPositions(i);
       }
     }//end of map name check
-    else
-    {
-      console.log("map doesn't exist!");
-    }
   }//end of for loop
 }
 
@@ -160,7 +160,7 @@ function handleCharacterPositions(whichLevel)
     for(var i = 0; i < allLvls[whichLevel].enemies.length; i++)
     {
       //TODO: uncomment last argurment once code to handle pics/class based on charType is implemented both in inital map and another test level
-      addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, /*allLvls[i].enemies.charType*/);
+      addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, allLvls[whichLevel].enemies[i].charType);
     }
 
     player.reset();
@@ -175,6 +175,10 @@ function handleCharacterPositions(whichLevel)
 	else
   {
     //we are in editor mode and now need to load enemies
-    //need a way to store player start tile as it will be upon level transitions
+    for(var i = 0; i < allLvls[whichLevel].enemies.length; i++)
+    {
+      addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, allLvls[whichLevel].enemies[i].charType);
+    }
+    //need a way to store player start tile for editor as it will be erased upon level transitions
   }
 }
