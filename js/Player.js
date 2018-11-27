@@ -45,12 +45,50 @@ function playerClass()
 			{
 				if(worldMap[0][i] == TILE_PLAYER_NEW_GAME)
 				{
+					if(previousLvlName == null)
+					{
+						var tileRow = Math.floor(i/currentMapCols);
+						var tileCol = i%currentMapCols;
+						this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+						this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+					}
+
+					worldMap[0][i] = TILE_SNOW;
+				}
+				if(previousLvlName == "snowTest")
+				{
+					if(worldMap[0][i] == TILE_BEACH_EXIT_DOOR || worldMap[0][i] == TILE_FOREST_EXIT_DOOR || worldMap[0][i] == TILE_MT_EXIT_DOOR)
+					{
+						var tileRow = Math.floor(i/currentMapCols);
+						var tileCol = i%currentMapCols;
+						tileRow--;
+						this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+						this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+					}
+				}
+				if(worldMap[0][i] == TILE_BEACH_ENTRY_DOOR && previousLvlName == "beachTest")
+				{
 					var tileRow = Math.floor(i/currentMapCols);
 					var tileCol = i%currentMapCols;
+					tileRow++;
 					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
 					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-					worldMap[0][i] = TILE_SNOW;
-					break;
+				}
+				if(worldMap[0][i] == TILE_FOREST_ENTRY_DOOR && previousLvlName == "forestTest")
+				{
+					var tileRow = Math.floor(i/currentMapCols);
+					var tileCol = i%currentMapCols;
+					tileCol--;
+					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+				}
+				if(worldMap[0][i] == TILE_MT_ENTRY_DOOR && previousLvlName == "mountainTest")
+				{
+					var tileRow = Math.floor(i/currentMapCols);
+					var tileCol = i%currentMapCols;
+					tileCol++;
+					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
 				}
 			}
 		}

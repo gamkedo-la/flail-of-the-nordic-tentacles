@@ -43,7 +43,6 @@ const TILE_WORMEX = 301;
 const TILE_TANK = 302;
 const TILE_FALLEN = 303;
 const TILE_VANGUARD = 304;
-const TILE_PLAYER_IN_GAME_START = 305;
 
 //Items from 500 - 650;
 const TILE_HORN = 500;
@@ -58,7 +57,7 @@ const TILE_CUBE = 900;
 
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
-var allLvls = [testMap,layerTest,beachTest,mountainTest,forestTest];
+var allLvls = [snowTest,beachTest,mountainTest,forestTest];
 var currentLvlIndex = 0;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
@@ -113,23 +112,25 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 		{
 			if(tileType != 000)
 			{
-				if(tileType == TILE_HORN || tileType == TILE_EYEPATCH || tileType == TILE_BEACON ||
-				tileType == TILE_TENCTACLE || tileType == TILE_DICTIONARY || tileType == TILE_WORMHOLE)
+				if(shouldDrawGroundUnderTile_Item(tileType))
 				{
 					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
 				}
-				else if((tileType == TILE_PLAYER_NEW_GAME || 
-						tileType == TILE_PLAYER_IN_GAME_START) && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
+				else if((tileType == TILE_PLAYER_NEW_GAME) && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
 				{
 					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
 					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
 				}
 				else
 				{
-					// canvasContext.drawImage(worldPics[TILE_SNOW], 0, 0, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
-					// TILE_W, TILE_H);
+					if(shouldDrawGroundUnderTile_NonItem(tileType))
+					{
+						canvasContext.drawImage(worldPics[TILE_SNOW], 0, 0, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
+						TILE_W, TILE_H);
+					}
+					
 					drawTileBasedOnType(tileType, tileLeftEgdeX, tileTopEdgeY);
 				}
 			}		
@@ -156,6 +157,35 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 	{
 		// console.log("tile doesn't exist");
 	}
+}
+
+function shouldDrawGroundUnderTile_NonItem(tileType)
+{
+	switch(tileType)
+	{
+		case TILE_BEACH_EXIT_DOOR:
+ 		case TILE_FOREST_EXIT_DOOR:
+		case TILE_MT_EXIT_DOOR:
+		return true;
+	}
+
+	return false;
+}
+
+function shouldDrawGroundUnderTile_Item(tileType)
+{
+	switch(tileType)
+	{
+		case TILE_HORN: 
+		case TILE_EYEPATCH: 
+		case TILE_BEACON: 
+		case TILE_TENCTACLE: 
+		case TILE_DICTIONARY: 
+		case TILE_WORMHOLE:
+		return true;
+	}
+
+	return false;
 }
 
 function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
@@ -287,13 +317,13 @@ function handleLevelTransition(doorType)
 			loadMap("beachTest");
 			break;
 		case TILE_BEACH_EXIT_DOOR:
-			loadMap("testMap");
+			loadMap("snowTest");
 			break;
 		case TILE_MT_EXIT_DOOR:
-			loadMap("testMap");
+			loadMap("snowTest");
 			break;
 		case TILE_FOREST_EXIT_DOOR:
-			loadMap("testMap");
+			loadMap("snowTest");
 			break;
 	}
 }
@@ -333,7 +363,6 @@ function getNameOfTile(tileType)
 		case TILE_FOREST_TREES_12: tileName = "trees 12"; break;
 		case TILE_FOREST_TREES_13: tileName = "trees 13"; break;
 		case TILE_PLAYER_NEW_GAME: tileName = "player new game start pos"; break;
-		case TILE_PLAYER_IN_GAME_START: tileName = "player start (not for new game)"; break;
 		case TILE_WORMEX: tileName = "wormex"; break;
 		case TILE_TANK: tileName = "tank"; break;
 		case TILE_FALLEN: tileName = "fallen"; break;

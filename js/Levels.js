@@ -1,5 +1,7 @@
 //Levels Go Here
-var testMap = {
+var previousLvlName = null;
+
+var snowTest = {
 	gridLayers: [[
        101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,
        101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,101,
@@ -40,17 +42,17 @@ var testMap = {
 
     rows: 17,
     cols: 22,
-    levelName: "testMap",
+    levelName: "snowTest",
         enemies:[
 {x:1001,y:440,charType:301}, {x:918,y:599,charType:301}, {x:756,y:598,charType:301}, ]
 };
 
-var layerTest = {
+var beachTest = {
 gridLayers: [[
        100,100,100,100,112,113,100,100,100,100,
        100,100,100,100,111,111,100,100,100,100,
        100,100,100,112,115,114,113,100,100,100,
-       100,100,100,114,113,112,115,100,100,100,
+       100,100,100,114,113,112,115,132,100,100,
        100,100,100,100,111,111,300,100,100,100,
        100,100,100,100,114,115,108,108,108,100,
        100,100,100,100,100,100,109,109,109,100,
@@ -67,34 +69,7 @@ gridLayers: [[
 ],
     rows: 8,
     cols: 10,
-    levelName: "layerTest",
-        enemies:[
-{x:696,y:167,charType:301}, {x:683,y:119,charType:301}, {x:600,y:101,charType:301}, {x:631,y:131,charType:301}, ]};
-
-var beachTest = {
-gridLayers: [[
-       100,100,100,100,112,113,100,100,100,100,
-       100,100,100,100,111,111,100,100,100,100,
-       100,100,100,112,115,114,113,100,100,100,
-       100,100,100,114,113,112,115,107,100,100,
-       100,100,100,100,111,111,300,132,100,100,
-       100,100,100,100,114,115,108,108,108,100,
-       100,100,100,100,100,100,109,109,109,100,
-       100,100,100,100,100,100,101,101,101,100,],
-[
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,900,0,
-       0,0,0,0,0,0,0,900,900,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,],
-],
-    rows: 8,
-    cols: 10,
     levelName: "beachTest",
-    // player start index:-1,
     enemies:[
 {x:696,y:167, charType:301}, {x:683,y:119, charType:301}, {x:600,y:101, charType:301}, {x:631,y:131, charType:301}, ]};
 
@@ -103,25 +78,24 @@ gridLayers: [[
        100,100,100,100,112,113,100,100,100,100,
        100,100,100,100,111,111,100,100,100,100,
        100,100,104,112,115,114,113,100,100,100,
-       100,104,104,114,113,112,115,100,100,100,
-       100,104,104,107,111,111,300,107,100,100,
+       100,104,104,114,113,112,115,107,100,100,
+       100,104,104,100,111,111,300,100,100,100,
        100,104,104,100,114,115,104,104,104,100,
        100,100,100,100,100,100,104,104,104,100,
        100,100,100,100,100,100,104,104,104,100,],
 [
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,900,0,
-       0,0,0,0,0,0,0,900,900,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,],
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,900,000,
+       000,000,000,000,000,000,000,900,900,000,
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,000,000,],
 ],
     rows: 8,
     cols: 10,
     levelName: "mountainTest",
-    // player start index:-1,
     enemies:[
 {x:696,y:167, charType:301}, {x:683,y:119, charType:301}, {x:600,y:101, charType:301}, {x:631,y:131, charType:301}, ]};
 
@@ -130,25 +104,24 @@ gridLayers: [[
        100,100,100,100,112,113,100,100,100,100,
        100,100,100,100,111,111,100,100,100,100,
        100,100,100,112,115,114,113,100,100,100,
-       100,100,100,114,113,112,115,100,100,100,
-       100,100,100,107,111,111,300,133,100,100,
+       100,100,100,114,113,112,115,133,100,100,
+       100,100,100,100,111,111,300,100,100,100,
        100,100,116,116,114,115,116,116,116,100,
        100,100,116,116,116,116,116,116,116,100,
        100,100,100,116,116,116,116,116,116,100,],
 [
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,900,0,
-       0,0,0,0,0,0,0,900,900,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,
-       0,0,0,0,0,0,0,0,0,0,],
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,900,000,
+       000,000,000,000,000,000,000,900,900,000,
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,000,000,
+       000,000,000,000,000,000,000,000,000,000,],
 ],
     rows: 8,
     cols: 10,
     levelName: "forestTest",
-    // player start index:-1,
     enemies:[
 {x:696,y:167, charType:301}, {x:683,y:119, charType:301}, {x:600,y:101, charType:301}, {x:631,y:131, charType:301}, ]};
 
@@ -167,8 +140,7 @@ function saveMap(mapName, grid)
 	gridString += "],";
 
 	console.log("var " + mapName + " = {\n" + "gridLayers: " + gridString + "\n    rows: " + grid.mapRows + "," + "\n    cols: " 
-		+ grid.mapCols + "," + "\n    levelName: \"" + mapName + "\"," + "\n    player start index:" + grid.map[0].indexOf(TILE_PLAYER_IN_GAME_START) + ","
-		+ "\n    enemies:" + spawnListSaveText() + "};");
+		+ grid.mapCols + "," + "\n    levelName: \"" + mapName + "\"," + "\n    enemies:" + spawnListSaveText() + "};");
 }
 
 function saveLayers(layer,grid)
@@ -213,16 +185,18 @@ function loadMap(mapName)
 
         worldMap = Array.from(allLvls[i].gridLayers);
         handleCharacterPositions(i);
+
+        previousLvlName = mapName;
       }
       else
       {
         console.log("loading map " + allLvls[i].levelName + " in editor: ");
         editor.grid.map = [];
 
-        editor.grid.rows = allLvls[i].rows;
-        editor.grid.cols = allLvls[i].cols;
+        editor.grid.mapRows = allLvls[i].rows;
+        editor.grid.mapCols = allLvls[i].cols;
         editor.grid.map = Array.from(allLvls[i].gridLayers);
-        //handleCharPositions for editor case
+        
         handleCharacterPositions(i);
       }
     }//end of map name check
@@ -254,11 +228,12 @@ function handleCharacterPositions(whichLevel)
   }
 	else
   {
-    //we are in editor mode and now need to load enemies
+    //delete previously loaded map spawn points
+    clearSpawnList();
+
     for(var i = 0; i < allLvls[whichLevel].enemies.length; i++)
     {
       addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, allLvls[whichLevel].enemies[i].charType);
     }
-    //need a way to store player start tile for editor as it will be erased upon level transitions
   }
 }
