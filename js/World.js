@@ -39,6 +39,7 @@ const TILE_WORMEX = 301;
 const TILE_TANK = 302;
 const TILE_FALLEN = 303;
 const TILE_VANGUARD = 304;
+const TILE_PLAYER_IN_GAME_START = 305;
 
 //Items from 500 - 650;
 const TILE_HORN = 500;
@@ -115,7 +116,8 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
 				}
-				else if(tileType == TILE_PLAYER_NEW_GAME && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
+				else if((tileType == TILE_PLAYER_NEW_GAME || 
+						tileType == TILE_PLAYER_IN_GAME_START) && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
 				{
 					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
 					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
@@ -293,6 +295,7 @@ function getNameOfTile(tileType)
 		case TILE_FOREST_TREES_12: tileName = "trees 12"; break;
 		case TILE_FOREST_TREES_13: tileName = "trees 13"; break;
 		case TILE_PLAYER_NEW_GAME: tileName = "player new game start pos"; break;
+		case TILE_PLAYER_IN_GAME_START: tileName = "player start (not for new game)"; break;
 		case TILE_WORMEX: tileName = "wormex"; break;
 		case TILE_TANK: tileName = "tank"; break;
 		case TILE_FALLEN: tileName = "fallen"; break;

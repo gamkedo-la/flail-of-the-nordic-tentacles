@@ -86,8 +86,8 @@ function saveMap(mapName, grid)
 	gridString += "],";
 
 	console.log("var " + mapName + " = {\n" + "gridLayers: " + gridString + "\n    rows: " + grid.mapRows + "," + "\n    cols: " 
-		+ grid.mapCols + "," + "\n    levelName: \"" + mapName + "\","
-		+ "\n        enemies:" + spawnListSaveText() + "};");
+		+ grid.mapCols + "," + "\n    levelName: \"" + mapName + "\"," + "\n    player start index:" + grid.map[0].indexOf(TILE_PLAYER_IN_GAME_START) + ","
+		+ "\n    enemies:" + spawnListSaveText() + "};");
 }
 
 function saveLayers(layer,grid)
@@ -159,7 +159,6 @@ function handleCharacterPositions(whichLevel)
 
     for(var i = 0; i < allLvls[whichLevel].enemies.length; i++)
     {
-      //TODO: uncomment last argurment once code to handle pics/class based on charType is implemented both in inital map and another test level
       addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, allLvls[whichLevel].enemies[i].charType);
     }
 

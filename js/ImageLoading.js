@@ -64,6 +64,7 @@ function loadImages()
 		{worldType: TILE_FALLEN, fileName: "slime_red.png"},
 		{worldType: TILE_VANGUARD, fileName: "slime_yellow.png"},
 		{worldType: TILE_PLAYER_NEW_GAME, fileName: "viking_quick.png"},
+		{worldType: TILE_PLAYER_IN_GAME_START, fileName: "viking_quick.png"},
 		]
 
 	picsToLoad = imageList.length;
