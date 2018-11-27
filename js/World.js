@@ -31,6 +31,10 @@ const TILE_FOREST_TREES_11 = 126;
 const TILE_FOREST_TREES_12 = 127;
 const TILE_FOREST_TREES_13 = 128;
 const TILE_FOREST_TREES_14 = 129;
+const TILE_BEACH_ENTRY_DOOR = 130;
+const TILE_FOREST_ENTRY_DOOR = 131;
+const TILE_BEACH_EXIT_DOOR = 132;
+const TILE_FOREST_EXIT_DOOR = 133;
 
 
 //Characters from 300 - 450;
@@ -54,7 +58,7 @@ const TILE_CUBE = 900;
 
 var enemiesStartSpots = [];
 var itemSpawnSpots = [];
-var allLvls = [testMap,layerTest];
+var allLvls = [testMap,layerTest,beachTest,mountainTest,forestTest];
 var currentLvlIndex = 0;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
@@ -188,6 +192,10 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_FOREST_TREES_11: xClipping = TILE_W * 10; break;
 		case TILE_FOREST_TREES_12: xClipping = TILE_W * 11; break;
 		case TILE_FOREST_TREES_13: xClipping = TILE_W * 12; break;
+		case TILE_BEACH_ENTRY_DOOR: xClipping = TILE_W * 5; break;
+		case TILE_FOREST_ENTRY_DOOR: xClipping = TILE_W * 5; break;
+		case TILE_BEACH_EXIT_DOOR: xClipping = TILE_W * 6; break;
+		case TILE_FOREST_EXIT_DOOR: xClipping = TILE_W * 6; break;
 		default:
 			xClipping = 0;
 			yClipping = 0;
@@ -244,6 +252,21 @@ function moveCharIfAble(tileType)
 		case TILE_MT_ENTRY_DOOR:
 			return false;
 			break;
+		case TILE_FOREST_ENTRY_DOOR:
+			return false;
+			break;
+		case TILE_BEACH_ENTRY_DOOR:
+			return false;
+			break;
+		case TILE_FOREST_EXIT_DOOR:
+			return false;
+			break;
+		case TILE_MT_EXIT_DOOR:
+			return false;
+			break;
+		case TILE_BEACH_EXIT_DOOR:
+			return false;
+			break;
 		default:
 			return true;
 			break;
@@ -255,7 +278,22 @@ function handleLevelTransition(doorType)
 	switch(doorType)
 	{
 		case TILE_MT_ENTRY_DOOR:
-			loadMap("layerTest");
+			loadMap("mountainTest");
+			break;
+		case TILE_FOREST_ENTRY_DOOR:
+			loadMap("forestTest");
+			break;
+		case TILE_BEACH_ENTRY_DOOR:
+			loadMap("beachTest");
+			break;
+		case TILE_BEACH_EXIT_DOOR:
+			loadMap("testMap");
+			break;
+		case TILE_MT_EXIT_DOOR:
+			loadMap("testMap");
+			break;
+		case TILE_FOREST_EXIT_DOOR:
+			loadMap("testMap");
 			break;
 	}
 }
