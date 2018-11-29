@@ -27,6 +27,7 @@ function wormexClass()
 	{
 		this.bitmap = image;
 		this.charName = name;
+		this.exp.init('Wormex');
 		this.reset();
 	}
 

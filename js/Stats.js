@@ -5,15 +5,32 @@
 
 function statsClass()
 {
-	//health,magic,strength,agility,vitality,intelligence
+	this.baseHP = 300.0;
 	this.hp;
+	this.maxHP;
 	this.hpMod;
-	this.mp;//possibility of magic attacks?
+
+	this.baseMp = 100.0;//possibility of magic attacks?
+	this.mp;
+	this.maxMp;
 	this.mpMod;
+
+	this.baseStr = 30.0;
 	this.str;
 	this.strMod;
+
+	this.baseDEF = 20.0;
 	this.def;
 	this.defMod;
+
+	this.modifiedHP;
+	this.modifiedDEF;
+	this.modifiedATK;
+
+	this.isCharacterDead = false;
+	this.isThisHitTheFirstHit = false;
+
+	// this.lvl = LVL;
 
 	this.init = function()
 	{

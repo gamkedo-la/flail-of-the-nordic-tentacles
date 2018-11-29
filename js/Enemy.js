@@ -9,8 +9,6 @@ function enemyClass()
 	this.centerX = 75;
 	this.centerY = 75;
 
-	this.hasEnterAnotherLevel = false;
-
 	this.reset = function()
 	{
 		this.centerX = this.homeX;

@@ -32,6 +32,7 @@ function playerClass()
 	{
 		this.bitmap = image;
 		this.charName = name;
+		this.exp.init('Ragnar');
 		this.reset();
 	}
 

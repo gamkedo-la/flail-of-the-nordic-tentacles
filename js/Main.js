@@ -38,7 +38,7 @@ function imgsDoneLoadingSoStartGame()
 	{
 		//TODO: function to use the appropriate img for an enemy and a way to name them
 		/*
-			enemiesList[i].init(getPicForThisSpecificEnemy(), name of enemy)
+			enemiesList[i].init(getPicForThisSpecificEnemy(), nameOfEnemyKind() + i)
 		*/
 		enemiesList[i].init(wormexPic, "Enemy " + i);
 	}
