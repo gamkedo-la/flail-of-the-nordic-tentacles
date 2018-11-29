@@ -30,9 +30,7 @@ function statsClass()
 	this.isCharacterDead = false;
 	this.isThisHitTheFirstHit = false;
 
-	// this.lvl = LVL;
-
-	this.init = function()
+	this.init = function(level)
 	{
 		//all characters start at base stats
 	}

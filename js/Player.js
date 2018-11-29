@@ -157,7 +157,7 @@ function playerClass()
 			case TILE_DICTIONARY:
 			case TILE_WORMHOLE:
 				worldMap[0][itemIndex] = TILE_SNOW;
-				console.log("picked up item: " + itemType);
+				console.log("picked up item: " + getNameOfTile(itemType));
 				break;
 		}
 	}

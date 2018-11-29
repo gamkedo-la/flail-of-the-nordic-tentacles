@@ -108,6 +108,6 @@ function gameDebugTools()
 	var tileRow =  Math.floor((mouseY + camPanY)/TILE_H);
 
 	// drawCircle(camPanX, camPanY, 5, 'red');
-	drawText("mouse: " + (mouseX + camPanX) + "," + (mouseY + camPanY) + "index: " + roomTileToIndex(tileCol, tileRow, currentMapCols), 
-		mouseX, mouseY, "red");
+	// drawText("mouse: " + (mouseX + camPanX) + "," + (mouseY + camPanY) + "index: " + roomTileToIndex(tileCol, tileRow, currentMapCols), 
+	// 	mouseX, mouseY, "red");
 }

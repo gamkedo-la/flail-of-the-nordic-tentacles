@@ -97,7 +97,6 @@ function wormexClass()
 					break;
 			}
 		}
-	
 		
 		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
 
