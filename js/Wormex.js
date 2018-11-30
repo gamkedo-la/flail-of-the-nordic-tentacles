@@ -71,7 +71,7 @@ function wormexClass()
 	{
 		this.superClassBattle(player);
 
-		console.log(this.stats.hp,player.stats.hp);
+		// console.log(this.stats.hp,player.stats.hp);
 	}
 
 	//check if acting as sentry

@@ -1,6 +1,9 @@
 /*
 	NOTE: stats really only need to be checked when doing things like battles, using items that increase them whether permanently or temporarily,
 	checking gear requirements, etc.
+
+	WARNING!!!
+	setStats function are randomly setting a specific stat (can be any stat as far as I've notice right now) to NaN
 */
 const TIME_UNTIL_HP_STARTS_REGEN = 150; 
 var hpModPossibilites = {wormex: [0.45,0.50,0.55,0.60],
@@ -78,10 +81,10 @@ function regenPlayerHpIfAble(player,isIdle,isInCombat)
 
 function setStats_Player(caller,level)
 {
-	caller.hp = Math.ceil(caller.baseHp * level);
+	caller.hp = caller.baseHp * level;
 	caller.maxHp = caller.hp;
-	caller.str = Math.floor(caller.baseStr * level);
-	caller.def = Math.floor(caller.baseDef * level);
+	caller.str = caller.baseStr * level;
+	caller.def = caller.baseDef * level;
 }
 
 function setStats_Enemy(caller,level,charkind)
@@ -116,10 +119,10 @@ function setStats_Enemy(caller,level,charkind)
 		defMod = getRandomMod(defModPossibilites.tank);
 	}
 
-	caller.hp = Math.ceil(caller.baseHp * level * hpMod);
+	caller.hp = caller.baseHp * level * hpMod;
 	caller.maxHp = caller.hp;
-	caller.str = Math.floor(caller.baseStr * level * strMod);
-	caller.def = Math.floor(caller.baseDef * level * defMod);
+	caller.str = caller.baseStr * level * strMod;
+	caller.def = caller.baseDef * level * defMod;
 }
 
 function calculateDamage(attackerStatsObj, defenderStatsObj)
