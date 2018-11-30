@@ -22,21 +22,21 @@ var defModPossibilites = {wormex: [0.05,0.15,0.25,0.30],
 
 function statsClass()
 {
-	this.baseHp = 300.0;
+	this.baseHp = 3000.0;
 	this.hp;
 	this.maxHp;
 	this.hpMod;
 
-	this.baseMp = 100.0;//possibility of magic attacks?
+	this.baseMp = 1000.0;//possibility of magic attacks?
 	this.mp;
 	this.maxMp;
 	this.mpMod;
 
-	this.baseStr = 30.0;
+	this.baseStr = 60.0;
 	this.str;
 	this.strMod;
 
-	this.baseDef = 20.0;
+	this.baseDef = 40.0;
 	this.def;
 	this.defMod;
 	
@@ -63,7 +63,7 @@ function regenPlayerHpIfAble(player,isIdle,isInCombat)
 		player.waitTimeForHpRegen--;
 		if(player.waitTimeForHpRegen <= 0 && player.stats.hp < player.stats.maxHp)
 		{
-			player.stats.hp += player.stats.baseHp * 0.01;
+			player.stats.hp += (player.stats.baseHp * 0.01);
 		}
 		else
 		{

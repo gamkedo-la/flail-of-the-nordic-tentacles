@@ -127,6 +127,13 @@ function playerClass()
 			nextX += this.velX;
 		}
 		this.setDirectionFaced();
+		
+		if(nextX == this.centerX && nextY == this.centerY)
+			this.isIdle = true;
+		else
+			this.isIdle = false;
+
+		regenPlayerHpIfAble(this,this.isIdle,this.isInCombat);
 
 		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);
 		var nextTileType = TILE_SNOW;
@@ -150,13 +157,6 @@ function playerClass()
 
 		this.hitbox.x = this.centerX;
 		this.hitbox.y = this.centerY;
-
-		if(nextX == this.centerX && nextY == this.centerY)
-			this.isIdle = true;
-		else
-			this.isIdle = false;
-
-		regenPlayerHpIfAble(this,this.isIdle,this.isInCombat);
 	}
 
 	this.pickupItemsIfAble = function(itemType, itemIndex)
