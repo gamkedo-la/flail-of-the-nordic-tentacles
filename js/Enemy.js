@@ -104,14 +104,21 @@ function enemyClass()
 
 		if(distance < this.hitbox.radius + player.hitbox.radius)
 		{ 
+			player.isInCombat = true;
 			if(this.doesPlayerHaveAdvantage(player))
 			{
 				console.log(player.charName + " attacking " + this.charName);
+				calculateDamage(player.stats, this.stats);
 			}
 			else
 			{
 				console.log(this.charName + " attacking " + player.charName);
+				calculateDamage(this.stats, player.stats);
 			}
+		}
+		else
+		{
+			player.isInCombat = false;
 		}
 	}
 
@@ -221,6 +228,7 @@ function randomSpawn()
 function getClassBasedOnType(charType)
 {
 	// declare var classType as undefined
+	// could set .__proto__.constructor based on charType like this: if(charType == TILE_WORMEX) {class = new wormexClass();
 	// check char type against constants
 	// set classType according to conditional checks against charType
 	//return classType

@@ -20,7 +20,7 @@ function wormexClass()
 	this.currentWaitTime = 0;
 
 	this.canPatrol = false;
-
+	this.isInCombat = false;
 	this.isDefeated = false;
 
 	this.init = function(image, name)
@@ -28,6 +28,7 @@ function wormexClass()
 		this.bitmap = image;
 		this.charName = name;
 		this.exp.init('Wormex');
+		this.stats.init(this.exp.currentLvl,'Wormex');
 		this.reset();
 	}
 
@@ -69,6 +70,8 @@ function wormexClass()
 	this.battle = function(player)
 	{
 		this.superClassBattle(player);
+
+		console.log(this.stats.hp,player.stats.hp);
 	}
 
 	//check if acting as sentry

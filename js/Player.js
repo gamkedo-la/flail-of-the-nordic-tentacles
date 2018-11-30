@@ -18,7 +18,10 @@ function playerClass()
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
 
+	this.isInCombat = false;
 	this.hasEnterAnotherLevel = false;
+	this.isIdle = false;
+	this.waitTimeForHpRegen = 0;
 
 	this.setupInput = function(north,south,west,east)
 	{
@@ -33,6 +36,8 @@ function playerClass()
 		this.bitmap = image;
 		this.charName = name;
 		this.exp.init('Ragnar');
+		this.stats.init(this.exp.currentLvl,'Ragnar');
+		this.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
 		this.reset();
 	}
 
@@ -122,6 +127,7 @@ function playerClass()
 			nextX += this.velX;
 		}
 		this.setDirectionFaced();
+
 		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);
 		var nextTileType = TILE_SNOW;
 
@@ -144,6 +150,13 @@ function playerClass()
 
 		this.hitbox.x = this.centerX;
 		this.hitbox.y = this.centerY;
+
+		if(nextX == this.centerX && nextY == this.centerY)
+			this.isIdle = true;
+		else
+			this.isIdle = false;
+
+		regenPlayerHpIfAble(this,this.isIdle,this.isInCombat);
 	}
 
 	this.pickupItemsIfAble = function(itemType, itemIndex)
