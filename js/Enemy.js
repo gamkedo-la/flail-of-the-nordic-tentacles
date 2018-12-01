@@ -107,12 +107,12 @@ function enemyClass()
 			player.isInCombat = true;
 			if(this.doesPlayerHaveAdvantage(player))
 			{
-				console.log(player.charName + " attacking " + this.charName);
+				// console.log(player.charName + " attacking " + this.charName);
 				calculateDamage(player.stats, this.stats);
 			}
 			else
 			{
-				console.log(this.charName + " attacking " + player.charName);
+				// console.log(this.charName + " attacking " + player.charName);
 				calculateDamage(this.stats, player.stats);
 			}
 		}
