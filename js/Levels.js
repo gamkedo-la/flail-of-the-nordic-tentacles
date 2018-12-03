@@ -43,6 +43,7 @@ var snowTest = {
     rows: 17,
     cols: 22,
     levelName: "snowTest",
+    tilesetRow: 0,
         enemies:[
 {x:1001,y:440,charType:301}, {x:918,y:599,charType:301}, {x:756,y:598,charType:301}, ]
 };
@@ -70,6 +71,7 @@ gridLayers: [[
     rows: 8,
     cols: 10,
     levelName: "beachTest",
+    tilesetRow: 1,
     enemies:[
 {x:696,y:167, charType:301}, {x:683,y:119, charType:301}, {x:600,y:101, charType:301}, {x:631,y:131, charType:301}, ]};
 
@@ -96,6 +98,7 @@ gridLayers: [[
     rows: 8,
     cols: 10,
     levelName: "mountainTest",
+    tilesetRow: 2,
     enemies:[
 {x:696,y:167, charType:301}, {x:683,y:119, charType:301}, {x:600,y:101, charType:301}, {x:631,y:131, charType:301}, ]};
 
@@ -122,6 +125,7 @@ gridLayers: [[
     rows: 8,
     cols: 10,
     levelName: "forestTest",
+    tilesetRow: 3,
     enemies:[
 {x:696,y:167, charType:301}, {x:683,y:119, charType:301}, {x:600,y:101, charType:301}, {x:631,y:131, charType:301}, ]};
 
@@ -182,6 +186,7 @@ function loadMap(mapName)
         currentLvlIndex = i;
         currentMapRows = allLvls[currentLvlIndex].rows;
         currentMapCols = allLvls[currentLvlIndex].cols;
+        currentMapTilesetRow = allLvls[currentLvlIndex].tilesetRow;
 
         worldMap = Array.from(allLvls[i].gridLayers);
         handleCharacterPositions(i);
@@ -190,11 +195,12 @@ function loadMap(mapName)
       }
       else
       {
-        console.log("loading map " + allLvls[i].levelName + " in editor: ");
+        console.log("loading map " + allLvls[i].levelName + " in editor");
         editor.grid.map = [];
 
         editor.grid.mapRows = allLvls[i].rows;
         editor.grid.mapCols = allLvls[i].cols;
+        editor.grid.mapTilesetRow = allLvls[i].tilesetRow;
         editor.grid.map = Array.from(allLvls[i].gridLayers);
         
         handleCharacterPositions(i);

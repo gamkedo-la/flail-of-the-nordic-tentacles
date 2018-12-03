@@ -3,6 +3,7 @@ function TileGrid(initTile)
 	this.map;
 	this.mapRows;
 	this.mapCols;
+	this.mapTilesetRow;
 
 	this.initTileType = initTile;
 

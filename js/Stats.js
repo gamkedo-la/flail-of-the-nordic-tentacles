@@ -61,7 +61,6 @@ function statsClass()
 
 function regenPlayerHpIfAble(player,isIdle,enemiesList)
 {
-	// if(enemiesList.every(checkForCombat))
 	var isCombatOngoing = false;
 	for(var i = 0; i < enemiesList.length; i++)
 	{
@@ -73,7 +72,6 @@ function regenPlayerHpIfAble(player,isIdle,enemiesList)
 
 	if(!isCombatOngoing)
 	{
-		console.log("checking if player is idle");
 		if(isIdle)
 		{
 			if(!(player.stats.hp >= player.stats.maxHp))

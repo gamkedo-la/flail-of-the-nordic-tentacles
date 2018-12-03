@@ -7,16 +7,20 @@ const TILE_OCEAN = 101;
 const TILE_TREE = 103;
 const TILE_MOUNTAIN = 104;
 const TILE_MT_ENTRY_DOOR = 105;
+
 const TILE_SNOW_GRASS = 106;
+
 const TILE_MT_EXIT_DOOR = 107;
 const TILE_SNOW_TO_BEACH = 108;
 const TILE_BEACH_TO_OCEAN = 109;
+
 const TILE_ROAD_HORIZONTAL = 110;
 const TILE_ROAD_VERTICAL = 111;
 const TILE_ROAD_TOP_RIGHT_TURN = 112;
 const TILE_ROAD_TOP_LEFT_TURN = 113;
 const TILE_ROAD_BOTTOM_RIGHT_TURN = 114;
 const TILE_ROAD_BOTTOM_LEFT_TURN = 115;
+
 const TILE_FOREST_TREES_1 = 116;
 const TILE_FOREST_TREES_2 = 117;
 const TILE_FOREST_TREES_3 = 118;
@@ -31,6 +35,7 @@ const TILE_FOREST_TREES_11 = 126;
 const TILE_FOREST_TREES_12 = 127;
 const TILE_FOREST_TREES_13 = 128;
 const TILE_FOREST_TREES_14 = 129;
+
 const TILE_BEACH_ENTRY_DOOR = 130;
 const TILE_FOREST_ENTRY_DOOR = 131;
 const TILE_BEACH_EXIT_DOOR = 132;
@@ -62,6 +67,7 @@ var currentLvlIndex = 0;
 
 var currentMapRows = allLvls[currentLvlIndex].rows;
 var currentMapCols = allLvls[currentLvlIndex].cols;
+var currentMapTilesetRow = allLvls[currentLvlIndex].tilesetRow;
 
 var worldMap = [];
 
@@ -114,20 +120,22 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 			{
 				if(shouldDrawGroundUnderTile_Item(tileType))
 				{
-					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
+					canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * currentMapTilesetRow, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
+						TILE_W, TILE_H);
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
 				}
 				else if((tileType == TILE_PLAYER_NEW_GAME) && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
 				{
-					canvasContext.drawImage(worldPics[TILE_SNOW], tileLeftEgdeX, tileTopEdgeY);
+					canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * currentMapTilesetRow, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
+						TILE_W, TILE_H);
 					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
 				}
 				else
 				{
 					if(shouldDrawGroundUnderTile_NonItem(tileType))
 					{
-						canvasContext.drawImage(worldPics[TILE_SNOW], 0, 0, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
+						canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * currentMapTilesetRow, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
 						TILE_W, TILE_H);
 					}
 					
@@ -166,6 +174,12 @@ function shouldDrawGroundUnderTile_NonItem(tileType)
 		case TILE_BEACH_EXIT_DOOR:
  		case TILE_FOREST_EXIT_DOOR:
 		case TILE_MT_EXIT_DOOR:
+		case TILE_ROAD_HORIZONTAL:
+		case TILE_ROAD_VERTICAL:
+		case TILE_ROAD_TOP_RIGHT_TURN:
+		case TILE_ROAD_BOTTOM_RIGHT_TURN:
+		case TILE_ROAD_TOP_LEFT_TURN:
+		case TILE_ROAD_BOTTOM_LEFT_TURN:
 		return true;
 	}
 
@@ -192,6 +206,10 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 {
 	var xClipping = 0;
 	var yClipping = 0;
+	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN)
+	{
+		yClipping = TILE_H * currentMapTilesetRow;
+	}
 
 	switch(tileType)
 	{
