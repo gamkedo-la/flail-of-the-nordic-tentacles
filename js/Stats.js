@@ -59,14 +59,39 @@ function statsClass()
 	}
 }
 
-function regenPlayerHpIfAble(player,isIdle,isInCombat)
+function regenPlayerHpIfAble(player,isIdle,enemiesList)
 {
-	if(isIdle && !isInCombat)
+	// if(enemiesList.every(checkForCombat))
+	var isCombatOngoing = false;
+	for(var i = 0; i < enemiesList.length; i++)
 	{
-		player.waitTimeForHpRegen--;
-		if(player.waitTimeForHpRegen <= 0 && player.stats.hp < player.stats.maxHp)
+		if(enemiesList[i].isInCombat)
 		{
-			player.stats.hp += (player.stats.baseHp * 0.01);
+			isCombatOngoing = true;
+		}
+	}
+
+	if(!isCombatOngoing)
+	{
+		console.log("checking if player is idle");
+		if(isIdle)
+		{
+			if(!(player.stats.hp >= player.stats.maxHp))
+			{
+				player.waitTimeForHpRegen--;
+				if(player.waitTimeForHpRegen <= 0 && player.stats.hp < player.stats.maxHp)
+				{
+					player.stats.hp += (player.stats.baseHp * 0.01);
+				}
+			}
+			else
+			{
+				player.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
+			}
+		}
+		else
+		{
+			player.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
 		}
 	}
 	else

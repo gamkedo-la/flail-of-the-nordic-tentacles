@@ -104,22 +104,14 @@ function enemyClass()
 
 		if(distance < this.hitbox.radius + player.hitbox.radius)
 		{ 
-			player.isInCombat = true;
-			if(this.doesPlayerHaveAdvantage(player))
-			{
-				// console.log(player.charName + " attacking " + this.charName);
-				calculateDamage(player.stats, this.stats);
-			}
-			else
-			{
-				// console.log(this.charName + " attacking " + player.charName);
-				calculateDamage(this.stats, player.stats);
-			}
+			this.isInCombat = true;
 		}
 		else
 		{
-			player.isInCombat = false;
+			this.isInCombat = false;
 		}
+
+		return this.isInCombat;
 	}
 
 	//not the best code ever but it works! TODO:implement a better way of checking direction instead of this
@@ -223,6 +215,11 @@ function randomSpawn()
 	tempEnemy.superClassSetHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
 	enemiesStartSpots.splice(randSpot, 1);
 	enemiesList.push(tempEnemy);
+}
+
+function checkForCombat(fighting)
+{
+	return fighting == false;
 }
 
 function getClassBasedOnType(charType)

@@ -67,11 +67,26 @@ function wormexClass()
 	}
 
 	this.superClassBattle = this.battle;
+	this.superClassDoesPlayerHaveAdvantage = this.doesPlayerHaveAdvantage;
 	this.battle = function(player)
 	{
-		this.superClassBattle(player);
-
-		// console.log(this.stats.hp,player.stats.hp);
+		if(this.superClassBattle(player))
+		{
+			if(this.superClassDoesPlayerHaveAdvantage(player))
+			{
+				// console.log(player.charName + " attacking " + this.charName);
+				calculateDamage(player.stats, this.stats);
+			}
+			else
+			{
+				// console.log(this.charName + " attacking " + player.charName);
+				calculateDamage(this.stats, player.stats);
+			}
+		}
+		else
+		{
+			return;
+		}
 	}
 
 	//check if acting as sentry
@@ -103,7 +118,7 @@ function wormexClass()
 		
 		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
 
-		// drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
+		drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
 		
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
