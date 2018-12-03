@@ -47,10 +47,10 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
-	
 	if (isPaused == false){
 		moveAll();
 		battleAll();
+		regenPlayerHpIfAble(player,player.isIdle,enemiesList);
 	} else {
 		console.log("Pause");
 			}
@@ -108,9 +108,11 @@ function gameDebugTools()
 	var tileRow =  Math.floor((mouseY + camPanY)/TILE_H);
 
 	drawText(`Player Health: ${player.stats.hp}`, 20, 20, "black", "20px sans-serif");
+	// drawText(`In Combat: ${player.isInCombat}`, 20, 40, "black", "20px sans-serif");
+	drawText(`Player Wait Before Regen: ${player.waitTimeForHpRegen}`,20,60,"black","20px sans-serif");
 	for(var i = 0; i < enemiesList.length; i++)
 	{
-		drawText(`Enemy ${i} Health: ${enemiesList[i].stats.hp}`, 20, (i+2) * 20, "black", "20px sans-serif");
+		drawText(`Enemy ${i} Health: ${enemiesList[i].stats.hp}`, 20, (i+4) * 20, "black", "20px sans-serif");
 	}
 
 	// drawCircle(camPanX, camPanY, 5, 'red');

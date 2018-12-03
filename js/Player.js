@@ -133,8 +133,6 @@ function playerClass()
 		else
 			this.isIdle = false;
 
-		regenPlayerHpIfAble(this,this.isIdle,this.isInCombat);
-
 		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);
 		var nextTileType = TILE_SNOW;
 
@@ -237,7 +235,7 @@ function playerClass()
 			}
 		}
 
-		// drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
+		drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
 		
 		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
 
