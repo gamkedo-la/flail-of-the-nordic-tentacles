@@ -69,6 +69,57 @@ function Editor()
 		}
 	}
 
+	// this.change = function(Input1, Input2)
+	// {
+
+	// 	if(Input1  >= 0 && Input1  <= Input2.length - 1)
+	// 	{
+	// 		if (Input1 == this.tileIndex) // this.changeSelectedTileInTileSet
+	// 		{			
+	// 			this.selectedTileType = Input2[Input1];
+	// 		}
+	// 		else if (Input1 == this.tileSetIndex) // this.changeTileSet
+	// 		{
+	// 			this.tileIndex = 0;
+	// 			this.selectedTileSet = Input2[Input1].tileSet;
+	// 			this.selectedTileType = this.selectedTileSet[this.tileIndex];
+	// 		} // 
+	// 		else // this.changeLayer
+	// 		{
+	// 			this.tileIndex = 0;
+	// 			this.selectedTileSet = Input1[Input1].tileSet;
+	// 			this.selectedTileType = this.selectedTileSet[this.tileIndex];
+	// 		}
+	// 	}	
+		
+	// 	else if(Input1 < 0)
+	// 	{
+	// 		Input1 = 0;
+	// 	}
+	// 	else
+	// 	{
+	// 		Input1 = Input2.length - 1;
+	// 	}
+	// }
+				
+	// this.changeSelectedTileInTileSet = function()
+	// {
+	// 	this.change(this.tileIndex, this.selectedTileSet);
+	// 	console.log("Tile const: " + this.selectedTileType + " ," + getNameOfTile(this.selectedTileType));
+	// }
+
+	// this.changeTileSet = function()
+	// {
+	// 	this.change(this.tileSetIndex, this.usableTiles);
+	// 	console.log("Switched to: " + this.usableTiles[this.tileSetIndex].setName);
+	// }
+
+	// this.changeLayer = function()
+	// {
+	// 	this.change(this.currentLayer, this.grid.map);
+	// 	console.log("Switched to layer: " + this.selectedLayer);
+	// }
+
 	this.changeSelectedTileInTileSet = function()
 	{
 		if(this.tileIndex  >= 0 && this.tileIndex  <= this.selectedTileSet.length - 1)
