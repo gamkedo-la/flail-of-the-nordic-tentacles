@@ -69,54 +69,58 @@ function Editor()
 		}
 	}
 
-	this.change = function(Input1, Input2)
+	this.changeSelectedTileInTileSet = function()
 	{
-
-		if(Input1  >= 0 && Input1  <= Input2.length - 1)
+		if(this.tileIndex  >= 0 && this.tileIndex  <= this.selectedTileSet.length - 1)
 		{
-			if (Input1 == this.tileIndex) // this.changeSelectedTileInTileSet
-			{			
-				this.selectedTileType = Input2[Input1];
-			}
-			else if (Input1 == this.tileSetIndex) // this.changeTileSet
-			{
-				this.tileIndex = 0;
-				this.selectedTileSet = Input2[Input1].tileSet;
-				this.selectedTileType = this.selectedTileSet[this.tileIndex];
-			} // 
-			else // this.changeLayer
-			{
-				this.tileIndex = 0;
-				this.selectedTileSet = Input1[Input1].tileSet;
-				this.selectedTileType = this.selectedTileSet[this.tileIndex];
-			}
-		}	
-		
-		else if(Input1 < 0)
+			this.selectedTileType = this.selectedTileSet[this.tileIndex];
+		}
+		else if(this.tileIndex < 0)
 		{
-			Input1 = 0;
+			this.tileIndex = 0;
 		}
 		else
 		{
-			Input1 = Input2.length - 1;
+			this.tileIndex = this.selectedTileSet.length - 1;
 		}
-	}
-				
-	this.changeSelectedTileInTileSet = function()
-	{
-		this.change(this.tileIndex, this.selectedTileSet);
 		console.log("Tile const: " + this.selectedTileType + " ," + getNameOfTile(this.selectedTileType));
 	}
 
 	this.changeTileSet = function()
 	{
-		this.change(this.tileSetIndex, this.usableTiles);
+		if(this.tileSetIndex >= 0 && this.tileSetIndex <= this.usableTiles.length - 1)
+		{
+			this.tileIndex = 0;
+			this.selectedTileSet = this.usableTiles[this.tileSetIndex].tileSet;
+			this.selectedTileType = this.selectedTileSet[this.tileIndex];
+		}
+		else if(this.tileSetIndex < 0)
+		{
+			this.tileSetIndex = 0;
+		}
+		else
+		{
+			this.tileSetIndex = this.usableTiles.length - 1;
+		}
+		
 		console.log("Switched to: " + this.usableTiles[this.tileSetIndex].setName);
 	}
 
 	this.changeLayer = function()
 	{
-		this.change(this.currentLayer, this.grid.map);
+		if(this.currentLayer >= 0 && this.currentLayer <= this.grid.map.length - 1)
+		{
+			this.selectedLayer = this.currentLayer;
+		}
+		else if(this.currentLayer < 0)
+		{
+			this.currentLayer = 0;
+		}
+		else
+		{
+			this.currentLayer = this.grid.map.length - 1;
+		}
+
 		console.log("Switched to layer: " + this.selectedLayer);
 	}
 }
