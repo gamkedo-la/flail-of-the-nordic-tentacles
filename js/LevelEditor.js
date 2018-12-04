@@ -15,7 +15,7 @@ function useEditorMode()
 
 function Editor()
 {
-	this.grid = new TileGrid(window.prompt("Choose initial canvas blanket (Snow - 100, Ocean - 101, Trees - 103, Mountains - 104): "));  //use const value from world js
+	this.grid = new TileGrid(window.prompt("Choose initial canvas blanket (use const value from world js): "));
 
 	this.selectedTileType;
 	this.selectedTileSet;
