@@ -4,14 +4,13 @@ function wormexClass()
 {
 	this.centerX = 75;
 	this.centerY = 75;
-	this.hitbox = {radius: 15, x: this.centerX, y: this.centerY};
 	this.velX = 3.0;
 	this.velY = 3.0;
 
+	this.collider;
+
 	this.exp = new xpClass();//only for init level within a bracket appropriate to enemy
 	this.stats = new statsClass();
-
-	this.hasEnterAnotherLevel = false;
 
 	this.directionFaced;
 	this.animFrame = 0;
@@ -27,6 +26,7 @@ function wormexClass()
 	{
 		this.bitmap = image;
 		this.charName = name;
+		this.collider = new colliderClass(this.centerX, this.centerY, 35, 15, 0, 15);
 		this.exp.init('Wormex');
 		this.stats.init(this.exp.currentLvl,'Wormex');
 		this.reset();
@@ -52,25 +52,24 @@ function wormexClass()
 			nextY += this.velY;
 
 			this.superClassMove(nextX,nextY);
-		}//end of sentry check
+		}
 
-		this.hitbox.x = this.centerX;
-		this.hitbox.y = this.centerY + this.bitmap.height/4;
-	}//end of this.move
+		this.collider.update(this.centerX,this.centerY);
+	}
 
 	this.superClassRandInitAI = this.randomizeInitAI;
 	this.randomizeInitAI = function()
 	{
-		this.velX = 4 + Math.random() * 8;
-		this.velY = 4 + Math.random() * 8;
+		this.velX = 6 + Math.random() * 8;
+		this.velY = 6 + Math.random() * 8;
 		this.superClassRandInitAI();
 	}
 
 	this.superClassBattle = this.battle;
 	this.superClassDoesPlayerHaveAdvantage = this.doesPlayerHaveAdvantage;
-	this.battle = function(player)
+	this.battle = function(playerCollider)
 	{
-		if(this.superClassBattle(player))
+		if(this.superClassBattle(playerCollider))
 		{
 			if(this.superClassDoesPlayerHaveAdvantage(player))
 			{
@@ -115,10 +114,8 @@ function wormexClass()
 					break;
 			}
 		}
-		
-		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
 
-		// drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
+		// this.collider.draw();
 		
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);

@@ -2,9 +2,10 @@ function playerClass()
 {
 	this.centerX = 75;
 	this.centerY = 75;
-	this.hitbox = {radius: 15, x: this.centerX, y: this.centerY};
 	this.velX = 12.0;
 	this.velY = 12.0;
+
+	this.collider;
 
 	this.exp = new xpClass();
 	this.stats = new statsClass();
@@ -35,6 +36,7 @@ function playerClass()
 	{
 		this.bitmap = image;
 		this.charName = name;
+		this.collider = new colliderClass(this.centerX, this.centerY, 20, 20, 0, 15);
 		this.exp.init('Ragnar');
 		this.stats.init(this.exp.currentLvl,'Ragnar');
 		this.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
@@ -133,16 +135,32 @@ function playerClass()
 		else
 			this.isIdle = false;
 
-		var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);
+		this.collider.update(nextX,nextY);
+
+		var nextTileIndTL = getTileIndexAtRowCol(this.collider.box.left,this.collider.box.top,currentMapCols,currentMapRows);
+        var nextTileIndTR = getTileIndexAtRowCol(this.collider.box.right,this.collider.box.top,currentMapCols,currentMapRows);
+        var nextTileIndBR = getTileIndexAtRowCol(this.collider.box.right,this.collider.box.bottom,currentMapCols,currentMapRows);
+        var nextTileIndBL = getTileIndexAtRowCol(this.collider.box.left,this.collider.box.bottom,currentMapCols,currentMapRows);
+
 		var nextTileType = TILE_SNOW;
 
-		if(nextTileIndex != undefined)
+		if(nextTileIndTL != undefined &&
+			nextTileIndTR != undefined &&
+			nextTileIndBR != undefined &&
+			nextTileIndBL != undefined)
 		{
-			nextTileType = worldMap[0][nextTileIndex];
+			nextTileTypeTR = worldMap[0][nextTileIndTR];
+			nextTileTypeTL = worldMap[0][nextTileIndTL];
+			nextTileTypeBR = worldMap[0][nextTileIndBR];
+			nextTileTypeBL = worldMap[0][nextTileIndBL];
 
-			this.pickupItemsIfAble(nextTileType, nextTileIndex);
+			this.pickupItemsIfAble(nextTileTypeTR,nextTileTypeTL,nextTileTypeBR,nextTileTypeBL, 
+									nextTileIndTL, nextTileIndTR, nextTileIndBR, nextTileIndBL);
 
-			if(moveCharIfAble(nextTileType))
+			if(moveCharIfAble(nextTileTypeTR) &&
+				moveCharIfAble(nextTileTypeTL) &&
+				moveCharIfAble(nextTileTypeBR) &&
+				moveCharIfAble(nextTileTypeBL))
 			{
 				this.centerX = nextX;
 				this.centerY = nextY;
@@ -153,24 +171,67 @@ function playerClass()
 			}
 		}
 
-		this.hitbox.x = this.centerX;
-		this.hitbox.y = this.centerY;
+		this.collider.update(this.centerX,this.centerY);
 	}
 
-	this.pickupItemsIfAble = function(itemType, itemIndex)
+	this.pickupItemsIfAble = function(itemTypeTR,itemTypeTL,itemTypeBR,itemTypeBL, indexTL,indexTR,indexBR,indexBL)
 	{
-		switch(itemType)
+		if((itemTypeTR == TILE_HORN ||
+			itemTypeTR == TILE_BEACON ||
+			itemTypeTR == TILE_TENCTACLE ||
+			itemTypeTR == TILE_EYEPATCH ||
+			itemTypeTR == TILE_DICTIONARY ||
+			itemTypeTR == TILE_WORMHOLE))
 		{
-			case TILE_HORN:
-			case TILE_EYEPATCH:
-			case TILE_BEACON:
-			case TILE_TENCTACLE:
-			case TILE_DICTIONARY:
-			case TILE_WORMHOLE:
-				worldMap[0][itemIndex] = TILE_SNOW;
-				console.log("picked up item: " + getNameOfTile(itemType));
-				break;
+			worldMap[0][indexTR] = TILE_SNOW;
 		}
+		else if((itemTypeTL == TILE_HORN ||
+			itemTypeTL == TILE_BEACON ||
+			itemTypeTL == TILE_TENCTACLE ||
+			itemTypeTL == TILE_EYEPATCH ||
+			itemTypeTL == TILE_DICTIONARY ||
+			itemTypeTL == TILE_WORMHOLE))
+		{
+			worldMap[0][indexTL] = TILE_SNOW;	
+		}
+		else if((itemTypeBR == TILE_HORN ||
+			itemTypeBR == TILE_BEACON ||
+			itemTypeBR == TILE_TENCTACLE ||
+			itemTypeBR == TILE_EYEPATCH ||
+			itemTypeBR == TILE_DICTIONARY ||
+			itemTypeBR == TILE_WORMHOLE))
+		{
+			worldMap[0][indexBR] = TILE_SNOW;
+		}
+		else if((itemTypeBL == TILE_HORN ||
+			itemTypeBL == TILE_BEACON ||
+			itemTypeBL == TILE_TENCTACLE ||
+			itemTypeBL == TILE_EYEPATCH ||
+			itemTypeBL == TILE_DICTIONARY ||
+			itemTypeBL == TILE_WORMHOLE))
+		{
+			worldMap[0][indexBL] = TILE_SNOW;
+		}
+		else
+		{
+
+		}
+
+		// switch(itemType)
+		// {
+		// 	case TILE_HORN:
+		// 	case TILE_EYEPATCH:
+		// 	case TILE_BEACON:
+		// 	case TILE_TENCTACLE:
+		// 	case TILE_DICTIONARY:
+		// 	case TILE_WORMHOLE:
+		// 		worldMap[0][indexTL] = TILE_SNOW;
+		// 		worldMap[0][indexTR] = TILE_SNOW;
+		// 		worldMap[0][indexBR] = TILE_SNOW;
+		// 		worldMap[0][indexBL] = TILE_SNOW;
+		// 		console.log("picked up item: " + getNameOfTile(itemType));
+		// 		break;
+		// }
 	}
 
 	this.setDirectionFaced = function()
@@ -235,9 +296,7 @@ function playerClass()
 			}
 		}
 
-		// drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
-		
-		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
+		this.collider.draw();
 
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);

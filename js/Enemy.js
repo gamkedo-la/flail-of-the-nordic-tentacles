@@ -1,5 +1,3 @@
-enemyClass.prototype = new projectileClass();
-
 const WAIT_TIME_BEFORE_PATROLLING = 120;
 const DETECTION_RADIUS = TILE_W * 2;
 const LEASH_LENGTH = 120;
@@ -11,7 +9,6 @@ function enemyClass()
 	this.centerX = 75;
 	this.centerY = 75;
 
-	this.superClassReset = this.reset;
 	this.reset = function()
 	{
 		this.centerX = this.homeX;
@@ -98,15 +95,10 @@ function enemyClass()
 		this.currentWaitTime = Math.floor(Math.random()*WAIT_TIME_BEFORE_PATROLLING);
 	}
 
-	this.battle = function(player)
+	this.battle = function(playerCollider)
 	{
-		//improve collisions here
-		let dx = this.hitbox.x - player.hitbox.x;
-		let dy = this.hitbox.y - player.hitbox.y;
-		let distance = Math.sqrt(dx*dx + dy*dy);
-
-		if(distance < this.hitbox.radius + player.hitbox.radius)
-		{ 
+		if(this.collider.isCollidingWithOtherCollider(playerCollider))
+		{
 			this.isInCombat = true;
 		}
 		else

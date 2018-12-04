@@ -73,7 +73,7 @@ function battleAll()
 	for(var i = 0; i < enemiesList.length; i++)
 	{
 		//checking for battle against player
-		enemiesList[i].battle(player);
+		enemiesList[i].battle(player.collider);
 	}
 }
 

@@ -1,26 +1,32 @@
-function colliderClass(x,y,radius,xDeviation,yDeviation)
+function colliderClass(x,y,width,height,xDeviation,yDeviation)
 {
 	this.xDeviation = xDeviation;
 	this.yDeviation = yDeviation;
 
 	this.x = x + this.xDeviation;
 	this.y = y + this.yDeviation;
-	this.radius = radius;
+	this.box = {};
+	this.width = width;
+	this.height = height;
 
 	this.setCollider = function(xPos,yPos)
 	{
+		this.box.left = xPos - this.width*0.5 + this.xDeviation;
+		this.box.right = xPos + this.width*0.5 + this.xDeviation;
+		this.box.top = yPos - this.height*0.5 + this.yDeviation;
+		this.box.bottom = yPos + this.height*0.5 + this.yDeviation;
+
 		this.x = xPos + this.xDeviation;
 		this.y = yPos + this.yDeviation;
 	}
 	this.setCollider(this.x,this.y);
 
-	this.isColliderWithOtherCollider = function(otherCollider)
+	this.isCollidingWithOtherCollider = function(otherCollider)
 	{
-		let dx = this.hitbox.x - player.hitbox.x;
-		let dy = this.hitbox.y - player.hitbox.y;
-		let distance = Math.sqrt(dx*dx + dy*dy);
-
-		if(distance < this.radius + otherCollider.radius)
+		if(this.box.left < otherCollider.box.right &&
+			this.box.right > otherCollider.box.left &&
+			this.box.top < otherCollider.box.bottom &&
+			this.box.bottom > otherCollider.box.top)
 			return true;
 		else
 			return false;
@@ -33,6 +39,8 @@ function colliderClass(x,y,radius,xDeviation,yDeviation)
 
 	this.draw = function()
 	{
-		drawCircle(this.x, this.y, this.radius, 'yellow');
+		var x = Math.floor(this.box.left) + .5;
+        var y = Math.floor(this.box.top) + .5;
+		outlineRect(x,y, this.width,this.height, 'red');
 	}
 }
