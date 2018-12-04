@@ -1,3 +1,5 @@
+enemyClass.prototype = new projectileClass();
+
 const WAIT_TIME_BEFORE_PATROLLING = 120;
 const DETECTION_RADIUS = TILE_W * 2;
 const LEASH_LENGTH = 120;
@@ -9,6 +11,7 @@ function enemyClass()
 	this.centerX = 75;
 	this.centerY = 75;
 
+	this.superClassReset = this.reset;
 	this.reset = function()
 	{
 		this.centerX = this.homeX;
