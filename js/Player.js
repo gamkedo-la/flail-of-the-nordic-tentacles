@@ -235,7 +235,7 @@ function playerClass()
 			}
 		}
 
-		drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
+		// drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
 		
 		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
 
