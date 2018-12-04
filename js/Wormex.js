@@ -118,7 +118,7 @@ function wormexClass()
 		
 		// drawBitmapCenteredWithRot(this.bitmap, this.centerX, this.centerY, 0.0);
 
-		// drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
+		drawCircle(this.hitbox.x, this.hitbox.y, this.hitbox.radius, 'yellow');
 		
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
