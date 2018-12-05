@@ -114,15 +114,15 @@ function gameDebugTools()
 	var tileCol =  Math.floor((mouseX + camPanX)/TILE_W);
 	var tileRow =  Math.floor((mouseY + camPanY)/TILE_H);
 
-	drawText(`Player Health: ${player.stats.hp}`, 20, 20, "black", "20px sans-serif");
-	// drawText(`In Combat: ${player.isInCombat}`, 20, 40, "black", "20px sans-serif");
-	drawText(`Player Wait Before Regen: ${player.waitTimeForHpRegen}`,20,60,"black","20px sans-serif");
+	drawText(`Player Health: ${player.stats.hp}`, 20, 20, 'black', '20px sans-serif');
+	// drawText(`In Combat: ${player.isInCombat}`, 20, 40, 'black', '20px sans-serif');
+	drawText(`Player Wait Before Regen: ${player.waitTimeForHpRegen}`,20,60,'black','20px sans-serif');
 	for(var i = 0; i < enemiesList.length; i++)
 	{
-		drawText(`Enemy ${i} Health: ${enemiesList[i].stats.hp}`, 20, (i+4) * 20, "black", "20px sans-serif");
+		drawText(`Enemy ${i} Health: ${enemiesList[i].stats.hp}`, 20, (i+4) * 20, 'black', '20px sans-serif');
 	}
 
 	// drawCircle(camPanX, camPanY, 5, 'red');
-	// drawText("mouse: " + (mouseX + camPanX) + "," + (mouseY + camPanY) + "index: " + roomTileToIndex(tileCol, tileRow, currentMapCols), 
-	// 	mouseX, mouseY, "red");
+	// drawText('mouse: ' + (mouseX + camPanX) + ',' + (mouseY + camPanY) + 'index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols), 
+	// 	mouseX, mouseY, 'red');
 }
