@@ -92,6 +92,12 @@ function drawAll()
 	drawVisibleWorld(currentMapCols, 1);
 	canvasContext.restore();
 	gameDebugTools();
+	if(isPaused)
+	{
+		drawRect(canvas.width/2-55,canvas.height/2-30, 135,35, "black")
+		drawRect(canvas.width/2-50,canvas.height/2-25, 125,25, "white")
+		drawText("PAUSED", canvas.width/2-50,canvas.height/2, "black", font="30px sans-serif")
+	}
 }
 
 function popEnemyList()

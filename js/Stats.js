@@ -136,6 +136,7 @@ function setStats_Enemy(caller,level,charkind)
 	else
 	{
 		hpMod = getRandomMod(hpModPossibilites.tank);
+		hpMod = Math.floor(hpMod);
 		strMod = getRandomMod(strModPossibilites.tank);
 		defMod = getRandomMod(defModPossibilites.tank);
 	}
