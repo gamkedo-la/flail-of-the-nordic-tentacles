@@ -13,44 +13,44 @@ function SoundOverlapsClass(filenameWithPath) {
 	
 	setFormat();
 	
-	var mainSound = new Audio("sound/"+filenameWithPath+audioFormat);
-	var altSound = new Audio("sound/"+filenameWithPath+audioFormat);
+	var mainSound = new Audio("audio/"+filenameWithPath+audioFormat);
+	var altaudio = new Audio("audio/"+filenameWithPath+audioFormat);
 	
-	var altSoundTurn = false;
+	var altaudioTurn = false;
 	
 	this.play = function() {
-		if(altSoundTurn) {
-			altSound.currentTime = 0;
-			altSound.play();
+		if(altaudioTurn) {
+			altaudio.currentTime = 0;
+			altaudio.play();
 		} else {
-			mainSound.currentTime = 0;
-			mainSound.play();
+			mainaudio.currentTime = 0;
+			mainaudio.play();
 		}
-		altSoundTurn = !this.altSoundTurn;
+		altaudioTurn = !this.altaudioTurn;
 	}
 }	
 
 function BackgroundMusicClass(){
 	
-	var musicSound = null;
+	var musicaudio = null;
 	
 	this.loopSong = function(filenameWithPath){
 		setFormat(); 
 		
-		if(musicSound != null){
-			musicSound.pause();
-			musicSound = null;
+		if(musicaudio != null){
+			musicaudio.pause();
+			musicaudio = null;
 		}
-		musicSound = new Audio("sound/"+filenameWithPath+audioFormat);
-		musicSound.loop = true;
-		musicSound.play();
+		musicaudio = new Audio("audio/"+filenameWithPath+audioFormat);
+		musicaudio.loop = true;
+		musicaudio.play();
 	}
 	
 	this.startOrStopMusic = function(){
-		if(musicSound.paused){
-			musicSound.play();
+		if(musicaudio.paused){
+			musicaudio.play();
 		} else {
-			musicSound.pause();
+			musicaudio.pause();
 		}
 	}
 }

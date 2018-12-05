@@ -103,6 +103,8 @@ function playerClass()
 
 		this.centerX = this.homeX;
 		this.centerY = this.homeY;
+		this.stats.init(this.exp.currentLvl,'Ragnar');
+
 	}
 
 	this.move = function()
@@ -172,6 +174,13 @@ function playerClass()
 		}
 
 		this.collider.update(this.centerX,this.centerY);
+		
+	
+	if(player.stats.hp <= 0)
+	{
+		console.log("The Player has died!");
+		player.reset();
+	}
 	}
 
 	this.pickupItemsIfAble = function(itemTypeTR,itemTypeTL,itemTypeBR,itemTypeBL, indexTL,indexTR,indexBR,indexBL)

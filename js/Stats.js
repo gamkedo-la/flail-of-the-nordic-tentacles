@@ -148,7 +148,7 @@ function setStats_Enemy(caller,level,charkind)
 	caller.str = caller.baseStr * level * strMod;
 	caller.str = Math.floor(caller.str);
 	caller.def = caller.baseDef * level * defMod;
-	caller.def = Math.floor(caller.def);
+	caller.def = Math.floor(caller.def);	
 }
 
 function calculateDamage(attackerStatsObj, defenderStatsObj)
