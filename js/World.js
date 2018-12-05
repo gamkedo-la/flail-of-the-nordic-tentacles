@@ -129,7 +129,13 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
 				}
-				else if((tileType == TILE_PLAYER_NEW_GAME) && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
+				//else if is specific to editor to prevent smear when player tile is placed
+				else if((tileType == TILE_PLAYER_NEW_GAME) || 
+						(tileType == TILE_FEMALE_VIKING) ||
+						(tileType == TILE_MALE_VIKING) ||
+						(tileType == TILE_SEER) ||
+						(tileType == TILE_OUTCAST) 
+						&& !gameIsRunning)
 				{
 					canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * currentMapTilesetRow, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
 						TILE_W, TILE_H);
@@ -387,6 +393,10 @@ function getNameOfTile(tileType)
 		case TILE_TANK: tileName = "tank"; break;
 		case TILE_FALLEN: tileName = "fallen"; break;
 		case TILE_VANGUARD: tileName = "vanguard"; break;
+		case TILE_FEMALE_VIKING: tileName = "female viking"; break;
+		case TILE_MALE_VIKING: tileName = "male viking"; break;
+		case TILE_SEER: tileName = "the seer"; break;
+		case TILE_OUTCAST: tileName = "the outcast"; break;
 		case TILE_HORN: tileName = "horn"; break;
 		case TILE_EYEPATCH: tileName = "eye patch"; break;
 		case TILE_TENCTACLE: tileName = "tentacle"; break;

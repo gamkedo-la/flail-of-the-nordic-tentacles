@@ -32,6 +32,9 @@ function imgsDoneLoadingSoStartGame()
 
 	player.init(vikingPic, "Ragnar");
 	maleViking.init(maleVikingPic,"Male Viking");
+	femaleViking.init(femaleVikingPic,"Female Viking");
+	seer.init(seerPic,"The Seer");
+	outcast.init(outcastPic,"The Outcast");
 
 	findSpawnSpots();
 	popEnemyList();
@@ -88,8 +91,12 @@ function drawAll()
 	{
 		enemiesList[i].draw();
 	}
+
 	player.draw();
 	maleViking.draw();
+	femaleViking.draw();
+	seer.draw();
+	outcast.draw();
 
 	drawVisibleWorld(currentMapCols, 1);
 	canvasContext.restore();
