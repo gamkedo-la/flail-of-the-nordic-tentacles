@@ -48,6 +48,10 @@ const TILE_WORMEX = 301;
 const TILE_TANK = 302;
 const TILE_FALLEN = 303;
 const TILE_VANGUARD = 304;
+const TILE_SEER = 305;
+const TILE_OUTCAST = 306;
+const TILE_MALE_VIKING = 307;
+const TILE_FEMALE_VIKING = 308;
 
 //Items from 500 - 650;
 const TILE_HORN = 500;

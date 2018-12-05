@@ -38,7 +38,6 @@ function playerClass()
 		this.charName = name;
 		this.collider = new colliderClass(this.centerX, this.centerY, 20, 20, 0, 15);
 		this.exp.init('Ragnar');
-		this.stats.init(this.exp.currentLvl,'Ragnar');
 		this.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
 		this.reset();
 	}
