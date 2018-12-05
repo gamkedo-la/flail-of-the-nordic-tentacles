@@ -98,6 +98,7 @@ function drawAll()
 		drawRect(canvas.width/2-50,canvas.height/2-25, 125,25, "white")
 		drawText("PAUSED", canvas.width/2-50,canvas.height/2, "black", font="30px sans-serif")
 	}
+    createDialogue();
 }
 
 function popEnemyList()

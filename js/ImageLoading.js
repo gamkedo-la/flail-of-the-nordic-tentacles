@@ -5,13 +5,16 @@ var wormexPic = document.createElement("img");
 var tankPic = document.createElement("img");
 var fallenPic = document.createElement("img");
 var vanguardPic = document.createElement("img");
+var textboxPic = document.createElement("img");
 
 var picToLoad = 0;
 
 function loadImages()
 {
 	var imageList = [
-
+        //Ui
+        {varName: textboxPic, fileName: "chatbox.png"},
+        
 		// Characters
 		{charName: vikingPic, fileName: "viking_quick_sheet.png"},
 		{charName: wormexPic, fileName: "slime_quick_sheet.png"},
@@ -82,10 +85,12 @@ function loadImages()
 		{
 			loadWorldPics(imageList[i].worldType, imageList[i].fileName);
 		}
-		else
+		else if (imageList[i].charName != undefined)
 		{
 			beginLoadingImages(imageList[i].charName, imageList[i].fileName);
-		}
+		} else {
+            beginLoadingImages(imageList[i].varName, imageList[i].fileName);
+        }
 	}
 }
 
