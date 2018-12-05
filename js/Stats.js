@@ -101,10 +101,12 @@ function regenPlayerHpIfAble(player,isIdle,enemiesList)
 function setStats_Player(caller,level)
 {
 	caller.hp = caller.baseHp * level;
+	caller.hp = Math.floor(caller.hp);
 	caller.maxHp = caller.hp;
 	caller.str = caller.baseStr * level;
 	caller.def = caller.baseDef * level;
 }
+
 
 function setStats_Enemy(caller,level,charkind)
 {
@@ -112,7 +114,7 @@ function setStats_Enemy(caller,level,charkind)
 	var hpMod;
 	var strMod;
 	var defMod;
-
+	
 	if(charkind == 'Wormex')
 	{
 		hpMod = getRandomMod(hpModPossibilites.wormex);
@@ -139,9 +141,13 @@ function setStats_Enemy(caller,level,charkind)
 	}
 
 	caller.hp = caller.baseHp * level * hpMod;
+	caller.hp = Math.floor(caller.hp);
 	caller.maxHp = caller.hp;
+	caller.maxHp = Math.floor(caller.maxHp);
 	caller.str = caller.baseStr * level * strMod;
+	caller.str = Math.floor(caller.str);
 	caller.def = caller.baseDef * level * defMod;
+	caller.def = Math.floor(caller.def);
 }
 
 function calculateDamage(attackerStatsObj, defenderStatsObj)
