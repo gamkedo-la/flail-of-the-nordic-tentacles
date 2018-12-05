@@ -155,6 +155,7 @@ function calculateDamage(attackerStatsObj, defenderStatsObj)
 {
 	// need to mess with the def mod here based on enemy type
 	var netDamage = attackerStatsObj.str - (defenderStatsObj.def * 0.3);
+	netDamage = Math.trunc(netDamage);
 
 	defenderStatsObj.hp -= netDamage;
 
