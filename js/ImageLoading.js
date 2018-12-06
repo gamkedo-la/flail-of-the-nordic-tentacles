@@ -60,6 +60,7 @@ function loadImages()
 		{worldType: TILE_FOREST_TREES_11, fileName: "forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_TREES_12, fileName: "forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_TREES_13, fileName: "forestImpaasibleTrees-sheet_crop.png"},
+		{worldType: TILE_FOREST_BIGTREE_1, fileName: "tree.png"},
 		{worldType: TILE_BEACH_ENTRY_DOOR, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_FOREST_ENTRY_DOOR, fileName: "terrain_spritesheet.png"},
 		{worldType: TILE_BEACH_EXIT_DOOR, fileName: "terrain_spritesheet.png"},

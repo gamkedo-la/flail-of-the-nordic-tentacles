@@ -41,6 +41,8 @@ const TILE_FOREST_ENTRY_DOOR = 131;
 const TILE_BEACH_EXIT_DOOR = 132;
 const TILE_FOREST_EXIT_DOOR = 133;
 
+const TILE_FOREST_BIGTREE_1 = 134;
+
 
 //Characters from 300 - 450;
 const TILE_PLAYER_NEW_GAME = 300;
@@ -190,6 +192,7 @@ function shouldDrawGroundUnderTile_NonItem(tileType)
 		case TILE_ROAD_BOTTOM_RIGHT_TURN:
 		case TILE_ROAD_TOP_LEFT_TURN:
 		case TILE_ROAD_BOTTOM_LEFT_TURN:
+		case TILE_FOREST_BIGTREE_1:
 		return true;
 	}
 
@@ -216,6 +219,8 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 {
 	var xClipping = 0;
 	var yClipping = 0;
+	var yExtraHeight = 0;
+
 	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN)
 	{
 		yClipping = TILE_H * currentMapTilesetRow;
@@ -250,6 +255,8 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_FOREST_TREES_11: xClipping = TILE_W * 10; break;
 		case TILE_FOREST_TREES_12: xClipping = TILE_W * 11; break;
 		case TILE_FOREST_TREES_13: xClipping = TILE_W * 12; break;
+		case TILE_FOREST_BIGTREE_1: yExtraHeight = 60; break;
+
 		case TILE_BEACH_ENTRY_DOOR: xClipping = TILE_W * 5; break;
 		case TILE_FOREST_ENTRY_DOOR: xClipping = TILE_W * 5; break;
 		case TILE_BEACH_EXIT_DOOR: xClipping = TILE_W * 6; break;
@@ -260,8 +267,8 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 			break;
 	}
 
-	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
-					TILE_W, TILE_H);
+	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W,TILE_H+yExtraHeight, tileLeftEgdeX, tileTopEdgeY-yExtraHeight,
+					TILE_W, TILE_H+yExtraHeight);
 }
 
 function getTileIndexAtRowCol(pxX, pxY, gridCols, gridRows)
