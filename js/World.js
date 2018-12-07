@@ -192,7 +192,7 @@ function shouldDrawGroundUnderTile_NonItem(tileType)
 		case TILE_ROAD_BOTTOM_RIGHT_TURN:
 		case TILE_ROAD_TOP_LEFT_TURN:
 		case TILE_ROAD_BOTTOM_LEFT_TURN:
-		case TILE_FOREST_BIGTREE_1:
+		// case TILE_FOREST_BIGTREE_1:
 		return true;
 	}
 
@@ -219,7 +219,10 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 {
 	var xClipping = 0;
 	var yClipping = 0;
+
+	//next two lines are for supporting tiles bigger than 80*80 px
 	var yExtraHeight = 0;
+	var xExtraWidth = 0;
 
 	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN)
 	{
@@ -328,6 +331,7 @@ function moveCharIfAble(tileType)
 	 	case TILE_FOREST_TREES_12:
 	 	case TILE_FOREST_TREES_13:
 	 	case TILE_FOREST_TREES_14:
+	 	case TILE_FOREST_BIGTREE_1:
 			return false;
 			break;
 		default:
