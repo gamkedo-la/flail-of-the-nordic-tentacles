@@ -107,61 +107,83 @@ function editorScreenMove(evt) {
 }
 
 function keyPressed(evt) {
+
     keySet(evt.keyCode, player, true);
 
-    if (!gameIsRunning)
+    if (!gameIsRunning) { // are we in editor mode?
+
         editorScreenMove(evt);
 
-    switch (evt.keyCode) {
-        //game input
-        case KEY_P:
-            isPaused = !isPaused;
-            break;
-        case TAB:
-            useEditorMode();
-            break;
+        // keys that only work in editor mode
+        switch (evt.keyCode) {
+            case KEY_P:
+                isPaused = !isPaused;
+                break;
+            case TAB:
+                useEditorMode();
+                break;
 
-            //editor input
-        case LEFT_ARROW:
-            editor.tileIndex--;
-            editor.changeSelectedTileInTileSet();
-            break;
-        case RIGHT_ARROW:
-            editor.tileIndex++;
-            editor.changeSelectedTileInTileSet();
-            break;
-        case UP_ARROW:
-            editor.tileSetIndex++;
-            editor.changeTileSet();
-            break;
-        case DOWN_ARROW:
-            editor.tileSetIndex--;
-            editor.changeTileSet();
-            break;
-        case KEY_V:
-            saveMap(window.prompt("Enter the level name in a string format:"), editor.grid);
-            break;
-        case KEY_X:
-            removeSpawnNearMouse();
-            break;
-        case KEY_L:
-            if (!gameIsRunning)
-                loadMap(window.prompt("What's the name of the map?"));
-            break;
-        case NUM_1:
-            editor.currentLayer--;
-            editor.changeLayer();
-            break;
-        case NUM_2:
-            editor.currentLayer++;
-            editor.changeLayer();
-            break;
-        case KEY_O:
-            testDialogue.isPlaying = !testDialogue.isPlaying;
-            break;
-        case SPACE:
-            nextDialoguePage();
-            break;
+                //editor input
+            case LEFT_ARROW:
+                editor.tileIndex--;
+                editor.changeSelectedTileInTileSet();
+                break;
+            case RIGHT_ARROW:
+                editor.tileIndex++;
+                editor.changeSelectedTileInTileSet();
+                break;
+            case UP_ARROW:
+                editor.tileSetIndex++;
+                editor.changeTileSet();
+                break;
+            case DOWN_ARROW:
+                editor.tileSetIndex--;
+                editor.changeTileSet();
+                break;
+            case KEY_V:
+                saveMap(window.prompt("Enter the level name in a string format:"), editor.grid);
+                break;
+            case KEY_X:
+                removeSpawnNearMouse();
+                break;
+            case KEY_L:
+                if (!gameIsRunning)
+                    loadMap(window.prompt("What's the name of the map?"));
+                break;
+            case NUM_1:
+                editor.currentLayer--;
+                editor.changeLayer();
+                break;
+            case NUM_2:
+                editor.currentLayer++;
+                editor.changeLayer();
+                break;
+            case KEY_O:
+                testDialogue.isPlaying = !testDialogue.isPlaying;
+                break;
+            case SPACE:
+                nextDialoguePage();
+                break;
+            }
+        }
+        else // not in editor mode
+        {
+            // keys that work in play mode
+            switch (evt.keyCode) {
+            //game input
+            case KEY_P:
+                isPaused = !isPaused;
+                break;
+            case TAB:
+                useEditorMode();
+                break;
+            case KEY_O:
+                testDialogue.isPlaying = !testDialogue.isPlaying;
+                break;
+            case SPACE:
+                nextDialoguePage();
+                break;
+        }
     }
 
     evt.preventDefault();

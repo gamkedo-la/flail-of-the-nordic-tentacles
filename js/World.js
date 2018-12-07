@@ -41,6 +41,8 @@ const TILE_FOREST_ENTRY_DOOR = 131;
 const TILE_BEACH_EXIT_DOOR = 132;
 const TILE_FOREST_EXIT_DOOR = 133;
 
+const TILE_FOREST_BIGTREE_1 = 134;
+
 
 //Characters from 300 - 450;
 const TILE_PLAYER_NEW_GAME = 300;
@@ -48,6 +50,10 @@ const TILE_WORMEX = 301;
 const TILE_TANK = 302;
 const TILE_FALLEN = 303;
 const TILE_VANGUARD = 304;
+const TILE_SEER = 305;
+const TILE_OUTCAST = 306;
+const TILE_MALE_VIKING = 307;
+const TILE_FEMALE_VIKING = 308;
 
 //Items from 500 - 650;
 const TILE_HORN = 500;
@@ -125,7 +131,13 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
 				}
-				else if((tileType == TILE_PLAYER_NEW_GAME) && !gameIsRunning)//specific to editor to prevent smear when player tile is placed
+				//else if is specific to editor to prevent smear when player tile is placed
+				else if((tileType == TILE_PLAYER_NEW_GAME) || 
+						(tileType == TILE_FEMALE_VIKING) ||
+						(tileType == TILE_MALE_VIKING) ||
+						(tileType == TILE_SEER) ||
+						(tileType == TILE_OUTCAST) 
+						&& !gameIsRunning)
 				{
 					canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * currentMapTilesetRow, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
 						TILE_W, TILE_H);
@@ -180,6 +192,7 @@ function shouldDrawGroundUnderTile_NonItem(tileType)
 		case TILE_ROAD_BOTTOM_RIGHT_TURN:
 		case TILE_ROAD_TOP_LEFT_TURN:
 		case TILE_ROAD_BOTTOM_LEFT_TURN:
+		// case TILE_FOREST_BIGTREE_1:
 		return true;
 	}
 
@@ -206,6 +219,11 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 {
 	var xClipping = 0;
 	var yClipping = 0;
+
+	//next two lines are for supporting tiles bigger than 80*80 px
+	var yExtraHeight = 0;
+	var xExtraWidth = 0;
+
 	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN)
 	{
 		yClipping = TILE_H * currentMapTilesetRow;
@@ -240,6 +258,8 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_FOREST_TREES_11: xClipping = TILE_W * 10; break;
 		case TILE_FOREST_TREES_12: xClipping = TILE_W * 11; break;
 		case TILE_FOREST_TREES_13: xClipping = TILE_W * 12; break;
+		case TILE_FOREST_BIGTREE_1: yExtraHeight = 60; break;
+
 		case TILE_BEACH_ENTRY_DOOR: xClipping = TILE_W * 5; break;
 		case TILE_FOREST_ENTRY_DOOR: xClipping = TILE_W * 5; break;
 		case TILE_BEACH_EXIT_DOOR: xClipping = TILE_W * 6; break;
@@ -250,8 +270,8 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 			break;
 	}
 
-	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
-					TILE_W, TILE_H);
+	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W,TILE_H+yExtraHeight, tileLeftEgdeX, tileTopEdgeY-yExtraHeight,
+					TILE_W, TILE_H+yExtraHeight);
 }
 
 function getTileIndexAtRowCol(pxX, pxY, gridCols, gridRows)
@@ -311,6 +331,7 @@ function moveCharIfAble(tileType)
 	 	case TILE_FOREST_TREES_12:
 	 	case TILE_FOREST_TREES_13:
 	 	case TILE_FOREST_TREES_14:
+	 	case TILE_FOREST_BIGTREE_1:
 			return false;
 			break;
 		default:
@@ -383,6 +404,10 @@ function getNameOfTile(tileType)
 		case TILE_TANK: tileName = "tank"; break;
 		case TILE_FALLEN: tileName = "fallen"; break;
 		case TILE_VANGUARD: tileName = "vanguard"; break;
+		case TILE_FEMALE_VIKING: tileName = "female viking"; break;
+		case TILE_MALE_VIKING: tileName = "male viking"; break;
+		case TILE_SEER: tileName = "the seer"; break;
+		case TILE_OUTCAST: tileName = "the outcast"; break;
 		case TILE_HORN: tileName = "horn"; break;
 		case TILE_EYEPATCH: tileName = "eye patch"; break;
 		case TILE_TENCTACLE: tileName = "tentacle"; break;

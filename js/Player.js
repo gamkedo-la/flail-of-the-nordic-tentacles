@@ -38,7 +38,6 @@ function playerClass()
 		this.charName = name;
 		this.collider = new colliderClass(this.centerX, this.centerY, 20, 20, 0, 15);
 		this.exp.init('Ragnar');
-		this.stats.init(this.exp.currentLvl,'Ragnar');
 		this.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
 		this.reset();
 	}
@@ -156,9 +155,11 @@ function playerClass()
 			nextTileTypeBR = worldMap[0][nextTileIndBR];
 			nextTileTypeBL = worldMap[0][nextTileIndBL];
 
+			//pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
 			this.pickupItemsIfAble(nextTileTypeTR,nextTileTypeTL,nextTileTypeBR,nextTileTypeBL, 
 									nextTileIndTL, nextTileIndTR, nextTileIndBR, nextTileIndBL);
 
+			//pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
 			if(moveCharIfAble(nextTileTypeTR) &&
 				moveCharIfAble(nextTileTypeTL) &&
 				moveCharIfAble(nextTileTypeBR) &&
@@ -174,13 +175,13 @@ function playerClass()
 		}
 
 		this.collider.update(this.centerX,this.centerY);
-		
+		handleNpcCollisions(this.collider);
 	
-	if(player.stats.hp <= 0)
-	{
-		console.log("The Player has died!");
-		player.reset();
-	}
+		if(player.stats.hp <= 0)
+		{
+			console.log("The Player has died!");
+			player.reset();
+		}
 	}
 
 	this.pickupItemsIfAble = function(itemTypeTR,itemTypeTL,itemTypeBR,itemTypeBL, indexTL,indexTR,indexBR,indexBL)
@@ -313,5 +314,29 @@ function playerClass()
 
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
+	}
+}
+
+function handleNpcCollisions(playerCollider)
+{
+	if(playerCollider.isCollidingWithOtherCollider(maleViking.collider))
+	{
+		console.log("Talking with: " + maleViking.charName);
+	}
+	else if(playerCollider.isCollidingWithOtherCollider(femaleViking.collider))
+	{
+		console.log("Talking with: " + femaleViking.charName);
+	}
+	else if(playerCollider.isCollidingWithOtherCollider(seer.collider))
+	{
+		console.log("Talking with: " + seer.charName);
+	}
+	else if(playerCollider.isCollidingWithOtherCollider(outcast.collider))
+	{
+		console.log("Talking with: " + outcast.charName);
+	}
+	else
+	{
+		return;
 	}
 }
