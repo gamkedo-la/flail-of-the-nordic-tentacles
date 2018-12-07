@@ -192,6 +192,7 @@ function playerClass()
 			itemTypeTR == TILE_DICTIONARY ||
 			itemTypeTR == TILE_WORMHOLE))
 		{
+			drawText("I picked up a "+ itemTypeTR +".", 200,100, 'black', font="10px sans-serif");
 			worldMap[0][indexTR] = TILE_SNOW;
 		}
 		else if((itemTypeTL == TILE_HORN ||
@@ -201,6 +202,7 @@ function playerClass()
 			itemTypeTL == TILE_DICTIONARY ||
 			itemTypeTL == TILE_WORMHOLE))
 		{
+			drawText("I picked up a "+ itemTypeTL +".", 200,100, 'black', font="10px sans-serif");
 			worldMap[0][indexTL] = TILE_SNOW;	
 		}
 		else if((itemTypeBR == TILE_HORN ||
@@ -210,6 +212,7 @@ function playerClass()
 			itemTypeBR == TILE_DICTIONARY ||
 			itemTypeBR == TILE_WORMHOLE))
 		{
+			drawText("I picked up a "+ itemTypeBR +".", 200,100, 'black', font="10px sans-serif");
 			worldMap[0][indexBR] = TILE_SNOW;
 		}
 		else if((itemTypeBL == TILE_HORN ||
@@ -219,6 +222,7 @@ function playerClass()
 			itemTypeBL == TILE_DICTIONARY ||
 			itemTypeBL == TILE_WORMHOLE))
 		{
+			drawText("I picked up a "+ itemTypeBL +".", 200,100, 'black', font="10px sans-serif");
 			worldMap[0][indexBL] = TILE_SNOW;
 		}
 		else
