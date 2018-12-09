@@ -22,9 +22,9 @@ function tankClass()
 	this.isInCombat = false;
 	this.isDefeated = false;
 
-	this.init = function(image,name)
+	this.init = function(name)
 	{
-		this.bitmap = image;
+		this.bitmap = tankPic;
 		this.charName = name;
 		this.collider = new colliderClass(this.centerX, this.centerY, 30, 30, 0, 20);
 		this.exp.init('Tank');
@@ -67,9 +67,9 @@ function tankClass()
 
 	this.superClassBattle = this.battle;
 	this.superClassDoesPlayerHaveAdvantage = this.doesPlayerHaveAdvantage;
-	this.battle = function(player)
+	this.battle = function(playerCollider)
 	{
-		if(this.superClassBattle(player))
+		if(this.superClassBattle(playerCollider))
 		{
 			if(this.superClassDoesPlayerHaveAdvantage(player))
 			{
@@ -116,6 +116,7 @@ function tankClass()
 		
 		// this.collider.draw();
 		
+		drawText("Tank "+ this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}

@@ -202,9 +202,8 @@ function randomSpawn()
 		return;
 	}
 	var randSpot = Math.floor(Math.random() * enemiesStartSpots.length);
-	//get type of enemy and set temp to that class
-	// var tempEnemy = getClassBasedOnType(enemiesStartSpots[randSpot].charType);
-	var tempEnemy = new wormexClass();
+	var tempEnemy = getClassBasedOnType(enemiesStartSpots[randSpot].charType);
+	// var tempEnemy = new wormexClass();
 
 	tempEnemy.randomizeInitAI();
 	tempEnemy.superClassSetHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
@@ -219,9 +218,23 @@ function checkForCombat(fighting)
 
 function getClassBasedOnType(charType)
 {
-	// declare var classType as undefined
-	// could set .__proto__.constructor based on charType like this: if(charType == TILE_WORMEX) {class = new wormexClass();
-	// check char type against constants
-	// set classType according to conditional checks against charType
-	//return classType
+	var classType = null;
+
+	switch(charType)
+	{
+		case TILE_WORMEX:
+			classType = new wormexClass();
+			break;
+		case TILE_TANK:
+			classType = new tankClass();
+			break;
+		// case TILE_FALLEN:
+		// 	classType = new wormexClass();
+			// break;
+		// case TILE_VANGUARD:
+		// 	classType = new wormexClass();
+			// break;
+	}
+
+	return classType;
 }

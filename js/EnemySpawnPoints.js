@@ -31,7 +31,7 @@ function spawnEnemiesSpawnList()
 		var tileCol = Math.floor(enemySpawnList[i].x/TILE_W);
 		var tileRow = enemySpawnList[i].y/TILE_H;
 		//possibly push the enemySpawnList[i].charType to start spots
-		enemiesStartSpots.push({col: tileCol, row: tileRow/*, type: enemySpawnList[i].charType*/});
+		enemiesStartSpots.push({col: tileCol, row: tileRow, charType: enemySpawnList[i].charType});
 	}
 }
 
@@ -80,14 +80,14 @@ function enemySpawnPointClass()
 	this.y = 0;
 
 	this.bitmap;
-	this.charType = 0;//will handle various types of enemies later
-
+	this.charType = 0;
+	
 	this.setup = function(startX,startY,enemyKind)
 	{
 		this.x = startX;
 		this.y = startY;
 		this.charType = enemyKind;
-		this.bitmap = getEnemyPicBasedOnType(this.charType);//handle different enemy types pics later
+		this.bitmap = getEnemyPicBasedOnType(this.charType);
 	}
 
 	this.draw = function()

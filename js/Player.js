@@ -155,7 +155,7 @@ function playerClass()
 			nextTileTypeBR = worldMap[0][nextTileIndBR];
 			nextTileTypeBL = worldMap[0][nextTileIndBL];
 
-			//pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
+			//pass in the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
 			this.pickupItemsIfAble(nextTileTypeTR,nextTileTypeTL,nextTileTypeBR,nextTileTypeBL, 
 									nextTileIndTL, nextTileIndTR, nextTileIndBR, nextTileIndBL);
 

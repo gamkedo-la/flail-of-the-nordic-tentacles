@@ -22,9 +22,9 @@ function wormexClass()
 	this.isInCombat = false;
 	this.isDefeated = false;
 
-	this.init = function(image, name)
+	this.init = function(name)
 	{
-		this.bitmap = image;
+		this.bitmap = wormexPic;
 		this.charName = name;
 		this.collider = new colliderClass(this.centerX, this.centerY, 35, 15, 0, 15);
 		this.exp.init('Wormex');
@@ -116,7 +116,8 @@ function wormexClass()
 		}
 
 		// this.collider.draw();
-		
+
+		drawText("Wormex "+ this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}
