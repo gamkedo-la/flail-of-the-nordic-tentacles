@@ -265,12 +265,14 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 	var yExtraHeight = 0;
 	var xExtraWidth = 0;
 
-	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN && gameIsRunning)
+	if(((tileType >= TILE_SNOW && tileType <= TILE_BEACH_TO_OCEAN) || 
+		(tileType >= TILE_BEACH_ENTRY_DOOR && tileType <= TILE_FOREST_EXIT_DOOR)) && gameIsRunning)
 	{
 		yClipping = TILE_H * currentMapTilesetRow;
 	}
 
-	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN && !gameIsRunning)
+	if(((tileType >= TILE_SNOW && tileType <= TILE_BEACH_TO_OCEAN) || 
+		(tileType >= TILE_BEACH_ENTRY_DOOR && tileType <= TILE_FOREST_EXIT_DOOR)) && !gameIsRunning)
 	{
 		if(editor.grid.mapTilesetRow == undefined)
 			editor.grid.mapTilesetRow = 0;
@@ -286,6 +288,10 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_MOUNTAIN: xClipping = TILE_W * 4; break;
 		case TILE_MT_ENTRY_DOOR: xClipping = TILE_W * 5; break;
 		case TILE_MT_EXIT_DOOR: xClipping = TILE_W * 6; break;
+		case TILE_FOREST_ENTRY_DOOR: xClipping = TILE_W * 5; break;
+		case TILE_FOREST_EXIT_DOOR: xClipping = TILE_W * 6; break;
+		case TILE_BEACH_ENTRY_DOOR: xClipping = TILE_W * 5; break;
+		case TILE_BEACH_EXIT_DOOR: xClipping = TILE_W * 6; break;
 		case TILE_SNOW_TO_BEACH: xClipping = TILE_W * 7; break;
 		case TILE_BEACH_TO_OCEAN: xClipping = TILE_W * 8; break;
 
@@ -441,6 +447,10 @@ function getNameOfTile(tileType)
 		case TILE_MOUNTAIN: tileName = "mountain"; break;
 		case TILE_MT_ENTRY_DOOR: tileName = "mountain entry"; break;
 		case TILE_MT_EXIT_DOOR: tileName = "mountain exit"; break;
+		case TILE_FOREST_ENTRY_DOOR: tileName = "forest entry"; break;
+		case TILE_FOREST_EXIT_DOOR: tileName = "forest exit"; break;
+		case TILE_BEACH_ENTRY_DOOR: tileName = "beach entry"; break;
+		case TILE_BEACH_EXIT_DOOR: tileName = "beach exit"; break;
 		case TILE_SNOW_TO_BEACH: tileName = "snowy beach"; break;
 		case TILE_BEACH_TO_OCEAN: tileName = "beach"; break;
 
