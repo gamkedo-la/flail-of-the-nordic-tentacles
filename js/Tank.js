@@ -20,7 +20,6 @@ function tankClass()
 
 	this.canPatrol = false;
 	this.isInCombat = false;
-	this.isDefeated = false;
 
 	this.init = function(name)
 	{

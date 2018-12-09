@@ -107,6 +107,11 @@ function setStats_Player(caller,level)
 	caller.def = caller.baseDef * level;
 }
 
+function resetPlayerHealth(playerStats)
+{
+	playerStats.hp = playerStats.maxHp;
+	playerStats.isCharacterDead = false;
+}
 
 function setStats_Enemy(caller,level,charkind)
 {
@@ -149,6 +154,14 @@ function setStats_Enemy(caller,level,charkind)
 	caller.str = Math.floor(caller.str);
 	caller.def = caller.baseDef * level * defMod;
 	caller.def = Math.floor(caller.def);	
+}
+
+function modifyStats(playerStats)
+{
+	playerStats.hp = Math.floor(playerStats.hp * playerStats.hpMod);
+	playerStats.maxHp = Math.floor(playerStats.hp);
+	playerStats.str = Math.floor(playerStats.str * playerStats.strMod);
+	playerStats.def = Math.floor(playerStats.def * playerStats.defMod);
 }
 
 function calculateDamage(attackerStatsObj, defenderStatsObj)
