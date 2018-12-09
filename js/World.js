@@ -8,7 +8,19 @@ const TILE_TREE = 103;
 const TILE_MOUNTAIN = 104;
 const TILE_MT_ENTRY_DOOR = 105;
 
-const TILE_SNOW_GRASS = 106;
+const TILE_SNOW_GRASS_1 = 106;
+const TILE_SNOW_GRASS_2 = 135;
+const TILE_SNOW_GRASS_3 = 136;
+const TILE_SNOW_GRASS_4 = 137;
+const TILE_SNOW_GRASS_5 = 138;
+const TILE_SNOW_GRASS_6 = 139;
+const TILE_SNOW_GRASS_7 = 140;
+const TILE_SNOW_GRASS_8 = 141;
+const TILE_SNOW_GRASS_9 = 142;
+const TILE_SNOW_GRASS_10 = 143;
+const TILE_SNOW_GRASS_11 = 144;
+const TILE_SNOW_GRASS_12 = 145;
+const TILE_SNOW_GRASS_13 = 146;
 
 const TILE_MT_EXIT_DOOR = 107;
 const TILE_SNOW_TO_BEACH = 108;
@@ -120,13 +132,15 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 		var tileLeftEgdeX = col * TILE_W;
 		var tileTopEdgeY = row * TILE_H;
 
+		var setRowToUse = getTileSetRowForThisMode();
+
 		if(tileType != undefined)
 		{
 			if(tileType != 000)
 			{
 				if(shouldDrawGroundUnderTile_Item(tileType))
 				{
-					canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * currentMapTilesetRow, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
+					canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * setRowToUse, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
 						TILE_W, TILE_H);
 					canvasContext.drawImage(worldPics[tileType], 0, 0, 40,40, tileLeftEgdeX + 20, tileTopEdgeY + 20,
 						worldPics[tileType].width,worldPics[tileType].height);
@@ -139,7 +153,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 						(tileType == TILE_OUTCAST) 
 						&& !gameIsRunning)
 				{
-					canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * currentMapTilesetRow, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
+					canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * setRowToUse, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
 						TILE_W, TILE_H);
 					canvasContext.drawImage(worldPics[tileType], tileLeftEgdeX, tileTopEdgeY);
 				}
@@ -147,7 +161,7 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 				{
 					if(shouldDrawGroundUnderTile_NonItem(tileType))
 					{
-						canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * currentMapTilesetRow, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
+						canvasContext.drawImage(worldPics[TILE_SNOW], 0, TILE_H * setRowToUse, TILE_W,TILE_H, tileLeftEgdeX, tileTopEdgeY,
 						TILE_W, TILE_H);
 					}
 					
@@ -179,6 +193,21 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 	}
 }
 
+function getTileSetRowForThisMode()
+{
+	if(gameIsRunning)
+	{
+		return currentMapTilesetRow;
+	}
+	else
+	{
+		if(editor.grid.mapTilesetRow == undefined)
+			editor.grid.mapTilesetRow = 0;
+		
+		return editor.grid.mapTilesetRow;
+	}
+}
+
 function shouldDrawGroundUnderTile_NonItem(tileType)
 {
 	switch(tileType)
@@ -192,6 +221,18 @@ function shouldDrawGroundUnderTile_NonItem(tileType)
 		case TILE_ROAD_BOTTOM_RIGHT_TURN:
 		case TILE_ROAD_TOP_LEFT_TURN:
 		case TILE_ROAD_BOTTOM_LEFT_TURN:
+		case TILE_SNOW_GRASS_2: 
+		case TILE_SNOW_GRASS_3: 
+		case TILE_SNOW_GRASS_4: 
+		case TILE_SNOW_GRASS_5: 
+		case TILE_SNOW_GRASS_6: 
+		case TILE_SNOW_GRASS_7: 
+		case TILE_SNOW_GRASS_8: 
+		case TILE_SNOW_GRASS_9: 
+		case TILE_SNOW_GRASS_10:
+		case TILE_SNOW_GRASS_11:
+		case TILE_SNOW_GRASS_12:
+		case TILE_SNOW_GRASS_13:
 		// case TILE_FOREST_BIGTREE_1:
 		return true;
 	}
@@ -224,9 +265,17 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 	var yExtraHeight = 0;
 	var xExtraWidth = 0;
 
-	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN)
+	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN && gameIsRunning)
 	{
 		yClipping = TILE_H * currentMapTilesetRow;
+	}
+
+	if(tileType >= 0 && tileType <= TILE_BEACH_TO_OCEAN && !gameIsRunning)
+	{
+		if(editor.grid.mapTilesetRow == undefined)
+			editor.grid.mapTilesetRow = 0;
+
+		yClipping = TILE_H * editor.grid.mapTilesetRow;
 	}
 
 	switch(tileType)
@@ -239,13 +288,15 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_MT_EXIT_DOOR: xClipping = TILE_W * 6; break;
 		case TILE_SNOW_TO_BEACH: xClipping = TILE_W * 7; break;
 		case TILE_BEACH_TO_OCEAN: xClipping = TILE_W * 8; break;
+
 		case TILE_ROAD_HORIZONTAL: break;
 		case TILE_ROAD_VERTICAL: xClipping = TILE_W; break;
 		case TILE_ROAD_TOP_LEFT_TURN: xClipping = TILE_W * 2; break;
 		case TILE_ROAD_TOP_RIGHT_TURN: xClipping = TILE_W * 3; break;
 		case TILE_ROAD_BOTTOM_RIGHT_TURN: xClipping = TILE_W * 4; break;
 		case TILE_ROAD_BOTTOM_LEFT_TURN: xClipping = TILE_W * 5; break;
-		case TILE_FOREST_TREES_1: ;break;
+
+		case TILE_FOREST_TREES_1: break;
 		case TILE_FOREST_TREES_2: xClipping = TILE_W; break;
 		case TILE_FOREST_TREES_3: xClipping = TILE_W * 2; break;
 		case TILE_FOREST_TREES_4: xClipping = TILE_W * 3; break;
@@ -264,6 +315,19 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_FOREST_ENTRY_DOOR: xClipping = TILE_W * 5; break;
 		case TILE_BEACH_EXIT_DOOR: xClipping = TILE_W * 6; break;
 		case TILE_FOREST_EXIT_DOOR: xClipping = TILE_W * 6; break;
+
+		case TILE_SNOW_GRASS_2: xClipping = TILE_W; break;
+		case TILE_SNOW_GRASS_3: xClipping = TILE_W * 2; break;
+		case TILE_SNOW_GRASS_4: xClipping = TILE_W * 3; break;
+		case TILE_SNOW_GRASS_5: xClipping = TILE_W * 4; break;
+		case TILE_SNOW_GRASS_6: xClipping = TILE_W * 5; break;
+		case TILE_SNOW_GRASS_7: xClipping = TILE_W * 6; break;
+		case TILE_SNOW_GRASS_8: xClipping = TILE_W * 7; break;
+		case TILE_SNOW_GRASS_9: xClipping = TILE_W * 8; break;
+		case TILE_SNOW_GRASS_10: xClipping = TILE_W * 9; break;
+		case TILE_SNOW_GRASS_11: xClipping = TILE_W * 10; break;
+		case TILE_SNOW_GRASS_12: xClipping = TILE_W * 11; break;
+		case TILE_SNOW_GRASS_13: xClipping = TILE_W * 12; break;
 		default:
 			xClipping = 0;
 			yClipping = 0;
@@ -376,16 +440,31 @@ function getNameOfTile(tileType)
 		case TILE_TREE: tileName = "tree"; break;
 		case TILE_MOUNTAIN: tileName = "mountain"; break;
 		case TILE_MT_ENTRY_DOOR: tileName = "mountain entry"; break;
-		case TILE_SNOW_GRASS: tileName = "snowy grass"; break;
 		case TILE_MT_EXIT_DOOR: tileName = "mountain exit"; break;
 		case TILE_SNOW_TO_BEACH: tileName = "snowy beach"; break;
 		case TILE_BEACH_TO_OCEAN: tileName = "beach"; break;
+
+		case TILE_SNOW_GRASS_1: tileName = "snowy grass 1"; break;
+		case TILE_SNOW_GRASS_2: tileName = "snowy grass 2"; break;
+		case TILE_SNOW_GRASS_3: tileName = "snowy grass 3"; break;
+		case TILE_SNOW_GRASS_4: tileName = "snowy grass 4"; break;
+		case TILE_SNOW_GRASS_5: tileName = "snowy grass 5"; break;
+		case TILE_SNOW_GRASS_6: tileName = "snowy grass 6"; break;
+		case TILE_SNOW_GRASS_7: tileName = "snowy grass 7"; break;
+		case TILE_SNOW_GRASS_8: tileName = "snowy grass 8"; break;
+		case TILE_SNOW_GRASS_9: tileName = "snowy grass 9"; break;
+		case TILE_SNOW_GRASS_10: tileName = "snowy grass 10"; break;
+		case TILE_SNOW_GRASS_11: tileName = "snowy grass 11"; break;
+		case TILE_SNOW_GRASS_12: tileName = "snowy grass 12"; break;
+		case TILE_SNOW_GRASS_13: tileName = "snowy grass 13"; break;
+
 		case TILE_ROAD_HORIZONTAL: tileName = "horizontal road"; break;
 		case TILE_ROAD_VERTICAL: tileName = "vertical road"; break;
 		case TILE_ROAD_TOP_RIGHT_TURN: tileName = "top right road"; break;
 		case TILE_ROAD_TOP_LEFT_TURN: tileName = "top left road"; break;
 		case TILE_ROAD_BOTTOM_RIGHT_TURN: tileName = "bottom right road"; break;
 		case TILE_ROAD_BOTTOM_LEFT_TURN: tileName = "bottom left road"; break;
+
 		case TILE_FOREST_TREES_1: tileName = "tress 1";break;
 		case TILE_FOREST_TREES_2: tileName = "trees 2"; break;
 		case TILE_FOREST_TREES_3: tileName = "trees 3"; break;
@@ -399,6 +478,7 @@ function getNameOfTile(tileType)
 		case TILE_FOREST_TREES_11: tileName = "trees 11"; break;
 		case TILE_FOREST_TREES_12: tileName = "trees 12"; break;
 		case TILE_FOREST_TREES_13: tileName = "trees 13"; break;
+
 		case TILE_PLAYER_NEW_GAME: tileName = "player start pos"; break;
 		case TILE_WORMEX: tileName = "wormex"; break;
 		case TILE_TANK: tileName = "tank"; break;
@@ -408,12 +488,14 @@ function getNameOfTile(tileType)
 		case TILE_MALE_VIKING: tileName = "male viking"; break;
 		case TILE_SEER: tileName = "the seer"; break;
 		case TILE_OUTCAST: tileName = "the outcast"; break;
+
 		case TILE_HORN: tileName = "horn"; break;
 		case TILE_EYEPATCH: tileName = "eye patch"; break;
 		case TILE_TENCTACLE: tileName = "tentacle"; break;
 		case TILE_WORMHOLE: tileName = "wormhole"; break;
 		case TILE_DICTIONARY: tileName = "dictionary"; break;
 		case TILE_BEACON: tileName = "beacon"; break;
+
 		case TILE_CUBE: tileName = "cube"; break;
 		default: console.log("No name has been set for this tile!"); break;
 	}
