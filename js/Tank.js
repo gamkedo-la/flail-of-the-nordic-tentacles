@@ -7,7 +7,7 @@ function tankClass()
 	{
 		this.setupSpeed(2,4);
 		this.setProjectile(true);
-		this.superClassInit(name,'Tank',tankPic);
+		this.superClassInit(name,'Tank',tankPic,30,15);
 		this.reset();
 	}
 

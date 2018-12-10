@@ -4,7 +4,7 @@ function projectileClass(startX,startY,vX,vY)
 	this.y = startY;
 	this.velX = vX;
 	this.velY = vY;
-	this.life = 20;
+	this.life = 50;
 
 	this.reset = function()
 	{
@@ -21,7 +21,7 @@ function projectileClass(startX,startY,vX,vY)
 
 	this.draw = function()
 	{
-		drawCircle(this.x,this.y, 10, "red");
+		drawCircle(this.x,this.y, 5, "red");
 	}
 
 	this.isReadyToRemove = function()

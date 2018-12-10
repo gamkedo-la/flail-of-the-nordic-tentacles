@@ -228,7 +228,7 @@ function handleCharacterPositions(whichLevel)
     popEnemyList();
     for(var i = 0; i < enemiesList.length; i++)
     {
-      enemiesList[i].init("Enemy " + i,'Wormex',wormexPic);
+      enemiesList[i].init("Enemy " + i);
     }
     player.hasEnterAnotherLevel = false;
   }

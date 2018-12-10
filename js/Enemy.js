@@ -33,12 +33,12 @@ function enemyClass()
 	this.shotList = [];
 	this.canShoot = false;
 
-	this.init = function(name, enemyType,whichImage)
+	this.init = function(name,enemyType,whichImage,colliderW,colliderH)
 	{
 		this.shotList = [];
 		this.bitmap = whichImage;
 		this.charName = name;
-		this.collider = new colliderClass(this.centerX, this.centerY, 35, 15, 0, 15);
+		this.collider = new colliderClass(this.centerX, this.centerY, colliderW, colliderH, 0, 15);
 		this.exp.init(enemyType);
 		this.stats.init(this.exp.currentLvl,enemyType);
 		this.randomizeInitAI();
@@ -136,7 +136,6 @@ function enemyClass()
 
 	this.randomizeInitAI = function()
 	{
-		console.log(this.minSpeed);
 		this.velX = this.minSpeed + Math.random() * this.speedRange;
 		this.velY = this.minSpeed + Math.random() * this.speedRange;
 
@@ -153,19 +152,17 @@ function enemyClass()
 
 	this.battle = function(playerCollider)
 	{
+		//collision affects all enemies at the same time
 		this.isInCombat = this.collider.isCollidingWithOtherCollider(playerCollider);
 		
 		if(this.isInCombat)
 		{
-			console.log('checking for advantage');
 			if(this.doesPlayerHaveAdvantage(player))
 			{
-				console.log(player.charName + " attacking " + this.charName);
 				calculateDamage(player.stats, this.stats);
 			}
 			else
 			{
-				console.log(this.charName + " attacking " + player.charName);
 				calculateDamage(this.stats, player.stats);
 			}
 		}
@@ -174,7 +171,7 @@ function enemyClass()
 		{
 			if(Math.random() * 100 < 5)
 			{
-				this.shotList.push(new projectileClass(this.centerX,this.centerY,3,5));
+				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,10));
 			}
 		}
 		
@@ -291,7 +288,7 @@ function enemyClass()
 			}
 		}
 
-		// this.collider.draw();
+		this.collider.draw();
 
 		drawText(this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 

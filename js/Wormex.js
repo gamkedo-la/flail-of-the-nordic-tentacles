@@ -6,7 +6,7 @@ function wormexClass()
 	this.init = function(name)
 	{
 		this.setupSpeed(6,8);
-		this.superClassInit(name,'Wormex',wormexPic);
+		this.superClassInit(name,'Wormex',wormexPic,20,15);
 		this.reset();
 	}
 
