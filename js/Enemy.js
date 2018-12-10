@@ -30,15 +30,23 @@ function enemyClass()
 	this.minSpeed = 6;
 	this.speedRange = 8;
 
+	this.shotList = [];
+	this.canShoot = false;
+
 	this.init = function(name, enemyType,whichImage)
 	{
-		console.log('initializing enemy');
+		this.shotList = [];
 		this.bitmap = whichImage;
 		this.charName = name;
 		this.collider = new colliderClass(this.centerX, this.centerY, 35, 15, 0, 15);
 		this.exp.init(enemyType);
 		this.stats.init(this.exp.currentLvl,enemyType);
 		this.randomizeInitAI();
+	}
+
+	this.setProjectile = function(ableToShoot)
+	{
+		this.canShoot = ableToShoot;
 	}
 
 	this.setupSpeed = function(newMin,newMax)
@@ -49,6 +57,7 @@ function enemyClass()
 
 	this.reset = function()
 	{
+		this.shotList = [];
 		this.centerX = this.homeX;
 		this.centerY = this.homeY;
 	}
@@ -158,6 +167,23 @@ function enemyClass()
 			{
 				console.log(this.charName + " attacking " + player.charName);
 				calculateDamage(this.stats, player.stats);
+			}
+		}
+
+		if(this.canShoot)
+		{
+			if(Math.random() * 100 < 5)
+			{
+				this.shotList.push(new projectileClass(this.centerX,this.centerY,3,5));
+			}
+		}
+		
+		for(var i = this.shotList.length - 1; i>=0;i--)
+		{
+			this.shotList[i].move();
+			if(this.shotList[i].isReadyToRemove())
+			{
+				this.shotList.splice(i,1);
 			}
 		}
 	}
@@ -270,6 +296,11 @@ function enemyClass()
 		drawText(this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
+		
+		for(var i = 0; i<this.shotList.length;i++)
+		{
+			this.shotList[i].draw();
+		}
 	}
 }
 
