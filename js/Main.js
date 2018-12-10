@@ -98,6 +98,7 @@ function drawAll()
 	canvasContext.restore();
 	gameDebugTools();
 	drawText(currentMap, 700, 30, font="30px sans-serif");
+	drawText('The Player has picked up ' + player.item + '.', canvas.width-275, 50, "black");
 	if(isPaused)
 	{
 		drawRect(canvas.width/2-55,canvas.height/2-30, 135,35, "black");

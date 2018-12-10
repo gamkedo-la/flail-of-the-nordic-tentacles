@@ -24,6 +24,8 @@ function playerClass()
 	this.isIdle = false;
 	this.waitTimeForHpRegen = 0;
 
+	this.item;
+
 	this.setupInput = function(north,south,west,east)
 	{
 		this.ctrlNorth = north;
@@ -144,8 +146,8 @@ function playerClass()
 			itemTypeTR == TILE_WORMHOLE))
 		{
 			worldMap[0][indexTR] = TILE_SNOW;
-			console.log('I picked up a '+ indexTR +'.');
-			drawText('The Player has picked up' + itemTypeTR + '.', canvas.width-200, 50, "black", font="20px sans-serif");
+			console.log('I picked up a '+ itemTypeTR +'.');
+			this.item = getNameOfTile(itemTypeTR);
 		}
 		else if((itemTypeTL == TILE_HORN ||
 			itemTypeTL == TILE_BEACON ||
@@ -155,8 +157,8 @@ function playerClass()
 			itemTypeTL == TILE_WORMHOLE))
 		{
 			worldMap[0][indexTL] = TILE_SNOW;
-			console.log("I picked up a "+ indexTL +".");
-			drawText('The Player has picked up' + itemTypeTL + '.', canvas.width-200, 50, "black", font="20px sans-serif");
+			console.log("I picked up a "+ itemTypeTL +".");
+			this.item = getNameOfTile(itemTypeTL);
 		}
 		else if((itemTypeBR == TILE_HORN ||
 			itemTypeBR == TILE_BEACON ||
@@ -166,8 +168,8 @@ function playerClass()
 			itemTypeBR == TILE_WORMHOLE))
 		{
 			worldMap[0][indexBR] = TILE_SNOW;
-			console.log("I picked up a "+ indexBR +".");
-			drawText('The Player has picked up' + itemTypeBR + '.', canvas.width-200, 50, "black", font="20px sans-serif");
+			console.log("I picked up a "+ itemTypeBR +".");
+			this.item = getNameOfTile(itemTypeBR);
 		}
 		else if((itemTypeBL == TILE_HORN ||
 			itemTypeBL == TILE_BEACON ||
@@ -177,13 +179,12 @@ function playerClass()
 			itemTypeBL == TILE_WORMHOLE))
 		{
 			worldMap[0][indexBL] = TILE_SNOW;
-			console.log("I picked up a "+ indexBL +".");
-			drawText('The Player has picked up' + itemTypeBL + '.', canvas.width-200, 50, "black", font="20px sans-serif");
+			console.log("I picked up a "+ itemTypeBL +".");
+			this.item = getNameOfTile(itemTypeBL);
 		}
-		else
-		{
 
-		}
+		if(this.item == undefined)
+			this.item = "nothing";
 
 		// switch(itemType)
 		// {
