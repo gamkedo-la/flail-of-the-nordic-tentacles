@@ -45,7 +45,7 @@ var snowTest = {
     levelName: "snowTest",
     tilesetRow: 0,
         enemies:[
-{x:1001,y:440,charType:301}, {x:918,y:599,charType:301}, {x:756,y:598,charType:302}, ]
+{x:1001,y:440,charType:302}, {x:918,y:599,charType:302}, {x:756,y:598,charType:302}, ]
 };
 
 var beachTest = {
@@ -228,7 +228,7 @@ function handleCharacterPositions(whichLevel)
     popEnemyList();
     for(var i = 0; i < enemiesList.length; i++)
     {
-      enemiesList[i].init(wormexPic, "Wormex " + i);
+      enemiesList[i].init("Enemy " + i,'Wormex',wormexPic);
     }
     player.hasEnterAnotherLevel = false;
   }

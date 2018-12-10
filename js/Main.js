@@ -40,7 +40,7 @@ function imgsDoneLoadingSoStartGame()
 	popEnemyList();
 	for(var i = 0; i < enemiesList.length; i++)
 	{
-		enemiesList[i].init("Enemy " + i);
+		enemiesList[i].init("Enemy " + i,'Wormex',wormexPic);
 	}
 	setupInput();
 }
