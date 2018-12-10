@@ -9,8 +9,55 @@ function enemyClass()
 	this.centerX = 75;
 	this.centerY = 75;
 
+	this.velX = 3.0;
+	this.velY = 3.0;
+
+	this.exp = new xpClass();//only for init level within a bracket appropriate to enemy
+	this.stats = new statsClass();
+
+	this.collider;
+	this.bitmap;
+
+	this.directionFaced;
+	this.animFrame = 0;
+	this.animDelay = FRAME_DELAY;
+	
+	this.currentWaitTime = 0;
+
+	this.canPatrol = false;
+	this.isInCombat = false;
+
+	this.minSpeed = 6;
+	this.speedRange = 8;
+
+	this.shotList = [];
+	this.canShoot = false;
+
+	this.init = function(name,enemyType,whichImage,colliderW,colliderH)
+	{
+		this.shotList = [];
+		this.bitmap = whichImage;
+		this.charName = name;
+		this.collider = new colliderClass(this.centerX, this.centerY, colliderW, colliderH, 0, 15);
+		this.exp.init(enemyType);
+		this.stats.init(this.exp.currentLvl,enemyType);
+		this.randomizeInitAI();
+	}
+
+	this.setProjectile = function(ableToShoot)
+	{
+		this.canShoot = ableToShoot;
+	}
+
+	this.setupSpeed = function(newMin,newMax)
+	{
+		this.minSpeed = newMin;
+		this.speedRange = newMax;
+	}
+
 	this.reset = function()
 	{
+		this.shotList = [];
 		this.centerX = this.homeX;
 		this.centerY = this.homeY;
 	}
@@ -83,13 +130,21 @@ function enemyClass()
 				this.velY = -this.velY;
 			}
 		}//end of y movement
+
+		this.collider.update(this.centerX,this.centerY);
 	}//end of this.move
 
 	this.randomizeInitAI = function()
 	{
+		this.velX = this.minSpeed + Math.random() * this.speedRange;
+		this.velY = this.minSpeed + Math.random() * this.speedRange;
+
 		if(Math.random() < 0.5)
 		{
 			this.velX = -this.velX;
+		}
+		if(Math.random() < 0.5)
+		{
 			this.velY = -this.velY;
 		}
 		this.currentWaitTime = Math.floor(Math.random()*WAIT_TIME_BEFORE_PATROLLING);
@@ -97,16 +152,37 @@ function enemyClass()
 
 	this.battle = function(playerCollider)
 	{
-		if(this.collider.isCollidingWithOtherCollider(playerCollider))
+		//collision affects all enemies at the same time
+		this.isInCombat = this.collider.isCollidingWithOtherCollider(playerCollider);
+		
+		if(this.isInCombat)
 		{
-			this.isInCombat = true;
-		}
-		else
-		{
-			this.isInCombat = false;
+			if(this.doesPlayerHaveAdvantage(player))
+			{
+				calculateDamage(player.stats, this.stats);
+			}
+			else
+			{
+				calculateDamage(this.stats, player.stats);
+			}
 		}
 
-		return this.isInCombat;
+		if(this.canShoot)
+		{
+			if(Math.random() * 100 < 5)
+			{
+				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,10));
+			}
+		}
+		
+		for(var i = this.shotList.length - 1; i>=0;i--)
+		{
+			this.shotList[i].move();
+			if(this.shotList[i].isReadyToRemove())
+			{
+				this.shotList.splice(i,1);
+			}
+		}
 	}
 
 	//not the best code ever but it works! TODO:implement a better way of checking direction instead of this
@@ -187,6 +263,42 @@ function enemyClass()
 			}
 		}
 	}
+
+	this.draw = function()
+	{
+		this.animDelay--;
+
+		if(this.animDelay < 0)
+		{
+			this.animDelay = FRAME_DELAY;
+			
+			switch(this.directionFaced) {
+				case "South":
+					this.animFrame = 0;
+					break;
+				case "East":
+					this.animFrame = 1;
+					break;
+				case "West":
+					this.animFrame = 2;
+					break;
+				case "North":
+					this.animFrame = 3;
+					break;
+			}
+		}
+
+		this.collider.draw();
+
+		drawText(this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
+		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
+			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
+		
+		for(var i = 0; i<this.shotList.length;i++)
+		{
+			this.shotList[i].draw();
+		}
+	}
 }
 
 function findSpawnSpots()
@@ -202,12 +314,10 @@ function randomSpawn()
 		return;
 	}
 	var randSpot = Math.floor(Math.random() * enemiesStartSpots.length);
-	//get type of enemy and set temp to that class
-	// var tempEnemy = getClassBasedOnType(enemiesStartSpots[randSpot].charType);
-	var tempEnemy = new wormexClass();
+	var tempEnemy = getClassBasedOnType(enemiesStartSpots[randSpot].charType);
+	// var tempEnemy = new wormexClass();
 
-	tempEnemy.randomizeInitAI();
-	tempEnemy.superClassSetHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
+	tempEnemy.setHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
 	enemiesStartSpots.splice(randSpot, 1);
 	enemiesList.push(tempEnemy);
 }
@@ -219,9 +329,23 @@ function checkForCombat(fighting)
 
 function getClassBasedOnType(charType)
 {
-	// declare var classType as undefined
-	// could set .__proto__.constructor based on charType like this: if(charType == TILE_WORMEX) {class = new wormexClass();
-	// check char type against constants
-	// set classType according to conditional checks against charType
-	//return classType
+	var classType = null;
+
+	switch(charType)
+	{
+		case TILE_WORMEX:
+			classType = new wormexClass();
+			break;
+		case TILE_TANK:
+			classType = new tankClass();
+			break;
+		// case TILE_FALLEN:
+		// 	classType = new wormexClass();
+			// break;
+		// case TILE_VANGUARD:
+		// 	classType = new wormexClass();
+			// break;
+	}
+
+	return classType;
 }

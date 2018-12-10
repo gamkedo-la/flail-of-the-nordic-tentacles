@@ -107,6 +107,11 @@ function setStats_Player(caller,level)
 	caller.def = caller.baseDef * level;
 }
 
+function resetPlayerHealth(playerStats)
+{
+	playerStats.hp = playerStats.maxHp;
+	playerStats.isCharacterDead = false;
+}
 
 function setStats_Enemy(caller,level,charkind)
 {
@@ -151,11 +156,19 @@ function setStats_Enemy(caller,level,charkind)
 	caller.def = Math.floor(caller.def);	
 }
 
+function modifyStats(playerStats)
+{
+	playerStats.hp = Math.floor(playerStats.hp * playerStats.hpMod);
+	playerStats.maxHp = Math.floor(playerStats.hp);
+	playerStats.str = Math.floor(playerStats.str * playerStats.strMod);
+	playerStats.def = Math.floor(playerStats.def * playerStats.defMod);
+}
+
 function calculateDamage(attackerStatsObj, defenderStatsObj)
 {
 	// need to mess with the def mod here based on enemy type
 	var netDamage = attackerStatsObj.str - (defenderStatsObj.def * 0.3);
-	netDamage = Math.trunc(netDamage);
+	netDamage = Math.ceil(netDamage);
 
 	defenderStatsObj.hp -= netDamage;
 

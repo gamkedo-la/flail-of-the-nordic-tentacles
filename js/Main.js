@@ -40,11 +40,7 @@ function imgsDoneLoadingSoStartGame()
 	popEnemyList();
 	for(var i = 0; i < enemiesList.length; i++)
 	{
-		//TODO: function to use the appropriate img for an enemy and a way to name them
-		/*
-			enemiesList[i].init(getPicForThisSpecificEnemy(), nameOfEnemyKind() + i)
-		*/
-		enemiesList[i].init(wormexPic, "Enemy " + i);
+		enemiesList[i].init("Enemy " + i);
 	}
 	setupInput();
 }

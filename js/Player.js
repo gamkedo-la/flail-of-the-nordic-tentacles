@@ -39,75 +39,35 @@ function playerClass()
 		this.collider = new colliderClass(this.centerX, this.centerY, 20, 20, 0, 15);
 		this.exp.init('Ragnar');
 		this.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
+		this.stats.init(this.exp.currentLvl,'Ragnar');
 		this.reset();
 	}
 
 	this.reset = function()
 	{
 		//reset player stats to last saved stats
+		resetPlayerHealth(this.stats);
 		//reset player health, buffs, etc
 		if(this.homeX == undefined || this.hasEnterAnotherLevel)
 		{
 			for(var i = 0; i < worldMap[0].length; i++)
 			{
-				if(worldMap[0][i] == TILE_PLAYER_NEW_GAME)
-				{
-					if(previousLvlName == null)
-					{
-						var tileRow = Math.floor(i/currentMapCols);
-						var tileCol = i%currentMapCols;
-						this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
-						this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-					}
-
-					worldMap[0][i] = TILE_SNOW;
-				}
-				if(previousLvlName == "snowTest")
-				{
-					if(worldMap[0][i] == TILE_BEACH_EXIT_DOOR || worldMap[0][i] == TILE_FOREST_EXIT_DOOR || worldMap[0][i] == TILE_MT_EXIT_DOOR)
-					{
-						var tileRow = Math.floor(i/currentMapCols);
-						var tileCol = i%currentMapCols;
-						tileRow--;
-						this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
-						this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-					}
-				}
-				if(worldMap[0][i] == TILE_BEACH_ENTRY_DOOR && previousLvlName == "beachTest")
-				{
-					var tileRow = Math.floor(i/currentMapCols);
-					var tileCol = i%currentMapCols;
-					tileRow++;
-					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
-					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-				}
-				if(worldMap[0][i] == TILE_FOREST_ENTRY_DOOR && previousLvlName == "forestTest")
-				{
-					var tileRow = Math.floor(i/currentMapCols);
-					var tileCol = i%currentMapCols;
-					tileCol--;
-					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
-					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-				}
-				if(worldMap[0][i] == TILE_MT_ENTRY_DOOR && previousLvlName == "mountainTest")
-				{
-					var tileRow = Math.floor(i/currentMapCols);
-					var tileCol = i%currentMapCols;
-					tileCol++;
-					this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
-					this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-				}
+				placePlayerAtThisSpot(this,i);
 			}
 		}
 
 		this.centerX = this.homeX;
 		this.centerY = this.homeY;
-		this.stats.init(this.exp.currentLvl,'Ragnar');
-
 	}
 
 	this.move = function()
 	{
+		if(this.stats.isCharacterDead)
+		{
+			console.log("The Player has died!");
+			player.reset();
+		}
+
 		this.directionFaced = undefined;
 
 		var nextX = this.centerX;
@@ -142,28 +102,24 @@ function playerClass()
         var nextTileIndTR = getTileIndexAtRowCol(this.collider.box.right,this.collider.box.top,currentMapCols,currentMapRows);
         var nextTileIndBR = getTileIndexAtRowCol(this.collider.box.right,this.collider.box.bottom,currentMapCols,currentMapRows);
         var nextTileIndBL = getTileIndexAtRowCol(this.collider.box.left,this.collider.box.bottom,currentMapCols,currentMapRows);
-
+        
+        var nextTileIndex = getTileIndexAtRowCol(nextX,nextY,currentMapCols,currentMapRows);
 		var nextTileType = TILE_SNOW;
 
-		if(nextTileIndTL != undefined &&
-			nextTileIndTR != undefined &&
-			nextTileIndBR != undefined &&
-			nextTileIndBL != undefined)
+		if(nextTileIndex != undefined)
 		{
 			nextTileTypeTR = worldMap[0][nextTileIndTR];
 			nextTileTypeTL = worldMap[0][nextTileIndTL];
 			nextTileTypeBR = worldMap[0][nextTileIndBR];
 			nextTileTypeBL = worldMap[0][nextTileIndBL];
+			nextTileType = worldMap[0][nextTileIndex];
 
-			//pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
+			//pass in the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
 			this.pickupItemsIfAble(nextTileTypeTR,nextTileTypeTL,nextTileTypeBR,nextTileTypeBL, 
 									nextTileIndTL, nextTileIndTR, nextTileIndBR, nextTileIndBL);
 
 			//pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
-			if(moveCharIfAble(nextTileTypeTR) &&
-				moveCharIfAble(nextTileTypeTL) &&
-				moveCharIfAble(nextTileTypeBR) &&
-				moveCharIfAble(nextTileTypeBL))
+			if(moveCharIfAble(nextTileType))
 			{
 				this.centerX = nextX;
 				this.centerY = nextY;
@@ -176,12 +132,6 @@ function playerClass()
 
 		this.collider.update(this.centerX,this.centerY);
 		handleNpcCollisions(this.collider);
-	
-		if(player.stats.hp <= 0)
-		{
-			console.log("The Player has died!");
-			player.reset();
-		}
 	}
 
 	this.pickupItemsIfAble = function(itemTypeTR,itemTypeTL,itemTypeBR,itemTypeBL, indexTL,indexTR,indexBR,indexBL)
@@ -338,5 +288,56 @@ function handleNpcCollisions(playerCollider)
 	else
 	{
 		return;
+	}
+}
+
+function placePlayerAtThisSpot(p,i)
+{
+	if(worldMap[0][i] == TILE_PLAYER_NEW_GAME)
+	{
+		if(previousLvlName == null)
+		{
+			var tileRow = Math.floor(i/currentMapCols);
+			var tileCol = i%currentMapCols;
+			p.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+			p.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+		}
+
+		worldMap[0][i] = TILE_SNOW;
+	}
+	if(previousLvlName == "snowTest")
+	{
+		if(worldMap[0][i] == TILE_BEACH_EXIT_DOOR || worldMap[0][i] == TILE_FOREST_EXIT_DOOR || worldMap[0][i] == TILE_MT_EXIT_DOOR)
+		{
+			var tileRow = Math.floor(i/currentMapCols);
+			var tileCol = i%currentMapCols;
+			tileRow--;
+			p.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+			p.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+		}
+	}
+	if(worldMap[0][i] == TILE_BEACH_ENTRY_DOOR && previousLvlName == "beachTest")
+	{
+		var tileRow = Math.floor(i/currentMapCols);
+		var tileCol = i%currentMapCols;
+		tileRow++;
+		p.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+		p.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+	}
+	if(worldMap[0][i] == TILE_FOREST_ENTRY_DOOR && previousLvlName == "forestTest")
+	{
+		var tileRow = Math.floor(i/currentMapCols);
+		var tileCol = i%currentMapCols;
+		tileCol--;
+		p.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+		p.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+	}
+	if(worldMap[0][i] == TILE_MT_ENTRY_DOOR && previousLvlName == "mountainTest")
+	{
+		var tileRow = Math.floor(i/currentMapCols);
+		var tileCol = i%currentMapCols;
+		tileCol++;
+		p.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+		p.homeY = tileRow * TILE_H + 0.5 * TILE_H;
 	}
 }
