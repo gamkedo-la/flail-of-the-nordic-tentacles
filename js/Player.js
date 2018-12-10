@@ -143,8 +143,9 @@ function playerClass()
 			itemTypeTR == TILE_DICTIONARY ||
 			itemTypeTR == TILE_WORMHOLE))
 		{
-			drawText("I picked up a "+ itemTypeTR +".", 200,100, 'black', font="10px sans-serif");
 			worldMap[0][indexTR] = TILE_SNOW;
+			console.log('I picked up a '+ indexTR +'.');
+			drawText('The Player has picked up' + itemTypeTR + '.', canvas.width-200, 50, "black", font="20px sans-serif");
 		}
 		else if((itemTypeTL == TILE_HORN ||
 			itemTypeTL == TILE_BEACON ||
@@ -153,8 +154,9 @@ function playerClass()
 			itemTypeTL == TILE_DICTIONARY ||
 			itemTypeTL == TILE_WORMHOLE))
 		{
-			drawText("I picked up a "+ itemTypeTL +".", 200,100, 'black', font="10px sans-serif");
-			worldMap[0][indexTL] = TILE_SNOW;	
+			worldMap[0][indexTL] = TILE_SNOW;
+			console.log("I picked up a "+ indexTL +".");
+			drawText('The Player has picked up' + itemTypeTL + '.', canvas.width-200, 50, "black", font="20px sans-serif");
 		}
 		else if((itemTypeBR == TILE_HORN ||
 			itemTypeBR == TILE_BEACON ||
@@ -163,8 +165,9 @@ function playerClass()
 			itemTypeBR == TILE_DICTIONARY ||
 			itemTypeBR == TILE_WORMHOLE))
 		{
-			drawText("I picked up a "+ itemTypeBR +".", 200,100, 'black', font="10px sans-serif");
 			worldMap[0][indexBR] = TILE_SNOW;
+			console.log("I picked up a "+ indexBR +".");
+			drawText('The Player has picked up' + itemTypeBR + '.', canvas.width-200, 50, "black", font="20px sans-serif");
 		}
 		else if((itemTypeBL == TILE_HORN ||
 			itemTypeBL == TILE_BEACON ||
@@ -173,8 +176,9 @@ function playerClass()
 			itemTypeBL == TILE_DICTIONARY ||
 			itemTypeBL == TILE_WORMHOLE))
 		{
-			drawText("I picked up a "+ itemTypeBL +".", 200,100, 'black', font="10px sans-serif");
 			worldMap[0][indexBL] = TILE_SNOW;
+			console.log("I picked up a "+ indexBL +".");
+			drawText('The Player has picked up' + itemTypeBL + '.', canvas.width-200, 50, "black", font="20px sans-serif");
 		}
 		else
 		{

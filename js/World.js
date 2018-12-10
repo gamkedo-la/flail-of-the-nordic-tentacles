@@ -87,6 +87,8 @@ var currentMapRows = allLvls[currentLvlIndex].rows;
 var currentMapCols = allLvls[currentLvlIndex].cols;
 var currentMapTilesetRow = allLvls[currentLvlIndex].tilesetRow;
 
+var currentMap = "forest";
+
 var worldMap = [];
 
 worldMap = Array.from(allLvls[currentLvlIndex].gridLayers);

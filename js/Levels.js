@@ -522,7 +522,8 @@ function loadMap(mapName)
   {
     if(allLvls[i].levelName == mapName)
     {
-      if(gameIsRunning)
+      currentMap = mapName;
+	  if(gameIsRunning)
       {
         worldMap = [];
 
