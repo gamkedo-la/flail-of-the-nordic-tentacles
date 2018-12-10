@@ -182,10 +182,9 @@ function playerClass()
 			console.log("I picked up a "+ itemTypeBL +".");
 			this.item = getNameOfTile(itemTypeBL);
 		}
-		else
-		{
 
-		}
+		if(this.item == undefined)
+			this.item = "nothing";
 
 		// switch(itemType)
 		// {
