@@ -183,6 +183,9 @@ function keyPressed(evt) {
             case SPACE:
                 nextDialoguePage();
                 break;
+			case KEY_I:
+				cheatStopEnemyMovement();
+				break;
         }
     }
 

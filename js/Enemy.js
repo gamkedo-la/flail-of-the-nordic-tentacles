@@ -4,6 +4,20 @@ const LEASH_LENGTH = 120;
 const FRAME_DIMENSIONS = 40;
 const FRAME_DELAY = 4;
 
+var stopEnemyMovement = false;
+
+function cheatStopEnemyMovement()
+{
+	if (stopEnemyMovement == true)
+	{
+		stopEnemyMovement = false;
+	} 
+	else
+	{
+		stopEnemyMovement = true;
+	}
+}
+
 function enemyClass()
 {
 	this.centerX = 75;
@@ -32,7 +46,7 @@ function enemyClass()
 
 	this.shotList = [];
 	this.canShoot = false;
-
+	
 	this.init = function(name,enemyType,whichImage,colliderW,colliderH)
 	{
 		this.shotList = [];
@@ -70,67 +84,70 @@ function enemyClass()
 
 	this.move = function(nextX, nextY)
 	{
-		if(this.velX > 0)
-		{
-			if(this.canMoveToNextTile(nextX, nextY))
+		if(stopEnemyMovement){
+			// no action - cheat activated 
+		} else {
+			if(this.velX > 0)
 			{
-				this.directionFaced = "East";
-				if(nextX > this.homeX + LEASH_LENGTH)
+				if(this.canMoveToNextTile(nextX, nextY))
+				{
+					this.directionFaced = "East";
+					if(nextX > this.homeX + LEASH_LENGTH)
+					{
+						this.velX = -this.velX;
+					}
+				}
+				else
 				{
 					this.velX = -this.velX;
 				}
 			}
-			else
+			else if(this.velX < 0)
 			{
-				this.velX = -this.velX;
-			}
-		}
-		else if(this.velX < 0)
-		{
-			if(this.canMoveToNextTile(nextX, nextY))
-			{
-				this.directionFaced = "West";
-				if(nextX < this.homeX - LEASH_LENGTH)
+				if(this.canMoveToNextTile(nextX, nextY))
+				{
+					this.directionFaced = "West";
+					if(nextX < this.homeX - LEASH_LENGTH)
+					{
+						this.velX = -this.velX;
+					}
+				}
+				else
 				{
 					this.velX = -this.velX;
 				}
-			}
-			else
+			}//end  x movement
+			if(this.velY > 0)
 			{
-				this.velX = -this.velX;
-			}
-		}//end  x movement
-		if(this.velY > 0)
-		{
-			if(this.canMoveToNextTile(nextX, nextY))
-			{
-				this.directionFaced = "East";
-				if(nextY > this.homeY + LEASH_LENGTH)
+				if(this.canMoveToNextTile(nextX, nextY))
+				{
+					this.directionFaced = "East";
+					if(nextY > this.homeY + LEASH_LENGTH)
+					{
+						this.velY = -this.velY;
+					}
+				}
+				else
 				{
 					this.velY = -this.velY;
 				}
 			}
-			else
+			else if(this.velY < 0)
 			{
-				this.velY = -this.velY;
-			}
-		}
-		else if(this.velY < 0)
-		{
-			if(this.canMoveToNextTile(nextX, nextY))
-			{
-				this.directionFaced = "West";
-				if(nextY < this.homeY - LEASH_LENGTH)
+				if(this.canMoveToNextTile(nextX, nextY))
+				{
+					this.directionFaced = "West";
+					if(nextY < this.homeY - LEASH_LENGTH)
+					{
+						this.velY = -this.velY;
+					}
+				}
+				else
 				{
 					this.velY = -this.velY;
 				}
-			}
-			else
-			{
-				this.velY = -this.velY;
-			}
-		}//end of y movement
-
+			}//end of y movement
+		} // end cheat code - stop enemy movement 
 		this.collider.update(this.centerX,this.centerY);
 	}//end of this.move
 
