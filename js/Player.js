@@ -147,6 +147,7 @@ function playerClass()
 		{
 			worldMap[0][indexTR] = TILE_SNOW;
 			console.log('I picked up a '+ itemTypeTR +'.');
+			itemPickedUp();
 			this.item = getNameOfTile(itemTypeTR);
 		}
 		else if((itemTypeTL == TILE_HORN ||
@@ -158,6 +159,7 @@ function playerClass()
 		{
 			worldMap[0][indexTL] = TILE_SNOW;
 			console.log("I picked up a "+ itemTypeTL +".");
+			itemPickedUp();
 			this.item = getNameOfTile(itemTypeTL);
 		}
 		else if((itemTypeBR == TILE_HORN ||
@@ -169,6 +171,7 @@ function playerClass()
 		{
 			worldMap[0][indexBR] = TILE_SNOW;
 			console.log("I picked up a "+ itemTypeBR +".");
+			itemPickedUp();
 			this.item = getNameOfTile(itemTypeBR);
 		}
 		else if((itemTypeBL == TILE_HORN ||
@@ -180,6 +183,7 @@ function playerClass()
 		{
 			worldMap[0][indexBL] = TILE_SNOW;
 			console.log("I picked up a "+ itemTypeBL +".");
+			itemPickedUp();
 			this.item = getNameOfTile(itemTypeBL);
 		}
 

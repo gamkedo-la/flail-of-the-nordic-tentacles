@@ -6,6 +6,8 @@ var enemiesList = [];
 const NUM_OF_ENEMIES_ON_SCREEN = 50;
 
 var isPaused = false;
+var displayItem = false;
+var timer = 0;
 
 var player = new playerClass();
 
@@ -77,6 +79,20 @@ function battleAll()
 	}
 }
 
+function itemPickedUp()
+{	
+	timer ++;
+	if (timer <= 100)
+	{
+		displayItem = true;
+	}
+	else if (timer > 100){
+		displayItem = false;
+		timer = 0;
+	}
+}
+
+
 function drawAll()
 {
 	canvasContext.save();
@@ -98,7 +114,11 @@ function drawAll()
 	canvasContext.restore();
 	gameDebugTools();
 	drawText(currentMap, 700, 30, font="30px sans-serif");
-	drawText('The Player has picked up ' + player.item + '.', canvas.width-275, 50, "black");
+	if(displayItem)
+	{
+		drawText('The Player has picked up ' + player.item + '.', canvas.width-275, 60, "black");
+		itemPickedUp();
+	}
 	if(isPaused)
 	{
 		drawRect(canvas.width/2-55,canvas.height/2-30, 135,35, "black");
