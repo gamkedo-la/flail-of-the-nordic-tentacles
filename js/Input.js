@@ -192,6 +192,9 @@ function keyPressed(evt) {
 			case KEY_I:
 				toggleInventoryAndDrawImage();
 				break;
+			case KEY_K:
+				toggleDebugMode();
+				break;
         }
     }
 

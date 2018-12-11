@@ -8,6 +8,7 @@ const NUM_OF_ENEMIES_ON_SCREEN = 50;
 var isPaused = false;
 var displayItem = false;
 var timer = 0;
+var debugState = false;
 
 var player = new playerClass();
 // var seer = new npcClass();
@@ -96,6 +97,18 @@ function itemPickedUp()
 	}
 }
 
+function toggleDebugMode()
+{
+	if(debugState)
+	{
+		debugState = false;
+	}
+	else
+	{
+		debugState = true;
+	}
+}
+
 
 function drawAll()
 {
@@ -120,7 +133,10 @@ function drawAll()
 
 	drawVisibleWorld(currentMapCols, 1);
 	canvasContext.restore();
-	gameDebugTools();
+	if(debugState)
+	{
+		gameDebugTools();
+	}
 	drawText(currentMap, 700, 30, font="30px sans-serif");
 	if(displayItem)
 	{
