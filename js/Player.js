@@ -133,7 +133,9 @@ function playerClass()
 		}
 
 		this.collider.update(this.centerX,this.centerY);
-		handleNpcCollisions(this.collider);
+
+		if(currentMap == 'forestTest' && seer.collider != undefined)
+			handleNpcCollisions(this.collider);
 	}
 
 	this.pickupItemsIfAble = function(itemTypeTR,itemTypeTL,itemTypeBR,itemTypeBL, indexTL,indexTR,indexBR,indexBL)

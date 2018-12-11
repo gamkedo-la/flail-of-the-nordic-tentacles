@@ -1,10 +1,11 @@
 var worldPics = [];
+
 var vikingPic = document.createElement("img");
 var seerPic = document.createElement("img");
 var outcastPic = document.createElement("img");
 var maleVikingPic = document.createElement("img");
 var femaleVikingPic = document.createElement("img");
-//TODO: have array of enemies instead of single var for each enemy
+
 var wormexPic = document.createElement("img");
 var tankPic = document.createElement("img");
 var fallenPic = document.createElement("img");
@@ -23,7 +24,7 @@ function loadImages()
 		{charName: vikingPic, fileName: "viking_quick_sheet.png"},
 		{charName: maleVikingPic, fileName: "male_viking.png"},
 		{charName: femaleVikingPic, fileName: "female_viking.png"},
-		{charName: seerPic, fileName: "the_seer.png"},
+		{charName: seerPic, fileName: "the_seer_v6.png"},
 		{charName: outcastPic, fileName: "the_outcast.png"},
 		{charName: wormexPic, fileName: "slime_quick_sheet.png"},
 		{charName: tankPic, fileName: "slime_blue_sheet.png"},
@@ -92,7 +93,7 @@ function loadImages()
 		{worldType: TILE_FALLEN, fileName: "slime_red.png"},
 		{worldType: TILE_VANGUARD, fileName: "slime_yellow.png"},
 		{worldType: TILE_PLAYER_NEW_GAME, fileName: "viking_quick.png"},
-		{worldType: TILE_SEER, fileName: "the_seer.png"},
+		{worldType: TILE_SEER, fileName: "the_seer_v6.png"},
 		{worldType: TILE_OUTCAST, fileName: "the_outcast.png"},
 		{worldType: TILE_MALE_VIKING, fileName: "male_viking.png"},
 		{worldType: TILE_FEMALE_VIKING, fileName: "female_viking.png"},

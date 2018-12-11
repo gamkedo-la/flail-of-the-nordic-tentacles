@@ -10,6 +10,10 @@ var displayItem = false;
 var timer = 0;
 
 var player = new playerClass();
+// var seer = new npcClass();
+// var outcast = new npcClass();
+// var maleViking = new npcClass();
+// var femaleViking = new npcClass();
 
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
@@ -104,11 +108,15 @@ function drawAll()
 		enemiesList[i].draw();
 	}
 
+	//going to need y-sorting for these
+	if(currentMap == 'forestTest')
+	{
+		maleViking.draw();
+		femaleViking.draw();
+		seer.draw();
+		outcast.draw();
+	}
 	player.draw();
-	maleViking.draw();
-	femaleViking.draw();
-	seer.draw();
-	outcast.draw();
 
 	drawVisibleWorld(currentMapCols, 1);
 	canvasContext.restore();
@@ -150,6 +158,6 @@ function gameDebugTools()
 	}
 
 	// drawCircle(camPanX, camPanY, 5, 'red');
-	// drawText('mouse: ' + (mouseX + camPanX) + ',' + (mouseY + camPanY) + 'index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols), 
-	// 	mouseX, mouseY, 'red');
+	drawText('mouse: ' + (mouseX + camPanX) + ',' + (mouseY + camPanY) + 'index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols), 
+		mouseX, mouseY, 'black');
 }
