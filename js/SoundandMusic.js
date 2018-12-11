@@ -1,5 +1,9 @@
 var audioFormat;
 
+function muteSFXandBackground(){
+	console.log("future mute audio function");
+}
+
 function setFormat(){
 	var audio = new Audio();
 	if (audio.canPlayType("audio/mp3")){

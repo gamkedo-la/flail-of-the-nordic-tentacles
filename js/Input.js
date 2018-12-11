@@ -186,6 +186,9 @@ function keyPressed(evt) {
 			case KEY_I:
 				cheatStopEnemyMovement();
 				break;
+			case KEY_M:
+				muteSFXandBackground();
+				break;
         }
     }
 
