@@ -183,11 +183,14 @@ function keyPressed(evt) {
             case SPACE:
                 nextDialoguePage();
                 break;
-			case KEY_I:
+			case KEY_L:
 				cheatStopEnemyMovement();
 				break;
 			case KEY_M:
 				muteSFXandBackground();
+				break;
+			case KEY_I:
+				toggleInventoryAndDrawImage();
 				break;
         }
     }
