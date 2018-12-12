@@ -168,7 +168,11 @@ function enemyClass()
 			}
 			else
 			{
-				calculateDamage(this.stats, player.stats);
+			//	player.immunity();              // need to determine when damage occurs to start timer
+				if(player.isImmune == false)
+				{
+					calculateDamage(this.stats, player.stats);		
+				}	
 			}
 		}
 

@@ -174,6 +174,9 @@ function keyPressed(evt) {
 			case KEY_K:
 				toggleDebugMode();
 				break;
+			case KEY_J:
+				player.toggleImmunityCheat();
+				break;
         }
     }
 

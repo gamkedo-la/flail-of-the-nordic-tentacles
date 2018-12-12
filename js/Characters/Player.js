@@ -25,6 +25,9 @@ function playerClass()
 	this.waitTimeForHpRegen = 0;
 
 	this.item;
+	
+	this.isImmune = false;
+	this.immunityTimer = 0;
 
 	this.setupInput = function(north,south,west,east)
 	{
@@ -244,6 +247,32 @@ function playerClass()
 		if(this.goingSouth && this.goingEast)
 		{
 			this.directionFaced = "Southeast";
+		}
+	}
+	
+	this.toggleImmunityCheat = function()
+	{
+		if(this.isImmune)
+		{
+			this.isImmune = false;
+		}
+		else
+		{
+			this.isImmune = true;
+		}
+	}
+	
+	this.immunity = function()
+	{
+		console.log(this.isImmune);
+		this.immunityTimer++;
+		if (this.immunityTimer <= 100)
+		{
+			this.isImmune = true;
+		}
+		else if (this.immunityTimer > 100){
+			this.isImmune = false;
+			immunitytimer = 0;
 		}
 	}
 

@@ -58,6 +58,8 @@ function calculateDamage(attackerStatsObj, defenderStatsObj)
 	netDamage = Math.ceil(netDamage);
 
 	defenderStatsObj.hp -= netDamage;
+	
+	
 
 	if(defenderStatsObj.hp <= 0)
 	{
