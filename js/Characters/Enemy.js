@@ -190,48 +190,25 @@ function enemyClass()
 		}
 	}
 
-	//not the best code ever but it works! TODO:implement a better way of checking direction instead of this
 	this.doesPlayerHaveAdvantage = function(player)
 	{
 		if(player.directionFaced == undefined)
 		{
 			return false;
 		}
-		//check against player east
-		else if(player.directionFaced == "East" && this.directionFaced == "East")
+		//check against player east/west/north/south
+		else if	((player.directionFaced == "East" && this.directionFaced == "East") ||
+				(player.directionFaced == "West" && this.directionFaced == "West") ||
+				(player.directionFaced == "North" && this.directionFaced == "East") ||
+				(player.directionFaced == "North" && this.directionFaced == "West") ||
+				(player.directionFaced == "South" && this.directionFaced == "East") ||
+				(player.directionFaced == "South" && this.directionFaced == "West"))
 		{
 			return true;
 		}
-		else if(player.directionFaced == "East" && this.directionFaced == "West")
+		else 
 		{
 			return false;
-		}
-		//check against player west
-		else if(player.directionFaced == "West" && this.directionFaced == "West")
-		{
-			return true;
-		}
-		else if(player.directionFaced == "West" && this.directionFaced == "East")
-		{
-			return false;
-		}
-		//check against player north
-		else if(player.directionFaced == "North" && this.directionFaced == "East")
-		{
-			return true;
-		}
-		else if(player.directionFaced == "North" && this.directionFaced == "West")
-		{
-			return true;
-		}
-		//check against player south
-		else if(player.directionFaced == "South" && this.directionFaced == "East")
-		{
-			return true;
-		}
-		else if(player.directionFaced == "South" && this.directionFaced == "West")
-		{
-			return true;
 		}
 	}
 
