@@ -4,12 +4,6 @@ const DIST_BEFORE_X_PAN = 150;
 const DIST_BEFORE_Y_PAN = 100;
 const CAM_SPEED = 80.0;//for editor use only
 
-function instantCamFollow()
-{	
-	camPanX = player.centerX - canvas.width/2;
-	camPanY = player.centerY - canvas.height/2;
-}
-
 function moveCamera(cols, rows)
 {
 	var camFocusCenterX = camPanX + canvas.width/2;//300
@@ -39,6 +33,12 @@ function moveCamera(cols, rows)
 	{
 		camPanY = maxPanY;
 	}
+}
+
+function instantCamFollow()
+{	
+	camPanX = player.centerX - canvas.width/2;
+	camPanY = player.centerY - canvas.height/2;
 }
 
 function followPlayer(cfcX, cfcY)

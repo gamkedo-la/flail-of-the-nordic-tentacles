@@ -147,18 +147,3 @@ function loadWorldPics(worldCode, fileName)
 	worldPics[worldCode] = document.createElement("img");
 	beginLoadingImages(worldPics[worldCode], fileName);
 }
-
-function getEnemyPicBasedOnType(charType)
-{
-	switch(charType)
-	{
-		case TILE_WORMEX:
-			return wormexPic;
-		case TILE_TANK:
-			return tankPic;
-		case TILE_FALLEN:
-			return fallenPic;
-		case TILE_VANGUARD:
-			return vanguardPic;
-	}
-}

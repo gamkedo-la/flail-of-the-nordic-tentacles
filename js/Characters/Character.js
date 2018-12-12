@@ -1,4 +1,3 @@
-/*
 var maleViking = {
 	centerX: 75,
 	centerY: 75,
@@ -158,7 +157,6 @@ var outcast = {
 		canvasContext.drawImage(this.bitmap, this.centerX - this.bitmap.width/2, this.centerY - this.bitmap.height/2);
 	}
 }
-*/
 
 function npcClass()
 {

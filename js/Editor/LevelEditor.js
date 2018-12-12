@@ -1,18 +1,6 @@
 var editor;
 var editorLoop;
 
-function useEditorMode()
-{
-	if(gameIsRunning)
-	{
-		runEditorInstance();
-	}
-	else
-	{
-		runGameInstance();
-	}
-}
-
 function Editor()
 {
 	this.grid = new TileGrid(window.prompt('Choose initial canvas blanket (Snow - 100, Ocean - 101, Trees - 103, Mountains - 104): '));  //use const value from world js
@@ -184,53 +172,4 @@ function Editor()
 
 		console.log('Switched to layer: ' + this.selectedLayer);
 	}
-}
-
-function runEditorInstance()
-{
-	clearInterval(gameLoop);
-	gameIsRunning = !gameIsRunning;
-
-	clearSpawnList();
-	editor = new Editor();
-
-	console.log('WARNING!!! \n' + 'Grid smaller than 8 rows by 10 columns are not supported!\n' + 
-		'Anything bigger than that should be okay.');
-	console.log('EDITOR GUIDE: \n' + 'X: Deletes Spawns' + '\nMouse 0 (left click) sets tile' + '\nV: Save maps to console for copy/paste to code' + 
-		'\nTAB: Exits editor mode' + '\nUp/Down Arrow: Changes tile set' + '\nLeft/Right Arrow: Change to specific tile within set' +
-		'\nMouse click: Set tiles' + '\nF/H: Pans camera left/right' + '\nT/G: Pans camera up/down' + '\nNum 1/Num 2: Changes layers');
-
-	editor.init();
-
-	editorLoop = setInterval(editor.update.bind(editor), 1000/fps);
-}
-
-function runGameInstance()
-{
-	clearInterval(editorLoop);
-
-	gameLoop = setInterval(updateAll, 1000/fps);
-	gameIsRunning = !gameIsRunning;
-	
-	editor = null;
-}
-
-function editorDebugTools()
-{
-	var tileCol =  Math.floor((mouseX + camPanX)/TILE_W);
-	var tileRow =  Math.floor((mouseY + camPanY)/TILE_H);
-	editor.tileToBeReplaced = roomTileToIndex(tileCol, tileRow, editor.grid.mapCols);
-
-	// drawCircle(camPanX, camPanY, 5, 'red');
-	drawText('mouse x: ' + (mouseX + camPanX) + ', y: ' + (mouseY + camPanY) + ', tileIndex: ' + editor.tileToBeReplaced, mouseX, mouseY, 'red');
-	drawText(`Layer: ${editor.selectedLayer}`, 20, 550, 'black', '20px sans-serif');
-	drawText(`Tileset: ${editor.usableTiles[editor.tileSetIndex].setName}`, 20, 570, 'black', '20px sans-serif');
-	drawText(`Tile: ${editor.selectedTileType}, ${getNameOfTile(editor.selectedTileType)}`, 20, 590, 'black', '20px sans-serif');
-
-	//console.log('Tile const: ' + this.selectedTileType + ' ,' + getNameOfTile(this.selectedTileType));
-	//console.log('Switched to: ' + this.usableTiles[this.tileSetIndex].setName);
-	/*
-	Tileset: ${editor.usableTiles[editor.tileSetIndex].setName}
-	Tile: ${editor.selectedTileType}, ${getNameOfTile(editor.selectedTileType)}
-	*/
 }

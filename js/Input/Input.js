@@ -70,12 +70,6 @@ function updateMousePos(evt) {
     mouseY = evt.clientY - rect.top - root.scrollTop;
 }
 
-function checkIfEditorIsOnAndSetTile(evt) {
-    if (!gameIsRunning) {
-        editor.setTile();
-    }
-}
-
 function keySet(keyEvent, player, setTo) {
     if (keyEvent == player.ctrlWest) {
         player.goingWest = setTo;
@@ -88,21 +82,6 @@ function keySet(keyEvent, player, setTo) {
     }
     if (keyEvent == player.ctrlSouth) {
         player.goingSouth = setTo;
-    }
-}
-
-function editorScreenMove(evt) {
-    if (evt.keyCode === KEY_F) {
-        camPanX -= CAM_SPEED;
-    }
-    if (evt.keyCode === KEY_T) {
-        camPanY -= CAM_SPEED;
-    }
-    if (evt.keyCode === KEY_G) {
-        camPanY += CAM_SPEED;
-    }
-    if (evt.keyCode === KEY_H) {
-        camPanX += CAM_SPEED;
     }
 }
 
