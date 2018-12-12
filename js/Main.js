@@ -11,10 +11,10 @@ var timer = 0;
 var debugState = false;
 
 var player = new playerClass();
-// var seer = new npcClass();
-// var outcast = new npcClass();
-// var maleViking = new npcClass();
-// var femaleViking = new npcClass();
+var seer = new npcClass();
+var outcast = new npcClass();
+var maleViking = new npcClass();
+var femaleViking = new npcClass();
 
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
@@ -38,10 +38,10 @@ function imgsDoneLoadingSoStartGame()
 	}
 
 	player.init(vikingPic, "Ragnar");
-	maleViking.init(maleVikingPic,"Male Viking");
-	femaleViking.init(femaleVikingPic,"Female Viking");
-	seer.init(seerPic,"The Seer");
-	outcast.init(outcastPic,"The Outcast");
+	maleViking.init(maleVikingPic,"Male Viking",TILE_MALE_VIKING);
+	femaleViking.init(femaleVikingPic,"Female Viking",TILE_FEMALE_VIKING);
+	seer.init(seerPic,"The Seer",TILE_SEER);
+	outcast.init(outcastPic,"The Outcast",TILE_OUTCAST);
 
 	findSpawnSpots();
 	popEnemyList();
@@ -85,7 +85,7 @@ function battleAll()
 }
 
 function itemPickedUp()
-{	
+{
 	timer ++;
 	if (timer <= 100)
 	{
@@ -174,6 +174,6 @@ function gameDebugTools()
 	}
 
 	// drawCircle(camPanX, camPanY, 5, 'red');
-	drawText('mouse: ' + (mouseX + camPanX) + ',' + (mouseY + camPanY) + 'index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols), 
+	drawText('mouse: ' + (mouseX + camPanX) + ',' + (mouseY + camPanY) + 'index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols),
 		mouseX, mouseY, 'black');
 }
