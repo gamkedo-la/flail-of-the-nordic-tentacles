@@ -24,8 +24,11 @@ function playerClass()
 	this.isIdle = false;
 	this.waitTimeForHpRegen = 0;
 
+	const FOOTSTEP_DISTANCE = 8;
+	this.distSinceLastFootstep = 0;
+
 	this.item;
-	
+
 	this.isImmune = false;
 	this.immunityTimer = 0;
 
@@ -37,10 +40,11 @@ function playerClass()
 		this.ctrlEast = east;
 	}
 
-	this.init = function(image, name)
+	this.init = function(image, name, footstepImage)
 	{
 		this.bitmap = image;
 		this.charName = name;
+		this.footstepImage = footstepImage;
 		this.collider = new colliderClass(this.centerX, this.centerY, 20, 20, 0, 15);
 		this.exp.init('Ragnar');
 		this.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
@@ -76,12 +80,12 @@ function playerClass()
 		this.directionFaced = undefined;
 
 		var nextX = this.centerX;
-		var nextY = this.centerY;		
+		var nextY = this.centerY;
 
 		if(this.goingNorth)
 		{
 			nextY -= this.velY;
-		}	
+		}
 		if(this.goingSouth)
 		{
 			nextY += this.velY;
@@ -94,12 +98,26 @@ function playerClass()
 		{
 			nextX += this.velX;
 		}
+
 		this.setDirectionFaced();
-		
+
 		if(nextX == this.centerX && nextY == this.centerY)
+		{
 			this.isIdle = true;
+		}
 		else
+		{
 			this.isIdle = false;
+
+			// draw footprints on the ground as we travel
+			if (this.footstepImage) {
+				this.distSinceLastFootstep += Math.hypot(nextX-this.centerX,nextY-this.centerY);
+				if (this.distSinceLastFootstep >= FOOTSTEP_DISTANCE) {
+					addGroundDecal({x:this.centerX,y:this.centerY+16},this.footstepImage)
+				}
+			}
+
+		}
 
 		this.collider.update(nextX,nextY);
 
@@ -107,7 +125,7 @@ function playerClass()
         var nextTileIndTR = getTileIndexAtRowCol(this.collider.box.right,this.collider.box.top,currentMapCols,currentMapRows);
         var nextTileIndBR = getTileIndexAtRowCol(this.collider.box.right,this.collider.box.bottom,currentMapCols,currentMapRows);
         var nextTileIndBL = getTileIndexAtRowCol(this.collider.box.left,this.collider.box.bottom,currentMapCols,currentMapRows);
-        
+
         var nextTileIndex = getTileIndexAtRowCol(nextX,nextY,currentMapCols,currentMapRows);
 		var nextTileType = TILE_SNOW;
 
@@ -120,7 +138,7 @@ function playerClass()
 			nextTileType = worldMap[0][nextTileIndex];
 
 			//pass in the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
-			this.pickupItemsIfAble(nextTileTypeTR,nextTileTypeTL,nextTileTypeBR,nextTileTypeBL, 
+			this.pickupItemsIfAble(nextTileTypeTR,nextTileTypeTL,nextTileTypeBR,nextTileTypeBL,
 									nextTileIndTL, nextTileIndTR, nextTileIndBR, nextTileIndBL);
 
 			//pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
@@ -249,7 +267,7 @@ function playerClass()
 			this.directionFaced = "Southeast";
 		}
 	}
-	
+
 	this.toggleImmunityCheat = function()
 	{
 		if(this.isImmune)
@@ -261,7 +279,7 @@ function playerClass()
 			this.isImmune = true;
 		}
 	}
-	
+
 	this.immunity = function()
 	{
 		console.log(this.isImmune);
@@ -283,7 +301,7 @@ function playerClass()
 		if(this.animDelay < 0)
 		{
 			this.animDelay = FRAME_DELAY;
-			
+
 			switch(this.directionFaced) {
 				case "South":
 					this.animFrame = 0;
@@ -302,7 +320,7 @@ function playerClass()
 
 		this.collider.draw();
 
-		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
+		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS,
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}
 }

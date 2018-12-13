@@ -5,6 +5,7 @@ var seerPic = document.createElement("img");
 var outcastPic = document.createElement("img");
 var maleVikingPic = document.createElement("img");
 var femaleVikingPic = document.createElement("img");
+var footStepsPic = document.createElement("img");
 
 var wormexPic = document.createElement("img");
 var tankPic = document.createElement("img");
@@ -18,8 +19,9 @@ function loadImages()
 {
 	var imageList = [
         //Ui
-        {varName: textboxPic, fileName: "chatbox.png"},
-        
+		{varName: textboxPic, fileName: "chatbox.png"},
+		{varName: footStepsPic, fileName: "footstepsSnow.png"},
+
 		// Characters
 		{charName: vikingPic, fileName: "viking_quick_sheet.png"},
 		{charName: maleVikingPic, fileName: "male_viking.png"},

@@ -37,7 +37,7 @@ function imgsDoneLoadingSoStartGame()
 		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y, allLvls[0].enemies[i].charType);
 	}
 
-	player.init(vikingPic, "Ragnar");
+	player.init(vikingPic, "Ragnar", footStepsPic);
 	maleViking.init(maleVikingPic,"Male Viking",TILE_MALE_VIKING);
 	femaleViking.init(femaleVikingPic,"Female Viking",TILE_FEMALE_VIKING);
 	seer.init(seerPic,"The Seer",TILE_SEER);
@@ -61,6 +61,8 @@ function updateAll()
 	} else {
 		console.log("Pause");
 			}
+
+	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
 
 	drawAll();
 }
@@ -90,6 +92,9 @@ function drawAll()
 	canvasContext.translate(-camPanX, -camPanY);
 
 	drawVisibleWorld(currentMapCols, 0);
+
+	drawGroundDecals();
+
 	for(var i = 0; i < enemiesList.length; i++)
 	{
 		enemiesList[i].draw();

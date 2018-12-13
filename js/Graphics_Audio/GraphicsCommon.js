@@ -28,7 +28,7 @@ function drawText(text, x,y, color, font="13px sans-serif")
 	canvasContext.fillText(text, x,y);
 }
 
-function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor) 
+function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor)
 {
 	canvasContext.beginPath();
 	canvasContext.strokeStyle = lineColor;
@@ -36,3 +36,16 @@ function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor)
 	canvasContext.rect(topLeftX, topLeftY, boxWidth, boxHeight);
 	canvasContext.stroke();
 }
+
+function drawImageRotatedAlpha(canvasContext, image, x, y, angle, opacity) {
+	canvasContext.save();
+	canvasContext.translate(x, y);
+	if (angle !== undefined) {
+	  canvasContext.rotate(angle);
+	}
+	if (opacity != null) {
+	  canvasContext.globalAlpha = opacity;
+	}
+	canvasContext.drawImage(image, -image.width / 2, -image.height / 2);
+	canvasContext.restore();
+  }
