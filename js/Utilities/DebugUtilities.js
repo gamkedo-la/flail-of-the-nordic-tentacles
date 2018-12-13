@@ -21,7 +21,7 @@ function gameDebugTools()
 	drawText(`Player Wait Before Regen: ${player.waitTimeForHpRegen}`,20,60,'black','20px sans-serif');
 	for(var i = 0; i < enemiesList.length; i++)
 	{
-		drawText(`Enemy ${i} Health: ${enemiesList[i].stats.hp}`, 20, (i+4) * 20, 'black', '20px sans-serif');
+		drawText(`Enemy ${i} HP: ${enemiesList[i].stats.hp}, isInCombat: ${enemiesList[i].isInCombat}`, 20, (i+4) * 20, 'black', '20px sans-serif');
 	}
 
 	// drawCircle(camPanX, camPanY, 5, 'red');

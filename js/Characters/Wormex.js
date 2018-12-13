@@ -2,6 +2,10 @@ wormexClass.prototype = new enemyClass();
 
 function wormexClass()
 {
+
+	this.exp = new xpClass();//only for init level within a bracket appropriate to enemy
+	this.stats = new statsClass();
+	
 	this.superClassInit = this.init;
 	this.init = function(name)
 	{

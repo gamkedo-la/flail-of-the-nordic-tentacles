@@ -14,9 +14,6 @@ function enemyClass()
 	this.velX = 3.0;
 	this.velY = 3.0;
 
-	this.exp = new xpClass();//only for init level within a bracket appropriate to enemy
-	this.stats = new statsClass();
-
 	this.collider;
 	this.bitmap;
 
