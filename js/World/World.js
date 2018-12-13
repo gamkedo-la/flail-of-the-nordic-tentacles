@@ -78,8 +78,6 @@ const TILE_BEACON = 505;
 //Layer Tests 900 - 999
 const TILE_CUBE = 900;
 
-var enemiesStartSpots = [];
-var itemSpawnSpots = [];
 var allLvls = [snowTest,beachTest,mountainTest,forestTest];
 var currentLvlIndex = 0;
 

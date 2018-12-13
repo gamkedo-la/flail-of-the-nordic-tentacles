@@ -2,12 +2,10 @@ var canvas, canvasContext;
 var gameLoop;
 var gameIsRunning = false;
 var fps = 30;
-var enemiesList = [];
-const NUM_OF_ENEMIES_ON_SCREEN = 50;
 
 var isPaused = false;
 var displayItem = false;
-var timer = 0;
+var itemDisplaytimer = 0;
 var debugState = false;
 
 var player = new playerClass();
@@ -32,23 +30,8 @@ function imgsDoneLoadingSoStartGame()
 	gameIsRunning = true;
 	gameLoop = setInterval(updateAll, 1000/fps);
 
-	for(var i = 0; i < allLvls[0].enemies.length; i++)
-	{
-		addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y, allLvls[0].enemies[i].charType);
-	}
+	setupCharacters();
 
-	player.init(vikingPic, "Ragnar", footStepsPic);
-	maleViking.init(maleVikingPic,"Male Viking",TILE_MALE_VIKING);
-	femaleViking.init(femaleVikingPic,"Female Viking",TILE_FEMALE_VIKING);
-	seer.init(seerPic,"The Seer",TILE_SEER);
-	outcast.init(outcastPic,"The Outcast",TILE_OUTCAST);
-
-	findSpawnSpots();
-	popEnemyList();
-	for(var i = 0; i < enemiesList.length; i++)
-	{
-		enemiesList[i].init("Enemy " + i);
-	}
 	setupInput();
 }
 
@@ -57,7 +40,6 @@ function updateAll()
 	if (isPaused == false){
 		moveAll();
 		battleAll();
-		regenPlayerHpIfAble(player,player.isIdle,enemiesList);
 	} else {
 		console.log("Pause");
 			}
@@ -69,11 +51,7 @@ function updateAll()
 
 function moveAll()
 {
-	player.move();
-	for(var i = 0; i < enemiesList.length; i++)
-	{
-		enemiesList[i].move();
-	}
+	moveCharacters();
 	moveCamera(currentMapCols, currentMapRows);
 }
 
@@ -84,6 +62,8 @@ function battleAll()
 		//checking for battle against player
 		enemiesList[i].battle(player.collider);
 	}
+	
+	regenPlayerHpIfAble(player,player.isIdle,enemiesList);
 }
 
 function drawAll()
@@ -95,20 +75,7 @@ function drawAll()
 
 	drawGroundDecals();
 
-	for(var i = 0; i < enemiesList.length; i++)
-	{
-		enemiesList[i].draw();
-	}
-
-	//going to need y-sorting for these
-	if(currentMap == 'forestTest')
-	{
-		maleViking.draw();
-		femaleViking.draw();
-		seer.draw();
-		outcast.draw();
-	}
-	player.draw();
+	drawCharacters();
 
 	drawVisibleWorld(currentMapCols, 1);
 	canvasContext.restore();
@@ -116,6 +83,14 @@ function drawAll()
 	{
 		gameDebugTools();
 	}
+
+	drawUI();
+    createDialogue();
+}
+
+//will go to UI JS once implemented
+function drawUI()
+{
 	drawText(currentMap, 700, 30, font="30px sans-serif");
 	if(displayItem)
 	{
@@ -128,5 +103,4 @@ function drawAll()
 		drawRect(canvas.width/2-50,canvas.height/2-25, 125,25, "white");
 		drawText("PAUSED", canvas.width/2-50,canvas.height/2, "black", font="30px sans-serif");
 	}
-    createDialogue();
 }

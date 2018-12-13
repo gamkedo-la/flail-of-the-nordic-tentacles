@@ -70,3 +70,11 @@ function getEnemyPicBasedOnType(charType)
 			return vanguardPic;
 	}
 }
+
+function drawEnemies()
+{
+	for(var i = 0; i < enemiesList.length; i++)
+	{
+		enemiesList[i].draw();
+	}
+}

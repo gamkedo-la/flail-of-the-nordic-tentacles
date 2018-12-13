@@ -35,6 +35,30 @@ function moveCharIfAble(tileType)
   }
 }
 
+function drawCharacters()
+{
+  drawEnemies();
+  player.draw();
+
+  //going to need y-sorting for these
+  if(currentMap == 'forestTest')
+  {
+    maleViking.draw();
+    femaleViking.draw();
+    seer.draw();
+    outcast.draw();
+  }
+}
+
+function moveCharacters()
+{
+  player.move();
+  for(var i = 0; i < enemiesList.length; i++)
+  {
+    enemiesList[i].move();
+  }
+}
+
 function handleCharacterPositions(whichLevel)
 {
   if(gameIsRunning)
@@ -75,5 +99,26 @@ function handleCharacterPositions(whichLevel)
     {
       addEnemyToSpawnList(allLvls[whichLevel].enemies[i].x,allLvls[whichLevel].enemies[i].y, allLvls[whichLevel].enemies[i].charType);
     }
+  }
+}
+
+function setupCharacters()
+{
+  for(var i = 0; i < allLvls[0].enemies.length; i++)
+  {
+    addEnemyToSpawnList(allLvls[0].enemies[i].x,allLvls[0].enemies[i].y, allLvls[0].enemies[i].charType);
+  }
+
+  player.init(vikingPic, "Ragnar", footStepsPic);
+  maleViking.init(maleVikingPic,"Male Viking",TILE_MALE_VIKING);
+  femaleViking.init(femaleVikingPic,"Female Viking",TILE_FEMALE_VIKING);
+  seer.init(seerPic,"The Seer",TILE_SEER);
+  outcast.init(outcastPic,"The Outcast",TILE_OUTCAST);
+
+  findSpawnSpots();
+  popEnemyList();
+  for(var i = 0; i < enemiesList.length; i++)
+  {
+    enemiesList[i].init("Enemy " + i);
   }
 }

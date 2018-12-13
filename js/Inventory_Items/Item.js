@@ -6,13 +6,13 @@ function toggleInventoryAndDrawImage(){
 
 function itemPickedUp()
 {	
-	timer ++;
-	if (timer <= 100)
+	itemDisplaytimer ++;
+	if (itemDisplaytimer <= 100)
 	{
 		displayItem = true;
 	}
-	else if (timer > 100){
+	else if (itemDisplaytimer > 100){
 		displayItem = false;
-		timer = 0;
+		itemDisplaytimer = 0;
 	}
 }
