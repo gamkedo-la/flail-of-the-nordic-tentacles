@@ -1,20 +1,15 @@
 var particles = [];
 
-function Particle(x,y,life,angle,speed,texture = null)
+function Particle(point,velocity,acceleration)
 {
-	this.pos = {x:x,y:y};
-	this.life = life;
-	let angInRads = angle * Math.PI / 180;
-	this.vel = {x: speed * Math.cos(angInRads), y: speed * Math.sin(angInRads)};
+	this.pos = point || new Vector(0,0);
+	this.vel = velocity || new Vector(0,0);
+	this.acceleration = acceleration || new Vector(0,0,);
+}
 
-	this.update = function()
-	{
-		this.life--;
+Particle.prototype.move = function()
+{
+	this.vel.add(this.acceleration);
 
-		if(this.life > 0)
-		{
-			this.pos.x += this.vel.x;
-			this.pos.y += this.vel.y;
-		}
-	}
+	this.pos.add(this.vel);
 }
