@@ -1,4 +1,7 @@
-// the globals maleViking, seer and outcast are now created in Main.js
+var seer = new npcClass();
+var outcast = new npcClass();
+var maleViking = new npcClass();
+var femaleViking = new npcClass();
 
 function npcClass()
 {

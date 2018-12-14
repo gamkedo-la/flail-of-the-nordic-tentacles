@@ -1,3 +1,5 @@
+var emitters = [new Emitter(new Vector(1160,840),Vector.getNewVectorFromAngMag(0,2)),new Emitter(new Vector(1000,840),Vector.getNewVectorFromAngMag(0,-2)),];
+
 function Emitter(point,velocity,spread)
 {
 	this.pos = point; //Vector
@@ -10,10 +12,10 @@ function Emitter(point,velocity,spread)
 
 Emitter.prototype.emitParticle = function()
 {
-	let ang = this.vel.getAng() + this.spread - (Math.random() * this.spread * 2);
-	let magnitude = this.vel.getMagnitude();
-	let pos = new Vector(this.pos.x,this.pos.y);
-	let vel = Vector.getNewVectorFromAngMag(ang,magnitude);
+	var ang = this.vel.getAng() + this.spread - (Math.random() * this.spread * 2);
+	var magnitude = this.vel.getMagnitude();
+	var pos = new Vector(this.pos.x,this.pos.y);
+	var vel = Vector.getNewVectorFromAngMag(ang,magnitude);
 
 	return new Particle(pos,vel);
 }

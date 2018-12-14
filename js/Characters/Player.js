@@ -1,3 +1,5 @@
+var player = new playerClass();
+
 function playerClass()
 {
 	this.centerX = 75;

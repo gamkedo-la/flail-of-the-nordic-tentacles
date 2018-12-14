@@ -8,12 +8,6 @@ var displayItem = false;
 var itemDisplaytimer = 0;
 var debugState = false;
 
-var player = new playerClass();
-var seer = new npcClass();
-var outcast = new npcClass();
-var maleViking = new npcClass();
-var femaleViking = new npcClass();
-
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
 */
@@ -45,7 +39,8 @@ function updateAll()
 			}
 
 	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
-
+	addParticles(200,5);
+	plotParticles(150,150);
 	drawAll();
 }
 
@@ -72,11 +67,9 @@ function drawAll()
 	canvasContext.translate(-camPanX, -camPanY);
 
 	drawVisibleWorld(currentMapCols, 0);
-
 	drawGroundDecals();
-
 	drawCharacters();
-
+	drawParticles();
 	drawVisibleWorld(currentMapCols, 1);
 	canvasContext.restore();
 	if(debugState)
