@@ -95,9 +95,6 @@ function keyPressed(evt) {
 
         // keys that only work in editor mode
         switch (evt.keyCode) {
-            case KEY_P:
-                isPaused = !isPaused;
-                break;
             case TAB:
                 useEditorMode();
                 break;
@@ -137,12 +134,6 @@ function keyPressed(evt) {
                 editor.currentLayer++;
                 editor.changeLayer();
                 break;
-            case KEY_O:
-                testDialogue.isPlaying = !testDialogue.isPlaying;
-                break;
-            case SPACE:
-                nextDialoguePage();
-                break;
             }
         }
         else // not in editor mode
@@ -177,6 +168,9 @@ function keyPressed(evt) {
 			case KEY_J:
 				player.toggleImmunityCheat();
 				break;
+            case KEY_U:
+                givePlayerRandomXp();
+                break;
         }
     }
 

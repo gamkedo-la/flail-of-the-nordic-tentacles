@@ -119,13 +119,13 @@ function resetPlayerHealth(playerStats)
 	playerStats.isCharacterDead = false;
 }
 
-function levelUpPlayer(playerXpObj)
+function levelUpPlayer()
 {
-	playerXpObj.currentLvl++;
-	playerXpObj.nextLvl++;
-	if(playerXpObj.currentLvl % 5 == 1)
+	player.exp.currentLvl++;
+	player.exp.nextLvl++;
+	if(player.exp.currentLvl % 5 == 1)
 	{
-		playerXpObj.levelBracket++;
+		player.exp.levelBracket++;
 	}
-	playerXpObj.nextXp = calculateXpToNextLvl(playerXpObj.currentLvl, playerXpObj.levelBracket);
+	player.exp.nextXp = calculateXpToNextLvl(player.exp.currentLvl, player.exp.levelBracket);
 }

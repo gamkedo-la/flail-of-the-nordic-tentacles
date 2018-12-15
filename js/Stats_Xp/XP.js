@@ -2,14 +2,9 @@
 	NOTE: xp really only need to be checked when doing things like battles, using items that increase them whether permanently or temporarily,
 	checking gear requirements, etc.
 */
-var currentXp;
-var currentLvl;
-var	gainXP;
 const BASE_XP_REQ = 20;
 const BASE_XP_DROP = 5;
 const PLAYER_MAX_LEVEL = 50;
-
-var hasPlayerLeveledUp = false;
 
 function xpClass()
 {

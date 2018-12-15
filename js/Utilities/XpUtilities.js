@@ -62,16 +62,26 @@ function getRandomLevel_MaxMinInclusive(max,min)
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function hasPlayerLeveledUp(playerXpObj)
+function hasPlayerLeveledUp()
 {
-	if(playerXpObj.currentXp >= playerXpObj.nextXp)
+	if(player.exp.currentXp >= player.exp.nextXp)
 	{
-		hasPlayerLeveledUp = true;
+		return true;
 	}
 	else
 	{
-		hasPlayerLeveledUp = false;
+		return false;
 	}
+}
 
-	return hasPlayerLeveledUp;
+function givePlayerRandomXp()
+{
+	let rand = Math.floor(Math.random() * (enemiesList.length));
+
+	player.exp.currentXp += enemiesList[rand].exp.gainEnemyXpDrop();
+
+	if(hasPlayerLeveledUp())
+	{
+		levelUpPlayer();
+	}
 }
