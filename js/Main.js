@@ -96,4 +96,7 @@ function drawUI()
 		drawRect(canvas.width/2-50,canvas.height/2-25, 125,25, "white");
 		drawText("PAUSED", canvas.width/2-50,canvas.height/2, "black", font="30px sans-serif");
 	}
+	drawText("allXP:>" + currentXp, 620, 500, "Teal", "20px Arial", "center", 10);
+	drawText("level:>" + currentLvl, 620, 520, "Maroon", "20px Arial", "center", 10);
+	drawText("gainXP:>" + gainXP, 620, 540, "Indigo", "18px Arial", "center", 10);
 }
