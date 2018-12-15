@@ -78,3 +78,14 @@ function drawEnemies()
 		enemiesList[i].draw();
 	}
 }
+
+function handleEnemyRemovalAndXpDrop(whichEnemy)
+{
+	if(whichEnemy.stats.isCharacterDead)
+	{
+		player.exp.currentXp += whichEnemy.exp.gainEnemyXpDrop();
+
+		if(hasPlayerLeveledUp())
+			levelUpPlayer();
+	}
+}

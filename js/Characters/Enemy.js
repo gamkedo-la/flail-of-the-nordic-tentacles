@@ -165,6 +165,8 @@ function enemyClass()
 			if(this.doesPlayerHaveAdvantage(player))
 			{
 				calculateDamage(player.stats, this.stats);
+
+				handleEnemyRemovalAndXpDrop(this);
 			}
 			else
 			{
