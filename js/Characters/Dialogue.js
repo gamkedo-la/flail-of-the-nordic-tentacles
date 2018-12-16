@@ -11,15 +11,21 @@ function Dialogue() {
     var boxY = 430;
 
     var textX = boxX + 35;
-    var textY = boxY + 45;
-    this.create = function (dialogueList) {
+    var textY = boxY + 60;
+    
+    var nameY = boxY + 30;
+    
+    this.create = function (charName, nameCol, dialogueList) {
         if (this.isShowing) {
+            var measureText = canvasContext.measureText(charName);
+            var textWidth = measureText.width;
             var spellout;
             this.showBox();
             if (this.letterCounter < dialogueList[this.page].length) {
                 this.letterCounter += letterSpeed;
             }
             spellout = dialogueList[this.page].substr(0, this.letterCounter)
+            drawText(charName, textX - 15, nameY, "yellow" /* nameCol */, "20px Arial");
             drawText(spellout, textX, textY, "white", "20px Arial");
         }
     }
@@ -47,22 +53,24 @@ function Dialogue() {
 }
 
 var maleVikingDialogue = new Dialogue();
-var maleVikingText = ["Viking 1: Hello, I'm a viking.", "The male kind.", "Har har har!"];
+var maleVikingText = ["Hello, I'm a viking.", "The male kind.", "Har har har!"];
 
 var femaleVikingDialogue = new Dialogue();
-var femaleVikingText = ["Viking 2: Hello, I'm a viking.", "The female kind.", "Ohohoho!"];
+var femaleVikingText = ["Hello, I'm a viking.", "The female kind.", "Ohohoho!"];
 
 var outcastDialogue = new Dialogue();
-var outcaseText = ["Outcast: I'm sad...", "Why, you ask?", "It seems no one likes me...", "I feel like it has something to do with my name."];
+var outcaseText = ["I'm sad...", "Why, you ask?", "It seems no one likes me...", "I feel like it has something to do with my name."];
 
 var seerDialogue = new Dialogue();
-var seerText = ["Seer: I've been expecting you.", "How? I saw you walk up to me!"];
+var seerText = ["I've been expecting you.", "How? I saw you walk up to me!"];
 
 function triggerText(npcTextBool) {
-    //if an npc hasn't been talked to yet, then play their event
+    //if an npc hasn't been talked to yet, play their event
     if (!npcTextBool.talkedTo) npcTextBool.isShowing = true;
 }
 
+var allNpcs = [maleViking, femaleViking, outcast, seer];
+var allNpcNameCols = ["green", "purple", "lightblue", "yellow"];
 var allNpcEvents = [maleVikingDialogue, femaleVikingDialogue, outcastDialogue, seerDialogue];
 var allNpcText = [maleVikingText, femaleVikingText, outcaseText, seerText];
 
@@ -75,7 +83,7 @@ function dialogueNotShowing() {
 
 function createDialogue() {
     for (var i = 0; i < allNpcEvents.length; i++) {
-        allNpcEvents[i].create(allNpcText[i]);
+        allNpcEvents[i].create(allNpcs[i].charName, allNpcNameCols[i], allNpcText[i]);
     }
 }
 
