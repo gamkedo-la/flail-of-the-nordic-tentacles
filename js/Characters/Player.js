@@ -4,8 +4,11 @@ function playerClass()
 {
 	this.centerX = 75;
 	this.centerY = 75;
-	this.velX = 12.0;
-	this.velY = 12.0;
+	this.velX = 8;
+	this.velY = 8;
+	this.accelerate = 1.0005;
+	this.decelerate = 0.7;
+
 
 	this.collider;
 
@@ -71,6 +74,11 @@ function playerClass()
 		this.centerY = this.homeY;
 	}
 
+	this.stop = function(){
+	this.nextY += (this.velY *=this.decelerate);
+   	this.nextX += (this.velX *=this.decelerate);
+
+	}
 	this.move = function()
 	{
 		if(this.stats.isCharacterDead)
@@ -83,34 +91,38 @@ function playerClass()
 
 		var nextX = this.centerX;
 		var nextY = this.centerY;
-
+	if(this.goingNorth || this.goingSouth || this.goingWest || this.goingEast){
 		if(this.goingNorth)
 		{
-			nextY -= this.velY;
+			nextY -= (this.velY *=this.accelerate);
 		}
 		if(this.goingSouth)
 		{
-			nextY += this.velY;
+			nextY += (this.velY *=this.accelerate);
 		}
 		if(this.goingWest)
 		{
-			nextX -= this.velX;
+			nextX -= (this.velX *=this.accelerate);
 		}
 		if(this.goingEast)
 		{
-			nextX += this.velX;
+			nextX += (this.velX *=this.accelerate);
 		}
-
+	}else{
+		for(i=0; i++; i=8){
+		this.stop();
+		console.log("Deaccelerate!");
+		}
+	};
 		this.setDirectionFaced();
 
 		if(nextX == this.centerX && nextY == this.centerY)
 		{
-			this.isIdle = true;
+			this.isIdle == true;
 		}
 		else
 		{
 			this.isIdle = false;
-
 			// draw footprints on the ground as we travel
 			if (this.footstepImage) {
 				this.distSinceLastFootstep += Math.hypot(nextX-this.centerX,nextY-this.centerY);
