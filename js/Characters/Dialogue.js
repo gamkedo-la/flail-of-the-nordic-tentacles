@@ -1,7 +1,8 @@
 function Dialogue() {
-    this.isPlaying = false;
+    this.isShowing = false;
     this.letterCounter = 0;
     this.page = 0;
+    this.talkedTo = false;
 
     var letterSpeed = 1;
 
@@ -9,11 +10,10 @@ function Dialogue() {
     var boxX = 58;
     var boxY = 430;
 
-    var textX = boxX + 50;
+    var textX = boxX + 35;
     var textY = boxY + 45;
-
     this.create = function (dialogueList) {
-        if (this.isPlaying) {
+        if (this.isShowing) {
             var spellout;
             this.showBox();
             if (this.letterCounter < dialogueList[this.page].length) {
@@ -29,7 +29,7 @@ function Dialogue() {
     }
 
     this.nextPage = function (dialogueList) {
-        if (this.isPlaying) {
+        if (this.isShowing) {
             var textSpeltOut = this.letterCounter >= dialogueList[this.page].length;
             if (this.letterCounter < dialogueList[this.page].length) {
                 this.letterCounter = dialogueList[this.page].length
@@ -37,33 +37,58 @@ function Dialogue() {
                 this.page++;
                 this.letterCounter = 0;
             } else if (textSpeltOut && this.page >= dialogueList.length - 1) {
-                this.isPlaying = false;
+                this.isShowing = false;
                 this.page = 0;
                 this.letterCounter = 0;
+                this.talkedTo = true;
             }
         }
     }
 }
 
-var testDialogue = new Dialogue();
-var testChat = ["This is a test", "A really long sentence to remind me that I have to get wrap working", "Hello hello hello"];
+var maleVikingDialogue = new Dialogue();
+var maleVikingText = ["Viking 1: Hello, I'm a viking.", "The male kind.", "Har har har!"];
 
+var femaleVikingDialogue = new Dialogue();
+var femaleVikingText = ["Viking 2: Hello, I'm a viking.", "The female kind.", "Ohohoho!"];
 
+var outcastDialogue = new Dialogue();
+var outcaseText = ["Outcast: I'm sad...", "Why, you ask?", "It seems no one likes me...", "I feel like it has something to do with my name."];
+
+var seerDialogue = new Dialogue();
+var seerText = ["Seer: I've been expecting you.", "How? I saw you walk up to me!"];
+
+function triggerText(npcTextBool) {
+    if (!npcTextBool.talkedTo) {
+        npcTextBool.isShowing = true;
+    } else {
+        npcTextBool.isShowing = false;
+    }
+}
+
+var allNpcEvents = [maleVikingDialogue, femaleVikingDialogue, outcastDialogue, seerDialogue];
+var allNpcText = [maleVikingText, femaleVikingText, outcaseText, seerText];
+
+function createNpcEvent(evtFunc) {
+    for (var i = 0; i < allNpcEvents.length; i++) {
+        allNpcEvents[i].evtFunc(allNpcText[i]);
+    }
+}
 
 function createDialogue() {
-    testDialogue.create(testChat);
+    for (var i = 0; i < allNpcEvents.length; i++) {
+        allNpcEvents[i].create(allNpcText[i]);
+    }
 }
 
 function nextDialoguePage() {
-    testDialogue.nextPage(testChat)
+    for (var i = 0; i < allNpcEvents.length; i++) {
+        allNpcEvents[i].nextPage(allNpcText[i]);
+    }
 }
 
-
-
-
-
-
-
-
-
-
+function resetDialogue() {
+    for (var i = 0; i < allNpcEvents.length; i++) {
+        allNpcEvents[i].talkedTo = false;
+    }
+}
