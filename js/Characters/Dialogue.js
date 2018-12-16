@@ -5,6 +5,7 @@ function Dialogue() {
     this.talkedTo = false;
 
     var letterSpeed = 1;
+    var nameCol = "yellow";
 
     var boxPic = textboxPic;
     var boxX = 58;
@@ -15,17 +16,15 @@ function Dialogue() {
     
     var nameY = boxY + 30;
     
-    this.create = function (charName, nameCol, dialogueList) {
+    this.create = function (charName, indNameCols, dialogueList) {
         if (this.isShowing) {
-            var measureText = canvasContext.measureText(charName);
-            var textWidth = measureText.width;
             var spellout;
             this.showBox();
             if (this.letterCounter < dialogueList[this.page].length) {
                 this.letterCounter += letterSpeed;
             }
             spellout = dialogueList[this.page].substr(0, this.letterCounter)
-            drawText(charName, textX - 15, nameY, "yellow" /* nameCol */, "20px Arial");
+            drawText(charName, textX - 15, nameY, nameCol /* indNameCols */, "20px Arial");
             drawText(spellout, textX, textY, "white", "20px Arial");
         }
     }
@@ -69,17 +68,17 @@ function triggerText(npcTextBool) {
     if (!npcTextBool.talkedTo) npcTextBool.isShowing = true;
 }
 
-var allNpcs = [maleViking, femaleViking, outcast, seer];
-var allNpcNameCols = ["green", "purple", "lightblue", "yellow"];
-var allNpcEvents = [maleVikingDialogue, femaleVikingDialogue, outcastDialogue, seerDialogue];
-var allNpcText = [maleVikingText, femaleVikingText, outcaseText, seerText];
-
 function dialogueNotShowing() {
     return !maleVikingDialogue.isShowing && !femaleVikingDialogue.isShowing && !outcastDialogue.isShowing && !seerDialogue.isShowing;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //TO-DO refactor
+
+var allNpcs = [maleViking, femaleViking, outcast, seer];
+var allNpcNameCols = ["green", "purple", "lightblue", "yellow"];
+var allNpcEvents = [maleVikingDialogue, femaleVikingDialogue, outcastDialogue, seerDialogue];
+var allNpcText = [maleVikingText, femaleVikingText, outcaseText, seerText];
 
 function createDialogue() {
     for (var i = 0; i < allNpcEvents.length; i++) {
