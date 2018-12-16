@@ -24,7 +24,7 @@ function gameDebugTools()
 		drawText(`Enemy ${i} HP: ${enemiesList[i].stats.hp}, isInCombat: ${enemiesList[i].isInCombat}`, 20, (i+4) * 20, 'black', '20px sans-serif');
 	}
 
-	// drawCircle(camPanX, camPanY, 5, 'red');
+	drawCircle(camPanX, camPanY, 5, 'red');
 	drawText('mouse: ' + (mouseX + camPanX) + ',' + (mouseY + camPanY) + 'index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols), 
 		mouseX, mouseY, 'black');
 }

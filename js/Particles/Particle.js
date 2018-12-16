@@ -31,21 +31,21 @@ function plotParticles(boundsX,boundsY)
 {
 	var currentParticles = [];
 
-	for(var j = 0; j < emitters.length; j++)
-	{
+	// for(var j = 0; j < emitters.length; j++)
+	// {
 		for(var i = 0; i < particles.length; i++)
 		{
 			var particle = particles[i];
 			var pos = particle.pos;
 
-			if(pos.x < (emitters[j].pos.x - boundsX) || pos.x > (emitters[j].pos.x + boundsX) || 
-				pos.y < (emitters[j].pos.y - boundsX) || pos.y > (emitters[j].pos.y + boundsY))
-				continue;
+			// if(pos.x < (emitters[j].pos.x - boundsX) || pos.x > (emitters[j].pos.x + boundsX) || 
+			// 	pos.y < (emitters[j].pos.y - boundsX) || pos.y > (emitters[j].pos.y + boundsY))
+			// 	continue;
 
 			particle.move();
 			currentParticles.push(particle);
 		}
-	}
+	// }
 
 	particles = currentParticles;
 }

@@ -1,13 +1,19 @@
-var emitters = [new Emitter(new Vector(1160,840),Vector.getNewVectorFromAngMag(0,2)),new Emitter(new Vector(1000,840),Vector.getNewVectorFromAngMag(0,-2)),];
+var emitters = [];
 
 function Emitter(point,velocity,spread)
 {
 	this.pos = point; //Vector
 	this.vel = velocity; //Vector
 	this.spread = spread || Math.PI / 32; //possible angles = velocity +/- spread
+	this.life;
 
 	this.color = "#999";
 	this.texture = "";
+
+	this.draw = function()
+	{
+		drawCircle(this.pos.x,this.pos.y, 5, 'red');
+	}
 }
 
 Emitter.prototype.emitParticle = function()

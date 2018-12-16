@@ -39,9 +39,8 @@ function updateAll()
 			}
 
 	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
-	addParticles(200,5);
-	plotParticles(150,150);
 	drawAll();
+	// emitters = [];
 }
 
 function moveAll()
@@ -71,6 +70,7 @@ function drawAll()
 	drawCharacters();
 	drawParticles();
 	drawVisibleWorld(currentMapCols, 1);
+	plotParticles(150,150);
 	canvasContext.restore();
 	if(debugState)
 	{

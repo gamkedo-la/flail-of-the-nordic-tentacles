@@ -55,7 +55,17 @@ var mouseY = 0;
 
 function setupInput() {
     canvas.addEventListener('mousemove', updateMousePos);
-    canvas.addEventListener('mousedown', checkIfEditorIsOnAndSetTile);
+    canvas.addEventListener('mousedown', function()
+        {
+            if(editor != null)
+                checkIfEditorIsOnAndSetTile();
+            else
+            {
+                //spawn particles at mouseX and mouseY
+                emitters.push(new Emitter(new Vector((mouseX+camPanX),(mouseY+camPanY)),Vector.getNewVectorFromAngMag(0,1.5),Math.PI));
+                addParticles(2500,5);
+            }
+        });
     document.addEventListener('keydown', keyPressed);
     document.addEventListener('keyup', keyReleased);
 
@@ -170,6 +180,10 @@ function keyPressed(evt) {
 				break;
             case KEY_U:
                 givePlayerRandomXp();
+                break;
+            case NUM_0:
+                particles = [];
+                emitters = [];
                 break;
         }
     }
