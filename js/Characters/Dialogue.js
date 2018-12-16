@@ -69,11 +69,12 @@ function triggerText(npcTextBool) {
 var allNpcEvents = [maleVikingDialogue, femaleVikingDialogue, outcastDialogue, seerDialogue];
 var allNpcText = [maleVikingText, femaleVikingText, outcaseText, seerText];
 
-function createNpcEvent(evtFunc) {
-    for (var i = 0; i < allNpcEvents.length; i++) {
-        allNpcEvents[i].evtFunc(allNpcText[i]);
-    }
+function dialogueNotShowing() {
+    return !maleVikingDialogue.isShowing && !femaleVikingDialogue.isShowing && !outcastDialogue.isShowing && !seerDialogue.isShowing;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//TO-DO refactor
 
 function createDialogue() {
     for (var i = 0; i < allNpcEvents.length; i++) {

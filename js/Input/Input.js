@@ -157,9 +157,6 @@ function keyPressed(evt) {
             case TAB:
                 useEditorMode();
                 break;
-            case KEY_O:
-                testDialogue.isPlaying = !testDialogue.isPlaying;
-                break;
             case SPACE:
                 nextDialoguePage();
                 break;
