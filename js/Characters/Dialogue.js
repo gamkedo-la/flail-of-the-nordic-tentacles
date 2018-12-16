@@ -40,7 +40,7 @@ function Dialogue() {
                 this.isShowing = false;
                 this.page = 0;
                 this.letterCounter = 0;
-                this.talkedTo = true;
+                this.talkedTo = true; //finished talking to npc
             }
         }
     }
@@ -59,11 +59,8 @@ var seerDialogue = new Dialogue();
 var seerText = ["Seer: I've been expecting you.", "How? I saw you walk up to me!"];
 
 function triggerText(npcTextBool) {
-    if (!npcTextBool.talkedTo) {
-        npcTextBool.isShowing = true;
-    } else {
-        npcTextBool.isShowing = false;
-    }
+    //if an npc hasn't been talked to yet, then play their event
+    if (!npcTextBool.talkedTo) npcTextBool.isShowing = true;
 }
 
 var allNpcEvents = [maleVikingDialogue, femaleVikingDialogue, outcastDialogue, seerDialogue];
@@ -90,6 +87,6 @@ function nextDialoguePage() {
 
 function resetDialogue() {
     for (var i = 0; i < allNpcEvents.length; i++) {
-        allNpcEvents[i].talkedTo = false;
+        allNpcEvents[i].talkedTo = false; //reset here, to talk to npcs again
     }
 }
