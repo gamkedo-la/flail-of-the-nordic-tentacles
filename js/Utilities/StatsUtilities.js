@@ -54,13 +54,11 @@ function setStats_Enemy(caller,level,charkind)
 function calculateDamage(attackerStatsObj, defenderStatsObj)
 {
 	// need to mess with the def mod here based on enemy type
-	var netDamage = attackerStatsObj.str - (defenderStatsObj.def * 0.3);
-	netDamage = Math.ceil(netDamage);
+	var netDamage = Math.ceil(attackerStatsObj.str - (defenderStatsObj.def * 0.3));
 
-	defenderStatsObj.hp -= netDamage;
+	if(netDamage > 0)
+		defenderStatsObj.hp -= netDamage;
 	
-	
-
 	if(defenderStatsObj.hp <= 0)
 	{
 		defenderStatsObj.isCharacterDead = true;

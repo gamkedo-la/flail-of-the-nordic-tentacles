@@ -76,12 +76,20 @@ function hasPlayerLeveledUp()
 
 function givePlayerRandomXp()
 {
-	let rand = Math.floor(Math.random() * (enemiesList.length));
-
-	player.exp.currentXp += enemiesList[rand].exp.gainEnemyXpDrop();
-
-	if(hasPlayerLeveledUp())
+	if(player.exp.currentLvl < 50)
 	{
-		levelUpPlayer();
+		let rand = Math.floor(Math.random() * (enemiesList.length));
+
+		player.exp.currentXp += enemiesList[rand].exp.gainEnemyXpDrop();
+
+		if(hasPlayerLeveledUp())
+		{
+			levelUpPlayer();
+		}
+	}
+	else
+	{
+		player.exp.nextXp = player.exp.currentXp;
+		player.exp.nextLvl = player.exp.currentLvl;
 	}
 }

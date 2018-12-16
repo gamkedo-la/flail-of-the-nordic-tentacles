@@ -157,7 +157,6 @@ function enemyClass()
 
 	this.battle = function(playerCollider)
 	{
-		//collision affects all enemies at the same time
 		this.isInCombat = this.collider.isCollidingWithOtherCollider(playerCollider);
 		
 		if(this.isInCombat)

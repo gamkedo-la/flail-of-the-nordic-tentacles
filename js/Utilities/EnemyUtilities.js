@@ -83,9 +83,25 @@ function handleEnemyRemovalAndXpDrop(whichEnemy)
 {
 	if(whichEnemy.stats.isCharacterDead)
 	{
-		player.exp.currentXp += whichEnemy.exp.gainEnemyXpDrop();
+		if(player.exp.currentLvl < 50)
+		{
+			player.exp.currentXp += whichEnemy.exp.gainEnemyXpDrop();
 
-		if(hasPlayerLeveledUp())
-			levelUpPlayer();
+			if(hasPlayerLeveledUp())
+				levelUpPlayer();
+		}
+		else
+		{
+			player.exp.nextXp = player.exp.currentXp;
+			player.exp.nextLvl = player.exp.currentLvl;
+		}
+		
+		for(var i = enemiesList.length - 1; i >= 0; i--)
+		{
+			if(enemiesList[i].stats.isCharacterDead)
+			{
+				enemiesList.splice(i,1);
+			}
+		}
 	}
 }
