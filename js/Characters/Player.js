@@ -1,10 +1,12 @@
+const ACCELERATION = 0.12;
+const DECELERATION = 0.70;
 var player = new playerClass();
 
 function playerClass() {
     this.centerX = 75;
     this.centerY = 75;
-    this.velX = 8;
-    this.velY = 8;
+    this.velX = 12;
+    this.velY = 12;
     this.accelerate = 1.0005;
     this.decelerate = 0.7;
 
@@ -73,9 +75,12 @@ function playerClass() {
         this.nextX += (this.velX *= this.decelerate);
 
     }
+
     this.move = function () {
-        if (dialogueNotShowing()) {
-            if (this.stats.isCharacterDead) {
+        if (dialogueNotShowing()) 
+        {
+            if (this.stats.isCharacterDead) 
+            {
                 console.log("The Player has died!");
                 player.reset();
             }
@@ -84,7 +89,9 @@ function playerClass() {
 
             var nextX = this.centerX;
             var nextY = this.centerY;
-            if (this.goingNorth || this.goingSouth || this.goingWest || this.goingEast) {
+
+            if (this.goingNorth || this.goingSouth || this.goingWest || this.goingEast) 
+            {
                 if (this.goingNorth) {
                     nextY -= (this.velY *= this.accelerate);
                 }
@@ -97,22 +104,30 @@ function playerClass() {
                 if (this.goingEast) {
                     nextX += (this.velX *= this.accelerate);
                 }
-            } else {
-                for (i = 0; i++; i = 8) {
+            } 
+            else 
+            {
+                for (i = 0; i++; i = 8) 
+                {
                     this.stop();
                     console.log("Deaccelerate!");
                 }
-            };
+            }
+
             this.setDirectionFaced();
 
-            if (nextX == this.centerX && nextY == this.centerY) {
+            if (nextX == this.centerX && nextY == this.centerY) 
+            {
                 this.isIdle == true;
-            } else {
+            } 
+            else 
+            {
                 this.isIdle = false;
                 // draw footprints on the ground as we travel
                 if (this.footstepImage) {
                     this.distSinceLastFootstep += Math.hypot(nextX - this.centerX, nextY - this.centerY);
-                    if (this.distSinceLastFootstep >= FOOTSTEP_DISTANCE) {
+                    if (this.distSinceLastFootstep >= FOOTSTEP_DISTANCE) 
+                    {
                         addGroundDecal({
                             x: this.centerX,
                             y: this.centerY + 16
@@ -156,6 +171,8 @@ function playerClass() {
 
             if (currentMap == 'forestTest' && seer.collider != undefined)
                 handleNpcCollisions(this.collider);
+
+            //decelerate here
         }
 
     }
