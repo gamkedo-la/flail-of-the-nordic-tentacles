@@ -113,6 +113,9 @@ function playerClass() {
                     console.log("Deaccelerate!");
                 }
             }
+			
+			nextX = Math.floor(nextX);
+			nextY = Math.floor(nextY);
 
             this.setDirectionFaced();
 

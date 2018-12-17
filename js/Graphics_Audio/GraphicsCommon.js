@@ -37,7 +37,8 @@ function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor)
 	canvasContext.stroke();
 }
 
-function drawImageRotatedAlpha(canvasContext, image, x, y, angle, opacity) {
+function drawImageRotatedAlpha(canvasContext, image, x, y, angle, opacity) 
+{
 	canvasContext.save();
 	canvasContext.translate(x, y);
 	if (angle !== undefined) {
@@ -48,4 +49,14 @@ function drawImageRotatedAlpha(canvasContext, image, x, y, angle, opacity) {
 	}
 	canvasContext.drawImage(image, -image.width / 2, -image.height / 2);
 	canvasContext.restore();
-  }
+}
+
+function drawLine(object1x, object1y, object2x, object2y, lineColor)
+{
+	canvasContext.beginPath();
+	canvasContext.strokeStyle = lineColor;
+	canvasContext.li
+	canvasContext.moveTo(object1x, object1y);
+	canvasContext.lineTo(object2x, object2y);
+	canvasContext.stroke(); 
+}
