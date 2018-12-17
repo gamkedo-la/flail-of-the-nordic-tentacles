@@ -43,4 +43,9 @@ function colliderClass(x,y,width,height,xDeviation,yDeviation)
         var y = Math.floor(this.box.top) + .5;
 		outlineRect(x,y, this.width,this.height, 'red');
 	}
+
+	this.collidingWithTerrain = function()
+	{
+		
+	}
 }

@@ -1,5 +1,5 @@
-const ACCELERATION = 0.12;
-const DECELERATION = 0.70;
+// const ACCELERATION = 0.12;
+// const DECELERATION = 0.70;
 var player = new playerClass();
 
 function playerClass() {
@@ -7,8 +7,8 @@ function playerClass() {
     this.centerY = 75;
     this.velX = 12;
     this.velY = 12;
-    this.accelerate = 1.0005;
-    this.decelerate = 0.7;
+    // this.accelerate = 1.0005;
+    // this.decelerate = 0.7;
 
 
     this.collider;
@@ -70,11 +70,11 @@ function playerClass() {
         this.centerY = this.homeY;
     }
 
-    this.stop = function () {
-        this.nextY += (this.velY *= this.decelerate);
-        this.nextX += (this.velX *= this.decelerate);
+    // this.stop = function () {
+    //     this.nextY += (this.velY *= this.decelerate);
+    //     this.nextX += (this.velX *= this.decelerate);
 
-    }
+    // }
 
     this.move = function () {
         if (dialogueNotShowing()) 
@@ -90,29 +90,42 @@ function playerClass() {
             var nextX = this.centerX;
             var nextY = this.centerY;
 
-            if (this.goingNorth || this.goingSouth || this.goingWest || this.goingEast) 
-            {
-                if (this.goingNorth) {
-                    nextY -= (this.velY *= this.accelerate);
-                }
-                if (this.goingSouth) {
-                    nextY += (this.velY *= this.accelerate);
-                }
-                if (this.goingWest) {
-                    nextX -= (this.velX *= this.accelerate);
-                }
-                if (this.goingEast) {
-                    nextX += (this.velX *= this.accelerate);
-                }
-            } 
-            else 
-            {
-                for (i = 0; i++; i = 8) 
-                {
-                    this.stop();
-                    console.log("Deaccelerate!");
-                }
+            if (this.goingNorth) {
+                nextY -= this.velY;
             }
+            if (this.goingSouth) {
+                nextY += this.velY;
+            }
+            if (this.goingWest) {
+                nextX -= this.velX;
+            }
+            if (this.goingEast) {
+                nextX += this.velX;
+            }
+
+            // if (this.goingNorth || this.goingSouth || this.goingWest || this.goingEast) 
+            // {
+            //     if (this.goingNorth) {
+            //         nextY -= (this.velY *= this.accelerate);
+            //     }
+            //     if (this.goingSouth) {
+            //         nextY += (this.velY *= this.accelerate);
+            //     }
+            //     if (this.goingWest) {
+            //         nextX -= (this.velX *= this.accelerate);
+            //     }
+            //     if (this.goingEast) {
+            //         nextX += (this.velX *= this.accelerate);
+            //     }
+            // } 
+            // else 
+            // {
+            //     for (i = 0; i++; i = 8) 
+            //     {
+            //         this.stop();
+            //         console.log("Deaccelerate!");
+            //     }
+            // }
 			
 			nextX = Math.floor(nextX);
 			nextY = Math.floor(nextY);
@@ -174,10 +187,7 @@ function playerClass() {
 
             if (currentMap == 'forestTest' && seer.collider != undefined)
                 handleNpcCollisions(this.collider);
-
-            //decelerate here
         }
-
     }
 
     this.pickupItemsIfAble = function (itemTypeTR, itemTypeTL, itemTypeBR, itemTypeBL, indexTL, indexTR, indexBR, indexBL) {
