@@ -1,10 +1,14 @@
 var particles = [];
+var maxParticles = 2500;
 
 function Particle(point,velocity,acceleration)
 {
 	this.pos = point || new Vector(0,0);
 	this.vel = velocity || new Vector(0,0);
 	this.acceleration = acceleration || new Vector(0,0,);
+
+	this.life = Vector.randBtweenTwoNums(10,20);
+	this.size = Vector.randBtweenTwoNums(5,10);
 }
 
 Particle.prototype.move = function()
@@ -14,7 +18,7 @@ Particle.prototype.move = function()
 	this.pos.add(this.vel);
 }
 
-function addParticles(maxParticles,emissionRate)
+function addParticles(emissionRate)
 {
 	if(particles.length > maxParticles) return;
 
@@ -31,21 +35,19 @@ function plotParticles(boundsX,boundsY)
 {
 	var currentParticles = [];
 
-	// for(var j = 0; j < emitters.length; j++)
-	// {
-		for(var i = 0; i < particles.length; i++)
-		{
-			var particle = particles[i];
-			var pos = particle.pos;
+	for(var i = 0; i < particles.length; i++)
+	{
+		var particle = particles[i];
+		var pos = particle.pos;
 
-			// if(pos.x < (emitters[j].pos.x - boundsX) || pos.x > (emitters[j].pos.x + boundsX) || 
-			// 	pos.y < (emitters[j].pos.y - boundsX) || pos.y > (emitters[j].pos.y + boundsY))
-			// 	continue;
+		particle.size -= 0.3;
+		particle.life -= 0.5;
+		if(particle.life <= 0)
+			continue;
 
-			particle.move();
-			currentParticles.push(particle);
-		}
-	// }
+		particle.move();
+		currentParticles.push(particle);
+	}
 
 	particles = currentParticles;
 }
@@ -55,7 +57,10 @@ function drawParticles()
 	for(var i = 0; i < particles.length; i++)
 	{
 		var pos = particles[i].pos;
+		var size = particles[i].size;
+		if(size <= 0)
+			continue;
 
-		drawCircle(pos.x,pos.y, 1, 'blue');
+		drawCircle(pos.x,pos.y, size, 'blue');
 	}
 }

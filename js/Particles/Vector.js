@@ -24,3 +24,8 @@ Vector.getNewVectorFromAngMag = function(ang,magnitude)
 {
 	return new Vector(magnitude * Math.cos(ang), magnitude * Math.sin(ang));
 }
+
+Vector.randBtweenTwoNums = function(min,max)
+{
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}

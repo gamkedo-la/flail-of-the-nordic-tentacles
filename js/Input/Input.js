@@ -62,8 +62,9 @@ function setupInput() {
             else
             {
                 //spawn particles at mouseX and mouseY
-                emitters.push(new Emitter(new Vector((mouseX+camPanX),(mouseY+camPanY)),Vector.getNewVectorFromAngMag(0,1.5),Math.PI));
-                addParticles(2500,5);
+                emitters.push(new Emitter(new Vector((mouseX+camPanX),(mouseY+camPanY)),
+                                            Vector.getNewVectorFromAngMag(0,2),Math.PI));
+                addParticles(Vector.randBtweenTwoNums(5,50));
             }
         });
     document.addEventListener('keydown', keyPressed);
