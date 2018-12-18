@@ -35,10 +35,10 @@ function saveMap(mapName, grid)
 		gridString += saveLayers(i,grid);
 	}
 
-	
+
 	gridString += "],";
 
-	console.log("var " + mapName + " = {\n" + "gridLayers: " + gridString + "\n    rows: " + grid.mapRows + "," + "\n    cols: " 
+	console.log("var " + mapName + " = {\n" + "gridLayers: " + gridString + "\n    rows: " + grid.mapRows + "," + "\n    cols: "
 		+ grid.mapCols + "," + "\n    levelName: \"" + mapName + "\"," + "\n    enemies:" + spawnListSaveText() + "};");
 }
 
@@ -60,7 +60,7 @@ function saveLayers(layer,grid)
 			else
 			{
 				multiDimArray += "" + tileType + ",";
-			}		
+			}
 		}
 	}
 	multiDimArray += "],\n";
@@ -70,6 +70,9 @@ function saveLayers(layer,grid)
 
 function loadMap(mapName)
 {
+
+  fadingTitles.begin(mapName);
+
   for(var i = 0; i < allLvls.length; i++)
   {
     if(allLvls[i].levelName == mapName)
@@ -99,7 +102,7 @@ function loadMap(mapName)
         editor.grid.mapCols = allLvls[i].cols;
         editor.grid.mapTilesetRow = allLvls[i].tilesetRow;
         editor.grid.map = Array.from(allLvls[i].gridLayers);
-        
+
         handleCharacterPositions(i);
       }
     }//end of map name check

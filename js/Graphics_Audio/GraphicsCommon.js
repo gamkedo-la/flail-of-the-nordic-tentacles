@@ -28,6 +28,20 @@ function drawText(text, x,y, color, font="13px sans-serif")
 	canvasContext.fillText(text, x,y);
 }
 
+function drawTextWithShadowCentered(text, x,y, color, font="13px sans-serif")
+{
+	canvasContext.textAlign = "center";
+	canvasContext.font = font;
+	canvasContext.shadowBlur = 8;
+	canvasContext.shadowColor = "black";
+	// if these are both 0, it's more like a "glow"
+	canvasContext.shadowOffsetX = 0;
+	canvasContext.shadowOffsetY = 0;
+	canvasContext.fillStyle = color;
+	canvasContext.fillText(text, x,y);
+	canvasContext.shadowBlur = 0;
+}
+
 function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor)
 {
 	canvasContext.beginPath();
@@ -37,7 +51,7 @@ function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor)
 	canvasContext.stroke();
 }
 
-function drawImageRotatedAlpha(canvasContext, image, x, y, angle, opacity) 
+function drawImageRotatedAlpha(canvasContext, image, x, y, angle, opacity)
 {
 	canvasContext.save();
 	canvasContext.translate(x, y);
@@ -58,5 +72,5 @@ function drawLine(object1x, object1y, object2x, object2y, lineColor)
 	canvasContext.li
 	canvasContext.moveTo(object1x, object1y);
 	canvasContext.lineTo(object2x, object2y);
-	canvasContext.stroke(); 
+	canvasContext.stroke();
 }

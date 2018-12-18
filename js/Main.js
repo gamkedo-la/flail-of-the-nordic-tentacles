@@ -56,7 +56,7 @@ function battleAll()
 		//checking for battle against player
 		enemiesList[i].battle(player.collider);
 	}
-	
+
 	regenPlayerHpIfAble(player,player.isIdle,enemiesList);
 }
 
@@ -100,4 +100,6 @@ function drawUI()
 	drawText("Next Lvl Xp: " + player.exp.nextXp, 560, 520, "Teal", "20px Arial", "center", 10);
 	drawText("Player level: " + player.exp.currentLvl, 560, 540, "Maroon", "20px Arial", "center", 10);
 	drawText("Next level: " + player.exp.nextLvl, 560, 560, "Maroon", "20px Arial", "center", 10);
+
+	fadingTitles.draw();
 }
