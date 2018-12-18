@@ -160,14 +160,21 @@ function playerClass() {
             var nextTileIndBR = getTileIndexAtRowCol(this.collider.box.right, this.collider.box.bottom, currentMapCols, currentMapRows);
             var nextTileIndBL = getTileIndexAtRowCol(this.collider.box.left, this.collider.box.bottom, currentMapCols, currentMapRows);
 
+            var nextTileTypeTR = TILE_SNOW;
+            var nextTileTypeTL = TILE_SNOW;
+            var nextTileTypeBR = TILE_SNOW;
+            var nextTileTypeBL = TILE_SNOW;
+
             var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);
             var nextTileType = TILE_SNOW;
 
-            if (nextTileIndex != undefined) {
+            if (nextTileTypeTR != undefined || nextTileIndTL != undefined || nextTileIndBR != undefined || nextTileIndBL != undefined) {
+
                 nextTileTypeTR = worldMap[0][nextTileIndTR];
                 nextTileTypeTL = worldMap[0][nextTileIndTL];
                 nextTileTypeBR = worldMap[0][nextTileIndBR];
                 nextTileTypeBL = worldMap[0][nextTileIndBL];
+
                 nextTileType = worldMap[0][nextTileIndex];
 
                 //pass in the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
@@ -175,7 +182,7 @@ function playerClass() {
                     nextTileIndTL, nextTileIndTR, nextTileIndBR, nextTileIndBL);
 
                 //pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
-                if (moveCharIfAble(nextTileType)) {
+                if (moveCharIfAble(nextTileTypeTR) && moveCharIfAble(nextTileTypeTL) && moveCharIfAble(nextTileTypeBR) && moveCharIfAble(nextTileTypeBL)) {
                     this.centerX = nextX;
                     this.centerY = nextY;
                 } else {
