@@ -154,12 +154,3 @@ function loadWorldPics(worldCode, fileName)
 	worldPics[worldCode] = document.createElement("img");
 	beginLoadingImages(worldPics[worldCode], fileName);
 }
-
-function getParticleImageBasedOnType(charType)
-{
-	//if more than one particle image exist, then pick a random one from array containing them according to whether it's a mech or not
-	if(charType == 'Wormex')
-		return greenSplat;
-	else if(charType == 'Tank')
-		return null;
-}

@@ -1,17 +1,17 @@
 var particles = [];
 var maxParticles = 2500;
 
-function Particle(point,velocity,acceleration,whichImage)
+function Particle(point,velocity,acceleration,whichImage,life,size)
 {
 	this.pos = point || new Vector(0,0);
 	this.vel = velocity || new Vector(0,0);
 	this.acceleration = acceleration || new Vector(0,0,);
 
-	//get min/max based on whichImage. for example, green splat will return 10,20 for life and 5,10 for size
-	this.life = Vector.randBtweenTwoNums(10,20);
-	this.size = Vector.randBtweenTwoNums(5,10);
-
 	this.bitmap = whichImage;
+
+	//get min/max based on whichImage. for example, green splat will return 10,20 for life and 5,10 for size
+	this.life = Vector.randBtweenTwoNums(life.min,life.max);
+	this.size = Vector.randBtweenTwoNums(size.min,size.max);
 }
 
 Particle.prototype.move = function()
@@ -21,7 +21,7 @@ Particle.prototype.move = function()
 	this.pos.add(this.vel);
 }
 
-function addParticles(emissionRate,whichImage)
+function addParticles(emissionRate,whichImage,life,size)
 {
 	if(particles.length > maxParticles) return;
 
@@ -29,7 +29,7 @@ function addParticles(emissionRate,whichImage)
 	{
 		for(var j = 0; j < emissionRate; j++)
 		{
-			particles.push(emitters[i].emitParticle(whichImage));
+			particles.push(emitters[i].emitParticle(whichImage,life,size));
 		}
 	}
 }
