@@ -232,24 +232,13 @@ function enemyClass()
 
 	this.canMoveToNextTile = function(nextCenterX,nextCenterY)
 	{
-		var nextTileIndex = getTileIndexAtRowCol(nextCenterX, nextCenterY, currentMapCols, currentMapRows);
-		var nextTileType = TILE_SNOW;
-
-		if(nextTileIndex != undefined)
-		{
-			nextTileType = worldMap[0][nextTileIndex];
-			if(moveCharIfAble(nextTileType))
-			{
-				this.centerX = nextCenterX;
-				this.centerY = nextCenterY;
-
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
+		if(this.collider.collidingWithTerrain(nextCenterX,nextCenterY,false))
+        {
+            this.centerX = nextCenterX;
+            this.centerY = nextCenterY;
+            return true;
+        }
+        return false;
 	}
 
 	this.draw = function()
