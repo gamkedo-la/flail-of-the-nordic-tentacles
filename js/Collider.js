@@ -79,7 +79,9 @@ function colliderClass(x,y,width,height,xDeviation,yDeviation)
             if (moveCharIfAble(nextTileTypeTR) && moveCharIfAble(nextTileTypeTL) && moveCharIfAble(nextTileTypeBR) && moveCharIfAble(nextTileTypeBL)) 
             {
                	return true;
-            } else {
+            } 
+            else if(isPlayer)
+            {
                 handleLevelTransition(nextTileType);
             }
         }

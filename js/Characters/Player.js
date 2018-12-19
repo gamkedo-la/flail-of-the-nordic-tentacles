@@ -1,14 +1,14 @@
-// const ACCELERATION = 0.12;
-// const DECELERATION = 0.70;
+const PLAYER_ACCELERATION = 5;
+const PLAYER_DECELERATION = 0.70;
+const FOOTSTEP_DISTANCE = 8;
+
 var player = new playerClass();
 
 function playerClass() {
     this.centerX = 75;
     this.centerY = 75;
-    this.velX = 12;
-    this.velY = 12;
-    // this.accelerate = 1.0005;
-    // this.decelerate = 0.7;
+    this.velX = 0;
+    this.velY = 0;
 
 
     this.collider;
@@ -30,7 +30,6 @@ function playerClass() {
     this.isIdle = false;
     this.waitTimeForHpRegen = 0;
 
-    const FOOTSTEP_DISTANCE = 8;
     this.distSinceLastFootstep = 0;
 
     this.item;
@@ -70,12 +69,6 @@ function playerClass() {
         this.centerY = this.homeY;
     }
 
-    // this.stop = function () {
-    //     this.nextY += (this.velY *= this.decelerate);
-    //     this.nextX += (this.velX *= this.decelerate);
-
-    // }
-
     this.move = function () {
         if (dialogueNotShowing()) 
         {
@@ -90,42 +83,28 @@ function playerClass() {
             var nextX = this.centerX;
             var nextY = this.centerY;
 
-            if (this.goingNorth) {
-                nextY -= this.velY;
+            if(this.goingWest)
+            {
+                this.velX -= PLAYER_ACCELERATION;
             }
-            if (this.goingSouth) {
-                nextY += this.velY;
+            else if(this.goingEast)
+            {
+                this.velX += PLAYER_ACCELERATION;
             }
-            if (this.goingWest) {
-                nextX -= this.velX;
+            if(this.goingNorth)
+            {
+                this.velY -= PLAYER_ACCELERATION;
             }
-            if (this.goingEast) {
-                nextX += this.velX;
+            else if(this.goingSouth)
+            {
+                this.velY += PLAYER_ACCELERATION;
             }
 
-            // if (this.goingNorth || this.goingSouth || this.goingWest || this.goingEast) 
-            // {
-            //     if (this.goingNorth) {
-            //         nextY -= (this.velY *= this.accelerate);
-            //     }
-            //     if (this.goingSouth) {
-            //         nextY += (this.velY *= this.accelerate);
-            //     }
-            //     if (this.goingWest) {
-            //         nextX -= (this.velX *= this.accelerate);
-            //     }
-            //     if (this.goingEast) {
-            //         nextX += (this.velX *= this.accelerate);
-            //     }
-            // } 
-            // else 
-            // {
-            //     for (i = 0; i++; i = 8) 
-            //     {
-            //         this.stop();
-            //         console.log("Deaccelerate!");
-            //     }
-            // }
+            nextX+=this.velX;
+            nextY+=this.velY;
+
+            this.velX *= PLAYER_DECELERATION;
+            this.velY *= PLAYER_DECELERATION;
 			
 			nextX = Math.floor(nextX);
 			nextY = Math.floor(nextY);
