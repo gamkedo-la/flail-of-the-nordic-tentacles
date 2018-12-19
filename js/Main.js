@@ -40,7 +40,7 @@ function updateAll()
 
 	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
 	drawAll();
-	// emitters = [];
+	emitters = [];
 }
 
 function moveAll()

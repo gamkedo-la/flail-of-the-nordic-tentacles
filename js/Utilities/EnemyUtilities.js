@@ -21,7 +21,6 @@ function randomSpawn()
 	}
 	var randSpot = Math.floor(Math.random() * enemiesStartSpots.length);
 	var tempEnemy = getClassBasedOnType(enemiesStartSpots[randSpot].charType);
-	// var tempEnemy = new wormexClass();
 
 	tempEnemy.setHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
 	enemiesStartSpots.splice(randSpot, 1);
@@ -83,6 +82,12 @@ function handleEnemyRemovalAndXpDrop(whichEnemy)
 {
 	if(whichEnemy.stats.isCharacterDead)
 	{
+		//need a way to pass in the equation happening but based on whichEnemy's sprite sheet size
+		//neew a way to pass in different image for different effects
+		emitters.push(new Emitter(new Vector(whichEnemy.centerX - whichEnemy.bitmap.width/8, whichEnemy.centerY - whichEnemy.bitmap.height/2),
+                                            Vector.getNewVectorFromAngMag(0,2),Math.PI));
+         addParticles(Vector.randBtweenTwoNums(5,50),getParticleImageBasedOnType(whichEnemy.charType));
+
 		if(player.exp.currentLvl < 50)
 		{
 			player.exp.currentXp += whichEnemy.exp.gainEnemyXpDrop();

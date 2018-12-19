@@ -40,6 +40,7 @@ function enemyClass()
 		this.shotList = [];
 		this.bitmap = whichImage;
 		this.charName = name;
+		this.charType = enemyType;
 		this.collider = new colliderClass(this.centerX, this.centerY, colliderW, colliderH, 0, 15);
 		this.exp.init(enemyType);
 		this.stats.init(this.exp.currentLvl,enemyType);

@@ -16,12 +16,12 @@ function Emitter(point,velocity,spread)
 	}
 }
 
-Emitter.prototype.emitParticle = function()
+Emitter.prototype.emitParticle = function(image)
 {
 	var ang = this.vel.getAng() + this.spread - (Math.random() * this.spread * 2);
 	var magnitude = this.vel.getMagnitude();
 	var pos = new Vector(this.pos.x,this.pos.y);
 	var vel = Vector.getNewVectorFromAngMag(ang,magnitude);
 
-	return new Particle(pos,vel);
+	return new Particle(pos,vel,0,image);
 }
