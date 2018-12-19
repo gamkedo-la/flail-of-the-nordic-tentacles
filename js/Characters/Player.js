@@ -153,41 +153,10 @@ function playerClass() {
 
             }
 
-            this.collider.update(nextX, nextY);
-
-            var nextTileIndTL = getTileIndexAtRowCol(this.collider.box.left, this.collider.box.top, currentMapCols, currentMapRows);
-            var nextTileIndTR = getTileIndexAtRowCol(this.collider.box.right, this.collider.box.top, currentMapCols, currentMapRows);
-            var nextTileIndBR = getTileIndexAtRowCol(this.collider.box.right, this.collider.box.bottom, currentMapCols, currentMapRows);
-            var nextTileIndBL = getTileIndexAtRowCol(this.collider.box.left, this.collider.box.bottom, currentMapCols, currentMapRows);
-
-            var nextTileTypeTR = TILE_SNOW;
-            var nextTileTypeTL = TILE_SNOW;
-            var nextTileTypeBR = TILE_SNOW;
-            var nextTileTypeBL = TILE_SNOW;
-
-            var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);
-            var nextTileType = TILE_SNOW;
-
-            if (nextTileTypeTR != undefined || nextTileIndTL != undefined || nextTileIndBR != undefined || nextTileIndBL != undefined) {
-
-                nextTileTypeTR = worldMap[0][nextTileIndTR];
-                nextTileTypeTL = worldMap[0][nextTileIndTL];
-                nextTileTypeBR = worldMap[0][nextTileIndBR];
-                nextTileTypeBL = worldMap[0][nextTileIndBL];
-
-                nextTileType = worldMap[0][nextTileIndex];
-
-                //pass in the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
-                this.pickupItemsIfAble(nextTileTypeTR, nextTileTypeTL, nextTileTypeBR, nextTileTypeBL,
-                    nextTileIndTL, nextTileIndTR, nextTileIndBR, nextTileIndBL);
-
-                //pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
-                if (moveCharIfAble(nextTileTypeTR) && moveCharIfAble(nextTileTypeTL) && moveCharIfAble(nextTileTypeBR) && moveCharIfAble(nextTileTypeBL)) {
-                    this.centerX = nextX;
-                    this.centerY = nextY;
-                } else {
-                    handleLevelTransition(nextTileType);
-                }
+            if(this.collider.collidingWithTerrain(nextX,nextY,true))
+            {
+                this.centerX = nextX;
+                this.centerY = nextY;
             }
 
             this.collider.update(this.centerX, this.centerY);
@@ -197,67 +166,24 @@ function playerClass() {
         }
     }
 
-    this.pickupItemsIfAble = function (itemTypeTR, itemTypeTL, itemTypeBR, itemTypeBL, indexTL, indexTR, indexBR, indexBL) {
-        if ((itemTypeTR == TILE_HORN ||
-                itemTypeTR == TILE_BEACON ||
-                itemTypeTR == TILE_TENCTACLE ||
-                itemTypeTR == TILE_EYEPATCH ||
-                itemTypeTR == TILE_DICTIONARY ||
-                itemTypeTR == TILE_WORMHOLE)) {
-            worldMap[0][indexTR] = TILE_SNOW;
-            console.log('I picked up a ' + itemTypeTR + '.');
+    this.tileTypePickable = function(tileType,tileIndex)
+    {
+        if(tileType == TILE_HORN ||
+            tileType == TILE_BEACON ||
+            tileType == TILE_TENCTACLE ||
+            tileType == TILE_EYEPATCH ||
+            tileType == TILE_DICTIONARY ||
+            tileType == TILE_WORMHOLE)
+        {
+            worldMap[0][tileIndex] = TILE_SNOW;
+            console.log('I picked up a ' + tileType + '.');
             itemPickedUp();
-            this.item = getNameOfTile(itemTypeTR);
-        } else if ((itemTypeTL == TILE_HORN ||
-                itemTypeTL == TILE_BEACON ||
-                itemTypeTL == TILE_TENCTACLE ||
-                itemTypeTL == TILE_EYEPATCH ||
-                itemTypeTL == TILE_DICTIONARY ||
-                itemTypeTL == TILE_WORMHOLE)) {
-            worldMap[0][indexTL] = TILE_SNOW;
-            console.log("I picked up a " + itemTypeTL + ".");
-            itemPickedUp();
-            this.item = getNameOfTile(itemTypeTL);
-        } else if ((itemTypeBR == TILE_HORN ||
-                itemTypeBR == TILE_BEACON ||
-                itemTypeBR == TILE_TENCTACLE ||
-                itemTypeBR == TILE_EYEPATCH ||
-                itemTypeBR == TILE_DICTIONARY ||
-                itemTypeBR == TILE_WORMHOLE)) {
-            worldMap[0][indexBR] = TILE_SNOW;
-            console.log("I picked up a " + itemTypeBR + ".");
-            itemPickedUp();
-            this.item = getNameOfTile(itemTypeBR);
-        } else if ((itemTypeBL == TILE_HORN ||
-                itemTypeBL == TILE_BEACON ||
-                itemTypeBL == TILE_TENCTACLE ||
-                itemTypeBL == TILE_EYEPATCH ||
-                itemTypeBL == TILE_DICTIONARY ||
-                itemTypeBL == TILE_WORMHOLE)) {
-            worldMap[0][indexBL] = TILE_SNOW;
-            console.log("I picked up a " + itemTypeBL + ".");
-            itemPickedUp();
-            this.item = getNameOfTile(itemTypeBL);
+            this.item = getNameOfTile(tileType);
+
+            if (this.item == undefined){
+                this.item = "nothing";
+            }
         }
-
-        if (this.item == undefined)
-            this.item = "nothing";
-
-        // switch(itemType)
-        // {
-        // 	case TILE_HORN:
-        // 	case TILE_EYEPATCH:
-        // 	case TILE_BEACON:
-        // 	case TILE_TENCTACLE:
-        // 	case TILE_DICTIONARY:
-        // 	case TILE_WORMHOLE:
-        // 		worldMap[0][indexTL] = TILE_SNOW;
-        // 		worldMap[0][indexTR] = TILE_SNOW;
-        // 		worldMap[0][indexBR] = TILE_SNOW;
-        // 		worldMap[0][indexBL] = TILE_SNOW;
-        // 		console.log("picked up item: " + getNameOfTile(itemType));
-        // 		break;
-        // }
     }
 
     this.setDirectionFaced = function () {
