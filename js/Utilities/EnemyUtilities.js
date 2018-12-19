@@ -82,15 +82,7 @@ function handleEnemyRemovalAndXpDrop(whichEnemy)
 {
 	if(whichEnemy.stats.isCharacterDead)
 	{
-		let image = getParticleImageBasedOnType(whichEnemy.charType);
-		let life = getParticleLifeBasedOnImage(image);
-		let size = getParticleSizeBasedOnImage(image);
-
-		//need a way to pass in whichEnemy's pos equation according to their specific bitmap size, 
-		//angle/magnitude based whichEnemy, and spread based whichEnemy
-		emitters.push(new Emitter(new Vector(whichEnemy.centerX - whichEnemy.bitmap.width/8, whichEnemy.centerY - whichEnemy.bitmap.height/2),
-                                            Vector.getNewVectorFromAngMag(0,2),Math.PI));
-         addParticles(Vector.randBtweenTwoNums(5,50),image,life,size);
+		spawnEnemyBasedParticles(whichEnemy);
 
 		if(player.exp.currentLvl < 50)
 		{
