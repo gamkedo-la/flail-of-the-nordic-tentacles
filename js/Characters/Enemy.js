@@ -164,12 +164,15 @@ function enemyClass()
 		{
 			if(this.doesPlayerHaveAdvantage(player))
 			{
+				console.log ("bad guy bumped:NOT YET WORKING");
 				calculateDamage(player.stats, this.stats);
 
 				handleEnemyRemovalAndXpDrop(this);
 			}
 			else
 			{
+				console.log ("player bumped:SHOULD WORK!");
+				player.bumpAwayFrom(this.centerX, this.centerY);
 			//	player.immunity();              // need to determine when damage occurs to start timer
 				if(player.isImmune == false)
 				{

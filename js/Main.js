@@ -55,7 +55,7 @@ function battleAll()
 	{
 		//checking for battle against player
 		enemiesList[i].battle(player.collider);
-	}
+	} 
 
 	regenPlayerHpIfAble(player,player.isIdle,enemiesList);
 }

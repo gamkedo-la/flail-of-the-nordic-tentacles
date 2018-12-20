@@ -1,6 +1,7 @@
 const PLAYER_ACCELERATION = 5;
 const PLAYER_DECELERATION = 0.70;
 const FOOTSTEP_DISTANCE = 8;
+const PLAYER_BUMP_SPEED = 20;
 
 var player = new playerClass();
 
@@ -67,6 +68,21 @@ function playerClass() {
 
         this.centerX = this.homeX;
         this.centerY = this.homeY;
+    }
+
+    this.bumpAwayFrom = function (fromX, fromY) {
+        if (this.centerX < fromX) {
+            this.velX = -PLAYER_BUMP_SPEED;
+        } else {
+            this.velX = PLAYER_BUMP_SPEED;
+        }
+        
+        if (this.centerY < fromY) {
+            this.velY = -PLAYER_BUMP_SPEED;
+        } else {
+            this.velY = PLAYER_BUMP_SPEED;
+        }
+    
     }
 
     this.move = function () {
