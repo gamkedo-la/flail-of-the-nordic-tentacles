@@ -147,6 +147,25 @@ function playerClass() {
                 }
 
             }
+			
+			/*if (nextX > TILE_W * gridLayers[rows]) 
+			{
+				nextX = TILE_W * gridLayers[rows];
+			}*/
+			if (nextX < 0)
+			{
+				nextX = 0;
+			}
+			/*if (nextY > TILE_H * gridLayers[cols])
+			{
+				nextY = TILE_H * gridLayers[cols];
+			} */
+			if (nextY < 0)
+			{
+				nextY = 0;
+			}
+			
+			
 
             if(this.collider.collidingWithTerrain(nextX,nextY,true))
             {
