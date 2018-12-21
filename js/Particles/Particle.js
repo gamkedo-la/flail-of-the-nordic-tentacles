@@ -1,6 +1,21 @@
 var particles = [];
 var maxParticles = 2500;
 
+var usableParticles = {
+	//Non-Mechanical
+	organic: [
+				{emissionRate: Vector.randBtweenTwoNums(5,10), image: greenSplat, life:{min:10,max:20}, size:{min:15,max:25}},
+				{emissionRate: Vector.randBtweenTwoNums(50,100), image: greenSplat, life:{min:20,max:30}, size:{min:10,max:20}},
+			],
+	//Mechanical
+	nonOrganic: [
+					{emissionRate: Vector.randBtweenTwoNums(20,50), image: null, life:{min:5,max:10}, size:{min:5,max:10}},
+					{emissionRate: Vector.randBtweenTwoNums(10,300), image: null, life:{min:5,max:10}, size:{min:50,max:100}},
+				],
+	//Other
+
+}
+
 function Particle(point,velocity,acceleration,whichImage,life,size)
 {
 	this.pos = point || new Vector(0,0);

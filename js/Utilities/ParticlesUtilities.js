@@ -1,75 +1,27 @@
-function getParticleImageBasedOnType(charType)
+function getParticleBasedOnType(charType)
 {
-	//if more than one particle image exist, then pick a random one from array containing images according to whether it's mechanical or not mechanical
-	if(charType == 'Wormex')
-		return greenSplat;
-	else if(charType == 'Tank')
-		return null;
-}
+	let particle = null;
 
-function getParticleLifeBasedOnImage(image)
-{
-	let life = {min: 1,max: 5};
-
-	if(image != null || image != undefined)
+	switch(charType)
 	{
-		let imageName = image.src.split("effects/")[1];
-
-		switch(imageName)
-		{
-			case "green_splatter.png":
-				life.min = 10;
-				life.max = 20;
-				break;
-			default:
-				life.min = 5;
-				life.max = 10;
-				break;
-		}	
-
-		// console.log(imageName);
-		// console.log(life.min,life.max);
-	}	
-
-	return life;
-}
-
-function getParticleSizeBasedOnImage(image)
-{
-	let size = {min: 1,max: 5};
-
-	if(image != null || image != undefined)
-	{
-		let imageName = image.src.split("effects/")[1];
-
-		switch(imageName)
-		{
-			case "green_splatter.png":
-				size.min = 20;
-				size.max = 50;
-				break;
-			default:
-				size.min = 5;
-				size.max = 10;
-				break;
-		}	
-
-		// console.log(imageName);
-		// console.log(size.min,size.max);
+		case 'Wormex':
+			particle = usableParticles.organic[Vector.randBtweenTwoNums(0,usableParticles.organic.length - 1)];
+			break;
+		case 'Tank':
+			particle = usableParticles.nonOrganic[Vector.randBtweenTwoNums(0,usableParticles.nonOrganic.length - 1)];
+			break;
 	}
 
-	return size;
+	return particle;
 }
 
 function spawnEnemyBasedParticles(whichEnemy)
 {
-	let image = getParticleImageBasedOnType(whichEnemy.charType);
-	let life = getParticleLifeBasedOnImage(image);
-	let size = getParticleSizeBasedOnImage(image);
+	let particle = getParticleBasedOnType(whichEnemy.charType);
 
 	//need a way to pass in whichEnemy's pos equation according to their specific bitmap size, 
 	//angle/magnitude based whichEnemy, and spread based whichEnemy
 	emitters.push(new Emitter(new Vector(whichEnemy.centerX - whichEnemy.bitmap.width/8, whichEnemy.centerY - whichEnemy.bitmap.height/2),
                                         Vector.getNewVectorFromAngMag(0,2),Math.PI));
-     addParticles(Vector.randBtweenTwoNums(5,50),image,life,size);
+     addParticles(particle.emissionRate,particle.image,particle.life,particle.size);
 }
