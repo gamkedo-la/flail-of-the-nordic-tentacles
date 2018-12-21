@@ -148,18 +148,18 @@ function playerClass() {
 
             }
 			
-			/*if (nextX > TILE_W * gridLayers[rows]) 
+			if (nextX > TILE_W * currentMapRows) 
 			{
-				nextX = TILE_W * gridLayers[rows];
-			}*/
+				nextX = TILE_W * currentMapRows;
+			}
 			if (nextX < 0)
 			{
 				nextX = 0;
 			}
-			/*if (nextY > TILE_H * gridLayers[cols])
+			if (nextY > TILE_H * currentMapCols)
 			{
-				nextY = TILE_H * gridLayers[cols];
-			} */
+				nextY = TILE_H * currentMapCols;
+			} 
 			if (nextY < 0)
 			{
 				nextY = 0;
