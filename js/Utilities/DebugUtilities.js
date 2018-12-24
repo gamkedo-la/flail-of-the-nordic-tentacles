@@ -25,7 +25,7 @@ function gameDebugTools()
 	}
 
 	drawCircle(camPanX, camPanY, 5, 'red');
-	drawText('mouse: ' + Math.floor((mouseX + camPanX)) + ', ' + Math.floor((mouseY + camPanY)) + 'index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols), 
+	drawText('mouse: ' + Math.floor((mouseX + camPanX)) + ', ' + Math.floor((mouseY + camPanY)) + ', index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols), 
 		mouseX, mouseY, 'black');
 }
 
