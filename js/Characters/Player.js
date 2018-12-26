@@ -271,8 +271,15 @@ function playerClass() {
         }
 
         this.collider.draw();
-
-        canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS,
-            this.centerX - this.bitmap.width / 8, this.centerY - this.bitmap.height / 2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
+	
+        canvasContext.drawImage(this.bitmap, // Sprite Sheet reference
+								this.animFrame * FRAME_DIMENSIONS, // Source X, Frame Index
+								0, // Source Y
+								FRAME_DIMENSIONS, // Frame width 
+								FRAME_DIMENSIONS, // Frame height
+								this.centerX - this.bitmap.width / 8, // Destination X 
+								this.centerY - this.bitmap.height / 2, // Destination Y
+								FRAME_DIMENSIONS, // Frame Width
+								FRAME_DIMENSIONS); // Frame Height
     }
 }

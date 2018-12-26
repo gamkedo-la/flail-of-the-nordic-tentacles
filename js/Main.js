@@ -46,6 +46,7 @@ function updateAll()
 function moveAll()
 {
 	moveCharacters();
+	wormexTestEnemy.move();
 	moveCamera(currentMapCols, currentMapRows);
 }
 
@@ -64,7 +65,6 @@ function drawAll()
 {
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
-
 	drawVisibleWorld(currentMapCols, 0);
 	drawGroundDecals();
 	drawCharacters();
@@ -76,7 +76,7 @@ function drawAll()
 	{
 		gameDebugTools();
 	}
-
+	wormexTestEnemy.draw();
 	drawUI();
     createDialogue();
 }
