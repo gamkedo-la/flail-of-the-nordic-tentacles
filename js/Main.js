@@ -46,7 +46,6 @@ function updateAll()
 function moveAll()
 {
 	moveCharacters();
-	wormexTestEnemy.move();
 	moveCamera(currentMapCols, currentMapRows);
 }
 
@@ -68,6 +67,7 @@ function drawAll()
 	drawVisibleWorld(currentMapCols, 0);
 	drawGroundDecals();
 	drawCharacters();
+	wormexTestEnemy.draw(); // trying to determine where to call draw enemies - Vince
 	drawParticles();
 	drawVisibleWorld(currentMapCols, 1);
 	plotParticles(150,150);
@@ -76,7 +76,7 @@ function drawAll()
 	{
 		gameDebugTools();
 	}
-	wormexTestEnemy.draw();
+
 	drawUI();
     createDialogue();
 }
