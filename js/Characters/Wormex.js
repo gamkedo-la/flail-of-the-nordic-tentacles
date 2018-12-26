@@ -1,6 +1,6 @@
-var wormexTestEnemy = new wormexClass();
-
 wormexClass.prototype = new enemyClass();
+
+var wormexTestEnemy = new wormexClass();
 
 const WORMEX_TIME_BETWEEN_CHANGE_DIR = 100;
 
@@ -70,7 +70,7 @@ function wormexClass()
 		var nextY = this.y;
 		
 		this.cyclesTilDirectionChange--;
-		console.log(this.cyclesTilDirectionChange + "N: " + this.walkNorth + " S: " + this.walkSouth + " W: " + this.walkWest + " E: " + this.walkEast );
+		// console.log(this.cyclesTilDirectionChange + "N: " + this.walkNorth + " S: " + this.walkSouth + " W: " + this.walkWest + " E: " + this.walkEast );
 		if(this.cyclesTilDirectionChange <= 0) 
 		{
 			if(this.addedCyclesTilDirectionChange <= 0) 
