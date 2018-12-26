@@ -2,6 +2,8 @@ var wormexTestEnemy = new wormexClass();
 
 wormexClass.prototype = new enemyClass();
 
+const WORMEX_TIME_BETWEEN_CHANGE_DIR = 100;
+
 function wormexClass()
 {
 
@@ -19,6 +21,15 @@ function wormexClass()
 	this.height = 42;
 	this.numberOfFrames = 11;
 	this.ticksPerFrame = 5;
+	this.wormexMoveSpeed = 10;
+	
+	this.cyclesTilDirectionChange = 0;
+	this.addedCyclesTilDirectionChange = 0;
+	
+	this.walkNorth = true;
+	this.walkEast = false;
+	this.walkSouth = false;
+	this.walkWest = false;
 	
 	this.superClassInit = this.init;
 	this.init = function(name)
@@ -27,14 +38,102 @@ function wormexClass()
 		this.superClassInit(name,'Wormex',wormexPic,20,15);
 		this.reset();
 	}
+	
+	this.changeDirection = function() {
+		if(this.walkNorth == true) 
+		{
+			this.walkNorth = false;
+			this.walkEast = true;
+		} 
+		else if(this.walkWest == true) 
+		{
+			this.walkWest = false;
+			this.walkNorth = true;
+		} 
+		else if(this.walkEast == true) 
+		{
+			this.walkEast = false;
+			this.walkSouth = true;
+		} 
+		else if(this.walkSouth == true) 
+		{
+			this.walkSouth = false;
+			this.walkWest = true;
+		}	
+	}
 
 	this.superClassMove = this.move;
 	this.move = function()
 	{
-		var nextX = this.centerX;
+		
+		var nextX = this.x; 
+		var nextY = this.y;
+		
+		this.cyclesTilDirectionChange--;
+		console.log(this.cyclesTilDirectionChange + "N: " + this.walkNorth + " S: " + this.walkSouth + " W: " + this.walkWest + " E: " + this.walkEast );
+		if(this.cyclesTilDirectionChange <= 0) 
+		{
+			if(this.addedCyclesTilDirectionChange <= 0) 
+			{
+				this.cyclesTilDirectionChange = WORMEX_TIME_BETWEEN_CHANGE_DIR;
+				this.changeDirection();
+				this.addedCyclesTilDirectionChange++; 
+			}
+			else if(this.addedCyclesTilDirectionChange == 1) 
+			{
+				this.cyclesTilDirectionChange = WORMEX_TIME_BETWEEN_CHANGE_DIR;
+				this.changeDirection();
+				this.addedCyclesTilDirectionChange++;
+			}
+			else if(this.addedCyclesTilDirectionChange == 2) 
+			{
+				this.cyclesTilDirectionChange = WORMEX_TIME_BETWEEN_CHANGE_DIR;
+				this.changeDirection();
+				this.addedCyclesTilDirectionChange++;
+			}
+			else if(this.addedCyclesTilDirectionChange == 3) 
+			{
+				this.cyclesTilDirectionChange = WORMEX_TIME_BETWEEN_CHANGE_DIR;
+				this.changeDirection();
+				this.addedCyclesTilDirectionChange = 0;
+		}
+		
+			// which directional image to use
+
+		if(this.walkNorth) 
+		{
+			nextY -= this.wormexMoveSpeed;
+			this.sy = 0;
+			wormexDirection = "north";
+		}
+		
+		if(this.walkSouth) 
+		{
+			nextY += this.wormexMoveSpeed;
+			this.sy = 42;
+			wormexDirection = "south";
+		}
+		if(this.walkWest) 
+		{
+			nextX -= this.wormexMoveSpeed;
+			this.sy = 84; // need to flip the image 180 degrees
+			wormexDirection = "west";
+		}
+		if(this.walkEast) 
+		{
+			nextX += this.wormexMoveSpeed;
+			this.sy = 84;
+			wormexDirection = "east";
+		}
+		
+		
+	}
+			
+			
+		/*var nextX = this.centerX;
 		var nextY = this.centerY;
 
-		/*if(!this.isSentryModeOn())
+		if(!this.isSentryModeOn())
 		{
 			nextX += this.velX;
 			nextY += this.velY;
@@ -45,7 +144,7 @@ function wormexClass()
 	
 	this.draw = function()
 	{
-		
+				
 		this.tickCount++; // acts as a counter
 	
 		if (this.tickCount > this.ticksPerFrame) // advance the frame
