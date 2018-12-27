@@ -19,13 +19,7 @@ function wormexClass()
 	this.height = 42;
 	this.numberOfFrames = 11;
 	this.ticksPerFrame = 5;
-	this.wormexMoveSpeed = 10;
 		
-	this.walkNorth = true;
-	this.walkEast = false;
-	this.walkSouth = false;
-	this.walkWest = false;
-	
 	this.superClassInit = this.init;
 	this.init = function(name)
 	{
@@ -71,7 +65,7 @@ function wormexClass()
 
 		this.sx = this.frameIndex * this.width;		// This is the Frame the Sprite is on
 		
-		canvasContext.drawImage(this.wormexPic, this.sx, this.sy, this.width, this.height, this.velX, this.velY, this.width, this.height);
+		canvasContext.drawImage(this.wormexPic, this.sx, this.sy, this.width, this.height, this.centerX, this.centerY, this.width, this.height);
 		
 		/* for reference
 		
