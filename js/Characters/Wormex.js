@@ -44,10 +44,29 @@ function wormexClass()
 		} 
 	}
 	
+	
+	
+	
 	this.draw = function()
 	{
-				
-		drawSprite(this.tickCount, this.ticksPerFrame, this.frameIndex, this.SpritePic, this.sx, this.sy, this.width, this.height, this.centerX, this.centerY, this.width, this.height)
+		this.tickCount++;
+		
+		if (this.tickCount > this.ticksPerFrame) // advance the frame
+		{
+			
+			this.tickCount = 0;
+			
+			if(this.frameIndex < this.numberOfFrames-1) // frame moves to the next number
+			{
+				this.frameIndex += 1;
+			} else  // frame moves from the last frame to the first frame 
+				{ 
+				this.frameIndex = 0;
+			}
+		}
+		
+		this.sx = this.frameIndex * this.width;		// This is the Frame the Sprite is on	
 
+		drawSprite(this.SpritePic, this.sx, this.sy, this.width, this.height, this.centerX, this.centerY);
 	}	
 }
