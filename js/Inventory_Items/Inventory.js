@@ -50,7 +50,7 @@ Inventory = function()
 
 	self.renderInventory = function()
 	{
-
+		
 	}
 
 	return self;
