@@ -1,8 +1,14 @@
-//Not sure what to do here yet
+Item = function(id,name,event)//id is for code purposes, name is for display purposes
+{
+	var self = {
+		id: id,
+		name: name,
+		event: event,
+	}
 
-function toggleInventoryAndDrawImage(){
-	console.log("future functionality to be built");
+	return self;
 }
+
 
 function itemPickedUp()
 {	

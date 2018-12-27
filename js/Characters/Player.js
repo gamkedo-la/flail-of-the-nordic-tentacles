@@ -4,6 +4,7 @@ const FOOTSTEP_DISTANCE = 8;
 const PLAYER_BUMP_SPEED = 20;
 
 var player = new playerClass();
+playerInventory = Inventory();
 
 function playerClass() {
     this.centerX = 75;
