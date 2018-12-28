@@ -128,7 +128,7 @@ function levelUpPlayer()
 {
 	player.exp.currentLvl++;
 	player.exp.nextLvl++;
-	if(player.exp.currentLvl % 5 == 1)
+	if(player.exp.currentLvl % 5 == 1 && player.exp.currentLvl > 1)
 	{
 		player.exp.levelBracket++;
 	}

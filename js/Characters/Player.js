@@ -4,6 +4,7 @@ const FOOTSTEP_DISTANCE = 8;
 const PLAYER_BUMP_SPEED = 20;
 
 var player = new playerClass();
+playerInventory = Inventory();
 
 function playerClass() {
     this.centerX = 75;
@@ -193,6 +194,9 @@ function playerClass() {
             console.log('I picked up a ' + tileType + '.');
             itemPickedUp();
             this.item = getNameOfTile(tileType);
+            playerInventory.addItem(this.item,1);
+
+            Item.List[this.item].event();
 
             if (this.item == undefined){
                 this.item = "nothing";
@@ -271,8 +275,15 @@ function playerClass() {
         }
 
         this.collider.draw();
-
-        canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS,
-            this.centerX - this.bitmap.width / 8, this.centerY - this.bitmap.height / 2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
+	
+        canvasContext.drawImage(this.bitmap, // Sprite Sheet reference
+								this.animFrame * FRAME_DIMENSIONS, // Source X, Frame Index
+								0, // Source Y
+								FRAME_DIMENSIONS, // Frame width 
+								FRAME_DIMENSIONS, // Frame height
+								this.centerX - this.bitmap.width / 8, // Destination X 
+								this.centerY - this.bitmap.height / 2, // Destination Y
+								FRAME_DIMENSIONS, // Frame Width
+								FRAME_DIMENSIONS); // Frame Height
     }
 }

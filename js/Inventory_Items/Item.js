@@ -1,8 +1,51 @@
-//Not sure what to do here yet
+Item = function(id,name,event,image)//id is for code purposes, name is for display purposes
+{
+	var self = {
+		id: id,
+		name: name,
+		event: event,
+		image: image
+	}
 
-function toggleInventoryAndDrawImage(){
-	console.log("future functionality to be built");
+	Item.List[self.id] = self;
+
+	return self;
 }
+
+Item.List = {};
+
+Item("wormhole","Pocket Wormhole", function()
+{
+	console.log("shortcuts enabled!");
+	areShortcutsEnabled = true;
+},wormholePic);
+Item("beacon","Alien Beacon", function()
+{
+	console.log("boss incoming!");
+	//enable boss battle
+	//execute any other code related to the boss's arrival like SFX, screen flash, etc.
+},beaconPic);
+Item("tentacle","Decaying Tentacle", function()
+{
+	console.log("beach now accessible");
+	//open beach level
+},tentaclePic);
+Item("horn","Chaos Horn", function()
+{
+	console.log("mountain now accessible");
+	//open mountain level
+},hornPic);
+Item("eyepatch","Odin's Eye Patch", function()
+{
+	console.log("forest now accessible");
+	//open forest level
+},eyepatchPic);
+Item("dictionary","Digital Dictionary", function()
+{
+	console.log("the outcast wishes to speak");
+	//enable The Outcast's dialogue
+},dictionaryPic);
+
 
 function itemPickedUp()
 {	
