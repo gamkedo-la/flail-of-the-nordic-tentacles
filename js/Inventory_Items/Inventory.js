@@ -60,14 +60,6 @@ Inventory = function()
 		var str = "";
 		var image = null;
 
-		// for(var i = self.items.length - 1; i >= 0; i--)
-		// {
-		// 	let item = Item.List[self.items[i].id];
-		// 	str += item.name;
-		// 	if(item.image != null || item.image != undefined)
-		// 		image = item.image;
-		// }
-
 		if(isInventoryVisible)
 		{
 			let row = 1;
@@ -90,6 +82,7 @@ Inventory = function()
 				}
 
 				drawRect(canvas.width + INVENTORY_W + 20,canvas.height + INVENTORY_H + (20 * row),40,40,"white");
+				canvasContext.drawImage(canvas.width + INVENTORY_W + 20,canvas.height + INVENTORY_H + (20 * row),40,40);
 			}
 			canvasContext.restore();
 		}
