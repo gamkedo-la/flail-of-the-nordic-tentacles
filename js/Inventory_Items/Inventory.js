@@ -1,5 +1,5 @@
-const INVENTORY_W = -160;
-const INVENTORY_H = -200;
+const INVENTORY_W = 160;
+const INVENTORY_H = 200;
 var isInventoryVisible = false;
 
 Inventory = function()
@@ -22,7 +22,7 @@ Inventory = function()
 		}
 
 		self.items.push({id: itemId, amount: amount});
-		self.renderInventory();
+		//self.renderInventory();
 	};
 
 	self.removeItem = function(itemId,amount)
@@ -60,14 +60,20 @@ Inventory = function()
 		var str = "";
 		var image = null;
 
-		if(isInventoryVisible)
-		{
-			let row = 1;
-			let col = 1;
+		// if(isInventoryVisible)
+		// {
+			let row = 1,
+				cols = 2,
+				invX = canvas.width - INVENTORY_W,
+				invY = canvas.height - INVENTORY_H,
+				itemsMargin = 20,
+				itemOffset = 50;
 			//draw inventory and display the item's name and image
 			canvasContext.save();
 			canvasContext.globalAlpha = 0.5;
-			drawRect(canvas.width,canvas.height,INVENTORY_W,INVENTORY_H,"black");
+			
+
+			drawRect(invX, invY, INVENTORY_W, INVENTORY_H,"black");
 			for(var i = 0; i < self.items.length; i++)
 			{
 				let item = Item.List[self.items[i].id];
@@ -76,21 +82,23 @@ Inventory = function()
 					image = item.image;
 				}
 
-				if(i % 2 == 0 && i > 0)
-				{
-					row++;
-				}
-
-				drawRect(canvas.width + INVENTORY_W + 20,canvas.height + INVENTORY_H + (20 * row),40,40,"white");
-				canvasContext.drawImage(canvas.width + INVENTORY_W + 20,canvas.height + INVENTORY_H + (20 * row),40,40);
+				// if(i % cols == 0 && i > 0)
+				// {
+				// 	row++;
+				// }
+				let itemX = invX + itemsMargin + itemOffset * (i%cols),
+					itemY = invY + itemsMargin + itemOffset * (Math.floor(i/cols));
+				//drawRect(itemX, itemY, 20, 20,'red');
+				canvasContext.drawImage(item.image, itemX, itemY, 40, 40);
 			}
 			canvasContext.restore();
-		}
-		else
-		{
-			//don't draw inventory
-			console.log("not drawing inventory");
-		}
+			//canvasContext.globalAlpha = 1;
+		//}
+		// else
+		// {
+		// 	//don't draw inventory
+		// 	console.log("not drawing inventory");
+		// }
 	};
 
 	return self;

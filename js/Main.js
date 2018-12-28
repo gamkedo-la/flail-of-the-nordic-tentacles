@@ -78,7 +78,8 @@ function drawAll()
 	}
 
 	drawUI();
-    createDialogue();
+	createDialogue();
+	canvasContext.restore();
 }
 
 //will go to UI JS once implemented
