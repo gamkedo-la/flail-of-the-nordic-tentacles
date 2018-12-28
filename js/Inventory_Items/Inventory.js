@@ -87,10 +87,11 @@ Inventory = function()
 			if(item.image != null || item.image != undefined){
 				image = item.image;
 			}
+			else {continue;}
 			
 			let itemX = invX + itemsMargin + itemOffset * (i%cols),
 				itemY = invY + itemsMargin + itemOffset * (Math.floor(i/cols));
-			canvasContext.drawImage(item.image, itemX, itemY, 40, 40);
+			canvasContext.drawImage(image, itemX, itemY, 40, 40);
 		}
 		canvasContext.restore();
 	};
