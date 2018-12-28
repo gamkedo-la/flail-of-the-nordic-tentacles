@@ -12,8 +12,11 @@ var usableParticles = {
 					{emissionRate: Vector.randBtweenTwoNums(20,50), image: null, life:{min:5,max:10}, size:{min:5,max:10}},
 					{emissionRate: Vector.randBtweenTwoNums(10,300), image: null, life:{min:5,max:10}, size:{min:50,max:100}},
 				],
-	//Other
-
+    //Other
+    fight: [
+	{emissionRate: Vector.randBtweenTwoNums(5,10), image: fightRune, life:{min:5,max:8}, size:{min:5,max:15}},
+	{emissionRate: Vector.randBtweenTwoNums(10,15), image: fightRune, life:{min:8,max:12}, size:{min:10,max:15}},
+    ]
 }
 
 function Particle(point,velocity,acceleration,whichImage,life,size)

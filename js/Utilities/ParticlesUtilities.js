@@ -25,3 +25,12 @@ function spawnEnemyBasedParticles(whichEnemy)
                                         Vector.getNewVectorFromAngMag(0,2),Math.PI));
      addParticles(particle.emissionRate,particle.image,particle.life,particle.size);
 }
+
+function spawnFightParticles(enemy)
+{
+    let particle = usableParticles.fight[Vector.randBtweenTwoNums(0, usableParticles.fight.length - 1)];
+    var x = (enemy.centerX + player.centerX)/2;
+    var y = (enemy.centerY + player.centerY)/2;
+    emitters.push(new Emitter(new Vector(x, y), Vector.getNewVectorFromAngMag(0, 2), Math.PI));
+    addParticles(particle.emissionRate, particle.image, particle.life, particle.size);
+}

@@ -161,7 +161,8 @@ function enemyClass()
 		this.isInCombat = this.collider.isCollidingWithOtherCollider(playerCollider);
 		
 		if(this.isInCombat)
-		{
+               {
+                       spawnFightParticles(this);
 			if(this.doesPlayerHaveAdvantage(player))
 			{
 				console.log ("bad guy bumped:NOT YET WORKING");

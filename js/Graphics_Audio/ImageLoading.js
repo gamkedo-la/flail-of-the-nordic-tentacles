@@ -14,6 +14,7 @@ var vanguardPic = document.createElement("img");
 var textboxPic = document.createElement("img");
 
 var greenSplat = document.createElement("img");
+var fightRune = document.createElement("img");
 
 var picToLoad = 0;
 
@@ -25,7 +26,8 @@ function loadImages()
 		{varName: footStepsPic, fileName: "ui/footstepsSnow.png"},
 
 		//Effects
-		{varName: greenSplat, fileName: "effects/green_splatter.png"},
+	        {varName: greenSplat, fileName: "effects/green_splatter.png"},
+	        {varName: fightRune, fileName: "effects/fight_rune.png"},
 
 		// Characters
 		{charName: vikingPic, fileName: "characters/V.png"},
