@@ -12,7 +12,6 @@ function playerClass() {
     this.velX = 0;
     this.velY = 0;
 
-
     this.collider;
 
     this.exp = new xpClass();
@@ -117,11 +116,19 @@ function playerClass() {
                 this.velY += PLAYER_ACCELERATION;
             }
 
-            nextX+=this.velX;
-            nextY+=this.velY;
+            nextX += this.velX;
+            nextY += this.velY;
 
             this.velX *= PLAYER_DECELERATION;
             this.velY *= PLAYER_DECELERATION;
+
+            if (this.velX > -0.9 && this.velX < 0.06) {
+            	this.velX = 0;
+            }
+
+            if (this.velY > -0.9 && this.velY < 0.06) {
+            	this.velY = 0;
+            }
 			
 			nextX = Math.floor(nextX);
 			nextY = Math.floor(nextY);
