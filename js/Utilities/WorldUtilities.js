@@ -109,7 +109,7 @@ function getNameOfTile(tileType)
 		case TILE_OUTCAST: tileName = "the outcast"; break;
 
 		case TILE_HORN: tileName = "horn"; break;
-		case TILE_EYEPATCH: tileName = "eye patch"; break;
+		case TILE_EYEPATCH: tileName = "eyepatch"; break;
 		case TILE_TENCTACLE: tileName = "tentacle"; break;
 		case TILE_WORMHOLE: tileName = "wormhole"; break;
 		case TILE_DICTIONARY: tileName = "dictionary"; break;

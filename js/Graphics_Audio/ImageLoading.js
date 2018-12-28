@@ -1,18 +1,30 @@
 var worldPics = [];
 
+//Characters
 var vikingPic = document.createElement("img");
 var seerPic = document.createElement("img");
 var outcastPic = document.createElement("img");
 var maleVikingPic = document.createElement("img");
 var femaleVikingPic = document.createElement("img");
-var footStepsPic = document.createElement("img");
 
 var wormexPic = document.createElement("img");
 var tankPic = document.createElement("img");
 var fallenPic = document.createElement("img");
 var vanguardPic = document.createElement("img");
-var textboxPic = document.createElement("img");
 
+//UI
+var textboxPic = document.createElement("img");
+var hornPic = document.createElement("img");
+var wormholePic = document.createElement("img");
+var eyepatchPic = document.createElement("img");
+var beaconPic = document.createElement("img");
+var dictionaryPic = document.createElement("img");
+var tentaclePic = document.createElement("img");
+
+//Misc.
+var footStepsPic = document.createElement("img");
+
+//Particles
 var greenSplat = document.createElement("img");
 
 var picToLoad = 0;
@@ -23,6 +35,12 @@ function loadImages()
         //Ui
 		{varName: textboxPic, fileName: "ui/chatbox.png"},
 		{varName: footStepsPic, fileName: "ui/footstepsSnow.png"},
+		{varName: hornPic, fileName: "items/chaos_horn_quick.png"},
+		{varName: eyepatchPic, fileName: "items/odins_eyepatch_quick.png"},
+		{varName: tentaclePic, fileName: "items/decaying_tentacle_quick.png"},
+		{varName: wormholePic, fileName: "items/wormhole_quick.png"},
+		{varName: dictionaryPic, fileName: "items/dig_dictionary_quick.png"},
+		{varName: beaconPic, fileName: "items/beacon.png"},
 
 		//Effects
 		{varName: greenSplat, fileName: "effects/green_splatter.png"},
@@ -86,7 +104,7 @@ function loadImages()
 		{worldType: TILE_BEACH_EXIT_DOOR, fileName: "environment/terrain_spritesheet.png"},
 		{worldType: TILE_FOREST_EXIT_DOOR, fileName: "environment/terrain_spritesheet.png"},
 
-		// Items
+		// Items (World Draw)
 		{worldType: TILE_HORN, fileName: "items/chaos_horn_quick.png"},
 		{worldType: TILE_EYEPATCH, fileName: "items/odins_eyepatch_quick.png"},
 		{worldType: TILE_TENCTACLE, fileName: "items/decaying_tentacle_quick.png"},

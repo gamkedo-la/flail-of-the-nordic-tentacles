@@ -1,5 +1,5 @@
-const INVENTORY_W = -200;
-const INVENTORY_H = -250;
+const INVENTORY_W = -160;
+const INVENTORY_H = -200;
 var isInventoryVisible = false;
 
 Inventory = function()
@@ -46,7 +46,7 @@ Inventory = function()
 	{
 		for(var i = self.items.length - 1; i >= 0; i--)
 		{
-			if(self.items[i].itemId == itemId)
+			if(self.items[i].id == itemId)
 			{
 				return self.items[i].amount >= amount;
 			}
@@ -70,12 +70,13 @@ Inventory = function()
 
 		if(isInventoryVisible)
 		{
-			let row = 0;
+			let row = 1;
+			let col = 1;
 			//draw inventory and display the item's name and image
 			canvasContext.save();
 			canvasContext.globalAlpha = 0.5;
 			drawRect(canvas.width,canvas.height,INVENTORY_W,INVENTORY_H,"black");
-			for(var i = self.items.length - 1; i >= 0; i--)
+			for(var i = 0; i < self.items.length; i++)
 			{
 				let item = Item.List[self.items[i].id];
 				str += item.name;
@@ -83,11 +84,12 @@ Inventory = function()
 					image = item.image;
 				}
 
-				if(i % 2 == 0)
+				if(i % 2 == 0 && i > 0)
 				{
 					row++;
 				}
-				drawRect();
+
+				drawRect(canvas.width + INVENTORY_W + 20,canvas.height + INVENTORY_H + (20 * row),40,40,"white");
 			}
 			canvasContext.restore();
 		}

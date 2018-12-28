@@ -1,16 +1,21 @@
 //Levels related
+var areShortcutsEnabled = false;
+
 function handleLevelTransition(doorType)
 {
 	switch(doorType)
 	{
 		case TILE_MT_ENTRY_DOOR:
-			loadMap("mountainTest");
+			if(playerInventory.hasItem("horn",1))
+				loadMap("mountainTest");
 			break;
 		case TILE_FOREST_ENTRY_DOOR:
-			loadMap("forestTest");
+			if(playerInventory.hasItem("eyepatch",1))
+				loadMap("forestTest");
 			break;
 		case TILE_BEACH_ENTRY_DOOR:
-			loadMap("beachTest");
+			if(playerInventory.hasItem("tentacle",1))
+				loadMap("beachTest");
 			break;
 		case TILE_BEACH_EXIT_DOOR:
 			loadMap("snowTest");
