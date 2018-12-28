@@ -96,10 +96,15 @@ function drawUI()
 		drawRect(canvas.width/2-50,canvas.height/2-25, 125,25, "white");
 		drawText("PAUSED", canvas.width/2-50,canvas.height/2, "black", font="30px sans-serif");
 	}
-	drawText("Player Xp: " + player.exp.currentXp, 560, 500, "Teal", "20px Arial", "center", 10);
-	drawText("Next Lvl Xp: " + player.exp.nextXp, 560, 520, "Teal", "20px Arial", "center", 10);
-	drawText("Player level: " + player.exp.currentLvl, 560, 540, "Maroon", "20px Arial", "center", 10);
-	drawText("Next level: " + player.exp.nextLvl, 560, 560, "Maroon", "20px Arial", "center", 10);
+	drawText("Player Xp: " + player.exp.currentXp, 20, 500, "Teal", "20px Arial", "center", 10);
+	drawText("Next Lvl Xp: " + player.exp.nextXp, 20, 520, "Teal", "20px Arial", "center", 10);
+	drawText("Player level: " + player.exp.currentLvl, 20, 540, "Maroon", "20px Arial", "center", 10);
+	drawText("Next level: " + player.exp.nextLvl, 20, 560, "Maroon", "20px Arial", "center", 10);
+
+	if(isInventoryVisible)
+	{
+		playerInventory.renderInventory();
+	}
 
 	fadingTitles.draw();
 }

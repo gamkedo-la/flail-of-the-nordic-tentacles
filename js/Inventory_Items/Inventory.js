@@ -1,8 +1,9 @@
+const INVENTORY_W = -200;
+const INVENTORY_H = -250;
 var isInventoryVisible = false;
 
 Inventory = function()
 {
-
 	var self = {
 		items:[] // {id: "itemId", amount: 1}
 	};
@@ -59,18 +60,36 @@ Inventory = function()
 		var str = "";
 		var image = null;
 
-		for(var i = self.items.length - 1; i >= 0; i--)
-		{
-			let item = Item.List[self.items[i].id];
-			str += item.name;
-			if(item.image != null || item.image != undefined)
-				image = item.image;
-		}
+		// for(var i = self.items.length - 1; i >= 0; i--)
+		// {
+		// 	let item = Item.List[self.items[i].id];
+		// 	str += item.name;
+		// 	if(item.image != null || item.image != undefined)
+		// 		image = item.image;
+		// }
 
 		if(isInventoryVisible)
 		{
+			let row = 0;
 			//draw inventory and display the item's name and image
-			console.log("drawing inventory");
+			canvasContext.save();
+			canvasContext.globalAlpha = 0.5;
+			drawRect(canvas.width,canvas.height,INVENTORY_W,INVENTORY_H,"black");
+			for(var i = self.items.length - 1; i >= 0; i--)
+			{
+				let item = Item.List[self.items[i].id];
+				str += item.name;
+				if(item.image != null || item.image != undefined){
+					image = item.image;
+				}
+
+				if(i % 2 == 0)
+				{
+					row++;
+				}
+				drawRect();
+			}
+			canvasContext.restore();
 		}
 		else
 		{
