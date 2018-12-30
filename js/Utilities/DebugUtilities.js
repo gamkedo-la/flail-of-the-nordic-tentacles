@@ -60,3 +60,33 @@ function editorDebugTools()
 	Tile: ${editor.selectedTileType}, ${getNameOfTile(editor.selectedTileType)}
 	*/
 }
+
+/*
+ * Draw a HEADING_LINE_LENGTH px line pointing along the characters current heading (velX,velY)
+ */
+function debugDrawHeading(character)
+{
+	if(debugState)
+	{
+        const HEADING_LINE_LENGTH = 50
+
+        var width = character.width || 0
+        var height = character.height || 0
+
+        var x = character.centerX + (width / 2)
+        var y = character.centerY + (height / 2)
+
+        // magnitude of velocity vector
+        var velMag = Math.sqrt((character.velX * character.velX) + (character.velY * character.velY))
+
+        var x1 = (character.velX/velMag) * HEADING_LINE_LENGTH
+        var y1 = (character.velY/velMag) * HEADING_LINE_LENGTH
+
+        canvasContext.beginPath();
+        canvasContext.moveTo(x, y);
+        canvasContext.lineTo(x + x1, y + y1);
+        canvasContext.lineWidth = 2;
+        canvasContext.strokeStyle = 'green'
+        canvasContext.stroke();
+    }
+}

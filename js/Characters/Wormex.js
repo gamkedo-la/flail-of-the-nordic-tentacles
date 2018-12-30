@@ -67,6 +67,7 @@ function wormexClass()
 		
 		this.sx = this.frameIndex * this.width;		// This is the Frame the Sprite is on	
 
+		debugDrawHeading(this)
 		drawSprite(this.SpritePic, this.sx, this.sy, this.width, this.height, this.centerX, this.centerY);
 	}	
 }

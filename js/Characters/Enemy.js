@@ -270,6 +270,7 @@ function enemyClass()
 		}
 
 		this.collider.draw();
+		debugDrawHeading(this)
 
 		drawText(this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
