@@ -1,5 +1,5 @@
-const INVENTORY_W = 130;
-const INVENTORY_H = 180;
+const INVENTORY_W = 180;
+const INVENTORY_H = 230;
 var isInventoryVisible = false;
 
 Inventory = function()
@@ -61,7 +61,7 @@ Inventory = function()
 		var image = null;
 
 		let row = 1,
-			cols = 2,
+			cols = 3,
 			invX = canvas.width - INVENTORY_W,
 			invY = canvas.height - INVENTORY_H,
 			itemsMargin = 20,
@@ -70,10 +70,11 @@ Inventory = function()
 		canvasContext.save();
 		canvasContext.globalAlpha = 0.75;
 		
-		drawText("INVENTORY", invX+10, invY-10, "black", "20px Arial");
+		drawRect(invX+30, invY-30, 125, 25,"black");
+		drawText("INVENTORY", invX+35, invY-10, "white", "20px Arial");
 		drawRect(invX, invY, INVENTORY_W, INVENTORY_H,"black");
 
-		for(var i = 0; i < 6; i++)
+		for(var i = 0; i < 11; i++)
 		{
 			let itemX = invX + itemsMargin + itemOffset * (i%cols),
 				itemY = invY + itemsMargin + itemOffset * (Math.floor(i/cols));
