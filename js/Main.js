@@ -3,10 +3,63 @@ var gameLoop;
 var gameIsRunning = false;
 var fps = 30;
 
+/////// Game States /////////////
+
 var isPaused = false;
 var displayItem = false;
 var itemDisplaytimer = 0;
 var debugState = false;
+
+
+//////// Sounds ////////////
+
+var levelUpSound = new SoundOverlapsClass("levelUp");
+
+// enemy sounds
+
+var enemyHit01Sound = new SoundOverlapsClass("EnemyHit01");
+var enemyHit02Sound = new SoundOverlapsClass("EnemyHit02");
+var enemyHit03Sound = new SoundOverlapsClass("EnemyHit03");
+var enemyHit04Sound = new SoundOverlapsClass("EnemyHit04");
+
+var enemyDestroyed01Sound = new SoundOverlapsClass("EnemyDestroy01");
+var enemyDestroyed02Sound = new SoundOverlapsClass("EnemyDestroy02");
+var enemyDestroyed03Sound = new SoundOverlapsClass("EnemyDestroy03");
+
+var enemyFire01Sound = new SoundOverlapsClass("EnemyFire01");
+var enemyFire02Sound = new SoundOverlapsClass("EnemyFire02");
+var enemyFire03Sound = new SoundOverlapsClass("EnemyFire03");
+
+// player sounds
+
+var playerHit01Sound = new SoundOverlapsClass("PlayerHit01");
+var playerHit02Sound = new SoundOverlapsClass("PlayerHit02");
+var playerHit03Sound = new SoundOverlapsClass("PlayerHit03");
+var playerHit04Sound = new SoundOverlapsClass("PlayerHit04");
+
+var playerAttackSound = new SoundOverlapsClass("PlayerAttack");
+
+var grassFootStep01Sound = new SoundOverlapsClass("grassFootStep01");
+var grassFootStep02Sound = new SoundOverlapsClass("grassFootStep02");
+var grassFootStep03Sound = new SoundOverlapsClass("grassFootStep03");
+
+var gravelFootStep01Sound = new SoundOverlapsClass("gravelFootStep01");
+var gravelFootStep02Sound = new SoundOverlapsClass("gravelFootStep02");
+var gravelFootStep03Sound = new SoundOverlapsClass("gravelFootStep03");
+
+var iceFootStep01Sound = new SoundOverlapsClass("iceFootStep01");
+var iceFootStep02Sound = new SoundOverlapsClass("iceFootStep02");
+var iceFootStep03Sound = new SoundOverlapsClass("iceFootStep03");
+
+var snowFootStep01Sound = new SoundOverlapsClass("snowFootStep01");
+var snowFootStep02Sound = new SoundOverlapsClass("snowFootStep02");
+var snowFootStep03Sound = new SoundOverlapsClass("snowFootStep03");
+
+var twigsFootStep01Sound = new SoundOverlapsClass("twigsFootStep01");
+var twigsFootStep02Sound = new SoundOverlapsClass("twigsFootStep02");
+
+
+
 
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game

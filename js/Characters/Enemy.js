@@ -167,7 +167,7 @@ function enemyClass()
 			{
 				console.log ("bad guy bumped:NOT YET WORKING");
 				calculateDamage(player.stats, this.stats);
-
+				enemyHit01Sound.play();
 				handleEnemyRemovalAndXpDrop(this);
 			}
 			else
@@ -177,7 +177,8 @@ function enemyClass()
 			//	player.immunity();              // need to determine when damage occurs to start timer
 				if(player.isImmune == false)
 				{
-					calculateDamage(this.stats, player.stats);		
+					calculateDamage(this.stats, player.stats);	
+					playerHit01Sound.play();					
 				}	
 			}
 		}

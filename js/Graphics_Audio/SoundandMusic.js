@@ -1,5 +1,7 @@
 var audioFormat;
 
+
+
 function muteSFXandBackground(){
 	console.log("future mute audio function");
 }
@@ -17,7 +19,7 @@ function SoundOverlapsClass(filenameWithPath) {
 	
 	setFormat();
 	
-	var mainSound = new Audio("audio/"+filenameWithPath+audioFormat);
+	var mainaudio = new Audio("audio/"+filenameWithPath+audioFormat);
 	var altaudio = new Audio("audio/"+filenameWithPath+audioFormat);
 	
 	var altaudioTurn = false;

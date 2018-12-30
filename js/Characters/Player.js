@@ -251,8 +251,9 @@ function playerClass() {
     this.immunity = function () {
         console.log(this.isImmune);
         this.immunityTimer++;
-        if (this.immunityTimer <= 100) {
-            this.isImmune = true;
+        if (this.immunityTimer <= 100) 
+		{
+			this.isImmune = true;
         } else if (this.immunityTimer > 100) {
             this.isImmune = false;
             immunitytimer = 0;

@@ -85,6 +85,7 @@ function givePlayerRandomXp()
 		if(hasPlayerLeveledUp())
 		{
 			levelUpPlayer();
+			levelUpSound.play();
 		}
 	}
 	else
