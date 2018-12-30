@@ -35,7 +35,7 @@ function moveCharIfAble(tileType)
   }
 }
 
-function drawCharacters()
+function drawAllCharacters()
 {
   drawEnemies();
   player.draw();

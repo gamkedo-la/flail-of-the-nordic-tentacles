@@ -66,8 +66,8 @@ function drawAll()
 	canvasContext.translate(-camPanX, -camPanY);
 	drawVisibleWorld(currentMapCols, 0);
 	drawGroundDecals();
-	drawCharacters();
-	wormexTestEnemy.draw(); // trying to determine where to call draw enemies - Vince
+	drawAllCharacters();
+	// wormexTestEnemy.draw(); // trying to determine where to call draw enemies - Vince
 	drawParticles();
 	drawVisibleWorld(currentMapCols, 1);
 	plotParticles(150,150);
