@@ -1,21 +1,78 @@
 var audioFormat;
+var playerHitSoundNumber = 0;
+
+
+function getRndInteger(min, max) 
+{
+	hitSoundNumber = Math.floor(Math.random() * (max - min)) + min;
+}
+
+function randomPlayerHitSound()
+{
+	getRndInteger(1, 4) 
+
+	if(hitSoundNumber == 1)
+	{
+		playerHit01Sound.play();
+	}
+	else if(hitSoundNumber == 2)
+	{
+		playerHit02Sound.play();
+	}
+	else if(hitSoundNumber == 3)
+	{
+		playerHit03Sound.play();
+	}
+	else
+	{
+		playerHit04Sound.play();
+	}
+}
+
+function randomEnemyHitSound()
+{
+	getRndInteger(1, 3)
+		
+	if(hitSoundNumber == 1)
+	{
+		enemyHit01Sound.play();
+	}
+	else if(hitSoundNumber == 2)
+	{
+		enemyHit02Sound.play();
+	}
+	else if(hitSoundNumber == 3)
+	{
+		enemyHit03Sound.play();
+	}
+	else
+	{
+		enemyHit04Sound.play();
+	}
+}
 
 
 
-function muteSFXandBackground(){
+function muteSFXandBackground()
+{
 	console.log("future mute audio function");
 }
 
-function setFormat(){
+function setFormat()
+{
 	var audio = new Audio();
-	if (audio.canPlayType("audio/mp3")){
+	if (audio.canPlayType("audio/mp3"))
+	{
 		audioFormat = ".mp3";
-	} else {
+	} 
+	else 
+	{
 		audioFormat = ".ogg";
 	}
 }
 
-function SoundOverlapsClass(filenameWithPath) {
+function SoundOverlapsClass(filenameWithPath) 
+{
 	
 	setFormat();
 	
@@ -24,11 +81,15 @@ function SoundOverlapsClass(filenameWithPath) {
 	
 	var altaudioTurn = false;
 	
-	this.play = function() {
-		if(altaudioTurn) {
+	this.play = function() 
+	{
+		if(altaudioTurn) 
+		{
 			altaudio.currentTime = 0;
 			altaudio.play();
-		} else {
+		} 
+		else 
+		{
 			mainaudio.currentTime = 0;
 			mainaudio.play();
 		}
@@ -36,14 +97,17 @@ function SoundOverlapsClass(filenameWithPath) {
 	}
 }	
 
-function BackgroundMusicClass(){
+function BackgroundMusicClass()
+{
 	
 	var musicaudio = null;
 	
-	this.loopSong = function(filenameWithPath){
+	this.loopSong = function(filenameWithPath)
+	{
 		setFormat(); 
 		
-		if(musicaudio != null){
+		if(musicaudio != null)
+		{
 			musicaudio.pause();
 			musicaudio = null;
 		}
@@ -52,10 +116,14 @@ function BackgroundMusicClass(){
 		musicaudio.play();
 	}
 	
-	this.startOrStopMusic = function(){
-		if(musicaudio.paused){
+	this.startOrStopMusic = function()
+	{
+		if(musicaudio.paused)
+		{
 			musicaudio.play();
-		} else {
+		} 
+		else 
+		{
 			musicaudio.pause();
 		}
 	}

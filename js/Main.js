@@ -13,6 +13,7 @@ var debugState = false;
 
 //////// Sounds ////////////
 
+var RebelWoodsBackgroundMusic = new BackgroundMusicClass();
 var levelUpSound = new SoundOverlapsClass("levelUp");
 
 // enemy sounds
@@ -70,6 +71,8 @@ window.onload = function()
 	canvasContext = canvas.getContext('2d');
 
 	loadImages();
+	RebelWoodsBackgroundMusic.loopSong(RebelWoods);
+	
 }
 
 function imgsDoneLoadingSoStartGame()
