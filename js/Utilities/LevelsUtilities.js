@@ -27,6 +27,8 @@ function handleLevelTransition(doorType)
 			loadMap("snowTest");
 			break;
 	}
+
+	handleBackgroundMusic(currentMap);
 }
 
 function saveMap(mapName, grid)

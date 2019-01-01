@@ -18,11 +18,12 @@ function getParticleBasedOnType(charType)
 function spawnEnemyBasedParticles(whichEnemy)
 {
 	let particle = getParticleBasedOnType(whichEnemy.charType);
+	var x = (whichEnemy.centerX + player.centerX)/2;
+    var y = (whichEnemy.centerY + player.centerY)/2;
 
 	//need a way to pass in whichEnemy's pos equation according to their specific bitmap size, 
 	//angle/magnitude based whichEnemy, and spread based whichEnemy
-	emitters.push(new Emitter(new Vector(whichEnemy.centerX - whichEnemy.bitmap.width/8, whichEnemy.centerY - whichEnemy.bitmap.height/2),
-                                        Vector.getNewVectorFromAngMag(0,2),Math.PI));
+	emitters.push(new Emitter(new Vector(x,y), Vector.getNewVectorFromAngMag(0,2),Math.PI));
      addParticles(particle.emissionRate,particle.image,particle.life,particle.size);
 }
 
