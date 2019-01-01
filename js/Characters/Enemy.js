@@ -161,13 +161,15 @@ function enemyClass()
 		this.isInCombat = this.collider.isCollidingWithOtherCollider(playerCollider);
 		
 		if(this.isInCombat)
-               {
-                       spawnFightParticles(this);
+        {
+            spawnFightParticles(this);
+            playerSfx.attack.play();
+
 			if(this.doesPlayerHaveAdvantage(player))
 			{
 				console.log ("bad guy bumped:NOT YET WORKING");
 				calculateDamage(player.stats, this.stats);
-				randomEnemyHitSound();	
+				randomHitSound(true);	
 				handleEnemyRemovalAndXpDrop(this);
 			}
 			else
@@ -178,7 +180,7 @@ function enemyClass()
 				if(player.isImmune == false)
 				{
 					calculateDamage(this.stats, player.stats);	
-					randomPlayerHitSound();					
+					randomHitSound();					
 				}	
 			}
 		}

@@ -85,7 +85,7 @@ function givePlayerRandomXp()
 		if(hasPlayerLeveledUp())
 		{
 			levelUpPlayer();
-			levelUpSound.play();
+			playerSfx.levelUp.play();
 		}
 	}
 	else

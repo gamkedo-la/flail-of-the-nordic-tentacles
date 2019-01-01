@@ -173,7 +173,7 @@ function playerClass() {
 				nextY = 0;
 			}
 			
-			
+			//play footstep sound based on tile type
 
             if(this.collider.collidingWithTerrain(nextX,nextY,true))
             {

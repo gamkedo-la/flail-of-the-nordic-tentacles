@@ -4,49 +4,27 @@ var playerHitSoundNumber = 0;
 //////// Sounds ////////////
 
 var backgroundMusic = new BackgroundMusicClass();
-var levelUpSound = new SoundOverlapsClass("levelUp");
 
 // enemy sounds
-
-var enemyHit01Sound = new SoundOverlapsClass("EnemyHit01");
-var enemyHit02Sound = new SoundOverlapsClass("EnemyHit02");
-var enemyHit03Sound = new SoundOverlapsClass("EnemyHit03");
-
-var enemyDestroyed01Sound = new SoundOverlapsClass("EnemyDestroy01");
-var enemyDestroyed02Sound = new SoundOverlapsClass("EnemyDestroy02");
-var enemyDestroyed03Sound = new SoundOverlapsClass("EnemyDestroy03");
-
-var enemyFire01Sound = new SoundOverlapsClass("EnemyFire01");
-var enemyFire02Sound = new SoundOverlapsClass("EnemyFire02");
-var enemyFire03Sound = new SoundOverlapsClass("EnemyFire03");
+var enemySfx = {
+	hit: [new SoundOverlapsClass("EnemyHit01"),new SoundOverlapsClass("EnemyHit02"),new SoundOverlapsClass("EnemyHit03")],
+	death: [new SoundOverlapsClass("EnemyDestroy01"),new SoundOverlapsClass("EnemyDestroy02"),new SoundOverlapsClass("EnemyDestroy03")],
+	shooting: [new SoundOverlapsClass("EnemyFire01"),new SoundOverlapsClass("EnemyFire02"),new SoundOverlapsClass("EnemyFire03")],
+};
 
 // player sounds
 
-var playerHit01Sound = new SoundOverlapsClass("PlayerHit01");
-var playerHit02Sound = new SoundOverlapsClass("PlayerHit02");
-var playerHit03Sound = new SoundOverlapsClass("PlayerHit03");
-var playerHit04Sound = new SoundOverlapsClass("PlayerHit04");
-
-var playerAttackSound = new SoundOverlapsClass("PlayerAttack");
-
-var grassFootStep01Sound = new SoundOverlapsClass("grassFootStep01");
-var grassFootStep02Sound = new SoundOverlapsClass("grassFootStep02");
-var grassFootStep03Sound = new SoundOverlapsClass("grassFootStep03");
-
-var gravelFootStep01Sound = new SoundOverlapsClass("gravelFootStep01");
-var gravelFootStep02Sound = new SoundOverlapsClass("gravelFootStep02");
-var gravelFootStep03Sound = new SoundOverlapsClass("gravelFootStep03");
-
-var iceFootStep01Sound = new SoundOverlapsClass("iceFootStep01");
-var iceFootStep02Sound = new SoundOverlapsClass("iceFootStep02");
-var iceFootStep03Sound = new SoundOverlapsClass("iceFootStep03");
-
-var snowFootStep01Sound = new SoundOverlapsClass("snowFootStep01");
-var snowFootStep02Sound = new SoundOverlapsClass("snowFootStep02");
-var snowFootStep03Sound = new SoundOverlapsClass("snowFootStep03");
-
-var twigsFootStep01Sound = new SoundOverlapsClass("twigsFootStep01");
-var twigsFootStep02Sound = new SoundOverlapsClass("twigsFootStep02");
+var playerSfx = {
+	hit: [new SoundOverlapsClass("PlayerHit01"),new SoundOverlapsClass("PlayerHit02"),
+			new SoundOverlapsClass("PlayerHit03"),new SoundOverlapsClass("PlayerHit04")],
+	attack: new SoundOverlapsClass("PlayerAttack"),
+	levelUp: new SoundOverlapsClass("levelUp"),
+	grassStep: [new SoundOverlapsClass("grassFootStep01"),new SoundOverlapsClass("grassFootStep02"),new SoundOverlapsClass("grassFootStep03")],
+	gravelStep: [new SoundOverlapsClass("gravelFootStep01"),new SoundOverlapsClass("gravelFootStep02"),new SoundOverlapsClass("gravelFootStep03")],
+	iceStep: [new SoundOverlapsClass("iceFootStep01"),new SoundOverlapsClass("iceFootStep02"),new SoundOverlapsClass("iceFootStep03")],
+	snowStep: [new SoundOverlapsClass("snowFootStep01"),new SoundOverlapsClass("snowFootStep02"),new SoundOverlapsClass("snowFootStep03")],
+	twigsStep: [new SoundOverlapsClass("twigsFootStep01"),new SoundOverlapsClass("twigsFootStep02")],
+};
 
 function getRndInteger(min, max) 
 {
@@ -58,54 +36,14 @@ function randomHitSound(isPlayer)
 	if(isPlayer)
 	{
 		//randomly pick a sound from object array combo specific to the player and play it
+		let hit = playerSfx.hit;
+		hit[randBtweenTwoNums(0,hit.length - 1)].play();
 	}
 	else
 	{
 		//randomly pick a sound from object array combo specific to enemies and play it
-	}
-}
-
-function randomPlayerHitSound()
-{
-	getRndInteger(1, 4) 
-
-	if(hitSoundNumber == 1)
-	{
-		playerHit01Sound.play();
-	}
-	else if(hitSoundNumber == 2)
-	{
-		playerHit02Sound.play();
-	}
-	else if(hitSoundNumber == 3)
-	{
-		playerHit03Sound.play();
-	}
-	else
-	{
-		playerHit04Sound.play();
-	}
-}
-
-function randomEnemyHitSound()
-{
-	getRndInteger(1, 3)
-		
-	if(hitSoundNumber == 1)
-	{
-		enemyHit01Sound.play();
-	}
-	else if(hitSoundNumber == 2)
-	{
-		enemyHit02Sound.play();
-	}
-	else if(hitSoundNumber == 3)
-	{
-		enemyHit03Sound.play();
-	}
-	else
-	{
-		enemyHit04Sound.play();
+		let hit = enemySfx.hit;
+		hit[randBtweenTwoNums(0,hit.length - 1)].play();
 	}
 }
 
