@@ -4,18 +4,18 @@ var maxParticles = 2500;
 var usableParticles = {
 	//Non-Mechanical
 	organic: [
-				{emissionRate: Vector.randBtweenTwoNums(5,10), image: greenSplat, life:{min:10,max:20}, size:{min:15,max:25}},
-				{emissionRate: Vector.randBtweenTwoNums(50,100), image: greenSplat, life:{min:20,max:30}, size:{min:10,max:20}},
+				{emissionRate: randBtweenTwoNums(5,10), image: greenSplat, life:{min:10,max:20}, size:{min:15,max:25}},
+				{emissionRate: randBtweenTwoNums(50,100), image: greenSplat, life:{min:20,max:30}, size:{min:10,max:20}},
 			],
 	//Mechanical
 	nonOrganic: [
-					{emissionRate: Vector.randBtweenTwoNums(20,50), image: null, life:{min:5,max:10}, size:{min:5,max:10}},
-					{emissionRate: Vector.randBtweenTwoNums(10,300), image: null, life:{min:5,max:10}, size:{min:50,max:100}},
+					{emissionRate: randBtweenTwoNums(20,50), image: null, life:{min:5,max:10}, size:{min:5,max:10}},
+					{emissionRate: randBtweenTwoNums(10,300), image: null, life:{min:5,max:10}, size:{min:50,max:100}},
 				],
     //Other
     fight: [
-	{emissionRate: Vector.randBtweenTwoNums(5,10), image: fightRune, life:{min:5,max:8}, size:{min:5,max:15}},
-	{emissionRate: Vector.randBtweenTwoNums(10,15), image: fightRune, life:{min:8,max:12}, size:{min:10,max:15}},
+	{emissionRate: randBtweenTwoNums(5,10), image: fightRune, life:{min:5,max:8}, size:{min:5,max:15}},
+	{emissionRate: randBtweenTwoNums(10,15), image: fightRune, life:{min:8,max:12}, size:{min:10,max:15}},
     ]
 }
 
@@ -28,8 +28,8 @@ function Particle(point,velocity,acceleration,whichImage,life,size)
 	this.bitmap = whichImage;
 
 	//get min/max based on whichImage. for example, green splat will return 10,20 for life and 5,10 for size
-	this.life = Vector.randBtweenTwoNums(life.min,life.max);
-	this.size = Vector.randBtweenTwoNums(size.min,size.max);
+	this.life = randBtweenTwoNums(life.min,life.max);
+	this.size = randBtweenTwoNums(size.min,size.max);
 }
 
 Particle.prototype.move = function()

@@ -1,3 +1,8 @@
+randBtweenTwoNums = function(min,max)
+{
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function getParticleBasedOnType(charType)
 {
 	let particle = null;
@@ -5,10 +10,10 @@ function getParticleBasedOnType(charType)
 	switch(charType)
 	{
 		case 'Wormex':
-			particle = usableParticles.organic[Vector.randBtweenTwoNums(0,usableParticles.organic.length - 1)];
+			particle = usableParticles.organic[randBtweenTwoNums(0,usableParticles.organic.length - 1)];
 			break;
 		case 'Tank':
-			particle = usableParticles.nonOrganic[Vector.randBtweenTwoNums(0,usableParticles.nonOrganic.length - 1)];
+			particle = usableParticles.nonOrganic[randBtweenTwoNums(0,usableParticles.nonOrganic.length - 1)];
 			break;
 	}
 
@@ -29,7 +34,7 @@ function spawnEnemyBasedParticles(whichEnemy)
 
 function spawnFightParticles(enemy)
 {
-    let particle = usableParticles.fight[Vector.randBtweenTwoNums(0, usableParticles.fight.length - 1)];
+    let particle = usableParticles.fight[randBtweenTwoNums(0, usableParticles.fight.length - 1)];
     var x = (enemy.centerX + player.centerX)/2;
     var y = (enemy.centerY + player.centerY)/2;
     emitters.push(new Emitter(new Vector(x, y), Vector.getNewVectorFromAngMag(0, 2), Math.PI));
