@@ -9,18 +9,6 @@ const TILE_MOUNTAIN = 104;
 const TILE_MT_ENTRY_DOOR = 105;
 
 const TILE_SNOW_GRASS_1 = 106;
-const TILE_SNOW_GRASS_2 = 135;
-const TILE_SNOW_GRASS_3 = 136;
-const TILE_SNOW_GRASS_4 = 137;
-const TILE_SNOW_GRASS_5 = 138;
-const TILE_SNOW_GRASS_6 = 139;
-const TILE_SNOW_GRASS_7 = 140;
-const TILE_SNOW_GRASS_8 = 141;
-const TILE_SNOW_GRASS_9 = 142;
-const TILE_SNOW_GRASS_10 = 143;
-const TILE_SNOW_GRASS_11 = 144;
-const TILE_SNOW_GRASS_12 = 145;
-const TILE_SNOW_GRASS_13 = 146;
 
 const TILE_MT_EXIT_DOOR = 107;
 const TILE_SNOW_TO_BEACH = 108;
@@ -55,6 +43,24 @@ const TILE_FOREST_EXIT_DOOR = 133;
 
 const TILE_FOREST_BIGTREE_1 = 134;
 
+const TILE_SNOW_GRASS_2 = 135;
+const TILE_SNOW_GRASS_3 = 136;
+const TILE_SNOW_GRASS_4 = 137;
+const TILE_SNOW_GRASS_5 = 138;
+const TILE_SNOW_GRASS_6 = 139;
+const TILE_SNOW_GRASS_7 = 140;
+const TILE_SNOW_GRASS_8 = 141;
+const TILE_SNOW_GRASS_9 = 142;
+const TILE_SNOW_GRASS_10 = 143;
+const TILE_SNOW_GRASS_11 = 144;
+const TILE_SNOW_GRASS_12 = 145;
+const TILE_SNOW_GRASS_13 = 146;
+
+const TILE_SNOWY_BUSH = 147;
+const TILE_RITUAL_TREE = 148;
+const TILE_SNOWY_PIT = 149;
+const TILE_TENT = 150;
+const TILE_SML_BUSH = 151;
 
 //Characters from 300 - 450;
 const TILE_PLAYER_NEW_GAME = 300;
@@ -271,12 +277,19 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_SNOW_GRASS_11: xClipping = TILE_W * 10; break;
 		case TILE_SNOW_GRASS_12: xClipping = TILE_W * 11; break;
 		case TILE_SNOW_GRASS_13: xClipping = TILE_W * 12; break;
+
+		case TILE_RITUAL_TREE: break;
+		case TILE_SNOWY_BUSH: xClipping = 0; yClipping = 0; break;
+		case TILE_SNOWY_PIT: xClipping = 0; yClipping = 0; break;
+		case TILE_TENT: xClipping = 0; yClipping = 0; break;
+		case TILE_SML_BUSH: xClipping = 0; yClipping = 0; break;
+
 		default:
 			xClipping = 0;
 			yClipping = 0;
 			break;
 	}
 
-	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W,TILE_H+yExtraHeight, tileLeftEgdeX, tileTopEdgeY-yExtraHeight,
+	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W+xExtraWidth,TILE_H+yExtraHeight, tileLeftEgdeX, tileTopEdgeY-yExtraHeight,
 					TILE_W, TILE_H+yExtraHeight);
 }

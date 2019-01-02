@@ -44,8 +44,8 @@ function loadImages()
 		{varName: beaconPic, fileName: "items/beacon.png"},
 
 		//Effects
-	        {varName: greenSplat, fileName: "effects/green_splatter.png"},
-	        {varName: fightRune, fileName: "effects/fight_rune.png"},
+	    {varName: greenSplat, fileName: "effects/green_splatter.png"},
+	    {varName: fightRune, fileName: "effects/fight_rune.png"},
 
 		// Characters
 		{charName: vikingPic, fileName: "characters/V.png"},
@@ -59,7 +59,6 @@ function loadImages()
 		{charName: vanguardPic, fileName: "enemies/slime_yellow_sheet.png"},
 
 		// Terrain Tiles
-		{worldType: TILE_OCEAN, fileName: "environment/terrain_spritesheet.png"},
 		{worldType: TILE_SNOW_GRASS_1, fileName: "environment/tiles/snowyGrass.png"},
 		{worldType: TILE_SNOW_GRASS_2, fileName: "environment/snowyGrassTileset.png"},
 		{worldType: TILE_SNOW_GRASS_3, fileName: "environment/snowyGrassTileset.png"},
@@ -73,6 +72,8 @@ function loadImages()
 		{worldType: TILE_SNOW_GRASS_11, fileName: "environment/snowyGrassTileset.png"},
 		{worldType: TILE_SNOW_GRASS_12, fileName: "environment/snowyGrassTileset.png"},
 		{worldType: TILE_SNOW_GRASS_13, fileName: "environment/snowyGrassTileset.png"},
+
+		{worldType: TILE_OCEAN, fileName: "environment/terrain_spritesheet.png"},
 		{worldType: TILE_SNOW, fileName: "environment/terrain_spritesheet.png"},
 		{worldType: TILE_MOUNTAIN, fileName: "environment/terrain_spritesheet.png"},
 		{worldType: TILE_TREE, fileName: "environment/terrain_spritesheet.png"},
@@ -80,13 +81,26 @@ function loadImages()
 		{worldType: TILE_MT_EXIT_DOOR, fileName: "environment/terrain_spritesheet.png"},
 		{worldType: TILE_SNOW_TO_BEACH, fileName: "environment/terrain_spritesheet.png"},
 		{worldType: TILE_BEACH_TO_OCEAN, fileName: "environment/terrain_spritesheet.png"},
+		{worldType: TILE_BEACH_ENTRY_DOOR, fileName: "environment/terrain_spritesheet.png"},
+		{worldType: TILE_FOREST_ENTRY_DOOR, fileName: "environment/terrain_spritesheet.png"},
+		{worldType: TILE_BEACH_EXIT_DOOR, fileName: "environment/terrain_spritesheet.png"},
+
+		{worldType: TILE_SNOWY_BUSH, fileName: "environment/forest_tiles/forest_sheet.png"},
+		{worldType: TILE_SNOWY_PIT, fileName: "environment/forest_tiles/forest_sheet.png"},
+		{worldType: TILE_SML_BUSH, fileName: "environment/forest_tiles/forest_sheet.png"},
+		{worldType: TILE_RITUAL_TREE, fileName: "environment/forest_tiles/forest_sheet.png"},
+		{worldType: TILE_TENT, fileName: "environment/forest_tiles/forest_sheet.png"},
+		{worldType: TILE_FOREST_EXIT_DOOR, fileName: "environment/forest_tiles/forest_sheet.png"},
+
 		{worldType: TILE_CUBE, fileName: "cube.png"},
+
 		{worldType: TILE_ROAD_HORIZONTAL, fileName: "environment/road_spritesheet.png"},
 		{worldType: TILE_ROAD_VERTICAL, fileName: "environment/road_spritesheet.png"},
 		{worldType: TILE_ROAD_TOP_LEFT_TURN, fileName: "environment/road_spritesheet.png"},
 		{worldType: TILE_ROAD_TOP_RIGHT_TURN, fileName: "environment/road_spritesheet.png"},
 		{worldType: TILE_ROAD_BOTTOM_RIGHT_TURN, fileName: "environment/road_spritesheet.png"},
 		{worldType: TILE_ROAD_BOTTOM_LEFT_TURN, fileName: "environment/road_spritesheet.png"},
+
 		{worldType: TILE_FOREST_TREES_1, fileName: "environment/forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_TREES_2, fileName: "environment/forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_TREES_3, fileName: "environment/forestImpaasibleTrees-sheet_crop.png"},
@@ -101,10 +115,6 @@ function loadImages()
 		{worldType: TILE_FOREST_TREES_12, fileName: "environment/forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_TREES_13, fileName: "environment/forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_BIGTREE_1, fileName: "environment/trees/tree.png"},
-		{worldType: TILE_BEACH_ENTRY_DOOR, fileName: "environment/terrain_spritesheet.png"},
-		{worldType: TILE_FOREST_ENTRY_DOOR, fileName: "environment/terrain_spritesheet.png"},
-		{worldType: TILE_BEACH_EXIT_DOOR, fileName: "environment/terrain_spritesheet.png"},
-		{worldType: TILE_FOREST_EXIT_DOOR, fileName: "environment/terrain_spritesheet.png"},
 
 		// Items (World Draw)
 		{worldType: TILE_HORN, fileName: "items/chaos_horn_quick.png"},

@@ -115,6 +115,12 @@ function getNameOfTile(tileType)
 		case TILE_DICTIONARY: tileName = "dictionary"; break;
 		case TILE_BEACON: tileName = "beacon"; break;
 
+		case TILE_RITUAL_TREE: tileName = "ritual tree"; break;
+		case TILE_SNOWY_BUSH: tileName = "snowy bush"; break;
+		case TILE_SNOWY_PIT: tileName = "snowy pit"; break;
+		case TILE_TENT: tileName = "tent"; break;
+		case TILE_SML_BUSH: tileName = "small bush"; break;
+
 		case TILE_CUBE: tileName = "cube"; break;
 		default: console.log("No name has been set for this tile!"); break;
 	}
@@ -160,6 +166,11 @@ function shouldDrawGroundUnderTile_NonItem(tileType)
 		case TILE_FOREST_TREES_12:
 		case TILE_FOREST_TREES_13:
 		case TILE_FOREST_BIGTREE_1:
+		case TILE_RITUAL_TREE:
+		case TILE_SNOWY_BUSH:
+		case TILE_SNOWY_PIT:
+		case TILE_TENT:
+		case TILE_SML_BUSH:
 		// case TILE_FOREST_BIGTREE_1:
 		return true;
 	}
