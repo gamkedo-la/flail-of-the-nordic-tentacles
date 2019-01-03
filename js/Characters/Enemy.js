@@ -113,7 +113,7 @@ function enemyClass()
 			{
 				if(this.canMoveToNextTile(nextX, nextY))
 				{
-					this.directionFaced = "East";
+					this.directionFaced = "South";
 					if(nextY > this.homeY + LEASH_LENGTH)
 					{
 						this.velY = -this.velY;
@@ -128,7 +128,7 @@ function enemyClass()
 			{
 				if(this.canMoveToNextTile(nextX, nextY))
 				{
-					this.directionFaced = "West";
+					this.directionFaced = "North";
 					if(nextY < this.homeY - LEASH_LENGTH)
 					{
 						this.velY = -this.velY;
@@ -216,18 +216,16 @@ function enemyClass()
 			return false;
 		}
 		//check against player east/west/north/south
-		else if	((player.directionFaced == "East" && this.directionFaced == "East") ||
-				(player.directionFaced == "West" && this.directionFaced == "West") ||
-				(player.directionFaced == "North" && this.directionFaced == "East") ||
-				(player.directionFaced == "North" && this.directionFaced == "West") ||
-				(player.directionFaced == "South" && this.directionFaced == "East") ||
-				(player.directionFaced == "South" && this.directionFaced == "West"))
+		else if	((player.directionFaced == "East" && this.directionFaced == "West") ||
+				(player.directionFaced == "West" && this.directionFaced == "East") ||
+				(player.directionFaced == "North" && this.directionFaced == "South") ||
+				(player.directionFaced == "South" && this.directionFaced == "North"))
 		{
-			return true;
+			return false;
 		}
 		else 
 		{
-			return false;
+			return true;
 		}
 	}
 
