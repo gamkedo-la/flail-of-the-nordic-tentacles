@@ -192,7 +192,7 @@ function enemyClass()
 		{
 			if(Math.random() * 100 < 5)
 			{
-				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY, this.centerX - player.centerX);
+				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30)) ;
 				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,rotationTowardPlayer,fightRune));
 			}
 		}

@@ -1,7 +1,7 @@
 function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
 {
-	this.x = startX;
-	this.y = startY;
+	this.centerX = startX;
+	this.centerY = startY;
 	this.velX = vX;
 	this.velY = vY;
 	this.life = time;
@@ -17,32 +17,34 @@ function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
 	this.height = (!noImage) ? this.image.height : this.radius * 2;
 	if (noImage) 
 	{
-		this.collider = new colliderClass(this.x,this.y,this.width - 2,this.height - 2,0,0);
+		this.collider = new colliderClass(this.centerX,this.centerY,this.width - 2,this.height - 2,0,0);
 	}
 	else 
 	{
-		this.collider = new colliderClass(this.x,this.y,this.width - 10,this.height - 16,0,0);
+		this.collider = new colliderClass(this.centerX,this.centerY,this.width - 10,this.height - 16,0,0);
 	}
 	this.collided = false;
 	this.rotation = rotation;
 
 	this.reset = function()
 	{
-		console.log("projectile finished");
+		//console.log("projectile finished");
 	}
 
 	this.move = function()
 	{
 		this.life--;
 
-		this.x -= Math.cos(this.rotation) * this.velX;
-		this.y -= Math.sin(this.rotation) * this.velY;
-		this.collider.update(this.x,this.y);
+		this.centerX -= Math.cos(this.rotation) * this.velX;
+		this.centerY -= Math.sin(this.rotation) * this.velY;
+		this.collider.update(this.centerX,this.centerY);
 		if (this.collider.isCollidingWithOtherCollider(player.collider) &&
 			!this.collided) 
 		{
 			this.collided = true;
 			player.stats.hp -= this.damage;
+			spawnFightParticles(this);
+			randomHitSound(false);
 			if (player.stats.hp <= 0)
 			{
 				player.stats.isCharacterDead = true;
@@ -55,11 +57,11 @@ function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
 	{
 		if (this.image != undefined) 
 		{
-			drawBitmapCenteredWithRot(this.image, this.x, this.y, this.rotation);
+			drawBitmapCenteredWithRot(this.image, this.centerX, this.centerY, this.rotation);
 		} 
 		else 
 		{
-			drawCircle(this.x,this.y, this.radius, "blue"); // no projectile image - using default
+			drawCircle(this.centerX,this.centerY, this.radius, "blue"); // no projectile image - using default
 		}
 
 		if (debugState) 
