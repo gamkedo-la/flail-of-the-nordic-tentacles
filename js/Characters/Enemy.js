@@ -193,6 +193,7 @@ function enemyClass()
 			if(Math.random() * 100 < 5)
 			{
 				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30)) ;
+				enemySfx.shooting[randBtweenTwoNums(0,enemySfx.shooting.length - 1)].play();
 				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,rotationTowardPlayer,fightRune));
 			}
 		}
