@@ -192,15 +192,18 @@ function enemyClass()
 		{
 			if(Math.random() * 100 < 5)
 			{
-				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,10));
+				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY, this.centerX - player.centerX);
+				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,rotationTowardPlayer,fightRune));
 			}
 		}
 		
 		for(var i = this.shotList.length - 1; i>=0;i--)
 		{
-			this.shotList[i].move();
-			if(this.shotList[i].isReadyToRemove())
+			var projectile = this.shotList[i];
+			projectile.move();
+			if(projectile.isReadyToRemove())
 			{
+				projectile.reset();
 				this.shotList.splice(i,1);
 			}
 		}
