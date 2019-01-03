@@ -4,6 +4,7 @@ const LEASH_LENGTH = 120;
 const FRAME_DIMENSIONS = 40;
 const FRAME_DELAY = 4;
 const NUM_OF_ENEMIES_ON_SCREEN = 50;
+const CARDINALS = ["North", "East", "South", "West"];
 
 var enemiesList = [];
 var enemiesStartSpots = [];
@@ -37,6 +38,8 @@ function enemyClass()
 	
 	this.init = function(name,enemyType,whichImage,colliderW,colliderH)
 	{
+		let randomDirIndex = Math.floor(Math.random() * (CARDINALS.length + 1));
+		this.directionFaced = CARDINALS[randomDirIndex];
 		this.shotList = [];
 		this.bitmap = whichImage;
 		this.charName = name;
