@@ -40,6 +40,7 @@ function drawTextWithShadowCentered(text, x,y, color, font="13px sans-serif")
 	canvasContext.fillStyle = color;
 	canvasContext.fillText(text, x,y);
 	canvasContext.shadowBlur = 0;
+	canvasContext.textAlign = "left";
 }
 
 function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor)
