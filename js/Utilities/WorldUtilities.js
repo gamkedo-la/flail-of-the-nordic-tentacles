@@ -165,13 +165,6 @@ function shouldDrawGroundUnderTile_NonItem(tileType)
 		case TILE_FOREST_TREES_11:
 		case TILE_FOREST_TREES_12:
 		case TILE_FOREST_TREES_13:
-		case TILE_FOREST_BIGTREE_1:
-		case TILE_RITUAL_TREE:
-		case TILE_SNOWY_BUSH:
-		case TILE_SNOWY_PIT:
-		case TILE_TENT:
-		case TILE_SML_BUSH:
-		// case TILE_FOREST_BIGTREE_1:
 		return true;
 	}
 

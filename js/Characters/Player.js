@@ -175,10 +175,15 @@ function playerClass() {
 			
 			//play footstep sound based on tile type
 
-            if(this.collider.collidingWithTerrain(nextX,nextY,true))
+            if(!this.collider.collidingWithTerrain(nextX,nextY,true,0) && !this.collider.collidingWithTerrain(nextX,nextY,true,1))
             {
                 this.centerX = nextX;
                 this.centerY = nextY;
+            }
+            else
+            {
+                this.velX = 0;
+                this.velY = 0;
             }
 
             this.collider.update(this.centerX, this.centerY);

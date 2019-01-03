@@ -239,7 +239,7 @@ function enemyClass()
 
 	this.canMoveToNextTile = function(nextCenterX,nextCenterY)
 	{
-		if(this.collider.collidingWithTerrain(nextCenterX,nextCenterY,false))
+		if(!this.collider.collidingWithTerrain(nextCenterX,nextCenterY,false,0) && !this.collider.collidingWithTerrain(nextCenterX,nextCenterY,false,1))
         {
             this.centerX = nextCenterX;
             this.centerY = nextCenterY;

@@ -44,7 +44,7 @@ function colliderClass(x,y,width,height,xDeviation,yDeviation)
 		outlineRect(x,y, this.width,this.height, 'red');
 	}
 
-	this.collidingWithTerrain = function(nextX,nextY,isPlayer)
+	this.collidingWithTerrain = function(nextX,nextY,isPlayer,layer)
 	{
 		this.update(nextX, nextY);
 
@@ -64,12 +64,12 @@ function colliderClass(x,y,width,height,xDeviation,yDeviation)
         if (nextTileTypeTR != undefined || nextTileIndTL != undefined || nextTileIndBR != undefined || nextTileIndBL != undefined) 
         {
 
-            nextTileTypeTR = worldMap[0][nextTileIndTR];
-            nextTileTypeTL = worldMap[0][nextTileIndTL];
-            nextTileTypeBR = worldMap[0][nextTileIndBR];
-            nextTileTypeBL = worldMap[0][nextTileIndBL];
+            nextTileTypeTR = worldMap[layer][nextTileIndTR];
+            nextTileTypeTL = worldMap[layer][nextTileIndTL];
+            nextTileTypeBR = worldMap[layer][nextTileIndBR];
+            nextTileTypeBL = worldMap[layer][nextTileIndBL];
 
-            nextTileType = worldMap[0][nextTileIndex];
+            nextTileType = worldMap[layer][nextTileIndex];
 
             if(isPlayer){
             	player.tileTypePickable(nextTileType,nextTileIndex);
@@ -78,7 +78,7 @@ function colliderClass(x,y,width,height,xDeviation,yDeviation)
             //pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
             if (moveCharIfAble(nextTileTypeTR) && moveCharIfAble(nextTileTypeTL) && moveCharIfAble(nextTileTypeBR) && moveCharIfAble(nextTileTypeBL)) 
             {
-               	return true;
+               	return false;
             } 
             else if(isPlayer)
             {
@@ -86,6 +86,6 @@ function colliderClass(x,y,width,height,xDeviation,yDeviation)
             }
         }
 
-        return false;
+        return true;
 	}
 }

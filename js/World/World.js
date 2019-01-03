@@ -201,17 +201,19 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 
 function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 {
-	var xClipping = 0;
-	var yClipping = 0;
-
-	//next two lines are for supporting tiles bigger than 80*80 px
-	var yExtraHeight = 0;
-	var xExtraWidth = 0;
+	var sx = 0;
+	var sy = 0;
+	var sWidth = 0;
+	var sHeight = 0;
+	var destX = 0;
+	var destY = 0;
+	var yScale = 0;
+	var xScale = 0;
 
 	if(((tileType >= TILE_SNOW && tileType <= TILE_BEACH_TO_OCEAN) || 
 		(tileType >= TILE_BEACH_ENTRY_DOOR && tileType <= TILE_FOREST_EXIT_DOOR)) && gameIsRunning)
 	{
-		yClipping = TILE_H * currentMapTilesetRow;
+		sy = TILE_H * currentMapTilesetRow;
 	}
 
 	if(((tileType >= TILE_SNOW && tileType <= TILE_BEACH_TO_OCEAN) || 
@@ -220,76 +222,73 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		if(editor.grid.mapTilesetRow == undefined)
 			editor.grid.mapTilesetRow = 0;
 
-		yClipping = TILE_H * editor.grid.mapTilesetRow;
+		sy = TILE_H * editor.grid.mapTilesetRow;
 	}
 
 	switch(tileType)
 	{
 		case TILE_SNOW: break;
-		case TILE_OCEAN: xClipping = TILE_W; break;
-		case TILE_TREE: xClipping = TILE_W * 3; break;
-		case TILE_MOUNTAIN: xClipping = TILE_W * 4; break;
-		case TILE_MT_ENTRY_DOOR: xClipping = TILE_W * 5; break;
-		case TILE_MT_EXIT_DOOR: xClipping = TILE_W * 6; break;
-		case TILE_FOREST_ENTRY_DOOR: xClipping = TILE_W * 5; break;
-		case TILE_FOREST_EXIT_DOOR: xClipping = TILE_W * 6; break;
-		case TILE_BEACH_ENTRY_DOOR: xClipping = TILE_W * 5; break;
-		case TILE_BEACH_EXIT_DOOR: xClipping = TILE_W * 6; break;
-		case TILE_SNOW_TO_BEACH: xClipping = TILE_W * 7; break;
-		case TILE_BEACH_TO_OCEAN: xClipping = TILE_W * 8; break;
+		case TILE_OCEAN: sx = TILE_W; break;
+		case TILE_TREE: sx = TILE_W * 3; break;
+		case TILE_MOUNTAIN: sx = TILE_W * 4; break;
+		case TILE_MT_ENTRY_DOOR: sx = TILE_W * 5; break;
+		case TILE_MT_EXIT_DOOR: sx = TILE_W * 6; break;
+		case TILE_FOREST_ENTRY_DOOR: sx = TILE_W * 5; break;
+		case TILE_FOREST_EXIT_DOOR: sx = TILE_W * 2; sy = TILE_H * 2; break;
+		case TILE_BEACH_ENTRY_DOOR: sx = TILE_W * 5; break;
+		case TILE_BEACH_EXIT_DOOR: sx = TILE_W * 6; break;
+		case TILE_SNOW_TO_BEACH: sx = TILE_W * 7; break;
+		case TILE_BEACH_TO_OCEAN: sx = TILE_W * 8; break;
 
 		case TILE_ROAD_HORIZONTAL: break;
-		case TILE_ROAD_VERTICAL: xClipping = TILE_W; break;
-		case TILE_ROAD_TOP_LEFT_TURN: xClipping = TILE_W * 2; break;
-		case TILE_ROAD_TOP_RIGHT_TURN: xClipping = TILE_W * 3; break;
-		case TILE_ROAD_BOTTOM_RIGHT_TURN: xClipping = TILE_W * 4; break;
-		case TILE_ROAD_BOTTOM_LEFT_TURN: xClipping = TILE_W * 5; break;
+		case TILE_ROAD_VERTICAL: sx = TILE_W; break;
+		case TILE_ROAD_TOP_LEFT_TURN: sx = TILE_W * 2; break;
+		case TILE_ROAD_TOP_RIGHT_TURN: sx = TILE_W * 3; break;
+		case TILE_ROAD_BOTTOM_RIGHT_TURN: sx = TILE_W * 4; break;
+		case TILE_ROAD_BOTTOM_LEFT_TURN: sx = TILE_W * 5; break;
 
 		case TILE_FOREST_TREES_1: break;
-		case TILE_FOREST_TREES_2: xClipping = TILE_W; break;
-		case TILE_FOREST_TREES_3: xClipping = TILE_W * 2; break;
-		case TILE_FOREST_TREES_4: xClipping = TILE_W * 3; break;
-		case TILE_FOREST_TREES_5: xClipping = TILE_W * 4; break;
-		case TILE_FOREST_TREES_6: xClipping = TILE_W * 5; break;
-		case TILE_FOREST_TREES_7: xClipping = TILE_W * 6; break;
-		case TILE_FOREST_TREES_8: xClipping = TILE_W * 7; break;
-		case TILE_FOREST_TREES_9: xClipping = TILE_W * 8; break;
-		case TILE_FOREST_TREES_10: xClipping = TILE_W * 9; break;
-		case TILE_FOREST_TREES_11: xClipping = TILE_W * 10; break;
-		case TILE_FOREST_TREES_12: xClipping = TILE_W * 11; break;
-		case TILE_FOREST_TREES_13: xClipping = TILE_W * 12; break;
-		case TILE_FOREST_BIGTREE_1: yExtraHeight = 60; break;
+		case TILE_FOREST_TREES_2: sx = TILE_W; break;
+		case TILE_FOREST_TREES_3: sx = TILE_W * 2; break;
+		case TILE_FOREST_TREES_4: sx = TILE_W * 3; break;
+		case TILE_FOREST_TREES_5: sx = TILE_W * 4; break;
+		case TILE_FOREST_TREES_6: sx = TILE_W * 5; break;
+		case TILE_FOREST_TREES_7: sx = TILE_W * 6; break;
+		case TILE_FOREST_TREES_8: sx = TILE_W * 7; break;
+		case TILE_FOREST_TREES_9: sx = TILE_W * 8; break;
+		case TILE_FOREST_TREES_10: sx = TILE_W * 9; break;
+		case TILE_FOREST_TREES_11: sx = TILE_W * 10; break;
+		case TILE_FOREST_TREES_12: sx = TILE_W * 11; break;
+		case TILE_FOREST_TREES_13: sx = TILE_W * 12; break;
+		case TILE_FOREST_BIGTREE_1: yScale = 60; break;
 
-		case TILE_BEACH_ENTRY_DOOR: xClipping = TILE_W * 5; break;
-		case TILE_FOREST_ENTRY_DOOR: xClipping = TILE_W * 5; break;
-		case TILE_BEACH_EXIT_DOOR: xClipping = TILE_W * 6; break;
-		case TILE_FOREST_EXIT_DOOR: xClipping = TILE_W * 6; break;
-
-		case TILE_SNOW_GRASS_2: xClipping = TILE_W; break;
-		case TILE_SNOW_GRASS_3: xClipping = TILE_W * 2; break;
-		case TILE_SNOW_GRASS_4: xClipping = TILE_W * 3; break;
-		case TILE_SNOW_GRASS_5: xClipping = TILE_W * 4; break;
-		case TILE_SNOW_GRASS_6: xClipping = TILE_W * 5; break;
-		case TILE_SNOW_GRASS_7: xClipping = TILE_W * 6; break;
-		case TILE_SNOW_GRASS_8: xClipping = TILE_W * 7; break;
-		case TILE_SNOW_GRASS_9: xClipping = TILE_W * 8; break;
-		case TILE_SNOW_GRASS_10: xClipping = TILE_W * 9; break;
-		case TILE_SNOW_GRASS_11: xClipping = TILE_W * 10; break;
-		case TILE_SNOW_GRASS_12: xClipping = TILE_W * 11; break;
-		case TILE_SNOW_GRASS_13: xClipping = TILE_W * 12; break;
+		case TILE_SNOW_GRASS_2: sx = TILE_W; break;
+		case TILE_SNOW_GRASS_3: sx = TILE_W * 2; break;
+		case TILE_SNOW_GRASS_4: sx = TILE_W * 3; break;
+		case TILE_SNOW_GRASS_5: sx = TILE_W * 4; break;
+		case TILE_SNOW_GRASS_6: sx = TILE_W * 5; break;
+		case TILE_SNOW_GRASS_7: sx = TILE_W * 6; break;
+		case TILE_SNOW_GRASS_8: sx = TILE_W * 7; break;
+		case TILE_SNOW_GRASS_9: sx = TILE_W * 8; break;
+		case TILE_SNOW_GRASS_10: sx = TILE_W * 9; break;
+		case TILE_SNOW_GRASS_11: sx = TILE_W * 10; break;
+		case TILE_SNOW_GRASS_12: sx = TILE_W * 11; break;
+		case TILE_SNOW_GRASS_13: sx = TILE_W * 12; break;
 
 		case TILE_RITUAL_TREE: break;
-		case TILE_SNOWY_BUSH: xClipping = 0; yClipping = 0; break;
-		case TILE_SNOWY_PIT: xClipping = 0; yClipping = 0; break;
-		case TILE_TENT: xClipping = 0; yClipping = 0; break;
-		case TILE_SML_BUSH: xClipping = 0; yClipping = 0; break;
+		case TILE_SNOWY_BUSH: sx = TILE_W * 2; sy = 0; break;
+		case TILE_SNOWY_PIT: sx = TILE_W; sy = 0; break;
+		case TILE_TENT: sx = 0; sy = TILE_H * 2; sWidth = sHeight = 80; destX = -40; destY = -60; xScale = yScale = 80; break;
+		case TILE_SML_BUSH: sx = TILE_W * 3; sy = 0; sWidth = sHeight = -40; destX = destY = 20; xScale = yScale = -40; break;
 
 		default:
-			xClipping = 0;
-			yClipping = 0;
+			sx = sy = 0;
+			destX = destY = 0;
+			xScale = yScale = 0;
 			break;
 	}
 
-	canvasContext.drawImage(worldPics[tileType], xClipping, yClipping, TILE_W+xExtraWidth,TILE_H+yExtraHeight, tileLeftEgdeX, tileTopEdgeY-yExtraHeight,
-					TILE_W, TILE_H+yExtraHeight);
+	canvasContext.drawImage(worldPics[tileType], sx, sy, TILE_W+sWidth,TILE_H+sHeight, 
+							tileLeftEgdeX+destX, tileTopEdgeY+destY,
+							TILE_W+xScale, TILE_H+yScale);
 }

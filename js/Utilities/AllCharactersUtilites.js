@@ -27,6 +27,11 @@ function moveCharIfAble(tileType)
     case TILE_FOREST_TREES_13:
     case TILE_FOREST_TREES_14:
     case TILE_FOREST_BIGTREE_1:
+    case TILE_RITUAL_TREE:
+    case TILE_SNOWY_BUSH:
+    case TILE_SNOWY_PIT:
+    case TILE_TENT:
+    case TILE_SML_BUSH:
       return false;
       break;
     default:
