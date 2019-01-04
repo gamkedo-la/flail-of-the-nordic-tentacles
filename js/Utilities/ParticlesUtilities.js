@@ -59,7 +59,7 @@ function spawnDustPuff(thing)
     addParticles(
 		randBtweenTwoNums(8,16), // rate
 		dustParticlePic, // image
-		{min:4,max:8}, // life
+		{min:3,max:6}, // life
 		{min:4,max:16}); // size
 
 }
