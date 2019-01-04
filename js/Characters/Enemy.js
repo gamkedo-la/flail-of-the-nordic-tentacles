@@ -24,7 +24,7 @@ function enemyClass()
 	this.directionFaced;
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
-	
+
 	this.currentWaitTime = 0;
 
 	this.canPatrol = false;
@@ -35,7 +35,7 @@ function enemyClass()
 
 	this.shotList = [];
 	this.canShoot = false;
-	
+
 	this.init = function(name,enemyType,whichImage,colliderW,colliderH)
 	{
 		let randomDirIndex = Math.floor(Math.random() * (CARDINALS.length + 1));
@@ -77,7 +77,7 @@ function enemyClass()
 	this.move = function(nextX, nextY)
 	{
 		if(stopEnemyMovement){
-			// no action - cheat activated 
+			// no action - cheat activated
 		} else {
 			if(this.velX > 0)
 			{
@@ -139,7 +139,7 @@ function enemyClass()
 					this.velY = -this.velY;
 				}
 			}//end of y movement
-		} // end cheat code - stop enemy movement 
+		} // end cheat code - stop enemy movement
 		this.collider.update(this.centerX,this.centerY);
 	}//end of this.move
 
@@ -162,7 +162,7 @@ function enemyClass()
 	this.battle = function(playerCollider)
 	{
 		this.isInCombat = this.collider.isCollidingWithOtherCollider(playerCollider);
-		
+
 		if(this.isInCombat)
         {
             spawnFightParticles(this);
@@ -172,7 +172,7 @@ function enemyClass()
 			{
 				console.log ("bad guy bumped:NOT YET WORKING");
 				calculateDamage(player.stats, this.stats);
-				randomHitSound(true);	
+				randomHitSound(true);
 				handleEnemyRemovalAndXpDrop(this);
 			}
 			else
@@ -182,9 +182,9 @@ function enemyClass()
 			//	player.immunity();              // need to determine when damage occurs to start timer
 				if(player.isImmune == false)
 				{
-					calculateDamage(this.stats, player.stats);	
-					randomHitSound();					
-				}	
+					calculateDamage(this.stats, player.stats);
+					randomHitSound();
+				}
 			}
 		}
 
@@ -197,7 +197,7 @@ function enemyClass()
 				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,rotationTowardPlayer,fightRune));
 			}
 		}
-		
+
 		for(var i = this.shotList.length - 1; i>=0;i--)
 		{
 			var projectile = this.shotList[i];
@@ -224,7 +224,7 @@ function enemyClass()
 		{
 			return false;
 		}
-		else 
+		else
 		{
 			return true;
 		}
@@ -260,7 +260,7 @@ function enemyClass()
 		if(this.animDelay < 0)
 		{
 			this.animDelay = FRAME_DELAY;
-			
+
 			switch(this.directionFaced) {
 				case "South":
 					this.animFrame = 0;
@@ -281,9 +281,9 @@ function enemyClass()
 		debugDrawHeading(this);
 
 		drawText(this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
-		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
+		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS,
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
-		
+
 		for(var i = 0; i<this.shotList.length;i++)
 		{
 			this.shotList[i].draw();

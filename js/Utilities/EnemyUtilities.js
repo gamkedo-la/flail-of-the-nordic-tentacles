@@ -105,7 +105,7 @@ function handleEnemyRemovalAndXpDrop(whichEnemy)
 			player.exp.nextXp = player.exp.currentXp;
 			player.exp.nextLvl = player.exp.currentLvl;
 		}
-		
+
 		for(var i = enemiesList.length - 1; i >= 0; i--)
 		{
 			if(enemiesList[i].stats.isCharacterDead)
@@ -118,4 +118,9 @@ function handleEnemyRemovalAndXpDrop(whichEnemy)
 			}
 		}
 	}
+	else // did not die
+	{
+		spawnHitParticles(whichEnemy);
+	}
+
 }

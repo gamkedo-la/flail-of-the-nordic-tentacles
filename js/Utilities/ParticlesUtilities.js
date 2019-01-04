@@ -71,3 +71,11 @@ function spawnDeathParticles(thing)
 	emitters.push(new Emitter(new Vector(thing.centerX,thing.centerY),Vector.getNewVectorFromAngMag(1, 1), Math.PI));
     addParticles(randBtweenTwoNums(8,16),deathParticlePic,{min:10,max:20},{min:8,max:32});
 }
+
+// enemy got hit but was not killed:
+function spawnHitParticles(thing)
+{
+	console.log("spawning enemy hit particles");
+	emitters.push(new Emitter(new Vector(thing.centerX,thing.centerY),Vector.getNewVectorFromAngMag(1, 1), Math.PI));
+    addParticles(randBtweenTwoNums(1,3),deathParticlePic,{min:5,max:10},{min:8,max:32});
+}
