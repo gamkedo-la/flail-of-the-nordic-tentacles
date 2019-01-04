@@ -51,9 +51,10 @@ function spawnDustPuff(thing)
 			new Vector(thing.centerX-16+randBtweenTwoNums(0,16), // pos
 				randBtweenTwoNums(0,8)+thing.centerY+8), // nudged lower near feet
 			// speed
-			Vector.getNewVectorFromAngMag(1, 1),
+			Vector.getNewVectorFromAngMag(0, 3),
 			// angle range?
-			Math.PI)
+			Math.PI/6
+			)
 			);
 
     addParticles(
