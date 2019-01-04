@@ -76,19 +76,19 @@ function playerClass() {
         } else {
             this.velX = PLAYER_BUMP_SPEED;
         }
-        
+
         if (this.centerY < fromY) {
             this.velY = -PLAYER_BUMP_SPEED;
         } else {
             this.velY = PLAYER_BUMP_SPEED;
         }
-    
+
     }
 
     this.move = function () {
-        if (dialogueNotShowing()) 
+        if (dialogueNotShowing())
         {
-            if (this.stats.isCharacterDead) 
+            if (this.stats.isCharacterDead)
             {
                 console.log("The Player has died!");
                 player.reset();
@@ -129,23 +129,31 @@ function playerClass() {
             if (this.velY > -0.9 && this.velY < 0.06) {
             	this.velY = 0;
             }
-			
+
 			nextX = Math.floor(nextX);
 			nextY = Math.floor(nextY);
 
             this.setDirectionFaced();
 
-            if (nextX == this.centerX && nextY == this.centerY) 
+            if (nextX == this.centerX && nextY == this.centerY)
             {
-                this.isIdle == true;
-            } 
-            else 
+                // did we JUST stop moving?
+                if (!this.wasIdleLastFrame) {
+                    //console.log("Just stopped moving - spawning a dust puff skid effect");
+                    spawnDustPuff(this);
+                }
+
+                this.isIdle = true;
+
+            }
+            else
             {
                 this.isIdle = false;
+
                 // draw footprints on the ground as we travel
                 if (this.footstepImage) {
                     this.distSinceLastFootstep += Math.hypot(nextX - this.centerX, nextY - this.centerY);
-                    if (this.distSinceLastFootstep >= FOOTSTEP_DISTANCE) 
+                    if (this.distSinceLastFootstep >= FOOTSTEP_DISTANCE)
                     {
                         addGroundDecal({
                             x: this.centerX,
@@ -155,8 +163,10 @@ function playerClass() {
                 }
 
             }
-			
-			if (nextX > TILE_W * currentMapRows) 
+
+            this.wasIdleLastFrame = this.isIdle; // so we can tell when we just stopped
+
+			if (nextX > TILE_W * currentMapRows)
 			{
 				nextX = TILE_W * currentMapRows;
 			}
@@ -167,18 +177,23 @@ function playerClass() {
 			if (nextY > TILE_H * currentMapCols)
 			{
 				nextY = TILE_H * currentMapCols;
-			} 
+			}
 			if (nextY < 0)
 			{
 				nextY = 0;
 			}
-			
+
 			//play footstep sound based on tile type
 
-            if(this.collider.collidingWithTerrain(nextX,nextY,true))
+            if(!this.collider.collidingWithTerrain(nextX,nextY,true,0) && !this.collider.collidingWithTerrain(nextX,nextY,true,1))
             {
                 this.centerX = nextX;
                 this.centerY = nextY;
+            }
+            else
+            {
+                this.velX = 0;
+                this.velY = 0;
             }
 
             this.collider.update(this.centerX, this.centerY);
@@ -251,7 +266,7 @@ function playerClass() {
     this.immunity = function () {
         console.log(this.isImmune);
         this.immunityTimer++;
-        if (this.immunityTimer <= 100) 
+        if (this.immunityTimer <= 100)
 		{
 			this.isImmune = true;
         } else if (this.immunityTimer > 100) {
@@ -283,13 +298,13 @@ function playerClass() {
         }
 
         this.collider.draw();
-	
+
         canvasContext.drawImage(this.bitmap, // Sprite Sheet reference
 								this.animFrame * FRAME_DIMENSIONS, // Source X, Frame Index
 								0, // Source Y
-								FRAME_DIMENSIONS, // Frame width 
+								FRAME_DIMENSIONS, // Frame width
 								FRAME_DIMENSIONS, // Frame height
-								this.centerX - this.bitmap.width / 8, // Destination X 
+								this.centerX - this.bitmap.width / 8, // Destination X
 								this.centerY - this.bitmap.height / 2, // Destination Y
 								FRAME_DIMENSIONS, // Frame Width
 								FRAME_DIMENSIONS); // Frame Height

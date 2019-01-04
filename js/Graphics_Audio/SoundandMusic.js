@@ -26,7 +26,7 @@ var playerSfx = {
 	twigsStep: [new SoundOverlapsClass("twigsFootStep01"),new SoundOverlapsClass("twigsFootStep02")],
 };
 
-function getRndInteger(min, max) 
+function getRndInteger(min, max)
 {
 	hitSoundNumber = Math.floor(Math.random() * (max - min)) + min;
 }
@@ -60,48 +60,48 @@ function setFormat()
 	if (audio.canPlayType("audio/mp3"))
 	{
 		audioFormat = ".mp3";
-	} 
-	else 
+	}
+	else
 	{
 		audioFormat = ".ogg";
 	}
 }
 
-function SoundOverlapsClass(filenameWithPath) 
+function SoundOverlapsClass(filenameWithPath)
 {
-	
+
 	setFormat();
-	
+
 	var mainaudio = new Audio("audio/"+filenameWithPath+audioFormat);
 	var altaudio = new Audio("audio/"+filenameWithPath+audioFormat);
-	
+
 	var altaudioTurn = false;
-	
-	this.play = function() 
+
+	this.play = function()
 	{
-		if(altaudioTurn) 
+		if(altaudioTurn)
 		{
 			altaudio.currentTime = 0;
 			altaudio.play();
-		} 
-		else 
+		}
+		else
 		{
 			mainaudio.currentTime = 0;
 			mainaudio.play();
 		}
 		altaudioTurn = !this.altaudioTurn;
 	}
-}	
+}
 
 function BackgroundMusicClass()
 {
-	
+
 	var musicaudio = null;
-	
+
 	this.loopSong = function(filenameWithPath)
 	{
-		setFormat(); 
-		
+		setFormat();
+
 		if(musicaudio != null)
 		{
 			musicaudio.pause();
@@ -111,14 +111,14 @@ function BackgroundMusicClass()
 		musicaudio.loop = true;
 		musicaudio.play();
 	}
-	
+
 	this.startOrStopMusic = function()
 	{
 		if(musicaudio.paused)
 		{
 			musicaudio.play();
-		} 
-		else 
+		}
+		else
 		{
 			musicaudio.pause();
 		}
@@ -133,7 +133,7 @@ function handleBackgroundMusic()
 			backgroundMusic.loopSong('RebelWoods');
 			break;
 		case 'snowTest':
-			// backgroundMusic.loopSong("PickupBeacon01");
+			backgroundMusic.loopSong('NordicSnow');
 			break;
 	}
 }

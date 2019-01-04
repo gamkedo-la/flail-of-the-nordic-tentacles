@@ -27,26 +27,16 @@ function moveCharIfAble(tileType)
     case TILE_FOREST_TREES_13:
     case TILE_FOREST_TREES_14:
     case TILE_FOREST_BIGTREE_1:
+    case TILE_RITUAL_TREE:
+    case TILE_SNOWY_BUSH:
+    case TILE_SNOWY_PIT:
+    case TILE_TENT:
+    case TILE_SML_BUSH:
       return false;
       break;
     default:
       return true;
       break;
-  }
-}
-
-function drawAllCharacters()
-{
-  drawEnemies();
-  player.draw();
-
-  //going to need y-sorting for these
-  if(currentMap == 'forestTest')
-  {
-    maleViking.draw();
-    femaleViking.draw();
-    seer.draw();
-    outcast.draw();
   }
 }
 
@@ -56,6 +46,18 @@ function moveCharacters()
   for(var i = 0; i < enemiesList.length; i++)
   {
     enemiesList[i].move();
+  }
+  if(respawnTimerFrames > 0)
+  {
+    respawnTimerFrames--;
+    if(respawnTimerFrames <= 0)
+    {
+      randomSpawn();
+      if(enemiesList.length < enemiesInAreaCount)
+      {
+        respawnTimerFrames = FRAME_DELAY_RESPAWN;
+      }
+    }
   }
 }
 
@@ -84,10 +86,6 @@ function handleCharacterPositions(whichLevel)
     player.reset();
     findSpawnSpots();
     popEnemyList();
-    for(var i = 0; i < enemiesList.length; i++)
-    {
-      enemiesList[i].init("Enemy " + i);
-    }
     player.hasEnterAnotherLevel = false;
   }
 	else //editor mode

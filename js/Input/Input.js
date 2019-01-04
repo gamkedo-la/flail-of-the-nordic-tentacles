@@ -62,9 +62,11 @@ function setupInput() {
             // else
             // {
             //     //spawn particles at mouseX and mouseY
+            //     let p = usableParticles.fight[randBtweenTwoNums(0,usableParticles.fight.length - 1)];
+
             //     emitters.push(new Emitter(new Vector((mouseX+camPanX),(mouseY+camPanY)),
             //                                 Vector.getNewVectorFromAngMag(0,2),Math.PI));
-            //     addParticles(randBtweenTwoNums(5,50));
+            //     addParticles(p.emissionRate,p.image,p.life,p.size);
             // }
         });
     document.addEventListener('keydown', keyPressed);

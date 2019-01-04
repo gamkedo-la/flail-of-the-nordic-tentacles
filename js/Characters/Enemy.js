@@ -3,7 +3,8 @@ const DETECTION_RADIUS = TILE_W * 2;
 const LEASH_LENGTH = 120;
 const FRAME_DIMENSIONS = 40;
 const FRAME_DELAY = 4;
-const NUM_OF_ENEMIES_ON_SCREEN = 50;
+const NUM_OF_ENEMIES_ON_SCREEN = 5;
+const CARDINALS = ["North", "East", "South", "West"];
 
 var enemiesList = [];
 var enemiesStartSpots = [];
@@ -23,7 +24,7 @@ function enemyClass()
 	this.directionFaced;
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
-	
+
 	this.currentWaitTime = 0;
 
 	this.canPatrol = false;
@@ -34,11 +35,17 @@ function enemyClass()
 
 	this.shotList = [];
 	this.canShoot = false;
-	
-	this.init = function(name,enemyType,whichImage,colliderW,colliderH)
+
+	this.distSinceLastFootstep = 0;
+	const ENEMY_FOOTSTEP_DISTANCE = 8;
+
+	this.init = function(name,enemyType,whichImage,colliderW,colliderH,footstepImage=footStepsPic)
 	{
+		let randomDirIndex = Math.floor(Math.random() * (CARDINALS.length + 1));
+		this.directionFaced = CARDINALS[randomDirIndex];
 		this.shotList = [];
 		this.bitmap = whichImage;
+		this.footstepImage = footstepImage;
 		this.charName = name;
 		this.charType = enemyType;
 		this.collider = new colliderClass(this.centerX, this.centerY, colliderW, colliderH, 0, 15);
@@ -74,7 +81,7 @@ function enemyClass()
 	this.move = function(nextX, nextY)
 	{
 		if(stopEnemyMovement){
-			// no action - cheat activated 
+			// no action - cheat activated
 		} else {
 			if(this.velX > 0)
 			{
@@ -110,7 +117,7 @@ function enemyClass()
 			{
 				if(this.canMoveToNextTile(nextX, nextY))
 				{
-					this.directionFaced = "East";
+					this.directionFaced = "South";
 					if(nextY > this.homeY + LEASH_LENGTH)
 					{
 						this.velY = -this.velY;
@@ -125,7 +132,7 @@ function enemyClass()
 			{
 				if(this.canMoveToNextTile(nextX, nextY))
 				{
-					this.directionFaced = "West";
+					this.directionFaced = "North";
 					if(nextY < this.homeY - LEASH_LENGTH)
 					{
 						this.velY = -this.velY;
@@ -136,7 +143,21 @@ function enemyClass()
 					this.velY = -this.velY;
 				}
 			}//end of y movement
-		} // end cheat code - stop enemy movement 
+
+			// draw footprints on the ground as we travel
+			if (this.footstepImage) {
+				this.distSinceLastFootstep += Math.hypot(nextX - this.centerX, nextY - this.centerY);
+				if (this.distSinceLastFootstep >= ENEMY_FOOTSTEP_DISTANCE)
+				{
+					addGroundDecal({
+						x: this.centerX,
+						y: this.centerY + 16
+					}, this.footstepImage)
+				}
+			}
+
+
+		} // end cheat code - stop enemy movement
 		this.collider.update(this.centerX,this.centerY);
 	}//end of this.move
 
@@ -159,7 +180,7 @@ function enemyClass()
 	this.battle = function(playerCollider)
 	{
 		this.isInCombat = this.collider.isCollidingWithOtherCollider(playerCollider);
-		
+
 		if(this.isInCombat)
         {
             spawnFightParticles(this);
@@ -169,7 +190,7 @@ function enemyClass()
 			{
 				console.log ("bad guy bumped:NOT YET WORKING");
 				calculateDamage(player.stats, this.stats);
-				randomHitSound(true);	
+				randomHitSound(true);
 				handleEnemyRemovalAndXpDrop(this);
 			}
 			else
@@ -179,9 +200,9 @@ function enemyClass()
 			//	player.immunity();              // need to determine when damage occurs to start timer
 				if(player.isImmune == false)
 				{
-					calculateDamage(this.stats, player.stats);	
-					randomHitSound();					
-				}	
+					calculateDamage(this.stats, player.stats);
+					randomHitSound();
+				}
 			}
 		}
 
@@ -189,15 +210,19 @@ function enemyClass()
 		{
 			if(Math.random() * 100 < 5)
 			{
-				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,10));
+				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30)) ;
+				enemySfx.shooting[randBtweenTwoNums(0,enemySfx.shooting.length - 1)].play();
+				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,rotationTowardPlayer,fightRune));
 			}
 		}
-		
+
 		for(var i = this.shotList.length - 1; i>=0;i--)
 		{
-			this.shotList[i].move();
-			if(this.shotList[i].isReadyToRemove())
+			var projectile = this.shotList[i];
+			projectile.move();
+			if(projectile.isReadyToRemove())
 			{
+				projectile.reset();
 				this.shotList.splice(i,1);
 			}
 		}
@@ -210,18 +235,16 @@ function enemyClass()
 			return false;
 		}
 		//check against player east/west/north/south
-		else if	((player.directionFaced == "East" && this.directionFaced == "East") ||
-				(player.directionFaced == "West" && this.directionFaced == "West") ||
-				(player.directionFaced == "North" && this.directionFaced == "East") ||
-				(player.directionFaced == "North" && this.directionFaced == "West") ||
-				(player.directionFaced == "South" && this.directionFaced == "East") ||
-				(player.directionFaced == "South" && this.directionFaced == "West"))
-		{
-			return true;
-		}
-		else 
+		else if	((player.directionFaced == "East" && this.directionFaced == "West") ||
+				(player.directionFaced == "West" && this.directionFaced == "East") ||
+				(player.directionFaced == "North" && this.directionFaced == "South") ||
+				(player.directionFaced == "South" && this.directionFaced == "North"))
 		{
 			return false;
+		}
+		else
+		{
+			return true;
 		}
 	}
 
@@ -239,7 +262,7 @@ function enemyClass()
 
 	this.canMoveToNextTile = function(nextCenterX,nextCenterY)
 	{
-		if(this.collider.collidingWithTerrain(nextCenterX,nextCenterY,false))
+		if(!this.collider.collidingWithTerrain(nextCenterX,nextCenterY,false,0) && !this.collider.collidingWithTerrain(nextCenterX,nextCenterY,false,1))
         {
             this.centerX = nextCenterX;
             this.centerY = nextCenterY;
@@ -255,7 +278,7 @@ function enemyClass()
 		if(this.animDelay < 0)
 		{
 			this.animDelay = FRAME_DELAY;
-			
+
 			switch(this.directionFaced) {
 				case "South":
 					this.animFrame = 0;
@@ -276,9 +299,9 @@ function enemyClass()
 		debugDrawHeading(this);
 
 		drawText(this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
-		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
+		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS,
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
-		
+
 		for(var i = 0; i<this.shotList.length;i++)
 		{
 			this.shotList[i].draw();

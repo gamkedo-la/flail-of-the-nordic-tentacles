@@ -78,12 +78,37 @@ function drawAll()
  	//}
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
+
+	objectsWithDepth = [];
+
 	drawVisibleWorld(currentMapCols, 0);
 	drawGroundDecals();
-	drawAllCharacters();
+	// drawAllCharacters();//characters are drawn with objectWithDepth loop below
 	// wormexTestEnemy.draw(); // trying to determine where to call draw enemies - Vince
 	drawParticles();
 	drawVisibleWorld(currentMapCols, 1);
+	objectsWithDepth = objectsWithDepth.concat(enemiesList);
+	objectsWithDepth = objectsWithDepth.concat([player]);
+	  if(currentMap == 'forestTest')
+	  {
+	   	objectsWithDepth = objectsWithDepth.concat([maleViking,femaleViking,outcast,seer]);
+	  }
+	objectsWithDepth.sort((objA, objB) => objA.centerY - objB.centerY);
+	for(var j = 0; j < objectsWithDepth.length;j++)
+	{
+		if(typeof objectsWithDepth[j].cornerX === 'undefined')
+		{
+			objectsWithDepth[j].draw();
+		}
+		else
+		{
+			canvasContext.drawImage(worldPics[objectsWithDepth[j].type], objectsWithDepth[j].cornerX, objectsWithDepth[j].cornerY, 
+				TILE_W+objectsWithDepth[j].width,TILE_H+objectsWithDepth[j].height, 
+							objectsWithDepth[j].left+objectsWithDepth[j].destinationX, objectsWithDepth[j].top+objectsWithDepth[j].destinationY,
+							TILE_W+objectsWithDepth[j].scaleX, TILE_H+objectsWithDepth[j].scaleY);
+		}
+	}
+
 	plotParticles(150,150);
 	canvasContext.restore();
 	if(debugState)

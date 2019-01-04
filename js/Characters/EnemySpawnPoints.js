@@ -7,19 +7,20 @@ function enemySpawnPointClass()
 
 	this.bitmap;
 	this.charType = 0;
-	
+
 	this.setup = function(startX,startY,enemyKind)
 	{
 		this.x = startX;
 		this.y = startY;
 		this.charType = enemyKind;
 		this.bitmap = getEnemyPicBasedOnType(this.charType);
+		this.footstepImage = footStepsPic; // fixme: different footprints depending on the enemy?
 	}
 
 	this.draw = function()
 	{
 		//will have to make this divided the enemies bitmap based on their size
-		canvasContext.drawImage(this.bitmap, 0 * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS, 
+		canvasContext.drawImage(this.bitmap, 0 * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS,
 			this.x - this.bitmap.width/8, this.y - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
 	}
 
