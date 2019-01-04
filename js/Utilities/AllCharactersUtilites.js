@@ -40,21 +40,6 @@ function moveCharIfAble(tileType)
   }
 }
 
-function drawAllCharacters()
-{
-  drawEnemies();
-  player.draw();
-
-  //going to need y-sorting for these
-  if(currentMap == 'forestTest')
-  {
-    maleViking.draw();
-    femaleViking.draw();
-    seer.draw();
-    outcast.draw();
-  }
-}
-
 function moveCharacters()
 {
   player.move();

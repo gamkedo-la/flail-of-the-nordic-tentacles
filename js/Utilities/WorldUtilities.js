@@ -186,3 +186,15 @@ function shouldDrawGroundUnderTile_Item(tileType)
 
 	return false;
 }
+
+function DepthObject(x,y,drawX,drawY,image = null)
+{
+	this.x = x;
+	this.y = y;
+	this.image = image;
+
+	this.draw = function()
+	{
+		canvasContext.drawImage(this.image,drawX,drawY);
+	}
+}

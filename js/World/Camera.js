@@ -1,8 +1,11 @@
-var camPanX = 0.0;
-var camPanY = 0.0;
 const DIST_BEFORE_X_PAN = 150;
 const DIST_BEFORE_Y_PAN = 100;
 const CAM_SPEED = 80.0;//for editor use only
+
+var camPanX = 0.0;
+var camPanY = 0.0;
+var camDeltaX, camDeltaY;
+
 
 function moveCamera(cols, rows)
 {
