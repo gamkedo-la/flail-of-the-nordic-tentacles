@@ -27,6 +27,7 @@ var footStepsPic = document.createElement("img");
 //Particles
 var greenSplat = document.createElement("img");
 var fightRune = document.createElement("img");
+var dustParticlePic = document.createElement("img");
 
 var picToLoad = 0;
 
@@ -46,6 +47,7 @@ function loadImages()
 		//Effects
 	    {varName: greenSplat, fileName: "effects/green_splatter.png"},
 	    {varName: fightRune, fileName: "effects/fight_rune.png"},
+		{varName: dustParticlePic, fileName: "effects/dust_particle.png"},
 
 		// Characters
 		{charName: vikingPic, fileName: "characters/V.png"},
