@@ -9,12 +9,13 @@ var isPaused = false;
 var displayItem = false;
 var itemDisplaytimer = 0;
 var debugState = false;
-
+var gameIsStarted = true;
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
 */
 window.onload = function()
 {
+	gameIsStarted = false;
 	canvas = document.getElementById('gc');
 	canvasContext = canvas.getContext('2d');
 
@@ -34,6 +35,11 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
+	//Reset it every frame
+    //if (gameIsStarted == false) {
+    //Menu.update();
+ 	// }
+    //else {
 	if (isPaused == false){
 		moveAll();
 		battleAll();
@@ -44,6 +50,7 @@ function updateAll()
 	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
 	drawAll();
 	emitters = [];
+	//}
 }
 
 function moveAll()
@@ -65,6 +72,10 @@ function battleAll()
 
 function drawAll()
 {
+	//if(gameIsStarted == false){
+    //Menu.draw();
+   	//return; // skip game logic below
+ 	//}
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
 	drawVisibleWorld(currentMapCols, 0);
