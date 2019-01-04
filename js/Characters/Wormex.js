@@ -1,6 +1,6 @@
 wormexClass.prototype = new enemyClass();
 
-var wormexTestEnemy = new wormexClass();
+// var wormexTestEnemy = new wormexClass();
 
 function wormexClass()
 {
@@ -50,7 +50,7 @@ function wormexClass()
 		{x:10, y: 2},
 	], 0.1);
 	anims.play('walk-down');
-	this.SpritePic = wormexPic;
+	// this.SpritePic = wormexPic;
 	this.x = 150;
 	this.y = 150;
 	this.sx = 0;
@@ -119,6 +119,7 @@ function wormexClass()
 
 		let frameX = anims.frameSource.x * this.width;
 		let frameY = anims.frameSource.y * this.height; 
-		drawSprite(this.SpritePic, frameX, frameY, this.width, this.height, this.centerX, this.centerY);
+		this.collider.draw();
+		drawSprite(this.bitmap, frameX, frameY, this.width, this.height, this.centerX - this.width/2, this.centerY - this.height/2);
 	}	
 }
