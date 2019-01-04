@@ -7,11 +7,11 @@ var spawnID = 1;
 function popEnemyList()
 {
 	//use allLvls[currentLvlIndex].totalEnemies instead of the const here
-	for(var i = 0; i < NUM_OF_ENEMIES_ON_SCREEN; i++)
+	for(var i = 0; i < allLvls[currentLvlIndex].totalEnemies; i++)
 	{
 		randomSpawn();
 	}
-	enemiesInAreaCount = NUM_OF_ENEMIES_ON_SCREEN;
+	enemiesInAreaCount = allLvls[currentLvlIndex].totalEnemies;
 }
 
 function findSpawnSpots()

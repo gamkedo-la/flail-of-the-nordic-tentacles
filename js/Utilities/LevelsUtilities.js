@@ -33,7 +33,12 @@ function handleLevelTransition(doorType)
 
 function saveMap(mapName, grid)
 {
+	let tilesetRow;
 	console.log("saving map: " + mapName, grid);
+	if(mapName == 'snowTest'){tilesetRow = 0;}
+	if(mapName == 'beachTest'){tilesetRow = 1;}
+	if(mapName == 'mountainTest'){tilesetRow = 2;}
+	if(mapName == 'forestTest'){tilesetRow = 3;}
 
 	var gridString = "[";
 
@@ -46,7 +51,8 @@ function saveMap(mapName, grid)
 	gridString += "],";
 
 	console.log("var " + mapName + " = {\n" + "gridLayers: " + gridString + "\n    rows: " + grid.mapRows + "," + "\n    cols: "
-		+ grid.mapCols + "," + "\n    levelName: \"" + mapName + "\"," + "\n    enemies:" + spawnListSaveText() + "};");
+		+ grid.mapCols + "," + "\n    levelName: \"" + mapName + "\"," + "\n    enemies:" + spawnListSaveText() +  "," + 
+		"\n    totalEnemies:" + enemySpawnList.length + "," + "\n    tilesetRow:" + tilesetRow + "};");
 }
 
 function saveLayers(layer,grid)
@@ -62,7 +68,7 @@ function saveLayers(layer,grid)
 
 			if(tileType == undefined)
 			{
-				multiDimArray += "000,";
+				multiDimArray += 000 + ",";
 			}
 			else
 			{
