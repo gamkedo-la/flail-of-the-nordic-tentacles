@@ -5,7 +5,7 @@ function handleNpcCollisions(playerCollider)
 	{
 		//console.log("Talking with: " + maleViking.charName);
         triggerText(maleVikingDialogue);
-        
+
 	}
 	else if(playerCollider.isCollidingWithOtherCollider(femaleViking.collider))
 	{
@@ -126,6 +126,8 @@ function resetPlayerHealth(playerStats)
 
 function levelUpPlayer()
 {
+	spawnLevelupParticles(player);
+
 	player.exp.currentLvl++;
 	player.exp.nextLvl++;
 	if(player.exp.currentLvl % 5 == 1 && player.exp.currentLvl > 1)

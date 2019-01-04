@@ -75,7 +75,15 @@ function spawnDeathParticles(thing)
 // enemy got hit but was not killed:
 function spawnHitParticles(thing)
 {
-	console.log("spawning enemy hit particles");
+	//console.log("spawning enemy hit particles");
 	emitters.push(new Emitter(new Vector(thing.centerX,thing.centerY),Vector.getNewVectorFromAngMag(1, 1), Math.PI));
     addParticles(randBtweenTwoNums(1,3),deathParticlePic,{min:5,max:10},{min:8,max:32});
+}
+
+// enemy got hit but was not killed:
+function spawnLevelupParticles(thing)
+{
+	//console.log("spawning levelup particles");
+	emitters.push(new Emitter(new Vector(thing.centerX-8,thing.centerY),Vector.getNewVectorFromAngMag(0.2, 1), Math.PI));
+    addParticles(32,levelupParticlePic,{min:20,max:30},{min:8,max:32});
 }
