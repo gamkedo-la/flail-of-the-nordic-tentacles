@@ -1,10 +1,17 @@
 //Enemy related
+var enemiesInAreaCount = 0;
+var respawnTimerFrames = 0;
+const FRAME_DELAY_RESPAWN = 150;
+var spawnID = 1;
+
 function popEnemyList()
 {
+	//use allLvls[currentLvlIndex].totalEnemies instead of the const here
 	for(var i = 0; i < NUM_OF_ENEMIES_ON_SCREEN; i++)
 	{
 		randomSpawn();
 	}
+	enemiesInAreaCount = NUM_OF_ENEMIES_ON_SCREEN;
 }
 
 function findSpawnSpots()
@@ -23,7 +30,9 @@ function randomSpawn()
 	var tempEnemy = getClassBasedOnType(enemiesStartSpots[randSpot].charType);
 
 	tempEnemy.setHome(enemiesStartSpots[randSpot].col,enemiesStartSpots[randSpot].row);
-	enemiesStartSpots.splice(randSpot, 1);
+	// enemiesStartSpots.splice(randSpot, 1);
+	tempEnemy.init('Enemy' + spawnID);
+	spawnID++;
 	enemiesList.push(tempEnemy);
 }
 
@@ -102,6 +111,10 @@ function handleEnemyRemovalAndXpDrop(whichEnemy)
 			if(enemiesList[i].stats.isCharacterDead)
 			{
 				enemiesList.splice(i,1);
+				if(respawnTimerFrames <= 0)
+				{
+					respawnTimerFrames = FRAME_DELAY_RESPAWN;
+				}
 			}
 		}
 	}

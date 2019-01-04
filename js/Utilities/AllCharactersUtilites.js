@@ -47,6 +47,18 @@ function moveCharacters()
   {
     enemiesList[i].move();
   }
+  if(respawnTimerFrames > 0)
+  {
+    respawnTimerFrames--;
+    if(respawnTimerFrames <= 0)
+    {
+      randomSpawn();
+      if(enemiesList.length < enemiesInAreaCount)
+      {
+        respawnTimerFrames = FRAME_DELAY_RESPAWN;
+      }
+    }
+  }
 }
 
 function handleCharacterPositions(whichLevel)
@@ -74,10 +86,6 @@ function handleCharacterPositions(whichLevel)
     player.reset();
     findSpawnSpots();
     popEnemyList();
-    for(var i = 0; i < enemiesList.length; i++)
-    {
-      enemiesList[i].init("Enemy " + i);
-    }
     player.hasEnterAnotherLevel = false;
   }
 	else //editor mode

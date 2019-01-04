@@ -3,7 +3,7 @@ const DETECTION_RADIUS = TILE_W * 2;
 const LEASH_LENGTH = 120;
 const FRAME_DIMENSIONS = 40;
 const FRAME_DELAY = 4;
-const NUM_OF_ENEMIES_ON_SCREEN = 50;
+const NUM_OF_ENEMIES_ON_SCREEN = 5;
 const CARDINALS = ["North", "East", "South", "West"];
 
 var enemiesList = [];

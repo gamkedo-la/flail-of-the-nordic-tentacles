@@ -54,6 +54,7 @@ function moveAll()
 
 function battleAll()
 {
+	console.log(enemiesList.length);
 	for(var i = 0; i < enemiesList.length; i++)
 	{
 		//checking for battle against player
