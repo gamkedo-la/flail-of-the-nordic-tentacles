@@ -26,10 +26,9 @@ function spawnEnemyBasedParticles(whichEnemy)
 	var x = (whichEnemy.centerX + player.centerX)/2;
     var y = (whichEnemy.centerY + player.centerY)/2;
 
-	//need a way to pass in whichEnemy's pos equation according to their specific bitmap size,
 	//angle/magnitude based whichEnemy, and spread based whichEnemy
 	emitters.push(new Emitter(new Vector(x,y), Vector.getNewVectorFromAngMag(0,2),Math.PI));
-     addParticles(particle.emissionRate,particle.image,particle.life,particle.size);
+     addParticles(randBtweenTwoNums(particle.minRate,particle.maxRate),particle.image,particle.life,particle.size);
 }
 
 function spawnFightParticles(enemy)
@@ -38,7 +37,7 @@ function spawnFightParticles(enemy)
     var x = (enemy.centerX + player.centerX)/2;
     var y = (enemy.centerY + player.centerY)/2;
     emitters.push(new Emitter(new Vector(x, y), Vector.getNewVectorFromAngMag(0, 2), Math.PI));
-    addParticles(particle.emissionRate, particle.image, particle.life, particle.size);
+    addParticles(randBtweenTwoNums(particle.minRate,particle.maxRate), particle.image, particle.life, particle.size);
 }
 
 // dust puff for stopping/skidding, jumping/landing impacts etc

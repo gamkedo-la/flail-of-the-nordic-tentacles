@@ -1,11 +1,11 @@
 var emitters = [];
 
-function Emitter(point,velocity,spread)
+function Emitter(point,velocity,spread,lifeTime)
 {
 	this.pos = point; //Vector
 	this.vel = velocity; //Vector
 	this.spread = spread || Math.PI / 32; //possible angles = velocity +/- spread
-	this.life = 240;//30 fps * 8 seconds
+	this.life = null;//30 fps * 8 seconds
 
 	this.color = "#999";
 	this.texture = "";

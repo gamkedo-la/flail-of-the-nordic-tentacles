@@ -350,11 +350,15 @@ function drawDepthSortedTiles()
 {
 	objectsWithDepth = objectsWithDepth.concat(enemiesList);
 	objectsWithDepth = objectsWithDepth.concat([player]);
-	  if(currentMap == 'forestTest')
-	  {
-	   	objectsWithDepth = objectsWithDepth.concat([maleViking,femaleViking,outcast,seer]);
-	  }
+
+	if(currentMap == 'forestTest')
+	{
+	  objectsWithDepth = objectsWithDepth.concat([maleViking,femaleViking,outcast,seer]);
+	}
+	objectsWithDepth = objectsWithDepth.concat(particles);
+
 	objectsWithDepth.sort((objA, objB) => objA.centerY - objB.centerY);
+
 	for(var j = 0; j < objectsWithDepth.length;j++)
 	{
 		if(typeof objectsWithDepth[j].cornerX === 'undefined')

@@ -57,6 +57,8 @@ function moveAll()
 {
 	moveCharacters();
 	moveCamera(currentMapCols, currentMapRows);
+	
+	plotParticles(150,150);
 }
 
 function battleAll()
@@ -83,13 +85,12 @@ function drawAll()
 
 	drawVisibleWorld(currentMapCols, 0);
 	drawGroundDecals();
-	// drawAllCharacters();//characters are drawn with objectWithDepth loop below
+	// drawAllCharacters();//characters are drawn with drawDepthSortedTiles()
 	// wormexTestEnemy.draw(); // trying to determine where to call draw enemies - Vince
-	drawParticles();
+	// drawParticles();//now handled in drawDepthSortedTiles()
 	drawVisibleWorld(currentMapCols, 1);
 	drawDepthSortedTiles();
 
-	plotParticles(150,150);
 	canvasContext.restore();
 	if(debugState)
 	{
