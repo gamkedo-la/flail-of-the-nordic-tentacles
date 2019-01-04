@@ -139,7 +139,7 @@ function playerClass() {
             {
                 // did we JUST stop moving?
                 if (!this.wasIdleLastFrame) {
-                    console.log("Just stopped moving - spawning a dust puff skid effect");
+                    //console.log("Just stopped moving - spawning a dust puff skid effect");
                     spawnDustPuff(this);
                 }
 

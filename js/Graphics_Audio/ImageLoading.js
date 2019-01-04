@@ -28,6 +28,7 @@ var footStepsPic = document.createElement("img");
 var greenSplat = document.createElement("img");
 var fightRune = document.createElement("img");
 var dustParticlePic = document.createElement("img");
+var deathParticlePic = document.createElement("img");
 
 var picToLoad = 0;
 
@@ -48,6 +49,7 @@ function loadImages()
 	    {varName: greenSplat, fileName: "effects/green_splatter.png"},
 	    {varName: fightRune, fileName: "effects/fight_rune.png"},
 		{varName: dustParticlePic, fileName: "effects/dust_particle.png"},
+		{varName: deathParticlePic, fileName: "effects/death_particle.png"},
 
 		// Characters
 		{charName: vikingPic, fileName: "characters/V.png"},

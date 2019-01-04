@@ -44,6 +44,7 @@ function spawnFightParticles(enemy)
 // dust puff for stopping/skidding, jumping/landing impacts etc
 function spawnDustPuff(thing)
 {
+	//console.log("spawning dust particles");
 	emitters.push(
 
 		new Emitter(
@@ -61,5 +62,12 @@ function spawnDustPuff(thing)
 		dustParticlePic, // image
 		{min:3,max:6}, // life
 		{min:4,max:16}); // size
+}
 
+// player just died fx
+function spawnDeathParticles(thing)
+{
+	console.log("spawning death particles");
+	emitters.push(new Emitter(new Vector(thing.centerX,thing.centerY),Vector.getNewVectorFromAngMag(1, 1), Math.PI));
+    addParticles(randBtweenTwoNums(8,16),deathParticlePic,{min:10,max:20},{min:8,max:32});
 }

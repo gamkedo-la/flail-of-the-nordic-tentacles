@@ -9,17 +9,17 @@ function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
 	this.radius = 5;
 	var noImage = true;
 	this.image = image;
-	if (this.image != undefined) 
+	if (this.image != undefined)
 	{
 		noImage = false;
 	}
 	this.width = (!noImage) ? this.image.width : this.radius * 2;
 	this.height = (!noImage) ? this.image.height : this.radius * 2;
-	if (noImage) 
+	if (noImage)
 	{
 		this.collider = new colliderClass(this.centerX,this.centerY,this.width - 2,this.height - 2,0,0);
 	}
-	else 
+	else
 	{
 		this.collider = new colliderClass(this.centerX,this.centerY,this.width - 10,this.height - 16,0,0);
 	}
@@ -39,7 +39,7 @@ function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
 		this.centerY -= Math.sin(this.rotation) * this.velY;
 		this.collider.update(this.centerX,this.centerY);
 		if (this.collider.isCollidingWithOtherCollider(player.collider) &&
-			!this.collided) 
+			!this.collided)
 		{
 			this.collided = true;
 			player.stats.hp -= this.damage;
@@ -48,6 +48,7 @@ function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
 			if (player.stats.hp <= 0)
 			{
 				player.stats.isCharacterDead = true;
+				spawnDeathParticles(player);
 			}
 			this.life = 0;
 		}
@@ -55,16 +56,16 @@ function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
 
 	this.draw = function()
 	{
-		if (this.image != undefined) 
+		if (this.image != undefined)
 		{
 			drawBitmapCenteredWithRot(this.image, this.centerX, this.centerY, this.rotation);
-		} 
-		else 
+		}
+		else
 		{
 			drawCircle(this.centerX,this.centerY, this.radius, "blue"); // no projectile image - using default
 		}
 
-		if (debugState) 
+		if (debugState)
 		{
 			this.collider.draw();
 		}
