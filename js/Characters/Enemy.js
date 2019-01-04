@@ -36,12 +36,16 @@ function enemyClass()
 	this.shotList = [];
 	this.canShoot = false;
 
-	this.init = function(name,enemyType,whichImage,colliderW,colliderH)
+	this.distSinceLastFootstep = 0;
+	const ENEMY_FOOTSTEP_DISTANCE = 8;
+
+	this.init = function(name,enemyType,whichImage,colliderW,colliderH,footstepImage=footStepsPic)
 	{
 		let randomDirIndex = Math.floor(Math.random() * (CARDINALS.length + 1));
 		this.directionFaced = CARDINALS[randomDirIndex];
 		this.shotList = [];
 		this.bitmap = whichImage;
+		this.footstepImage = footstepImage;
 		this.charName = name;
 		this.charType = enemyType;
 		this.collider = new colliderClass(this.centerX, this.centerY, colliderW, colliderH, 0, 15);
@@ -139,6 +143,20 @@ function enemyClass()
 					this.velY = -this.velY;
 				}
 			}//end of y movement
+
+			// draw footprints on the ground as we travel
+			if (this.footstepImage) {
+				this.distSinceLastFootstep += Math.hypot(nextX - this.centerX, nextY - this.centerY);
+				if (this.distSinceLastFootstep >= ENEMY_FOOTSTEP_DISTANCE)
+				{
+					addGroundDecal({
+						x: this.centerX,
+						y: this.centerY + 16
+					}, this.footstepImage)
+				}
+			}
+
+
 		} // end cheat code - stop enemy movement
 		this.collider.update(this.centerX,this.centerY);
 	}//end of this.move
