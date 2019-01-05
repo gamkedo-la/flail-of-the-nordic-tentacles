@@ -2,6 +2,7 @@ const INVENTORY_W = 180;
 const INVENTORY_H = 230;
 var isInventoryVisible = false;
 
+// this is a test comment commit, will be removed shortly... - Michael Vautour
 Inventory = function()
 {
 	var self = {
