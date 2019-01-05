@@ -35,11 +35,6 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
-	//Reset it every frame
-    //if (gameIsStarted == false) {
-    //Menu.update();
- 	// }
-    //else {
 	if (isPaused == false){
 		moveAll();
 		battleAll();
@@ -50,7 +45,6 @@ function updateAll()
 	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
 	drawAll();
 	emitters = [];
-	//}
 }
 
 function moveAll()
@@ -72,10 +66,10 @@ function battleAll()
 
 function drawAll()
 {
-	//if(gameIsStarted == false){
-    //Menu.draw();
-   	//return; // skip game logic below
- 	//}
+	if(gameIsStarted == false){
+    Menu.draw();
+   	return; // skip game logic below
+ 	}
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
 

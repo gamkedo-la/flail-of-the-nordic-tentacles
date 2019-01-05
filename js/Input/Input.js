@@ -185,6 +185,17 @@ function keyPressed(evt) {
                 particles = [];
                 emitters = [];
                 break;
+            case ENTER:
+                Menu.checkState()
+                break;
+            case UP_ARROW:
+                Menu.cursor1--;
+                Menu.update();
+                break;
+            case DOWN_ARROW:
+                Menu.cursor1++;
+                Menu.update();
+            break;
         }
     }
 

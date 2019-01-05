@@ -25,41 +25,22 @@ const Menu = new (function() {
     const LEVELS_PAGE = 4;
 
     let menuPageText = [classListMenu, classListSettings, classListHelp, classListCredits, classListLevels];
-    let textColour = "white" ;
+    let textColour = "#008b8b" ;
     let textFontFace = "20px Arial";
 
 // A super-janky menu input key repeat delay variable
     const KEY_REPEAT_FRAME_DELAY = 10;
 //-----END GLOBAL SETTINGS-----//
+
 this.update = function(){
-      //Wobble the cursors back and forth
-    if (wobble > 13 || wobble < 9) {
-      wobbleSpeed *= -1;
-    }
-        wobble += wobbleSpeed;
-
-    if (keyRepeatWait == 0){
-       if (keyPressed(SPACE) || keyPressed(ENTER)) {
-            this.checkState();
-             keyRepeatWait = KEY_REPEAT_FRAME_DELAY;
+     keyRepeatWait = Math.max(0, keyRepeatWait - 1);
+       if (cursor1 < 0){
+            cursor1 = 0;
         }
 
-        if(keyPressed(UP_ARROW)) {
-            cursor1--;
-           if (cursor1 < 0){
-                cursor1 = 0;
-            }
-            keyRepeatWait = KEY_REPEAT_FRAME_DELAY;
+        if (cursor1 >= menuPageText[currentPage].length){
+            cursor1 = menuPageText[currentPage].length - 1;
         }
-        if(keyPressed(DOWN_ARROW)) {
-            cursor1++;
-            if (cursor1 >= menuPageText[currentPage].length){
-                cursor1 = menuPageText[currentPage].length - 1;
-            }
-            keyRepeatWait = KEY_REPEAT_FRAME_DELAY;
-        } 
-    }
-    keyRepeatWait = Math.max(0, keyRepeatWait - 1);
 }
 
 
@@ -68,12 +49,15 @@ this.checkState = function(){
         gameIsStarted = true;
     }  
     if (menuPageText[currentPage][cursor1] === "Settings"){
+        cursor1 = 0;
         currentPage = SETTINGS_PAGE; 
     } 
     if (menuPageText[currentPage][cursor1] === "Help"){
+        cursor1 = 0;
         currentPage  = HELP_PAGE;
     } 
     if (menuPageText[currentPage][cursor1] === "Credits"){
+        cursor1 = 0;
         currentPage  = CREDITS_PAGE;    
     } 
 
@@ -113,23 +97,22 @@ this.redraw = function (){
 this.draw = function() {
     this.redraw();
         // Draw the menu logo
-    canvasContext.drawImage(logoPic, 0, 0);
+    //canvasContext.drawImage(logoPic, 0, 0);
 
     for (let i=0; i<menuPageText[currentPage].length; i++){
      drawText(menuPageText[currentPage][i],MENU_ROW[i], menuColumnPos[i],textColour, textFontFace, 'left', 'middle'); 
     }
-    //Draw menu options
-    /*
-    canvasContext.drawImage(playPic,MENU_ROW[0] ,menuColumnPos[0]);
-    canvasContext.drawImage(settingsPic,MENU_ROW[1],menuColumnPos[1]);
-    canvasContext.drawImage(helpPic,MENU_ROW[2] ,menuColumnPos[2]);
-    canvasContext.drawImage(creditsPic,MENU_ROW[3] ,menuColumnPos[3]);
-    */
+    
+     //Wobble the cursors back and forth
+    if (wobble > 13 || wobble < 9) {
+      wobbleSpeed *= -1;
+    }
+        wobble += wobbleSpeed;
         //Display previous score only if  player has lost
-    //colorText("Score: ",MENU_ROW[0], menuColumnPos[4],textColour, textFontFace, 'left', 'middle' );
+    //drawText("Score: ",MENU_ROW[0], menuColumnPos[4],textColour, textFontFace, 'left', 'middle' );
         
         //Draw cursor
-    canvasContext.drawImage(arrowPic,MENU_ROW[0] -80 ,menuColumnPos[cursor1] - wobble - 25);
+    canvasContext.drawImage(arrowPic,MENU_ROW[0] -80 ,menuColumnPos[cursor1] - wobble - 8);
  }
 
 

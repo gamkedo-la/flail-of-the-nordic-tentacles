@@ -13,6 +13,7 @@ var fallenPic = document.createElement("img");
 var vanguardPic = document.createElement("img");
 
 //UI
+var arrowPic = document.createElement("img");
 var textboxPic = document.createElement("img");
 var hornPic = document.createElement("img");
 var wormholePic = document.createElement("img");
@@ -37,6 +38,7 @@ function loadImages()
 {
 	var imageList = [
         //Ui
+        {varName: arrowPic, fileName: "ui/mickymouse.png"},
 		{varName: textboxPic, fileName: "ui/chatbox.png"},
 		{varName: footStepsPic, fileName: "ui/footstepsSnow.png"},
 		{varName: hornPic, fileName: "items/chaos_horn_quick.png"},
