@@ -1,11 +1,11 @@
-function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
+function projectileClass(startX,startY,vX,vY,time,damage,rotation,image = undefined)
 {
 	this.centerX = startX;
 	this.centerY = startY;
 	this.velX = vX;
 	this.velY = vY;
 	this.life = time;
-	this.damage = 50;
+	this.damage = damage;
 	this.radius = 5;
 	var noImage = true;
 	this.image = image;
@@ -30,7 +30,6 @@ function projectileClass(startX,startY,vX,vY,time, rotation, image = undefined)
 	{
 		//console.log("projectile finished");
 	}
-
 	this.move = function()
 	{
 		this.life--;

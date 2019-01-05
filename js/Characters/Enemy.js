@@ -39,12 +39,13 @@ function enemyClass()
 	this.distSinceLastFootstep = 0;
 	const ENEMY_FOOTSTEP_DISTANCE = 8;
 
-	this.init = function(name,enemyType,whichImage,colliderW,colliderH,footstepImage=footStepsPic)
+	this.init = function(name,enemyType,whichImage,colliderW,colliderH,chases=false,footstepImage=footStepsPic)
 	{
 		let randomDirIndex = Math.floor(Math.random() * (CARDINALS.length + 1));
 		this.directionFaced = CARDINALS[randomDirIndex];
 		this.shotList = [];
 		this.bitmap = whichImage;
+		this.chases = chases;
 		this.footstepImage = footstepImage;
 		this.charName = name;
 		this.charType = enemyType;
@@ -79,70 +80,84 @@ function enemyClass()
 	}
 
 	this.move = function(nextX, nextY)
-	{
+	{	
 		if(stopEnemyMovement){
 			// no action - cheat activated
 		} else {
-			if(this.velX > 0)
-			{
-				if(this.canMoveToNextTile(nextX, nextY))
+			// if (this.playerDetected(this.chases)) 
+			// {	
+			// 	var enemySpeed = this.minSpeed + Math.random() * this.speedRange;
+			// 	var moveXTowardPlayer = this.centerX < player.centerX ? enemySpeed : -enemySpeed;
+			// 	var moveYTowardPlayer = this.centerY < player.centerY ? enemySpeed : -enemySpeed;
+			// 	if(this.canMoveToNextTile(moveXTowardPlayer, moveYTowardPlayer))
+			// 	{
+			// 		this.centerX += moveXTowardPlayer;
+			// 		this.centerY += moveYTowardPlayer;
+			// 	}
+			// } 
+			// else 
+			// {
+				if(this.velX > 0)
 				{
-					this.directionFaced = "East";
-					if(nextX > this.homeX + LEASH_LENGTH)
+					if(this.canMoveToNextTile(nextX, nextY))
+					{
+						this.directionFaced = "East";
+						if(nextX > this.homeX + LEASH_LENGTH)
+						{
+							this.velX = -this.velX;
+						}
+					}
+					else
 					{
 						this.velX = -this.velX;
 					}
 				}
-				else
+				else if(this.velX < 0)
 				{
-					this.velX = -this.velX;
-				}
-			}
-			else if(this.velX < 0)
-			{
-				if(this.canMoveToNextTile(nextX, nextY))
-				{
-					this.directionFaced = "West";
-					if(nextX < this.homeX - LEASH_LENGTH)
+					if(this.canMoveToNextTile(nextX, nextY))
+					{
+						this.directionFaced = "West";
+						if(nextX < this.homeX - LEASH_LENGTH)
+						{
+							this.velX = -this.velX;
+						}
+					}
+					else
 					{
 						this.velX = -this.velX;
 					}
-				}
-				else
+				}//end  x movement
+				if(this.velY > 0)
 				{
-					this.velX = -this.velX;
-				}
-			}//end  x movement
-			if(this.velY > 0)
-			{
-				if(this.canMoveToNextTile(nextX, nextY))
-				{
-					this.directionFaced = "South";
-					if(nextY > this.homeY + LEASH_LENGTH)
+					if(this.canMoveToNextTile(nextX, nextY))
+					{
+						this.directionFaced = "South";
+						if(nextY > this.homeY + LEASH_LENGTH)
+						{
+							this.velY = -this.velY;
+						}
+					}
+					else
 					{
 						this.velY = -this.velY;
 					}
 				}
-				else
+				else if(this.velY < 0)
 				{
-					this.velY = -this.velY;
-				}
-			}
-			else if(this.velY < 0)
-			{
-				if(this.canMoveToNextTile(nextX, nextY))
-				{
-					this.directionFaced = "North";
-					if(nextY < this.homeY - LEASH_LENGTH)
+					if(this.canMoveToNextTile(nextX, nextY))
+					{
+						this.directionFaced = "North";
+						if(nextY < this.homeY - LEASH_LENGTH)
+						{
+							this.velY = -this.velY;
+						}
+					}
+					else
 					{
 						this.velY = -this.velY;
 					}
-				}
-				else
-				{
-					this.velY = -this.velY;
-				}
-			}//end of y movement
+				}//end of y movement
+			//}
 
 			// draw footprints on the ground as we travel
 			if (this.footstepImage) {
@@ -162,7 +177,7 @@ function enemyClass()
 	}//end of this.move
 
 	this.randomizeInitAI = function()
-	{
+	{ 
 		this.velX = this.minSpeed + Math.random() * this.speedRange;
 		this.velY = this.minSpeed + Math.random() * this.speedRange;
 
@@ -175,6 +190,28 @@ function enemyClass()
 			this.velY = -this.velY;
 		}
 		this.currentWaitTime = Math.floor(Math.random()*WAIT_TIME_BEFORE_PATROLLING);
+	}
+
+	this.playerDetected = function(chases) 
+	{
+		if (chases) {
+			var radius = LEASH_LENGTH;
+			var distX = Math.abs((this.centerX) - player.centerX);
+			var distY = Math.abs((this.centerX) - player.centerX);
+			var diffX = distX - 20; // player width
+			var diffY = distY - 20; // player height - both taken from collider data
+		
+			if ((diffX * diffX + diffY * diffY) <= (radius * radius)) 
+			{	
+				console.log("chasing!");
+				return true;
+			} 
+			else
+			{
+				console.log("player to far");
+				return false;
+			} 
+		}
 	}
 
 	this.battle = function(playerCollider)
@@ -212,7 +249,7 @@ function enemyClass()
 			{
 				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30)) ;
 				enemySfx.shooting[randBtweenTwoNums(0,enemySfx.shooting.length - 1)].play();
-				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,rotationTowardPlayer,fightRune));
+				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,50,rotationTowardPlayer,fightRune));
 			}
 		}
 
