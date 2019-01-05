@@ -274,18 +274,14 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_SNOW_GRASS_12: sx = TILE_W * 11; break;
 		case TILE_SNOW_GRASS_13: sx = TILE_W * 12; break;
 
-		// case TILE_RITUAL_TREE: break;
-		// case TILE_SNOWY_BUSH: sx = TILE_W * 2; sy = 0; break;
 		case TILE_SNOWY_PIT: sx = TILE_W; sy = 0; break;
-		// case TILE_TENT: sx = 0; sy = TILE_H * 2; sWidth = sHeight = 80; destX = -40; destY = -60; xScale = yScale = 80; break;
-		// case TILE_SML_BUSH: sx = TILE_W * 3; sy = 0; sWidth = sHeight = -40; destX = destY = 20; xScale = yScale = -40; break;
 
 		default:
 			sx = sy = 0;
 			destX = destY = 0;
 			xScale = yScale = 0;
-			drawDepthSortedTiles(tileType,tileLeftEgdeX,tileTopEdgeY);
-			break;
+			addToDepthSortedTiles(tileType,tileLeftEgdeX,tileTopEdgeY);
+			return;
 	}
 
 	canvasContext.drawImage(worldPics[tileType], sx, sy, TILE_W+sWidth,TILE_H+sHeight, 
@@ -293,7 +289,7 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 							TILE_W+xScale, TILE_H+yScale);
 }
 
-function drawDepthSortedTiles(tileType, tileLeftEgdeX,tileTopEdgeY)
+function addToDepthSortedTiles(tileType, tileLeftEgdeX,tileTopEdgeY)
 {
 	var sx = 0;
 	var sy = 0;
@@ -346,6 +342,35 @@ function drawDepthSortedTiles(tileType, tileLeftEgdeX,tileTopEdgeY)
 			break;
 	}
 
-	objectsWithDepth.push({cornerX:sx,cornerY:sy,centerY:tileTopEdgeY,destinationX:destX,destinationY:destY,scaleX:xScale,scaleY:yScale,
+	objectsWithDepth.push({cornerX:sx,cornerY:sy,centerY:tileTopEdgeY+40,destinationX:destX,destinationY:destY,scaleX:xScale,scaleY:yScale,
 							type:tileType,width:sWidth,height:sHeight,left:tileLeftEgdeX,top:tileTopEdgeY});
+}
+
+function drawDepthSortedTiles()
+{
+	objectsWithDepth = objectsWithDepth.concat(enemiesList);
+	objectsWithDepth = objectsWithDepth.concat([player]);
+
+	if(currentMap == 'forestTest')
+	{
+	  objectsWithDepth = objectsWithDepth.concat([maleViking,femaleViking,outcast,seer]);
+	}
+	objectsWithDepth = objectsWithDepth.concat(particles);
+
+	objectsWithDepth.sort((objA, objB) => objA.centerY - objB.centerY);
+
+	for(var j = 0; j < objectsWithDepth.length;j++)
+	{
+		if(typeof objectsWithDepth[j].cornerX === 'undefined')
+		{
+			objectsWithDepth[j].draw();
+		}
+		else
+		{
+			canvasContext.drawImage(worldPics[objectsWithDepth[j].type], objectsWithDepth[j].cornerX, objectsWithDepth[j].cornerY, 
+				TILE_W+objectsWithDepth[j].width,TILE_H+objectsWithDepth[j].height, 
+							objectsWithDepth[j].left+objectsWithDepth[j].destinationX, objectsWithDepth[j].top+objectsWithDepth[j].destinationY,
+							TILE_W+objectsWithDepth[j].scaleX, TILE_H+objectsWithDepth[j].scaleY);
+		}
+	}
 }
