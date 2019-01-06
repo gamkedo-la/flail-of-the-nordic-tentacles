@@ -6,7 +6,7 @@ const Menu = new (function() {
 
     let wobble = 10;
     let wobbleSpeed = 0.25;
-    let cursor1 = 0;
+    this.cursor1 = 0;
     let currentPage = 0;
     let keyRepeatWait = 0;
 
@@ -34,52 +34,52 @@ const Menu = new (function() {
 
 this.update = function(){
      keyRepeatWait = Math.max(0, keyRepeatWait - 1);
-       if (cursor1 < 0){
-            cursor1 = 0;
+       if (this.cursor1 < 0){
+            this.cursor1 = menuPageText[currentPage].length - 1;
         }
 
-        if (cursor1 >= menuPageText[currentPage].length){
-            cursor1 = menuPageText[currentPage].length - 1;
+        if (this.cursor1 >= menuPageText[currentPage].length){
+            this.cursor1 = 0;
         }
 }
 
 
 this.checkState = function(){
-    if (menuPageText[currentPage][cursor1] === "Play"){
+    if (menuPageText[currentPage][this.cursor1] === "Play"){
         gameIsStarted = true;
     }  
-    if (menuPageText[currentPage][cursor1] === "Settings"){
-        cursor1 = 0;
+    if (menuPageText[currentPage][this.cursor1] === "Settings"){
+        this.cursor1 = 0;
         currentPage = SETTINGS_PAGE; 
     } 
-    if (menuPageText[currentPage][cursor1] === "Help"){
-        cursor1 = 0;
+    if (menuPageText[currentPage][this.cursor1] === "Help"){
+        this.cursor1 = 0;
         currentPage  = HELP_PAGE;
     } 
-    if (menuPageText[currentPage][cursor1] === "Credits"){
-        cursor1 = 0;
+    if (menuPageText[currentPage][this.cursor1] === "Credits"){
+        this.cursor1 = 0;
         currentPage  = CREDITS_PAGE;    
     } 
 
-    if (menuPageText[currentPage][cursor1] === "Volume"){
+    if (menuPageText[currentPage][this.cursor1] === "Volume"){
         console.log("TODO implement volume change");   
     } 
-    if (menuPageText[currentPage][cursor1] === "Controls"){ 
+    if (menuPageText[currentPage][this.cursor1] === "Controls"){ 
         console.log("TODO Added Controls change"); 
     } 
-    if (menuPageText[currentPage][cursor1] === "Back"){
+    if (menuPageText[currentPage][this.cursor1] === "Back"){
         currentPage  = MENU_PAGE;
     }    
 
-    if (menuPageText[currentPage][cursor1] === "How to play"){ 
+    if (menuPageText[currentPage][this.cursor1] === "How to play"){ 
         //Handle help screen differently;
     }  
-    if (menuPageText[currentPage][cursor1] === "Control layout"){
+    if (menuPageText[currentPage][this.cursor1] === "Control layout"){
         //Handle Control layout screen differently;
     }
 
-    if (cursor1 >= menuPageText[currentPage].length){//if we're going to shorter menu
-        cursor1 = menuPageText[currentPage].length - 1;
+    if (this.cursor1 >= menuPageText[currentPage].length){//if we're going to shorter menu
+        this.cursor1 = menuPageText[currentPage].length - 1;
     }
 }
 
@@ -112,7 +112,7 @@ this.draw = function() {
     //drawText("Score: ",MENU_ROW[0], menuColumnPos[4],textColour, textFontFace, 'left', 'middle' );
         
         //Draw cursor
-    canvasContext.drawImage(arrowPic,MENU_ROW[0] -80 ,menuColumnPos[cursor1] - wobble - 8);
+    canvasContext.drawImage(arrowPic,MENU_ROW[0] -80 ,menuColumnPos[this.cursor1] - wobble - 8);
  }
 
 
