@@ -190,11 +190,9 @@ function keyPressed(evt) {
                 break;
             case UP_ARROW:
                 Menu.cursor1--;
-                Menu.update();
                 break;
             case DOWN_ARROW:
                 Menu.cursor1++;
-                Menu.update();
             break;
         }
     }

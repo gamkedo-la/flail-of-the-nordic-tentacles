@@ -35,7 +35,11 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
-	if (isPaused == false){
+	if (gameIsStarted === false) {
+    Menu.update();
+  	}
+    else if (isPaused == false) {
+	
 		moveAll();
 		battleAll();
 	} else {

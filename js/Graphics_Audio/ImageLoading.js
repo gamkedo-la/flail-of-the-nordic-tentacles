@@ -38,7 +38,7 @@ function loadImages()
 {
 	var imageList = [
         //Ui
-        {varName: arrowPic, fileName: "ui/mickymouse.png"},
+        {varName: arrowPic, fileName: "ui/arrow.png"},
 		{varName: textboxPic, fileName: "ui/chatbox.png"},
 		{varName: footStepsPic, fileName: "ui/footstepsSnow.png"},
 		{varName: hornPic, fileName: "items/chaos_horn_quick.png"},

@@ -14,7 +14,7 @@ const Menu = new (function() {
     let classListGame = ["New Game", "Continue", "Select Chapter", "Back"];
     let classListLevels = ["Chapter 1", "Chapter 2", "Chapter 3", "Back"];
     let classListSettings = ["Volume", "Controls", "Back"];
-    let classListHelp= ["How to play","Control layout", "", "Back"];
+    let classListHelp= ["How to play","Control layout","Back"];
     let classListCredits= ['Jaime Rivas' , "Back"];
 
 
@@ -112,7 +112,7 @@ this.draw = function() {
     //drawText("Score: ",MENU_ROW[0], menuColumnPos[4],textColour, textFontFace, 'left', 'middle' );
         
         //Draw cursor
-    canvasContext.drawImage(arrowPic,MENU_ROW[0] -80 ,menuColumnPos[this.cursor1] - wobble - 8);
+    canvasContext.drawImage(arrowPic,MENU_ROW[0] -50 ,menuColumnPos[this.cursor1] - wobble - 8);
  }
 
 
