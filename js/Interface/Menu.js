@@ -1,17 +1,16 @@
 const Menu = new (function() {
 //-----BEGIN GLOBAL SETTINGS-----//
     
-    let MENU_ROW = [340, 330, 340, 333];
-    let menuColumnPos = [250, 300, 350, 400];
+    let MENU_ROW = [280, 280, 290, 300, 290];
+    let menuColumnPos = [200, 250, 300, 350, 400];
 
     let wobble = 10;
-    let wobbleSpeed = 0.25;
+    let wobbleSpeed = 0.15;
     this.cursor1 = 0;
     let currentPage = 0;
-    let keyRepeatWait = 0;
 
-    let classListMenu = ["Play", "Settings", "Help" , "Credits"];
-    let classListGame = ["New Game", "Continue", "Select Chapter", "Back"];
+    let classListMenu = ["New Game", "Load / Save", "Settings", "Help" , "Credits"];
+    let classListLoad = ["Load Game", "Save Game", "Select Chapter", "Back"];
     let classListLevels = ["Chapter 1", "Chapter 2", "Chapter 3", "Back"];
     let classListSettings = ["Volume", "Controls", "Back"];
     let classListHelp= ["How to play","Control layout","Back"];
@@ -19,21 +18,18 @@ const Menu = new (function() {
 
 
     const MENU_PAGE = 0;
-    const SETTINGS_PAGE = 1;
-    const HELP_PAGE = 2;
-    const CREDITS_PAGE = 3;
-    const LEVELS_PAGE = 4;
+    const LOAD_PAGE = 1;
+    const SETTINGS_PAGE = 2;
+    const HELP_PAGE = 3;
+    const CREDITS_PAGE = 4;
+    
+    let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels];
+    let textColour = "#008b8b";
+    let textFontFace = "22px Book Antiqua";
 
-    let menuPageText = [classListMenu, classListSettings, classListHelp, classListCredits, classListLevels];
-    let textColour = "#008b8b" ;
-    let textFontFace = "20px Arial";
-
-// A super-janky menu input key repeat delay variable
-    const KEY_REPEAT_FRAME_DELAY = 10;
 //-----END GLOBAL SETTINGS-----//
 
 this.update = function(){
-     keyRepeatWait = Math.max(0, keyRepeatWait - 1);
        if (this.cursor1 < 0){
             this.cursor1 = menuPageText[currentPage].length - 1;
         }
@@ -45,9 +41,13 @@ this.update = function(){
 
 
 this.checkState = function(){
-    if (menuPageText[currentPage][this.cursor1] === "Play"){
+    if (menuPageText[currentPage][this.cursor1] === "New Game"){
         gameIsStarted = true;
-    }  
+    }
+    if (menuPageText[currentPage][this.cursor1] === "Load/Save"){
+        this.cursor1 = 0;
+        currentPage = LOAD_PAGE;
+    }
     if (menuPageText[currentPage][this.cursor1] === "Settings"){
         this.cursor1 = 0;
         currentPage = SETTINGS_PAGE; 
@@ -96,23 +96,21 @@ this.redraw = function (){
 
 this.draw = function() {
     this.redraw();
-        // Draw the menu logo
     //canvasContext.drawImage(logoPic, 0, 0);
+    if (wobble > 13 || wobble < 9) {
+      wobbleSpeed *= -1;
+    }
+    wobble += wobbleSpeed;
 
     for (let i=0; i<menuPageText[currentPage].length; i++){
      drawText(menuPageText[currentPage][i],MENU_ROW[i], menuColumnPos[i],textColour, textFontFace, 'left', 'middle'); 
     }
     
-     //Wobble the cursors back and forth
-    if (wobble > 13 || wobble < 9) {
-      wobbleSpeed *= -1;
-    }
-        wobble += wobbleSpeed;
-        //Display previous score only if  player has lost
+        //Display previous score
     //drawText("Score: ",MENU_ROW[0], menuColumnPos[4],textColour, textFontFace, 'left', 'middle' );
         
         //Draw cursor
-    canvasContext.drawImage(arrowPic,MENU_ROW[0] -50 ,menuColumnPos[this.cursor1] - wobble - 8);
+    canvasContext.drawImage(arrowPic,MENU_ROW[0] -45 + wobble*2,menuColumnPos[this.cursor1] - 15);
  }
 
 
