@@ -1,7 +1,7 @@
 const Menu = new (function() {
 //-----BEGIN GLOBAL SETTINGS-----//
     
-    let MENU_ROW = [280, 280, 290, 300, 290];
+    let MENU_ROW = [340, 335, 345, 355, 350];
     let menuColumnPos = [200, 250, 300, 350, 400];
 
     let wobble = 10;
@@ -9,16 +9,16 @@ const Menu = new (function() {
     this.cursor1 = 0;
     let currentPage = 0;
 
-    let classListMenu = ["New Game", "Load / Save", "Settings", "Help" , "Credits"];
-    let classListLoad = ["Load Game", "Save Game", "Select Chapter", "Back"];
-    let classListLevels = ["Chapter 1", "Chapter 2", "Chapter 3", "Back"];
-    let classListSettings = ["Volume", "Controls", "Back"];
-    let classListHelp= ["How to play","Control layout","Back"];
-    let classListCredits= ['Jaime Rivas' , "Back"];
+    let classListMenu = ["new game", "load game", "settings", "help" , "credits"];
+    let classListLoad = ["load", "select chapter", "back"];
+    let classListLevels = ["chapter 1", "chapter 2", "chapter 3", "back"];
+    let classListSettings = ["volume", "controls", "back"];
+    let classListHelp= ["how to play","control layout","back"];
+    let classListCredits= ['Jaime Rivas' , "back"];
 
 
     const MENU_PAGE = 0;
-    const GAME_PAGE = 1;
+    const LOAD_PAGE = 1;
     const SETTINGS_PAGE = 2;
     const HELP_PAGE = 3;
     const CREDITS_PAGE = 4;
@@ -42,40 +42,40 @@ this.update = function(){
 
 
 this.checkState = function(){
-    if (menuPageText[currentPage][this.cursor1] === "New Game"){
+    if (menuPageText[currentPage][this.cursor1] === "new game"){
         gameIsStarted = true;
     }
-    if (menuPageText[currentPage][this.cursor1] === "Load / Save"){
+    if (menuPageText[currentPage][this.cursor1] === "load game"){
         this.cursor1 = 0;
-        currentPage = GAME_PAGE;
+        currentPage = LOAD_PAGE;
     }
-    if (menuPageText[currentPage][this.cursor1] === "Settings"){
+    if (menuPageText[currentPage][this.cursor1] === "settings"){
         this.cursor1 = 0;
         currentPage = SETTINGS_PAGE; 
     } 
-    if (menuPageText[currentPage][this.cursor1] === "Help"){
+    if (menuPageText[currentPage][this.cursor1] === "help"){
         this.cursor1 = 0;
         currentPage  = HELP_PAGE;
     } 
-    if (menuPageText[currentPage][this.cursor1] === "Credits"){
+    if (menuPageText[currentPage][this.cursor1] === "credits"){
         this.cursor1 = 0;
         currentPage  = CREDITS_PAGE;    
     } 
 
-    if (menuPageText[currentPage][this.cursor1] === "Volume"){
+    if (menuPageText[currentPage][this.cursor1] === "volume"){
         console.log("TODO implement volume change");   
     } 
-    if (menuPageText[currentPage][this.cursor1] === "Controls"){ 
+    if (menuPageText[currentPage][this.cursor1] === "controls"){ 
         console.log("TODO Added Controls change"); 
     } 
-    if (menuPageText[currentPage][this.cursor1] === "Back"){
+    if (menuPageText[currentPage][this.cursor1] === "back"){
         currentPage  = MENU_PAGE;
     }    
 
-    if (menuPageText[currentPage][this.cursor1] === "How to play"){ 
+    if (menuPageText[currentPage][this.cursor1] === "tutorials"){ 
         //Handle help screen differently;
     }  
-    if (menuPageText[currentPage][this.cursor1] === "Control layout"){
+    if (menuPageText[currentPage][this.cursor1] === "control layout"){
         //Handle Control layout screen differently;
     }
 
