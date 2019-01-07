@@ -18,11 +18,12 @@ const Menu = new (function() {
 
 
     const MENU_PAGE = 0;
-    const LOAD_PAGE = 1;
+    const GAME_PAGE = 1;
     const SETTINGS_PAGE = 2;
     const HELP_PAGE = 3;
     const CREDITS_PAGE = 4;
     
+
     let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels];
     let textColour = "#008b8b";
     let textFontFace = "22px Book Antiqua";
@@ -44,9 +45,9 @@ this.checkState = function(){
     if (menuPageText[currentPage][this.cursor1] === "New Game"){
         gameIsStarted = true;
     }
-    if (menuPageText[currentPage][this.cursor1] === "Load/Save"){
+    if (menuPageText[currentPage][this.cursor1] === "Load / Save"){
         this.cursor1 = 0;
-        currentPage = LOAD_PAGE;
+        currentPage = GAME_PAGE;
     }
     if (menuPageText[currentPage][this.cursor1] === "Settings"){
         this.cursor1 = 0;
