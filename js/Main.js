@@ -120,6 +120,24 @@ function drawUI()
 	drawText("Player level: " + player.exp.currentLvl, 20, 540, "Maroon", "20px Arial", "center", 10);
 	drawText("Next level: " + player.exp.nextLvl, 20, 560, "Maroon", "20px Arial", "center", 10);
 
+	// background:
+	drawRect(24,34, 116,100, "#888");
+	// HP:
+	drawRect(30,40, 104,28, "#ddd");
+	drawText(`HP: ${player.stats.hp}/${player.stats.maxHp}`, 32, 50, 'black', '10px sans-serif');
+	drawRect(32,55, 100,10, "white");
+	drawRect(32,55, Math.ceil(player.stats.hp / player.stats.maxHp * 100),10, "red");
+	// XP:
+	drawRect(30,75, 104,24, "#ddd");
+	drawText(`XP: ${player.exp.currentXp}/${player.exp.nextXp}`, 32, 85, 'black', '10px sans-serif');
+	drawText(`Lvl: ${player.exp.currentLvl} `, 100, 85, 'black', '10px sans-serif');
+	drawRect(32,90, 100,6, "white");
+	drawRect(32,90, Math.ceil(player.exp.nextXp / player.exp.currentXp * 100),6, "purple");
+	// Stats:
+	drawRect(30,106, 104,20, "#ddd");
+	drawText(`Strength: ?`, 32, 118, 'black', '10px sans-serif');
+	drawText(`Defense: ?`, 85, 118, 'black', '10px sans-serif');
+
 	if(isInventoryVisible)
 	{
 		playerInventory.renderInventory();
