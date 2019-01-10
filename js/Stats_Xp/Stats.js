@@ -34,10 +34,12 @@ function statsClass()
 
 	this.baseStr = 60.0;
 	this.str;
+	this.maxStr;
 	this.strMod;
 
 	this.baseDef = 40.0;
 	this.def;
+	this.maxDef;
 	this.defMod;
 	
 	this.isCharacterDead = false;
