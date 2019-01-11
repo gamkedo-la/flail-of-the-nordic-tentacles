@@ -22,6 +22,8 @@ function enemyClass()
 	this.bitmap;
 
 	this.directionFaced;
+	this.chases;
+	this.chasing;
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
 
@@ -46,6 +48,7 @@ function enemyClass()
 		this.shotList = [];
 		this.bitmap = whichImage;
 		this.chases = chases;
+		this.chasing = false;
 		this.footstepImage = footstepImage;
 		this.charName = name;
 		this.charType = enemyType;
@@ -83,96 +86,86 @@ function enemyClass()
 	{	
 		if(stopEnemyMovement){
 			// no action - cheat activated
-		} else {
-			// if (this.playerDetected(this.chases)) 
-			// {	
-			// 	var enemySpeed = this.minSpeed + Math.random() * this.speedRange;
-			// 	var moveXTowardPlayer = this.centerX < player.centerX ? enemySpeed : -enemySpeed;
-			// 	var moveYTowardPlayer = this.centerY < player.centerY ? enemySpeed : -enemySpeed;
-			// 	if(this.canMoveToNextTile(moveXTowardPlayer, moveYTowardPlayer))
-			// 	{
-			// 		this.centerX += moveXTowardPlayer;
-			// 		this.centerY += moveYTowardPlayer;
-			// 	}
-			// } 
-			// else 
-			// {
-				if(this.velX > 0)
-				{
-					if(this.canMoveToNextTile(nextX, nextY))
-					{
-						this.directionFaced = "East";
-						if(nextX > this.homeX + LEASH_LENGTH)
-						{
-							this.velX = -this.velX;
-						}
-					}
-					else
-					{
-						this.velX = -this.velX;
-					}
-				}
-				else if(this.velX < 0)
-				{
-					if(this.canMoveToNextTile(nextX, nextY))
-					{
-						this.directionFaced = "West";
-						if(nextX < this.homeX - LEASH_LENGTH)
-						{
-							this.velX = -this.velX;
-						}
-					}
-					else
-					{
-						this.velX = -this.velX;
-					}
-				}//end  x movement
-				if(this.velY > 0)
-				{
-					if(this.canMoveToNextTile(nextX, nextY))
-					{
-						this.directionFaced = "South";
-						if(nextY > this.homeY + LEASH_LENGTH)
-						{
-							this.velY = -this.velY;
-						}
-					}
-					else
-					{
-						this.velY = -this.velY;
-					}
-				}
-				else if(this.velY < 0)
-				{
-					if(this.canMoveToNextTile(nextX, nextY))
-					{
-						this.directionFaced = "North";
-						if(nextY < this.homeY - LEASH_LENGTH)
-						{
-							this.velY = -this.velY;
-						}
-					}
-					else
-					{
-						this.velY = -this.velY;
-					}
-				}//end of y movement
-			//}
+		} else if (this.chasing) {
+			if (this.canMoveToNextTile(nextX, nextY)) {
 
-			// draw footprints on the ground as we travel
-			if (this.footstepImage) {
-				this.distSinceLastFootstep += Math.hypot(nextX - this.centerX, nextY - this.centerY);
-				if (this.distSinceLastFootstep >= ENEMY_FOOTSTEP_DISTANCE)
+			} else {
+
+			}
+		} else {
+			if(this.velX > 0)
+			{
+				if(this.canMoveToNextTile(nextX, nextY))
 				{
-					addGroundDecal({
-						x: this.centerX,
-						y: this.centerY + 16
-					}, this.footstepImage)
+					this.directionFaced = "East";
+					if(nextX > this.homeX + LEASH_LENGTH)
+					{
+						this.velX = -this.velX;
+					}
+				}
+				else
+				{
+					this.velX = -this.velX;
 				}
 			}
+			else if(this.velX < 0)
+			{
+				if(this.canMoveToNextTile(nextX, nextY))
+				{
+					this.directionFaced = "West";
+					if(nextX < this.homeX - LEASH_LENGTH)
+					{
+						this.velX = -this.velX;
+					}
+				}
+				else
+				{
+					this.velX = -this.velX;
+				}
+			}//end  x movement
+			if(this.velY > 0)
+			{
+				if(this.canMoveToNextTile(nextX, nextY))
+				{
+					this.directionFaced = "South";
+					if(nextY > this.homeY + LEASH_LENGTH)
+					{
+						this.velY = -this.velY;
+					}
+				}
+				else
+				{
+					this.velY = -this.velY;
+				}
+			}
+			else if(this.velY < 0)
+			{
+				if(this.canMoveToNextTile(nextX, nextY))
+				{
+					this.directionFaced = "North";
+					if(nextY < this.homeY - LEASH_LENGTH)
+					{
+						this.velY = -this.velY;
+					}
+				}
+				else
+				{
+					this.velY = -this.velY;
+				}
+			}//end of y movement
+		}
+		// draw footprints on the ground as we travel
+		if (this.footstepImage) {
+			this.distSinceLastFootstep += Math.hypot(nextX - this.centerX, nextY - this.centerY);
+			if (this.distSinceLastFootstep >= ENEMY_FOOTSTEP_DISTANCE)
+			{
+				addGroundDecal({
+					x: this.centerX,
+					y: this.centerY + 16
+				}, this.footstepImage)
+			}
+		}
 
-
-		} // end cheat code - stop enemy movement
 		this.collider.update(this.centerX,this.centerY);
 	}//end of this.move
 
@@ -204,11 +197,13 @@ function enemyClass()
 			if ((diffX * diffX + diffY * diffY) <= (radius * radius)) 
 			{	
 				console.log("chasing!");
+				this.chasing = true;
 				return true;
 			} 
 			else
 			{
 				console.log("player to far");
+				this.chasing = false;
 				return false;
 			} 
 		}

@@ -65,10 +65,16 @@ function wormexClass()
 	this.superClassMove = this.move;
 	this.move = function()
 	{
-		
 		var nextX = this.centerX;
 		var nextY = this.centerY;
 
+		if (this.playerDetected(this.chases)) 
+		{	
+			if (this.chasing) {
+				nextX < player.centerX ? this.velX : -this.velX;
+				nextY < player.centerY ? this.velY : -this.velY;
+			}
+		}
 		if(!this.isSentryModeOn())
 		{
 			nextX += this.velX;
@@ -78,9 +84,6 @@ function wormexClass()
 		}
 		this.anims.update(1/fps); 
 	}
-	
-	
-	
 	
 	this.draw = function()
 	{
