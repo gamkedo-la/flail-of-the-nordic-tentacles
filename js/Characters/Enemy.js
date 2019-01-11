@@ -188,7 +188,7 @@ function enemyClass()
 	this.playerDetected = function(chases) 
 	{
 		if (chases) {
-			var radius = LEASH_LENGTH;
+			var radius = LEASH_LENGTH * 5;
 			var distX = Math.abs((this.centerX) - player.centerX);
 			var distY = Math.abs((this.centerX) - player.centerX);
 			var diffX = distX - 20; // player width
@@ -196,13 +196,13 @@ function enemyClass()
 		
 			if ((diffX * diffX + diffY * diffY) <= (radius * radius)) 
 			{	
-				console.log("chasing!");
+				//console.log("chasing!");
 				this.chasing = true;
 				return true;
 			} 
 			else
 			{
-				console.log("player to far");
+				//console.log("player to far");
 				this.chasing = false;
 				return false;
 			} 
