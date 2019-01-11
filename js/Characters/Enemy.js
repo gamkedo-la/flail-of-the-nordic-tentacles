@@ -87,11 +87,7 @@ function enemyClass()
 		if(stopEnemyMovement){
 			// no action - cheat activated
 		} else if (this.chasing) {
-			if (this.canMoveToNextTile(nextX, nextY)) {
-
-			} else {
-
-			}
+			this.canMoveToNextTile(nextX, nextY)	
 		} else {
 			if(this.velX > 0)
 			{
@@ -188,7 +184,7 @@ function enemyClass()
 	this.playerDetected = function(chases) 
 	{
 		if (chases) {
-			var radius = LEASH_LENGTH * 5;
+			var radius = LEASH_LENGTH;
 			var distX = Math.abs((this.centerX) - player.centerX);
 			var distY = Math.abs((this.centerX) - player.centerX);
 			var diffX = distX - 20; // player width
@@ -207,6 +203,8 @@ function enemyClass()
 				return false;
 			} 
 		}
+		this.chasing = false;
+		return false;
 	}
 
 	this.battle = function(playerCollider)

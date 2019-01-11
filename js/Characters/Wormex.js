@@ -71,11 +71,18 @@ function wormexClass()
 		if (this.playerDetected(this.chases)) 
 		{	
 			if (this.chasing) {
-				nextX < player.centerX ? this.velX : -this.velX;
-				nextY < player.centerY ? this.velY : -this.velY;
+				if (this.velX < 0) {
+					this.velX  = -this.velX;
+				}
+				if (this.velY < 0) {
+					this.velY = -this.velY;
+				}
+				this.velX = nextX < player.centerX ? this.velX : -this.velX;
+				this.velY = nextY < player.centerY ? this.velY : -this.velY;
+				this.superClassMove(nextX,nextY);
 			}
 		}
-		if(!this.isSentryModeOn())
+		else if(!this.isSentryModeOn())
 		{
 			nextX += this.velX;
 			nextY += this.velY;
