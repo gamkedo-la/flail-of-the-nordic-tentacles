@@ -117,12 +117,25 @@ function wormexClass()
 		// this.sx = this.frameIndex * this.width;		// This is the Frame the Sprite is on	
 
 		// debugDrawHeading(this)
-		
 
+		this.collider.draw();
+
+		// UI variables
+		let charTopLeftCoordX = this.centerX - this.width/2;
+		let charTopRightCoordY = this.centerY - this.height/2;
 		let frameX = anims.frameSource.x * this.width;
 		let frameY = anims.frameSource.y * this.height; 
-		this.collider.draw();
-		drawText(this.charName, this.centerX - this.width/2, this.centerY - this.height/2, 'black');
-		drawSprite(this.bitmap, frameX, frameY, this.width, this.height, this.centerX - this.width/2, this.centerY - this.height/2);
+
+		// draw name
+		drawText(this.charName, charTopLeftCoordX, charTopRightCoordY, 'black');
+		
+		// draw sprite
+		drawSprite(this.bitmap, frameX, frameY, this.width, this.height, charTopLeftCoordX, charTopRightCoordY);
+
+		// draw health bar
+		var healthBarHeight = 4;
+		drawRect(charTopLeftCoordX-1,charTopRightCoordY-1, this.width+2,healthBarHeight+2, "#004005"); // give a dark green 1px border
+		drawRect(charTopLeftCoordX,charTopRightCoordY, this.width,healthBarHeight, "white");
+		drawRect(charTopLeftCoordX,charTopRightCoordY, Math.ceil(this.stats.hp / this.stats.maxHp * this.width),healthBarHeight, "#00ac0d");
 	}	
 }

@@ -73,8 +73,8 @@ function battleAll()
 function drawAll()
 {
 	if(gameIsStarted == false){
-    Menu.draw();
-   	return; // skip game logic below
+    	Menu.draw();
+   		return; // skip game logic below
  	}
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);

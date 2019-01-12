@@ -328,9 +328,18 @@ function enemyClass()
 		this.collider.draw();
 		debugDrawHeading(this);
 
-		drawText(this.charName, this.centerX - this.bitmap.width/4, this.centerY - this.bitmap.height/2, 'black');
+		let enemywidth = this.bitmap.width/4 // 4 frames in bitmap
+
+		drawText(this.charName, this.centerX - enemywidth, this.centerY - this.bitmap.height/2, 'black');
 		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS,
 			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
+
+		let charTopLeftCoordX = this.centerX - enemywidth/2;
+		let charTopRightCoordY = this.centerY - enemywidth/2;
+		let healthBarHeight = 4;
+		drawRect(charTopLeftCoordX-1,charTopRightCoordY-1, enemywidth+2,healthBarHeight+2, "#004005"); // give a dark green 1px border
+		drawRect(charTopLeftCoordX,charTopRightCoordY, enemywidth,healthBarHeight, "white");
+		drawRect(charTopLeftCoordX,charTopRightCoordY, Math.ceil(this.stats.hp / this.stats.maxHp * enemywidth),healthBarHeight, "#00ac0d");
 
 		for(var i = 0; i<this.shotList.length;i++)
 		{
