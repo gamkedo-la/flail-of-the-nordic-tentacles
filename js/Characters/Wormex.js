@@ -134,8 +134,12 @@ function wormexClass()
 
 		// draw health bar
 		var healthBarHeight = 4;
-		drawRect(charTopLeftCoordX-1,charTopRightCoordY-1, this.width+2,healthBarHeight+2, "#004005"); // give a dark green 1px border
-		drawRect(charTopLeftCoordX,charTopRightCoordY, this.width,healthBarHeight, "white");
-		drawRect(charTopLeftCoordX,charTopRightCoordY, Math.ceil(this.stats.hp / this.stats.maxHp * this.width),healthBarHeight, "#00ac0d");
+
+		// eyepatch needed to see enemy health
+		if (playerInventory.hasItem('eyepatch',1)) {
+			drawRect(charTopLeftCoordX-1,charTopRightCoordY-1, this.width+2,healthBarHeight+2, '#004005'); // give a dark green 1px border
+			drawRect(charTopLeftCoordX,charTopRightCoordY, this.width,healthBarHeight, 'white');
+			drawRect(charTopLeftCoordX,charTopRightCoordY, Math.ceil(this.stats.hp / this.stats.maxHp * this.width),healthBarHeight, '#00ac0d');
+		}
 	}	
 }

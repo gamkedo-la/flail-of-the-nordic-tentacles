@@ -337,10 +337,14 @@ function enemyClass()
 		let charTopLeftCoordX = this.centerX - enemywidth/2;
 		let charTopRightCoordY = this.centerY - enemywidth/2;
 		let healthBarHeight = 4;
-		drawRect(charTopLeftCoordX-1,charTopRightCoordY-1, enemywidth+2,healthBarHeight+2, "#004005"); // give a dark green 1px border
-		drawRect(charTopLeftCoordX,charTopRightCoordY, enemywidth,healthBarHeight, "white");
-		drawRect(charTopLeftCoordX,charTopRightCoordY, Math.ceil(this.stats.hp / this.stats.maxHp * enemywidth),healthBarHeight, "#00ac0d");
 
+		// eyepatch needed to see enemy health
+		if (playerInventory.hasItem('eyepatch',1)) {
+			drawRect(charTopLeftCoordX-1,charTopRightCoordY-1, enemywidth+2,healthBarHeight+2, '#004005'); // give a dark green 1px border
+			drawRect(charTopLeftCoordX,charTopRightCoordY, enemywidth,healthBarHeight, 'white');
+			drawRect(charTopLeftCoordX,charTopRightCoordY, Math.ceil(this.stats.hp / this.stats.maxHp * enemywidth),healthBarHeight, '#00ac0d');
+		}
+		
 		for(var i = 0; i<this.shotList.length;i++)
 		{
 			this.shotList[i].draw();
