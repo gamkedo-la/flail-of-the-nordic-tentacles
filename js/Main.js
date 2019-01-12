@@ -39,7 +39,7 @@ function updateAll()
     Menu.update();
   	}
     else if (isPaused == false) {
-	
+
 		moveAll();
 		battleAll();
 	} else {
@@ -55,7 +55,7 @@ function moveAll()
 {
 	moveCharacters();
 	moveCamera(currentMapCols, currentMapRows);
-	
+
 	plotParticles(150,150);
 }
 
@@ -65,7 +65,7 @@ function battleAll()
 	{
 		//checking for battle against player
 		enemiesList[i].battle(player.collider);
-	} 
+	}
 
 	regenPlayerHpIfAble(player,player.isIdle,enemiesList);
 }
@@ -135,12 +135,12 @@ function drawUI()
 	drawRect(32,90, Math.ceil(player.exp.nextXp / player.exp.currentXp * 100),6, "purple");
 	// Stats:
 	drawRect(30,106, 104,24, "#ddd");
-	drawText(`SP: ${player.stats.str}/${player.stats.maxStr}`, 32, 118, 'black', '10px sans-serif');
+	drawText(`STR: ${player.stats.str}/${player.stats.maxStr}`, 32, 118, 'black', '10px sans-serif');
 	drawRect(32,120, 100,6, "blue");
 	drawRect(32,120, Math.ceil(player.stats.str / player.stats.maxStr* 100),6, "grey");
 
 	drawRect(30,126, 104,24, "#ddd");
-	drawText(`DFP: ${player.stats.def}/${player.stats.maxDef}`, 32, 138, 'black', '10px sans-serif');
+	drawText(`DEF: ${player.stats.def}/${player.stats.maxDef}`, 32, 138, 'black', '10px sans-serif');
 	drawRect(32,140, 100,6, "blue");
 	drawRect(32,140, Math.ceil(player.stats.def / player.stats.maxDef* 100),6, "grey");
 	//drawText(`MP: ${player.stats.mp}/${player.stats.maxMp}`, 32, 168, 'black', '10px sans-serif');

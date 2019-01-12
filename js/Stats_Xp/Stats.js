@@ -2,7 +2,7 @@
 	NOTE: stats really only need to be checked when doing things like battles, using items that increase them whether permanently or temporarily,
 	checking gear requirements, etc.
 */
-const TIME_UNTIL_HP_STARTS_REGEN = 150; 
+const TIME_UNTIL_HP_STARTS_REGEN = 150;
 var hpModPossibilites = {wormex: [0.45,0.50,0.55,0.60],
 						fallen: [0.65,0.70,0.75,0.80],
 						vanguard: [0.85,0.90,0.95,1.0],
@@ -34,14 +34,14 @@ function statsClass()
 
 	this.baseStr = 60.0;
 	this.str;
-	this.maxStr;
+	this.maxStr = 100;
 	this.strMod;
 
 	this.baseDef = 40.0;
 	this.def;
-	this.maxDef;
+	this.maxDef = 100;
 	this.defMod;
-	
+
 	this.isCharacterDead = false;
 	this.isThisHitTheFirstHit = false;
 
