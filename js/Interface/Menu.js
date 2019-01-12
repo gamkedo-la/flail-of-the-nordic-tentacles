@@ -1,34 +1,33 @@
 const Menu = new (function() {
-//-----BEGIN GLOBAL SETTINGS-----//
-    
-    let MENU_ROW = [340, 335, 345, 355, 350];
-    let menuColumnPos = [200, 250, 300, 350, 400];
-
     let wobble = 10;
-    let wobbleSpeed = 0.15;
-    this.cursor1 = 0;
-    let currentPage = 0;
-
-    let classListMenu = ["new game", "load game", "settings", "help" , "credits"];
-    let classListLoad = ["load", "select chapter", "back"];
-    let classListLevels = ["chapter 1", "chapter 2", "chapter 3", "back"];
-    let classListSettings = ["volume", "controls", "back"];
-    let classListHelp= ["how to play","control layout","back"];
-    let classListCredits= ['Jaime Rivas' , "back"];
-
-
+    let wobbleSpeed = .25;
+    this.cursor1 = -1;
+ 
     const MENU_PAGE = 0;
-    const LOAD_PAGE = 1;
+    const RESUME_PAGE = 1;
     const SETTINGS_PAGE = 2;
     const HELP_PAGE = 3;
     const CREDITS_PAGE = 4;
-    
+    const CHAPTER_PAGE = 5;
+
+    let itemsX = 340;
+    let topItemY = 210;
+    let itemsWidth = 300;
+    let rowHeight = 45;
+
+    let currentPage = 0;
+
+    let textFontFace = "22px Book Antiqua";
+    let textColour = "teal" ;
+
+    let classListMenu = ["new game", "resume", "settings", "tutorials" , "credits"];
+    let classListLoad = ["load game", "start chapter", "back"];
+    let classListLevels = ["chapter 1", "chapter 2", "chapter 3", "back"];
+    let classListSettings = ["volume", "controls", "back"];
+    let classListHelp= ["game guide","gamepad layout","back"];
+    let classListCredits= ['Jaime Rivas' , "back"];
 
     let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels];
-    let textColour = "#008b8b";
-    let textFontFace = "22px Book Antiqua";
-
-//-----END GLOBAL SETTINGS-----//
 
 this.update = function(){
        if (this.cursor1 < 0){
@@ -38,49 +37,59 @@ this.update = function(){
         if (this.cursor1 >= menuPageText[currentPage].length){
             this.cursor1 = 0;
         }
+
+    let menuItemWidth = 80; // enough pixels for the longest word in the menu list
+    let menuItemHeight = 12; // approximate height, intentionally leaves some gap between
+  for (let i = 0; i < menuPageText[currentPage].length; i++) {
+    if(mouseX > (topItemY + rowHeight) * i && mouseX < (topItemY + rowHeight * i)+menuItemWidth && 
+       mouseY > itemsX && mouseY < itemsX+menuItemHeight) {
+      this.cursor1 = i;
+    }
+  }
 }
 
 
 this.checkState = function(){
-    if (menuPageText[currentPage][this.cursor1] === "new game"){
+     switch (menuPageText[currentPage][this.cursor1]) {
+    case "new game":
         gameIsStarted = true;
-    }
-    if (menuPageText[currentPage][this.cursor1] === "load game"){
         this.cursor1 = 0;
-        currentPage = LOAD_PAGE;
-    }
-    if (menuPageText[currentPage][this.cursor1] === "settings"){
+        break;
+    case "resume":
+        currentPage = RESUME_PAGE;
+        this.cursor1 = 0;
+        break;
+    case "settings": 
         this.cursor1 = 0;
         currentPage = SETTINGS_PAGE; 
-    } 
-    if (menuPageText[currentPage][this.cursor1] === "help"){
+        break;
+    case "tutorials":
         this.cursor1 = 0;
         currentPage  = HELP_PAGE;
-    } 
-    if (menuPageText[currentPage][this.cursor1] === "credits"){
+        break;
+    case "credits":
         this.cursor1 = 0;
         currentPage  = CREDITS_PAGE;    
-    } 
+        break;
 
-    if (menuPageText[currentPage][this.cursor1] === "volume"){
-        console.log("TODO implement volume change");   
-    } 
-    if (menuPageText[currentPage][this.cursor1] === "controls"){ 
-        console.log("TODO Added Controls change"); 
-    } 
-    if (menuPageText[currentPage][this.cursor1] === "back"){
-        currentPage  = MENU_PAGE;
-    }    
-
-    if (menuPageText[currentPage][this.cursor1] === "tutorials"){ 
-        //Handle help screen differently;
-    }  
-    if (menuPageText[currentPage][this.cursor1] === "control layout"){
-        //Handle Control layout screen differently;
-    }
-
-    if (this.cursor1 >= menuPageText[currentPage].length){//if we're going to shorter menu
-        this.cursor1 = menuPageText[currentPage].length - 1;
+    case "volume":
+        console.log("TODO implement volume changer");   
+        break;
+    case "controls":
+        console.log("TODO Added Controls changer");   
+        break;
+    case "game guide":
+        console.log("TODO implement how to play");
+        break;
+    case "gamepad layout":
+        console.log("TODO implement control layout");
+        break;
+    case "back":
+        currentPage  = MENU_PAGE; 
+        this.cursor1 = 0;
+        break;
+    default:
+        break;
     }
 }
 
@@ -97,23 +106,29 @@ this.redraw = function (){
 
 this.draw = function() {
     this.redraw();
-    //canvasContext.drawImage(logoPic, 0, 0);
+
     if (wobble > 13 || wobble < 9) {
       wobbleSpeed *= -1;
     }
     wobble += wobbleSpeed;
 
+    if(currentPage == CREDITS_PAGE) {
+      drawRect( 0, 0, gameCanvas.width, gameCanvas.height, "cyan", 0.2);
+      let creditsX = 11;
+      let creditsTopY = 25;
+      let creditsLineSkipY = 55;
+      for (let i = 0; i < creditsList.length; i++) {
+        drawText(creditsList[i],creditsX, creditsTopY + creditsLineSkipY * i, textColour, textFontFace, 'left', 'top');
+      }    
+    } else {
+    //canvasContext.drawImage(logoPic, 0, 0);
+          //Draw cursor
+    canvasContext.drawImage(arrowPic,itemsX -wobble ,topItemY + (this.cursor1 * rowHeight) -12);
+
     for (let i=0; i<menuPageText[currentPage].length; i++){
-     drawText(menuPageText[currentPage][i],MENU_ROW[i], menuColumnPos[i],textColour, textFontFace, 'left', 'middle'); 
-    }
-    
-        //Display previous score
-    //drawText("Score: ",MENU_ROW[0], menuColumnPos[4],textColour, textFontFace, 'left', 'middle' );
-        
-        //Draw cursor
-    canvasContext.drawImage(arrowPic,MENU_ROW[0] -45 + wobble*2,menuColumnPos[this.cursor1] - 15);
- }
-
-
-
+     drawText(menuPageText[currentPage][i], itemsX,topItemY + rowHeight * i,textColour, textFontFace, 'left', 'top');
+    }   
+  }
+}
+   
 })(); 
