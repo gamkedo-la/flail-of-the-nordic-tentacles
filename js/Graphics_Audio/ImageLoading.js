@@ -21,6 +21,7 @@ var eyepatchPic = document.createElement("img");
 var beaconPic = document.createElement("img");
 var dictionaryPic = document.createElement("img");
 var tentaclePic = document.createElement("img");
+var statsBezelPic = document.createElement("img");
 
 //Misc.
 var footStepsPic = document.createElement("img");
@@ -47,6 +48,7 @@ function loadImages()
 		{varName: wormholePic, fileName: "items/wormhole_quick.png"},
 		{varName: dictionaryPic, fileName: "items/dig_dictionary_quick.png"},
 		{varName: beaconPic, fileName: "items/beacon.png"},
+		{varName: statsBezelPic, fileName: "ui/statsBezel.png"},
 
 		//Effects
 	    {varName: greenSplat, fileName: "effects/green_splatter.png"},
