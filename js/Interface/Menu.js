@@ -30,12 +30,14 @@ const Menu = new (function() {
     let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels];
 
 this.update = function(){
- 
     for (let i = 0; i < menuPageText[currentPage].length; i++) {
         if(mouseX > itemsX && mouseX < itemsX + itemsWidth 
-            && mouseY < topItemY + (i * rowHeight) && mouseY > topItemY + (i+1) * rowHeight) {
+            && mouseY > topItemY + (i * rowHeight) && mouseY < topItemY + (i+1) * rowHeight) {
             this.cursor1 = i;
         }
+     document.addEventListener('click', event => {
+     this.checkState();
+    });   
     }
        if (this.cursor1 < 0){
             this.cursor1 = menuPageText[currentPage].length - 1;
