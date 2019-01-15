@@ -5,7 +5,11 @@ function setStats_Player(caller,level)
 	caller.hp = Math.floor(caller.hp);
 	caller.maxHp = caller.hp;
 	caller.str = caller.baseStr * level;
+	caller.str = Math.floor(caller.str);
+	caller.maxStr = caller.str;
 	caller.def = caller.baseDef * level;
+	caller.def = Math.floor(caller.def);
+	caller.maxDef = caller.def;
 }
 
 function setStats_Enemy(caller,level,charkind)
