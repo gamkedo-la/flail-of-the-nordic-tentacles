@@ -23,7 +23,8 @@ function enemyClass()
 
 	this.directionFaced;
 	this.chases;
-	this.chasing;
+	this.chasing = false;
+	this.returning = false;
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
 
@@ -181,30 +182,35 @@ function enemyClass()
 		this.currentWaitTime = Math.floor(Math.random()*WAIT_TIME_BEFORE_PATROLLING);
 	}
 
-	this.playerDetected = function(chases) 
+	this.playerDetected = function() 
 	{
-		if (chases) {
-			var radius = LEASH_LENGTH;
-			var distX = Math.abs((this.centerX) - player.centerX);
-			var distY = Math.abs((this.centerX) - player.centerX);
-			var diffX = distX - 20; // player width
-			var diffY = distY - 20; // player height - both taken from collider data
-		
-			if ((diffX * diffX + diffY * diffY) <= (radius * radius)) 
-			{	
-				//console.log("chasing!");
-				this.chasing = true;
-				return true;
-			} 
-			else
+		var radius = LEASH_LENGTH * 2;
+		var distX = Math.abs((this.centerX) - player.centerX);
+		var distY = Math.abs((this.centerX) - player.centerX);
+		var diffX = distX - 20; // player width
+		var diffY = distY - 20; // player height - both taken from collider data
+	
+		if ((diffX * diffX + diffY * diffY) <= (radius * radius)) 
+		{	
+			if (!this.returning) 
 			{
-				//console.log("player to far");
-				this.chasing = false;
-				return false;
+				this.chasing = true;
+				//console.log("chasing!");
+			}
+		} 
+		else
+		{
+			if (!this.returning && !this.chasing) 
+			{
+				//console.log("at home ready to chase");
 			} 
-		}
-		this.chasing = false;
-		return false;
+			else 
+			{
+				//console.log("returning");
+				this.chasing = false;
+				this.returning = true;
+			}
+		} 
 	}
 
 	this.battle = function(playerCollider)
@@ -240,7 +246,7 @@ function enemyClass()
 		{
 			if(Math.random() * 100 < 5)
 			{
-				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30)) ;
+				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30));
 				enemySfx.shooting[randBtweenTwoNums(0,enemySfx.shooting.length - 1)].play();
 				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,50,rotationTowardPlayer,fightRune));
 			}
