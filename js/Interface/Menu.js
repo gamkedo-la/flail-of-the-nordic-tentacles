@@ -28,17 +28,16 @@ const Menu = new (function() {
     let classListCredits= ['Jaime Rivas' , "back"];
 
     let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels];
-
-this.update = function(){
-    for (let i = 0; i < menuPageText[currentPage].length; i++) {
+this.menuMouse = function(){
+     for (let i = 0; i < menuPageText[currentPage].length; i++) {
         if(mouseX > itemsX && mouseX < itemsX + itemsWidth 
             && mouseY > topItemY + (i * rowHeight) && mouseY < topItemY + (i+1) * rowHeight) {
             this.cursor1 = i;
         }
-     document.addEventListener('click', event => {
-     this.checkState();
-    });   
     }
+}
+this.update = function(){
+   
        if (this.cursor1 < 0){
             this.cursor1 = menuPageText[currentPage].length - 1;
         }
