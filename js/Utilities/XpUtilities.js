@@ -82,7 +82,7 @@ function givePlayerRandomXp()
 
 		player.exp.currentXp += enemiesList[rand].exp.gainEnemyXpDrop();
 
-		if(hasPlayerLeveledUp())
+		while (hasPlayerLeveledUp())
 		{
 			levelUpPlayer();
 			playerSfx.levelUp.play();
