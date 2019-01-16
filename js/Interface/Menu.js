@@ -9,6 +9,7 @@ const Menu = new (function() {
     const HELP_PAGE = 3;
     const CREDITS_PAGE = 4;
     const CHAPTER_PAGE = 5;
+     const PAUSED_PAGE = 6;
 
     let itemsX = 340;
     let topItemY = 210;
@@ -26,8 +27,9 @@ const Menu = new (function() {
     let classListSettings = ["volume", "controls", "back"];
     let classListHelp= ["gameplay guide","gamepad guide","back"];
     let classListCredits= ['Jaime Rivas' , "back"];
+    let classListPaused= ['save' , 'audio',  'return'];
 
-    let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels];
+    let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels, classListPaused];
 this.menuMouse = function(){
      for (let i = 0; i < menuPageText[currentPage].length; i++) {
         if(mouseX > itemsX && mouseX < itemsX + itemsWidth 
@@ -105,7 +107,16 @@ this.redraw = function (){
 }
 
 this.draw = function() {
-    this.redraw();
+    if(gameIsStarted === false){
+        if(currentPage == PAUSED_PAGE){
+          currentPage = MENU_PAGE;  
+        }
+        this.redraw();
+    }else {
+        currentPage = PAUSED_PAGE;
+        canvasContext.clearRect(itemsX -50,topItemY - rowHeight,
+        itemsWidth, rowHeight * menuPageText[currentPage].length + rowHeight  );
+    }
 
     if (wobble > 13 || wobble < 9) {
       wobbleSpeed *= -1;
@@ -121,7 +132,9 @@ this.draw = function() {
         drawText(classListCredits[i],creditsX, creditsTopY + creditsLineSkipY * i, textColour, textFontFace, 'left', 'top');
       }    
     } else {
+    if (gameIsStarted === false){
     canvasContext.drawImage(logoPic, 300, 80);
+    }
           //Draw cursor
     canvasContext.drawImage(arrowPic,itemsX -wobble ,topItemY + (this.cursor1 * rowHeight) -12);
 

@@ -72,7 +72,7 @@ function battleAll()
 
 function drawAll()
 {
-	if(gameIsStarted == false){
+	if(gameIsStarted == false || isPaused){
     	Menu.draw();
    		return; // skip game logic below
  	}
