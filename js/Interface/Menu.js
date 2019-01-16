@@ -90,6 +90,16 @@ this.checkState = function(){
         currentPage  = MENU_PAGE; 
         this.cursor1 = 0;
         break;
+
+    case 'return':
+        isPaused = false;
+        break; 
+    case 'audio':
+        muteSFXandBackground();
+        break;
+    case 'save':
+        console.log('savegame');
+        break;
     default:
         break;
     }
