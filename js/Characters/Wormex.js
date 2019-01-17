@@ -1,7 +1,5 @@
 wormexClass.prototype = new enemyClass();
 
-// var wormexTestEnemy = new wormexClass();
-
 function wormexClass()
 {
 
@@ -109,7 +107,7 @@ function wormexClass()
 				}
 			} // end of if this.returning
 		} // end of if player is detected
-		if(!this.isSentryModeOn() && !this.returning && !this.chasing)
+		else if(!this.isSentryModeOn() && !this.returning && !this.chasing)
 		{
 			nextX += this.velX;
 			nextY += this.velY;
@@ -121,31 +119,31 @@ function wormexClass()
 	
 	this.draw = function()
 	{
-		if(this.velY > 0){
-			anims.play('walk-down');
+		switch(this.directionFaced) 
+		{
+			case "South":
+				anims.play('walk-down');
+				break;
+			case "East":
+				anims.play('walk-left');
+				break;
+			case "West":
+				anims.play('walk-right');
+				break;
+			case "North":
+				anims.play('walk-up');
+				break;
 		}
-		else anims.play('walk-up');
-		// this.tickCount++;
-		
-		// if (this.tickCount > this.ticksPerFrame) // advance the frame
-		// {
-			
-		// 	this.tickCount = 0;
-			
-		// 	if(this.frameIndex < this.numberOfFrames-1) // frame moves to the next number
-		// 	{
-		// 		this.frameIndex += 1;
-		// 	} else  // frame moves from the last frame to the first frame 
-		// 		{ 
-		// 		this.frameIndex = 0;
-		// 	}
+		// if(this.velY > 0){
+		// 	anims.play('walk-down');
 		// }
-		
-		// this.sx = this.frameIndex * this.width;		// This is the Frame the Sprite is on	
+		// else anims.play('walk-up');
 
-		// debugDrawHeading(this)
-
-		this.collider.draw();
+		if(debugState)
+		{
+			this.collider.draw();
+			debugDrawHeading(this);
+		}
 
 		// UI variables
 		let charTopLeftCoordX = this.centerX - this.width/2;
