@@ -184,6 +184,8 @@ function enemyClass()
 
 	this.playerDetected = function() 
 	{
+		var nextX = this.centerX;
+		var nextY = this.centerY;
 		var radius = LEASH_LENGTH * 2;
 		var distX = Math.abs((this.centerX) - player.centerX);
 		var distY = Math.abs((this.centerX) - player.centerX);
@@ -210,7 +212,80 @@ function enemyClass()
 				this.chasing = false;
 				this.returning = true;
 			}
-		} 
+		}
+		
+		if (this.chasing) {
+			if (this.velX < 0) {
+			this.velX = -this.velX;
+			}
+			if (this.velY < 0) {
+			this.velY = -this.velY;
+			}
+			rotationTowardPlayer = Math.atan2(this.centerY - player.centerY, this.centerX - player.centerX);
+			nextX -= Math.cos(rotationTowardPlayer) * this.velX;
+			nextY -= Math.sin(rotationTowardPlayer) * this.velY;
+			this.superClassMove(nextX,nextY);
+		} else if (this.returning) {
+			if (this.velX < 0) {
+				this.velX = -this.velX;
+			}
+			if (this.velY < 0) {
+				this.velY = -this.velY;
+			}
+			rotationTowardHome = Math.atan2(this.centerY - this.homeY, this.centerX - this.homeX);
+			nextX -= Math.cos(rotationTowardHome) * this.velX;
+			nextY -= Math.sin(rotationTowardHome) * this.velY;
+			if (this.canMoveToNextTile(nextX, nextY)) {
+				// all is well
+			}
+			else 
+			{
+				this.getUnstuck();
+				this.returning = false;
+				this.canPatrol = false;
+			}
+			if ((this.centerX <= this.homeX + LEASH_LENGTH &&
+				this.centerX >= this.homeX - LEASH_LENGTH) &&
+				(this.centerY <= this.homeY + LEASH_LENGTH &&
+				this.centerY >= this.homeY - LEASH_LENGTH)) 
+			{
+				this.returning = false;
+			}
+		} // end of if this.returning
+	}
+
+	this.getUnstuck = function() 
+	{	
+		var path = [];
+		var tileCheckDirectionX = 1;
+		var tileCheckDirectionY = currentMapCols;
+
+		if (this.centerX < this.homeX) 
+		{
+			tileCheckDirectionX = -1;
+		}
+		if (this.centerY > this.homeY) 
+		{
+			tileCheckDirectionY = -currentMapCols;
+		}
+
+		var enemyWorldIndex = getTileIndexAtRowCol(this.centerX,this.centerY, currentMapCols,currentMapRows);
+		var homeWorldIndex = getTileIndexAtRowCol(this.homeX,this.homeY, currentMapCols,currentMapRows);
+		var nextXMoveTile = indexToCenteredXY(enemyWorldIndex + tileCheckDirectionX);
+		var nextYMoveTile = indexToCenteredXY(enemyWorldIndex + tileCheckDirectionY);
+
+		if(!this.collider.collidingWithTerrain(nextXMoveTile.x,nextXMoveTile.y,false,0) && 
+			!this.collider.collidingWithTerrain(nextXMoveTile.x,nextXMoveTile.y,false,1))
+        {
+			path.push(nextXMoveTile);
+
+		}
+
+		if(!this.collider.collidingWithTerrain(nextYMoveTile.x,nextYMoveTile.y,false,0) && 
+			!this.collider.collidingWithTerrain(nextYMoveTile.x,nextYMoveTile.y,false,1))
+        {
+			path.push(nextYMoveTile);
+		}
 	}
 
 	this.battle = function(playerCollider)

@@ -71,44 +71,7 @@ function wormexClass()
 		if (this.chases) 
 		{	
 			this.playerDetected();
-			if (this.chasing) {
-				if (this.velX < 0) {
-				this.velX = -this.velX;
-				}
-				if (this.velY < 0) {
-				this.velY = -this.velY;
-				}
-				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY, this.centerX - player.centerX);
-				nextX -= Math.cos(rotationTowardPlayer) * this.velX;
-				nextY -= Math.sin(rotationTowardPlayer) * this.velY;
-				this.superClassMove(nextX,nextY);
-			} else if (this.returning) {
-				if (this.velX < 0) {
-					this.velX = -this.velX;
-				}
-				if (this.velY < 0) {
-					this.velY = -this.velY;
-				}
-				rotationTowardHome = Math.atan2(this.centerY - this.homeY, this.centerX - this.homeX);
-				nextX -= Math.cos(rotationTowardHome) * this.velX;
-				nextY -= Math.sin(rotationTowardHome) * this.velY;
-				if (this.canMoveToNextTile(nextX, nextY)) {
-					// all is well
-				}
-				else 
-				{
-					this.returning = false;
-					this.canPatrol = false;
-				}
-				if ((this.centerX <= this.homeX + LEASH_LENGTH &&
-					this.centerX >= this.homeX - LEASH_LENGTH) &&
-					(this.centerY <= this.homeY + LEASH_LENGTH &&
-					this.centerY >= this.homeY - LEASH_LENGTH)) 
-				{
-					this.returning = false;
-				}
-			} // end of if this.returning
-		} // end of if player is detected
+		}
 		if(!this.isSentryModeOn() && !this.returning && !this.chasing)
 		{
 			nextX += this.velX;
