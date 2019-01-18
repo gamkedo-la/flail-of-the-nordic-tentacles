@@ -235,12 +235,11 @@ function enemyClass()
 			rotationTowardHome = Math.atan2(this.centerY - this.homeY, this.centerX - this.homeX);
 			nextX -= Math.cos(rotationTowardHome) * this.velX;
 			nextY -= Math.sin(rotationTowardHome) * this.velY;
-			if (this.canMoveToNextTile(nextX, nextY)) {
+			if (this.canMoveToNextTile(nextX,nextY)) {
 				// all is well
 			}
 			else 
 			{
-				this.getUnstuck();
 				this.returning = false;
 				this.canPatrol = false;
 			}
@@ -252,40 +251,6 @@ function enemyClass()
 				this.returning = false;
 			}
 		} // end of if this.returning
-	}
-
-	this.getUnstuck = function() 
-	{	
-		var path = [];
-		var tileCheckDirectionX = 1;
-		var tileCheckDirectionY = currentMapCols;
-
-		if (this.centerX < this.homeX) 
-		{
-			tileCheckDirectionX = -1;
-		}
-		if (this.centerY > this.homeY) 
-		{
-			tileCheckDirectionY = -currentMapCols;
-		}
-
-		var enemyWorldIndex = getTileIndexAtRowCol(this.centerX,this.centerY, currentMapCols,currentMapRows);
-		var homeWorldIndex = getTileIndexAtRowCol(this.homeX,this.homeY, currentMapCols,currentMapRows);
-		var nextXMoveTile = indexToCenteredXY(enemyWorldIndex + tileCheckDirectionX);
-		var nextYMoveTile = indexToCenteredXY(enemyWorldIndex + tileCheckDirectionY);
-
-		if(!this.collider.collidingWithTerrain(nextXMoveTile.x,nextXMoveTile.y,false,0) && 
-			!this.collider.collidingWithTerrain(nextXMoveTile.x,nextXMoveTile.y,false,1))
-        {
-			path.push(nextXMoveTile);
-
-		}
-
-		if(!this.collider.collidingWithTerrain(nextYMoveTile.x,nextYMoveTile.y,false,0) && 
-			!this.collider.collidingWithTerrain(nextYMoveTile.x,nextYMoveTile.y,false,1))
-        {
-			path.push(nextYMoveTile);
-		}
 	}
 
 	this.battle = function(playerCollider)
