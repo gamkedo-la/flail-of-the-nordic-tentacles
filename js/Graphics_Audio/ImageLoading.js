@@ -62,7 +62,7 @@ function loadImages()
 		{charName: maleVikingPic, fileName: "characters/male_viking.png"},
 		{charName: femaleVikingPic, fileName: "characters/female_viking.png"},
 		{charName: seerPic, fileName: "characters/the_seer_v6.png"},
-		{charName: outcastPic, fileName: "characters/the_outcast.png"},
+		{charName: outcastPic, fileName: "characters/the_outcast.gif"},
 		{charName: wormexPic, fileName: "enemies/wormex2.png"},
 		{charName: tankPic, fileName: "enemies/slime_blue_sheet.png"},
 		{charName: fallenPic, fileName: "enemies/slime_red_sheet.png"},
@@ -141,7 +141,7 @@ function loadImages()
 		{worldType: TILE_VANGUARD, fileName: "enemies/slime_yellow.png"},
 		{worldType: TILE_PLAYER_NEW_GAME, fileName: "characters/viking_quick.png"},
 		{worldType: TILE_SEER, fileName: "characters/the_seer_v6.png"},
-		{worldType: TILE_OUTCAST, fileName: "characters/the_outcast.png"},
+		{worldType: TILE_OUTCAST, fileName: "characters/the_outcast.gif"},
 		{worldType: TILE_MALE_VIKING, fileName: "characters/male_viking.png"},
 		{worldType: TILE_FEMALE_VIKING, fileName: "characters/female_viking.png"},
 		]
