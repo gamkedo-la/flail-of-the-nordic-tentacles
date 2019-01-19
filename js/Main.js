@@ -35,16 +35,13 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
-	if (gameIsStarted === false) {
+	if (gameIsStarted == false || isPaused) {
     Menu.update();
   	}
-    else if (isPaused == false) {
-
+    else {
 		moveAll();
 		battleAll();
-	} else {
-		console.log("Pause");
-			}
+	}
 
 	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
 	drawAll();
@@ -72,7 +69,7 @@ function battleAll()
 
 function drawAll()
 {
-	if(gameIsStarted == false){
+	if(gameIsStarted == false || isPaused){
     	Menu.draw();
    		return; // skip game logic below
  	}
@@ -113,7 +110,7 @@ function drawStatsBox() {
 	drawText(`XP: ${player.exp.currentXp}/${player.exp.nextXp}`, 32, 85, 'black', '10px sans-serif');
 	drawText(`Lvl: ${player.exp.currentLvl} `, 100, 85, 'black', '10px sans-serif');
 	drawRect(32,90, 100,6, "white");
-	drawRect(32,90, Math.ceil(player.exp.nextXp / player.exp.currentXp * 100),6, "purple");
+	drawRect(32,90, Math.ceil( player.exp.currentXp/player.exp.nextXp  * 100),6, "purple");
 	// STR:
 	drawRect(30,106, 104,24, "#ddd");
 	drawText(`STR: ${player.stats.str}/${player.stats.maxStr}`, 32, 118, 'black', '10px sans-serif');

@@ -33,6 +33,31 @@ function getTileIndexAtRowCol(pxX, pxY, gridCols, gridRows)
 	return tileIndex;
 }
 
+function arrayIndexToCol(index) {
+	return index % currentMapCols;
+}
+
+function arrayIndexToRow(index) {
+	return Math.floor(index / currentMapRows);
+}
+
+function colToCenteredX(col) {
+	return (col * TILE_W) + TILE_W/2;
+}
+
+function rowToCenteredY(row) {
+	return (row * TILE_H) + TILE_H/2;
+}
+
+function indexToCenteredXY(index) {
+	var colIndex = arrayIndexToCol(index);
+	var rowIndex = arrayIndexToRow(index);
+	return {
+			x: colToCenteredX(colIndex),
+			y: rowToCenteredY(rowIndex)
+		};
+}
+
 function roomTileToIndex(tileCol, tileRow, gridCols)
 {
 	return (tileCol + gridCols * tileRow);

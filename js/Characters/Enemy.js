@@ -23,7 +23,8 @@ function enemyClass()
 
 	this.directionFaced;
 	this.chases;
-	this.chasing;
+	this.chasing = false;
+	this.returning = false;
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
 
@@ -181,30 +182,75 @@ function enemyClass()
 		this.currentWaitTime = Math.floor(Math.random()*WAIT_TIME_BEFORE_PATROLLING);
 	}
 
-	this.playerDetected = function(chases) 
+	this.playerDetected = function() 
 	{
-		if (chases) {
-			var radius = LEASH_LENGTH;
-			var distX = Math.abs((this.centerX) - player.centerX);
-			var distY = Math.abs((this.centerX) - player.centerX);
-			var diffX = distX - 20; // player width
-			var diffY = distY - 20; // player height - both taken from collider data
-		
-			if ((diffX * diffX + diffY * diffY) <= (radius * radius)) 
-			{	
-				//console.log("chasing!");
-				this.chasing = true;
-				return true;
-			} 
-			else
+		var nextX = this.centerX;
+		var nextY = this.centerY;
+		var radius = LEASH_LENGTH * 2;
+		var distX = Math.abs((this.centerX) - player.centerX);
+		var distY = Math.abs((this.centerX) - player.centerX);
+		var diffX = distX - 20; // player width
+		var diffY = distY - 20; // player height - both taken from collider data
+	
+		if ((diffX * diffX + diffY * diffY) <= (radius * radius)) 
+		{	
+			if (!this.returning) 
 			{
-				//console.log("player to far");
-				this.chasing = false;
-				return false;
+				this.chasing = true;
+				//console.log("chasing!");
+			}
+		} 
+		else
+		{
+			if (!this.returning && !this.chasing) 
+			{
+				//console.log("at home ready to chase");
 			} 
+			else 
+			{
+				//console.log("returning");
+				this.chasing = false;
+				this.returning = true;
+			}
 		}
-		this.chasing = false;
-		return false;
+		
+		if (this.chasing) {
+			if (this.velX < 0) {
+			this.velX = -this.velX;
+			}
+			if (this.velY < 0) {
+			this.velY = -this.velY;
+			}
+			rotationTowardPlayer = Math.atan2(this.centerY - player.centerY, this.centerX - player.centerX);
+			nextX -= Math.cos(rotationTowardPlayer) * this.velX;
+			nextY -= Math.sin(rotationTowardPlayer) * this.velY;
+			this.superClassMove(nextX,nextY);
+		} else if (this.returning) {
+			if (this.velX < 0) {
+				this.velX = -this.velX;
+			}
+			if (this.velY < 0) {
+				this.velY = -this.velY;
+			}
+			rotationTowardHome = Math.atan2(this.centerY - this.homeY, this.centerX - this.homeX);
+			nextX -= Math.cos(rotationTowardHome) * this.velX;
+			nextY -= Math.sin(rotationTowardHome) * this.velY;
+			if (this.canMoveToNextTile(nextX,nextY)) {
+				// all is well
+			}
+			else 
+			{
+				this.returning = false;
+				this.canPatrol = false;
+			}
+			if ((this.centerX <= this.homeX + LEASH_LENGTH &&
+				this.centerX >= this.homeX - LEASH_LENGTH) &&
+				(this.centerY <= this.homeY + LEASH_LENGTH &&
+				this.centerY >= this.homeY - LEASH_LENGTH)) 
+			{
+				this.returning = false;
+			}
+		} // end of if this.returning
 	}
 
 	this.battle = function(playerCollider)
@@ -240,7 +286,7 @@ function enemyClass()
 		{
 			if(Math.random() * 100 < 5)
 			{
-				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30)) ;
+				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30));
 				enemySfx.shooting[randBtweenTwoNums(0,enemySfx.shooting.length - 1)].play();
 				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,50,rotationTowardPlayer,fightRune));
 			}
@@ -299,55 +345,5 @@ function enemyClass()
             return true;
         }
         return false;
-	}
-
-	this.draw = function()
-	{
-		this.animDelay--;
-
-		if(this.animDelay < 0)
-		{
-			this.animDelay = FRAME_DELAY;
-
-			switch(this.directionFaced) {
-				case "South":
-					this.animFrame = 0;
-					break;
-				case "East":
-					this.animFrame = 1;
-					break;
-				case "West":
-					this.animFrame = 2;
-					break;
-				case "North":
-					this.animFrame = 3;
-					break;
-			}
-		}
-
-		this.collider.draw();
-		debugDrawHeading(this);
-
-		let enemywidth = this.bitmap.width/4 // 4 frames in bitmap
-
-		drawText(this.charName, this.centerX - enemywidth, this.centerY - this.bitmap.height/2, 'black');
-		canvasContext.drawImage(this.bitmap, this.animFrame * FRAME_DIMENSIONS, 0, FRAME_DIMENSIONS, FRAME_DIMENSIONS,
-			this.centerX - this.bitmap.width/8, this.centerY - this.bitmap.height/2, FRAME_DIMENSIONS, FRAME_DIMENSIONS);
-
-		let charTopLeftCoordX = this.centerX - enemywidth/2;
-		let charTopRightCoordY = this.centerY - enemywidth/2;
-		let healthBarHeight = 4;
-
-		// eyepatch needed to see enemy health
-		if (playerInventory.hasItem('eyepatch',1)) {
-			drawRect(charTopLeftCoordX-1,charTopRightCoordY-1, enemywidth+2,healthBarHeight+2, '#004005'); // give a dark green 1px border
-			drawRect(charTopLeftCoordX,charTopRightCoordY, enemywidth,healthBarHeight, 'white');
-			drawRect(charTopLeftCoordX,charTopRightCoordY, Math.ceil(this.stats.hp / this.stats.maxHp * enemywidth),healthBarHeight, '#00ac0d');
-		}
-		
-		for(var i = 0; i<this.shotList.length;i++)
-		{
-			this.shotList[i].draw();
-		}
 	}
 }
