@@ -35,16 +35,13 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
-	if (gameIsStarted === false) {
+	if (gameIsStarted == false || isPaused) {
     Menu.update();
   	}
-    else if (isPaused == false) {
-
+    else {
 		moveAll();
 		battleAll();
-	} else {
-		console.log("Pause");
-			}
+	}
 
 	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
 	drawAll();

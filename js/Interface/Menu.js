@@ -93,12 +93,15 @@ this.checkState = function(){
 
     case 'return':
         isPaused = false;
+        this.cursor1 = 0;
         break; 
     case 'audio':
         muteSFXandBackground();
+        this.cursor1 = 0;
         break;
     case 'save':
         console.log('savegame');
+        this.cursor1 = 0;
         break;
     default:
         break;
