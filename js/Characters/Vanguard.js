@@ -23,7 +23,7 @@ function vanguardClass()
 	this.superClassInit = this.init;
 	this.init = function(name)
 	{
-		this.setupSpeed(2,4);
+		this.setupSpeed(4,6);
 		this.setProjectile(true);
 		this.superClassInit(name,'Vanguard',vanguardPic,30,15);
 		this.reset();
