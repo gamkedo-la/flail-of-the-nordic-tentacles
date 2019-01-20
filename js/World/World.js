@@ -72,6 +72,7 @@ const TILE_SEER = 305;
 const TILE_OUTCAST = 306;
 const TILE_MALE_VIKING = 307;
 const TILE_FEMALE_VIKING = 308;
+const TILE_BOSS = 309;
 
 //Items from 500 - 650;
 const TILE_HORN = 500;

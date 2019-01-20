@@ -11,6 +11,7 @@ var wormexPic = document.createElement("img");
 var tankPic = document.createElement("img");
 var fallenPic = document.createElement("img");
 var vanguardPic = document.createElement("img");
+var bossPic = document.createElement("img");
 
 //UI
 var logoPic = document.createElement("img");
@@ -69,6 +70,7 @@ function loadImages()
 		{charName: tankPic, fileName: "enemies/slime_blue_sheet.png"},
 		{charName: fallenPic, fileName: "enemies/slime_red_sheet.png"},
 		{charName: vanguardPic, fileName: "enemies/slime_yellow_sheet.png"},
+		{charName: bossPic, fileName: "enemies/boss.png"},
 
 		// Terrain Tiles
 		{worldType: TILE_SNOW_GRASS_1, fileName: "environment/tiles/snowyGrass.png"},
