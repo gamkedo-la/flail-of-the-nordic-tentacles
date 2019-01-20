@@ -36,7 +36,7 @@ function xpClass()
 		}
 		else
 		{
-			console.log("Failed to initialize xp class due to non-existent charKing!");
+			console.log("Failed to initialize xp class due to non-existent charKind!");
 		}
 	}
 

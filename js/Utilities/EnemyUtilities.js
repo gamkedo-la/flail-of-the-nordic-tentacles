@@ -53,12 +53,12 @@ function getClassBasedOnType(charType)
 		case TILE_TANK:
 			classType = new tankClass();
 			break;
-		// case TILE_FALLEN:
-		// 	classType = new wormexClass();
-			// break;
-		// case TILE_VANGUARD:
-		// 	classType = new wormexClass();
-			// break;
+		case TILE_FALLEN:
+			classType = new fallenVikingClass();
+			break;
+		case TILE_VANGUARD:
+			classType = new vanguardClass();
+			break;
 	}
 
 	return classType;

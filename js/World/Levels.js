@@ -109,7 +109,7 @@ gridLayers: [[
     cols: 50,
     levelName: "snowTest",
     enemies:[
-{x:933,y:537, charType:301}, {x:981,y:523, charType:301}, {x:961,y:565, charType:301}, {x:1073,y:502, charType:302}, ],
+{x:933,y:537, charType:301}, {x:981,y:523, charType:304}, {x:961,y:565, charType:303}, {x:1073,y:502, charType:302}, ],
     totalEnemies:4,
     tilesetRow:0};
 
