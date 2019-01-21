@@ -2,7 +2,7 @@ const Menu = new (function() {
     let wobble = 12;
     let wobbleSpeed = .25;
     this.cursor1 = 0;
- 
+
     const MENU_PAGE = 0;
     const RESUME_PAGE = 1;
     const SETTINGS_PAGE = 2;
@@ -28,20 +28,20 @@ const Menu = new (function() {
     let classListHelp= ["gameplay","gamepad","back"];
     let classListPaused= ['save' , 'audio',  'return'];
     let classListCredits= ['Jaime Rivas' , "back"];
-    
+
 
     let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels, classListPaused];
 
 this.menuMouse = function(){
      for (let i = 0; i < menuPageText[currentPage].length; i++) {
-        if(mouseX > itemsX && mouseX < itemsX + itemsWidth 
+        if(mouseX > itemsX && mouseX < itemsX + itemsWidth
             && mouseY > topItemY + (i * rowHeight) && mouseY < topItemY + (i+1) * rowHeight) {
             this.cursor1 = i;
         }
     }
 }
 this.update = function(){
-   
+
        if (this.cursor1 < 0){
             this.cursor1 = menuPageText[currentPage].length - 1;
         }
@@ -63,9 +63,9 @@ this.checkState = function(){
         currentPage = RESUME_PAGE;
         this.cursor1 = 0;
         break;
-    case "settings": 
+    case "settings":
         this.cursor1 = 0;
-        currentPage = SETTINGS_PAGE; 
+        currentPage = SETTINGS_PAGE;
         break;
     case "tutorials":
         this.cursor1 = 0;
@@ -73,14 +73,14 @@ this.checkState = function(){
         break;
     case "credits":
         this.cursor1 = 0;
-        currentPage  = CREDITS_PAGE;    
+        currentPage  = CREDITS_PAGE;
         break;
 
     case "volume":
-        console.log("TODO implement volume changer");   
+        console.log("TODO implement volume changer");
         break;
     case "controls":
-        console.log("TODO Added Controls changer");   
+        console.log("TODO Added Controls changer");
         break;
     case "gameplay":
         console.log("TODO implement how to play");
@@ -89,14 +89,14 @@ this.checkState = function(){
         console.log("TODO implement control layout");
         break;
     case "back":
-        currentPage  = MENU_PAGE; 
+        currentPage  = MENU_PAGE;
         this.cursor1 = 0;
         break;
 
     case 'return':
         isPaused = false;
         this.cursor1 = 0;
-        break; 
+        break;
     case 'audio':
         muteSFXandBackground();
         this.cursor1 = 0;
@@ -118,16 +118,16 @@ this.redraw = function (){
     canvasContext.save();
     canvasContext.setTransform(1, 0, 0, 1, 0, 0);
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-    canvasContext.restore(); 
+    canvasContext.restore();
 }
 
 this.draw = function() {
     if(gameIsStarted === false){
         if(currentPage == PAUSED_PAGE){
-          currentPage = MENU_PAGE;  
+          currentPage = MENU_PAGE;
         }
         this.redraw();
-        canvasContext.drawImage(logoPic, 50, -150);
+        canvasContext.drawImage(logoPic, 75,30, 600,300);
     }else {
         currentPage = PAUSED_PAGE;
         canvasContext.clearRect(itemsX -50,topItemY - rowHeight,
@@ -146,15 +146,15 @@ this.draw = function() {
       let creditsLineSkipY = 55;
       for (let i = 0; i < classListCredits.length; i++) {
         drawText(classListCredits[i],creditsX, creditsTopY + creditsLineSkipY * i, textColour, textFontFace, 'left', 'top');
-      }    
+      }
     }
 
     for (let i=0; i<menuPageText[currentPage].length; i++){
      drawText(menuPageText[currentPage][i],itemsX,topItemY + rowHeight * i,textColour, textFontFace, 'left', 'top');
     //Draw cursor
     canvasContext.drawImage(arrowPic,(itemsX-20) - wobble * i,topItemY + (this.cursor1 * rowHeight) -14);
-    }   
-    
+    }
+
 }
-   
-})(); 
+
+})();
