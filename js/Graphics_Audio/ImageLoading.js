@@ -1,5 +1,8 @@
 var worldPics = [];
 
+var snowyTile = document.createElement("img");
+snowyTile.src = "images/environment/tiles/snowTile.png";
+
 //Characters
 var vikingPic = document.createElement("img");
 var seerPic = document.createElement("img");

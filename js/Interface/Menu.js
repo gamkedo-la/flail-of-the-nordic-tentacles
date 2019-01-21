@@ -127,6 +127,10 @@ this.draw = function() {
           currentPage = MENU_PAGE;
         }
         this.redraw();
+        let pattern = canvasContext.createPattern(snowyTile, "repeat");
+        canvasContext.rect(0,0, 775,800);
+        canvasContext.fillStyle = pattern;
+        canvasContext.fill();
         canvasContext.drawImage(logoPic, 75,30, 600,300);
     }else {
         currentPage = PAUSED_PAGE;
