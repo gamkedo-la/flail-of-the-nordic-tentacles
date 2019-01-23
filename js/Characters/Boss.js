@@ -1,31 +1,48 @@
-vanguardClass.prototype = new enemyClass();
+bossClass.prototype = new enemyClass();
 
-function vanguardClass()
+function bossClass()
 {
 
 	this.exp = new xpClass();//only for init level within a bracket appropriate to enemy
 	this.stats = new statsClass();
-	this.frame = {x: 0, y: 0}
+	this.frame = {x: 0, y: 3}
 	this.anims = new AnimManager(this);
 	const { anims } = this;
-	anims.add('walk-up',
-		[{x:2, y:0}],0.1);
-	anims.add('walk-down',
-		[{x:0, y:0}],0.1);
-	anims.add('walk-right',
-		[{x:1, y:0}],0.1);
-	anims.add('walk-left',
-		[{x:3, y:0}],0.1);
+	anims.add('walk-up', [
+		{x:0, y:3},
+		{x:1, y:3},
+		{x:2, y:3},
+		{x:3, y:3}
+	], 0.1);
+	anims.add('walk-down', [
+		{x:0, y:0},
+		{x:1, y:0},
+		{x:2, y:0},
+		{x:3, y:0}
+	], 0.1);
+	anims.add('walk-right',	[
+		{x:0, y:1},
+		{x:1, y:1},
+		{x:2, y:1},
+		{x:3, y:1}
+	], 0.1);
+	anims.add('walk-left', [
+		{x:0, y:2},
+		{x:1, y:2},
+		{x:2, y:2},
+		{x:3, y:2}
+	],0.1);
 
-	this.height = 40;
-	this.width = 40;
+	this.height = 60;
+	this.width = 51;
+	this.chases = true;
 	
 	this.superClassInit = this.init;
 	this.init = function(name)
 	{
 		this.setupSpeed(4,6);
 		this.setProjectile(true);
-		this.superClassInit(name,'Vanguard',vanguardPic,30,15);
+		this.superClassInit(name,'Boss',bossPic,51,60);
 		this.reset();
 	}
 

@@ -52,7 +52,7 @@ function statsClass()
 	{
 		if(charKind != 'Ragnar')
 		{
-			if(charKind == 'Boss'){setStats_Boss(this,level,charKind)}
+			//if(charKind == 'Boss'){setStats_Boss(this,level,charKind)}
 			setStats_Enemy(this,level,charKind);
 		}
 		else
