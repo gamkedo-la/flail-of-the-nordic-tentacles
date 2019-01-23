@@ -40,7 +40,7 @@ function bossClass()
 	this.superClassInit = this.init;
 	this.init = function(name)
 	{
-		this.setupSpeed(4,6);
+		this.setupSpeed(4,5);
 		this.setProjectile(true);
 		this.superClassInit(name,'Boss',bossPic,51,60);
 		this.reset();
