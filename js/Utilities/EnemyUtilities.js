@@ -102,8 +102,10 @@ function handleEnemyRemovalAndXpDrop(whichEnemy)
 		{
 			player.exp.currentXp += whichEnemy.exp.gainEnemyXpDrop();
 
-			if(hasPlayerLeveledUp())
+			while(hasPlayerLeveledUp()){
 				levelUpPlayer();
+				playerSfx.levelUp.play();
+			}
 		}
 		else
 		{

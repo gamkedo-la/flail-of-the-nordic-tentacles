@@ -23,6 +23,11 @@ function setup_Enemy(caller, lvlBracket)
 	}
 }
 
+function setXp_Boss(caller)
+{
+	caller.currentLvl = getRandomLevel_MaxMinInclusive(50,60);
+}
+
 function setup_Player(caller, lvlBracket)
 {
 	caller.currentXp = 0;

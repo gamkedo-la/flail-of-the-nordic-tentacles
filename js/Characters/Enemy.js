@@ -5,6 +5,8 @@ const FRAME_DIMENSIONS = 40;
 const FRAME_DELAY = 4;
 const NUM_OF_ENEMIES_ON_SCREEN = 5;
 const CARDINALS = ["North", "East", "South", "West"];
+const ENEMY_BUMP_SPEED = 60;
+const DELAY_AFTER_BUMP = 45;
 
 var enemiesList = [];
 var enemiesStartSpots = [];
@@ -27,8 +29,10 @@ function enemyClass()
 	this.returning = false;
 	this.animFrame = 0;
 	this.animDelay = FRAME_DELAY;
+	this.bumped = false;
 
 	this.currentWaitTime = 0;
+	this.bumpDelay = 0;
 
 	this.canPatrol = false;
 	this.isInCombat = false;
@@ -50,6 +54,7 @@ function enemyClass()
 		this.bitmap = whichImage;
 		this.chases = chases;
 		this.chasing = false;
+		this.bumpDelay = DELAY_AFTER_BUMP;
 		this.footstepImage = footstepImage;
 		this.charName = name;
 		this.charType = enemyType;
@@ -84,73 +89,85 @@ function enemyClass()
 	}
 
 	this.move = function(nextX, nextY)
-	{	
-		if(stopEnemyMovement){
-			// no action - cheat activated
-		} else if (this.chasing) {
-			this.canMoveToNextTile(nextX, nextY)	
-		} else {
-			if(this.velX > 0)
-			{
-				if(this.canMoveToNextTile(nextX, nextY))
+	{	if(!this.bumped)
+		{
+			if(stopEnemyMovement){
+				// no action - cheat activated
+			} else if (this.chasing) {
+				this.canMoveToNextTile(nextX, nextY)	
+			} else {
+				if(this.velX > 0)
 				{
-					this.directionFaced = "East";
-					if(nextX > this.homeX + LEASH_LENGTH)
+					if(this.canMoveToNextTile(nextX, nextY))
+					{
+						this.directionFaced = "East";
+						if(nextX > this.homeX + LEASH_LENGTH)
+						{
+							this.velX = -this.velX;
+						}
+					}
+					else
 					{
 						this.velX = -this.velX;
 					}
 				}
-				else
+				else if(this.velX < 0)
 				{
-					this.velX = -this.velX;
-				}
-			}
-			else if(this.velX < 0)
-			{
-				if(this.canMoveToNextTile(nextX, nextY))
-				{
-					this.directionFaced = "West";
-					if(nextX < this.homeX - LEASH_LENGTH)
+					if(this.canMoveToNextTile(nextX, nextY))
+					{
+						this.directionFaced = "West";
+						if(nextX < this.homeX - LEASH_LENGTH)
+						{
+							this.velX = -this.velX;
+						}
+					}
+					else
 					{
 						this.velX = -this.velX;
 					}
-				}
-				else
+				}//end  x movement
+				if(this.velY > 0)
 				{
-					this.velX = -this.velX;
-				}
-			}//end  x movement
-			if(this.velY > 0)
-			{
-				if(this.canMoveToNextTile(nextX, nextY))
-				{
-					this.directionFaced = "South";
-					if(nextY > this.homeY + LEASH_LENGTH)
+					if(this.canMoveToNextTile(nextX, nextY))
+					{
+						this.directionFaced = "South";
+						if(nextY > this.homeY + LEASH_LENGTH)
+						{
+							this.velY = -this.velY;
+						}
+					}
+					else
 					{
 						this.velY = -this.velY;
 					}
 				}
-				else
+				else if(this.velY < 0)
 				{
-					this.velY = -this.velY;
-				}
+					if(this.canMoveToNextTile(nextX, nextY))
+					{
+						this.directionFaced = "North";
+						if(nextY < this.homeY - LEASH_LENGTH)
+						{
+							this.velY = -this.velY;
+						}
+					}
+					else
+					{
+						this.velY = -this.velY;
+					}
+				}//end of y movement
 			}
-			else if(this.velY < 0)
-			{
-				if(this.canMoveToNextTile(nextX, nextY))
-				{
-					this.directionFaced = "North";
-					if(nextY < this.homeY - LEASH_LENGTH)
-					{
-						this.velY = -this.velY;
-					}
-				}
-				else
-				{
-					this.velY = -this.velY;
-				}
-			}//end of y movement
 		}
+		else
+		{
+			this.bumpDelay--;
+			if(this.bumpDelay <= 0)
+			{
+				this.bumpDelay = DELAY_AFTER_BUMP;
+				this.bumped = false;
+			}
+		}
+
 		// draw footprints on the ground as we travel
 		if (this.footstepImage) {
 			this.distSinceLastFootstep += Math.hypot(nextX - this.centerX, nextY - this.centerY);
@@ -265,6 +282,7 @@ function enemyClass()
 			if(this.doesPlayerHaveAdvantage(player))
 			{
 				console.log ("bad guy bumped:NOT YET WORKING");
+				// this.bumpAwayFrom(player.centerX, player.centerY);
 				calculateDamage(player.stats, this.stats);
 				randomHitSound(true);
 				handleEnemyRemovalAndXpDrop(this);
@@ -303,6 +321,22 @@ function enemyClass()
 			}
 		}
 	}
+
+	this.bumpAwayFrom = function (fromX, fromY) {
+		this.bumped = true;
+
+        if (this.centerX < fromX) {
+            this.velX = -ENEMY_BUMP_SPEED;
+        } else {
+            this.velX = ENEMY_BUMP_SPEED;
+        }
+
+        if (this.centerY < fromY) {
+            this.velY = -ENEMY_BUMP_SPEED;
+        } else {
+            this.velY = ENEMY_BUMP_SPEED;
+        }
+    }
 
 	this.doesPlayerHaveAdvantage = function(player)
 	{
