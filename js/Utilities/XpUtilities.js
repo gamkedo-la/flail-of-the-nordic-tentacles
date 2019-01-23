@@ -45,6 +45,8 @@ function getBracketByType(charKind)
 			return 3;
 		case 'Tank':
 			return 4;
+		case 'Boss':
+    		return 5;
 		default:
 			console.log("Character " + charKind +" does not have a level bracket!");
 			return null;

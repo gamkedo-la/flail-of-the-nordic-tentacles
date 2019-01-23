@@ -59,6 +59,9 @@ function getClassBasedOnType(charType)
 		case TILE_VANGUARD:
 			classType = new vanguardClass();
 			break;
+		case TILE_BOSS:
+		    classType = new bossClass('Boss');
+    		break;
 	}
 
 	return classType;
@@ -76,6 +79,8 @@ function getEnemyPicBasedOnType(charType)
 			return fallenPic;
 		case TILE_VANGUARD:
 			return vanguardPic;
+		case TILE_BOSS:
+    		return bossPic;
 	}
 }
 
