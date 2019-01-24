@@ -36,7 +36,9 @@ function imgsDoneLoadingSoStartGame()
 function updateAll()
 {
 	if (gameIsStarted == false || isPaused) {
-    Menu.update();
+    	Menu.update();
+    	// Menu.draw();
+    	return;
   	}
     else {
 		moveAll();
@@ -69,10 +71,6 @@ function battleAll()
 
 function drawAll()
 {
-	if(gameIsStarted == false || isPaused){
-    	Menu.draw();
-   		return; // skip game logic below
- 	}
 	canvasContext.save();
 	canvasContext.translate(-camPanX, -camPanY);
 

@@ -49,6 +49,8 @@ this.update = function(){
         if (this.cursor1 >= menuPageText[currentPage].length){
             this.cursor1 = 0;
         }
+
+        this.draw();
     }
 
 
