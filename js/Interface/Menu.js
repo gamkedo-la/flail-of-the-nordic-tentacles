@@ -57,6 +57,8 @@ this.update = function(){
 
 this.checkState = function(){
      switch (menuPageText[currentPage][this.cursor1]) {
+
+    //MENU PAGE
     case "new*game":
         gameIsStarted = true;
         this.cursor1 = 0;
@@ -78,12 +80,21 @@ this.checkState = function(){
         currentPage  = CREDITS_PAGE;
         break;
 
+    //RESUME PAGE        
+    case 'resume':
+        loadGame();
+        this.cursor1 = 0;
+        break;
+
+    //SETTINGS PAGE
     case "volume":
         console.log("TODO implement volume changer");
         break;
     case "controls":
         console.log("TODO Added Controls changer");
         break;
+
+    //TUTORIALS PAGE
     case "gameplay":
         console.log("TODO implement how to play");
         break;
@@ -95,6 +106,7 @@ this.checkState = function(){
         this.cursor1 = 0;
         break;
 
+    //PAUSED PAGE
     case 'return':
         isPaused = false;
         this.cursor1 = 0;
@@ -104,7 +116,7 @@ this.checkState = function(){
         this.cursor1 = 0;
         break;
     case 'save':
-        console.log('savegame');
+        saveGame();
         this.cursor1 = 0;
         break;
     default:
@@ -123,14 +135,20 @@ this.redraw = function (){
     canvasContext.restore();
 }
 
-this.draw = function() {
-    if(gameIsStarted === false){
-        if(currentPage == PAUSED_PAGE){
+this.draw = function() 
+{
+    if(gameIsStarted === false)
+    {
+        if(currentPage == PAUSED_PAGE)
+        {
           currentPage = MENU_PAGE;
         }
+
         this.redraw();
         canvasContext.drawImage(logoPic, 75,30, 600,300);
-    }else {
+    }
+    else 
+    {
         currentPage = PAUSED_PAGE;
         canvasContext.clearRect(itemsX -50,topItemY - rowHeight,
         itemsWidth, rowHeight * menuPageText[currentPage].length + rowHeight  );
@@ -141,20 +159,25 @@ this.draw = function() {
     }
     wobble += wobbleSpeed;
 
-    if(currentPage == CREDITS_PAGE) {
+    if(currentPage == CREDITS_PAGE) 
+    {
       drawRect( 0, 0, canvasContext.width, canvasContext.height, "cyan", 0.2);
+
       let creditsX = 11;
       let creditsTopY = 25;
       let creditsLineSkipY = 55;
-      for (let i = 0; i < classListCredits.length; i++) {
+
+      for (let i = 0; i < classListCredits.length; i++) 
+      {
         drawText(classListCredits[i],creditsX, creditsTopY + creditsLineSkipY * i, textColour, textFontFace, 'left', 'top');
       }
     }
 
-    for (let i=0; i<menuPageText[currentPage].length; i++){
-     drawText(menuPageText[currentPage][i],itemsX,topItemY + rowHeight * i,textColour, textFontFace, 'left', 'top');
-    //Draw cursor
-    canvasContext.drawImage(arrowPic,(itemsX-20) - wobble * i,topItemY + (this.cursor1 * rowHeight) -14);
+    for (let i=0; i<menuPageText[currentPage].length; i++)
+    {
+        drawText(menuPageText[currentPage][i],itemsX,topItemY + rowHeight * i,textColour, textFontFace, 'left', 'top');
+        //Draw cursor
+        canvasContext.drawImage(arrowPic,(itemsX-20) - wobble * i,topItemY + (this.cursor1 * rowHeight) -14);
     }
 
 }

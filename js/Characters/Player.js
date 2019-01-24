@@ -297,7 +297,8 @@ function playerClass() {
             }
         }
 
-        this.collider.draw();
+        if(debugState)
+            this.collider.draw();
 
         canvasContext.drawImage(this.bitmap, // Sprite Sheet reference
 								this.animFrame * FRAME_DIMENSIONS, // Source X, Frame Index

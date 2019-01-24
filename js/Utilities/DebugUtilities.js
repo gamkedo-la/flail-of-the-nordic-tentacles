@@ -24,6 +24,11 @@ function gameDebugTools()
 		drawText(`Enemy ${i} HP: ${enemiesList[i].stats.hp}, isInCombat: ${enemiesList[i].isInCombat}`, 20, (i+4) * 20, 'black', '20px sans-serif');
 	}
 
+	drawText("Player Xp: " + player.exp.currentXp, 20, 500, "Teal", "20px Arial", "center", 10);
+	drawText("Next Lvl Xp: " + player.exp.nextXp, 20, 520, "Teal", "20px Arial", "center", 10);
+	drawText("Player level: " + player.exp.currentLvl, 20, 540, "Maroon", "20px Arial", "center", 10);
+	drawText("Next level: " + player.exp.nextLvl, 20, 560, "Maroon", "20px Arial", "center", 10);
+
 	drawCircle(camPanX, camPanY, 5, 'red');
 	drawText('mouse: ' + Math.floor((mouseX + camPanX)) + ', ' + Math.floor((mouseY + camPanY)) + ', index: ' + roomTileToIndex(tileCol, tileRow, currentMapCols), 
 		mouseX, mouseY, 'black');
