@@ -26,6 +26,7 @@ function xpClass()
 
 			if(charKind != 'Ragnar')
 			{
+				if(charKind == 'Boss'){setXp_Boss(this); this.xpDrop = 0; return;}
 				setup_Enemy(this,this.levelBracket);
 				this.xpDrop = setEnemyXpDrop(this.currentLvl, this.levelBracket);
 			}

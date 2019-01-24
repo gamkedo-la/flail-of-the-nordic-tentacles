@@ -1,4 +1,4 @@
-const PLAYER_ACCELERATION = 5;
+const PLAYER_ACCELERATION = 4;
 const PLAYER_DECELERATION = 0.70;
 const FOOTSTEP_DISTANCE = 8;
 const PLAYER_BUMP_SPEED = 20;
@@ -297,7 +297,8 @@ function playerClass() {
             }
         }
 
-        this.collider.draw();
+        if(debugState)
+            this.collider.draw();
 
         canvasContext.drawImage(this.bitmap, // Sprite Sheet reference
 								this.animFrame * FRAME_DIMENSIONS, // Source X, Frame Index

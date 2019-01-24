@@ -68,7 +68,7 @@ function wormexClass()
 	this.superClassInit = this.init;
 	this.init = function(name)
 	{
-		this.setupSpeed(6,8);
+		this.setupSpeed(4,6);
 		this.superClassInit(name,'Wormex',wormexPic,20,15, this.chases);
 		this.reset();
 	}
@@ -110,25 +110,20 @@ function wormexClass()
 				anims.play('walk-up');
 				break;
 		}
-		// if(this.velY > 0){
-		// 	anims.play('walk-down');
-		// }
-		// else anims.play('walk-up');
-
-		if(debugState)
-		{
-			this.collider.draw();
-			debugDrawHeading(this);
-		}
-
+		
 		// UI variables
 		let charTopLeftCoordX = this.centerX - this.width/2;
 		let charTopRightCoordY = this.centerY - this.height/2;
 		let frameX = anims.frameSource.x * this.width;
 		let frameY = anims.frameSource.y * this.height; 
 
-		// draw name
-		drawText(this.charName, charTopLeftCoordX, charTopRightCoordY, 'black');
+		if(debugState)
+		{
+			this.collider.draw();
+			debugDrawHeading(this);
+			// draw name
+			drawText(this.charName, charTopLeftCoordX, charTopRightCoordY, 'black');
+		}
 		
 		// draw sprite
 		drawSprite(this.bitmap, frameX, frameY, this.width, this.height, charTopLeftCoordX, charTopRightCoordY);
