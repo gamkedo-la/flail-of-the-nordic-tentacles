@@ -126,7 +126,13 @@ function BackgroundMusicClass()
 }
 
 function handleBackgroundMusic()
-{
+{  
+	if(!gameIsStarted)
+	{
+		backgroundMusic.loopSong('MainMenuSong');
+		return;
+	}
+
 	switch(currentMap)
 	{
 		case 'forestTest':
