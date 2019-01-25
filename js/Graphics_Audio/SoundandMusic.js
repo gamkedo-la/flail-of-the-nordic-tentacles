@@ -129,6 +129,7 @@ function handleBackgroundMusic()
 {  
 	if(!gameIsStarted)
 	{
+		console.log ("MainMenuSong to play here");
 		backgroundMusic.loopSong('MainMenuSong');
 		return;
 	}
