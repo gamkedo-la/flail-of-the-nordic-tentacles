@@ -9,7 +9,7 @@ var isPaused = false;
 var displayItem = false;
 var itemDisplaytimer = 0;
 var debugState = false;
-var gameIsStarted = true;
+var gameIsStarted = false;
 /*
 	NOTE: will need a way to save just about everything from state of game to player's current spot in game
 */
