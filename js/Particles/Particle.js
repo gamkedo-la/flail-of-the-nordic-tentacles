@@ -6,7 +6,7 @@ var usableParticles = {
 	//Non-Mechanical
 	organic: [
 		{minRate: 5,maxRate: 10, image: greenSplat, life:{min:10,max:20}, size:{min:15,max:25}},
-		{minRate: 50,maxRate: 100, image: greenSplat, life:{min:20,max:30}, size:{min:10,max:20}},
+		{minRate: 50,maxRate: 100, image: greenSplat, life:{min:20,max:30}, size:{min:2,max:4}},
 	],
 
 	//Mechanical

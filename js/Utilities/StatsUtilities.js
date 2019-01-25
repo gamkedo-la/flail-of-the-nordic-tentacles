@@ -8,11 +8,8 @@ function setStats_Player(caller,level)
 		caller.str = caller.baseStr;
 		caller.def = caller.baseDef;
 	}
-	caller.maxStr = caller.baseStr * level;
-	caller.maxStr = Math.floor(caller.maxStr);
-	caller.maxDef = caller.baseDef * level;
-	caller.maxDef = Math.floor(caller.maxDef);
-
+	caller.str = Math.floor(caller.baseStr * level);
+	caller.def = Math.floor(caller.baseDef * level);
 }
 
 function setStats_Enemy(caller,level,charkind)
@@ -56,6 +53,14 @@ function setStats_Enemy(caller,level,charkind)
 	caller.str = Math.floor(caller.str);
 	caller.def = caller.baseDef * level * defMod;
 	caller.def = Math.floor(caller.def);	
+}
+
+function setStats_Boss(caller,level)
+{
+	caller.hp = Math.floor(caller.baseHp * level * bossMod);
+	caller.maxHp = Math.floor(caller.hp);
+	caller.str = Math.floor(caller.baseStr * level * bossMod);
+	caller.def = Math.floor(caller.baseDef * level * bossMod);
 }
 
 function calculateDamage(attackerStatsObj, defenderStatsObj)

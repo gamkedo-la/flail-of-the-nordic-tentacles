@@ -27,8 +27,6 @@ function handleLevelTransition(doorType)
 			loadMap("snowTest");
 			break;
 	}
-
-	handleBackgroundMusic(currentMap);
 }
 
 function saveMap(mapName, grid)
@@ -120,4 +118,6 @@ function loadMap(mapName)
       }
     }//end of map name check
   }//end of for loop
+
+	handleBackgroundMusic(currentMap);
 }

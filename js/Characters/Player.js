@@ -1,10 +1,10 @@
-const PLAYER_ACCELERATION = 5;
+const PLAYER_ACCELERATION = 4;
 const PLAYER_DECELERATION = 0.70;
 const FOOTSTEP_DISTANCE = 8;
 const PLAYER_BUMP_SPEED = 20;
 
 var player = new playerClass();
-playerInventory = Inventory();
+var playerInventory = Inventory();
 
 function playerClass() {
     this.centerX = 75;
@@ -50,9 +50,14 @@ function playerClass() {
         this.charName = name;
         this.footstepImage = footstepImage;
         this.collider = new colliderClass(this.centerX, this.centerY, 20, 20, 0, 15);
-        this.exp.init('Ragnar');
         this.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
-        this.stats.init(this.exp.currentLvl, 'Ragnar');
+
+        if((this.exp != null && this.stats != null) || (this.exp != undefined && this.stats != undefined))
+        {
+            this.exp.init('Ragnar');
+            this.stats.init(this.exp.currentLvl, 'Ragnar');
+        }
+
         this.reset();
     }
 
@@ -297,7 +302,8 @@ function playerClass() {
             }
         }
 
-        this.collider.draw();
+        if(debugState)
+            this.collider.draw();
 
         canvasContext.drawImage(this.bitmap, // Sprite Sheet reference
 								this.animFrame * FRAME_DIMENSIONS, // Source X, Frame Index
