@@ -1,18 +1,7 @@
 //Player related
 function handleNpcCollisions(playerCollider)
 {
-	if(playerCollider.isCollidingWithOtherCollider(maleViking.collider))
-	{
-		//console.log("Talking with: " + maleViking.charName);
-        triggerText(maleVikingDialogue);
-
-	}
-	else if(playerCollider.isCollidingWithOtherCollider(femaleViking.collider))
-	{
-		//console.log("Talking with: " + femaleViking.charName);
-        triggerText(femaleVikingDialogue);
-	}
-	else if(playerCollider.isCollidingWithOtherCollider(seer.collider))
+	if(playerCollider.isCollidingWithOtherCollider(seer.collider))
 	{
 		//console.log("Talking with: " + seer.charName);
         triggerText(seerDialogue);

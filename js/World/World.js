@@ -354,7 +354,7 @@ function drawDepthSortedTiles()
 
 	if(currentMap == 'forestTest')
 	{
-	  objectsWithDepth = objectsWithDepth.concat([maleViking,femaleViking,outcast,seer]);
+	  objectsWithDepth = objectsWithDepth.concat([outcast,seer]);
 	}
 	objectsWithDepth = objectsWithDepth.concat(particles);
 
