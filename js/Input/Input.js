@@ -193,9 +193,11 @@ function keyPressed(evt) {
                 Menu.checkState()
                 break;
             case UP_ARROW:
+			case KEY_W:
                 Menu.cursor1--;
                 break;
             case DOWN_ARROW:
+			case KEY_S:
                 Menu.cursor1++;
             break;
         }
