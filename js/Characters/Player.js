@@ -61,10 +61,8 @@ function playerClass() {
         this.reset();
     }
 
-    this.reset = function () {
-        //reset player stats to last saved stats
-        resetPlayerHealth(this.stats);
-        //reset player health, buffs, etc
+    this.reset = function () 
+    {
         if (this.homeX == undefined || this.hasEnterAnotherLevel) {
             for (var i = 0; i < worldMap[0].length; i++) {
                 placePlayerAtThisSpot(this, i);
@@ -97,6 +95,7 @@ function playerClass() {
             {
                 console.log("The Player has died!");
                 player.reset();
+                resetPlayerHealth(this.stats);
             }
 
             this.directionFaced = undefined;

@@ -3,7 +3,7 @@ function saveGame()
 	console.log("Saving Game");
 	let pStats = player.stats;
 	let pXp = player.exp;
-	let savedGamed = {
+	let savedGame = {
 		player:{
 			pos: {x: player.centerX, y:player.centerY},
 			hp: pStats.hp,
@@ -16,11 +16,11 @@ function saveGame()
 			nextXp: pXp.nextXp,
 			lvlBracket: pXp.levelBracket,
 		},
-		inventory: playerInventory,
+		inventory: playerInventory.items,
 		currentMap: currentMap,
 	}
 
-	localStorage.setItem('savedGamed', JSON.stringify(savedGamed));
+	localStorage.setItem('savedGame', JSON.stringify(savedGame));
 }
 
 // function saveGame(){
