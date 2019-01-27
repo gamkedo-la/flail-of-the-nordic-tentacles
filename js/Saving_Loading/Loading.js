@@ -2,6 +2,10 @@ function loadGame()
 {
 	console.log("Loading Save");
 	let loadedGame = JSON.parse(localStorage.getItem('savedGame'));
+	
+	loadMap(loadedGame.currentMap);
+	player.centerX = loadedGame.player.pos.x;
+	player.centerY = loadedGame.player.pos.y;
 
 	gameIsStarted = true;
 }

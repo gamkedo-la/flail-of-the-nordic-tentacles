@@ -41,11 +41,10 @@ function updateAll()
     else {
 		moveAll();
 		battleAll();
+		updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
+		drawAll();
+		emitters = [];
 	}
-
-	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
-	drawAll();
-	emitters = [];
 }
 
 function moveAll()
