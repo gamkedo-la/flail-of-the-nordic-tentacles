@@ -22,14 +22,3 @@ function saveGame()
 
 	localStorage.setItem('savedGame', JSON.stringify(savedGame));
 }
-
-// function saveGame(){
-//   var gameStatus = {
-//     player: {
-//       position: { x: 10, y: 10 },
-//       health: 95,
-//       level: 18
-//     }
-//   };
-//   localStorage.setItem('gameStatus', JSON.stringify(gameStatus));
-// }

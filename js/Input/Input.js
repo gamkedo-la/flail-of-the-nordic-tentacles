@@ -106,17 +106,18 @@ function keyPressed(evt) {
 
     keySet(evt.keyCode, player, true);
 
-    if (!gameIsRunning) { // are we in editor mode?
-
+    if (!gameIsRunning) 
+    { // are we in editor mode?
         editorScreenMove(evt);
 
         // keys that only work in editor mode
-        switch (evt.keyCode) {
+        switch (evt.keyCode) 
+        {
             case TAB:
                 useEditorMode();
                 break;
 
-                //editor input
+            //editor input
             case LEFT_ARROW:
                 editor.tileIndex--;
                 editor.changeSelectedTileInTileSet();
@@ -151,12 +152,13 @@ function keyPressed(evt) {
                 editor.currentLayer++;
                 editor.changeLayer();
                 break;
-            }
         }
-        else // not in editor mode
+    }
+    else // not in editor mode
+    {
+        // keys that work in play mode
+        switch (evt.keyCode) 
         {
-            // keys that work in play mode
-            switch (evt.keyCode) {
             //game input
             case KEY_P:
                 isPaused = !isPaused;
@@ -167,21 +169,21 @@ function keyPressed(evt) {
             case SPACE:
                 nextDialoguePage();
                 break;
-			case KEY_L:
-				cheatStopEnemyMovement();
-				break;
-			case KEY_M:
-				muteSFXandBackground();
-				break;
-			case KEY_I:
-				toggleInventoryAndDrawImage();
-				break;
-			case KEY_K:
-				toggleDebugMode();
-				break;
-			case KEY_J:
-				player.toggleImmunityCheat();
-				break;
+    		case KEY_L:
+    			cheatStopEnemyMovement();
+    			break;
+    		case KEY_M:
+    			muteSFXandBackground();
+    			break;
+    		case KEY_I:
+    			toggleInventoryAndDrawImage();
+    			break;
+    		case KEY_K:
+    			toggleDebugMode();
+    			break;
+    		case KEY_J:
+    			player.toggleImmunityCheat();
+    			break;
             case KEY_U:
                 givePlayerRandomXp();
                 break;
@@ -193,11 +195,11 @@ function keyPressed(evt) {
                 Menu.checkState()
                 break;
             case UP_ARROW:
-			case KEY_W:
+    		case KEY_W:
                 Menu.cursor1--;
                 break;
             case DOWN_ARROW:
-			case KEY_S:
+    		case KEY_S:
                 Menu.cursor1++;
             break;
         }

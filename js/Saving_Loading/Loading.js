@@ -1,32 +1,35 @@
 function loadGame()
 {
-	console.log("Loading Save");
 	let loadedGame = JSON.parse(localStorage.getItem('savedGame'));
+	let prevP = loadedGame.player;
 	
 	loadMap(loadedGame.currentMap);
-	player.centerX = loadedGame.player.pos.x;
-	player.centerY = loadedGame.player.pos.y;
+	loadPlayer(prevP);
+	playerInventory.items = loadedGame.inventory;
+
+	for(var i = worldMap[0].length - 1; i > 0; --i)
+	{
+		if(playerInventory.hasItem(getNameOfTile(worldMap[0][i]),1))
+			worldMap[0][i] = TILE_SNOW;
+	}
 
 	gameIsStarted = true;
 }
 
-// savedGame = {
-// 		player:{
-// 			pos: {x: player.centerX, y:player.centerY},
-// 			hp: pStats.hp,
-// 			maxHp: pStats.maxHp,
-// 			str: pStats.str,
-// 			def: pStats.def,
-// 			lvl: pXp.currentLvl,
-// 			nextLvl: pXp.nextLvl,
-// 			xp: pXp.currentXp,
-// 			nextXp: pXp.nextXp,
-// 			lvlBracket: pXp.levelBracket,
-// 		},
-// 		inventory: playerInventory.items,
-// 		currentMap: currentMap,
-// 	}
+function loadPlayer(prevP)
+{
+	let pS = player.stats;
+	let pX = player.exp;
 
-// function loadGame() {
-//   var gameStatus = JSON.parse(localStorage.getItem('gameStatus'));
-// }
+	player.centerX = prevP.pos.x;
+	player.centerY = prevP.pos.y;
+	pS.hp = prevP.hp;
+	pS.maxHp = prevP.maxHp;
+	pS.str = prevP.str;
+	pS.def = prevP.def;
+	pX.currentLvl = prevP.lvl;
+	pX.nextLvl = prevP.nextLvl;
+	pX.currentXp = prevP.xp;
+	pX.nextXp = prevP.nextXp;
+	pX.levelBracket = prevP.lvlBracket;
+}
