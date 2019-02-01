@@ -17,6 +17,7 @@ Item.List = {};
 Item("wormhole","Pocket Wormhole", function()
 {
 	console.log("shortcuts enabled!");
+	spawnUnlockEventParticles();
 	areShortcutsEnabled = true;
 },wormholePic);
 Item("beacon","Alien Beacon", function()
@@ -33,11 +34,13 @@ Item("tentacle","Decaying Tentacle", function()
 Item("horn","Chaos Horn", function()
 {
 	console.log("mountain now accessible");
+	spawnUnlockEventParticles();
 	//open mountain level
 },hornPic);
 Item("eyepatch","Odin's Eye Patch", function()
 {
 	console.log("forest now accessible");
+	spawnUnlockEventParticles();
 	//open forest level
 },eyepatchPic);
 Item("dictionary","Digital Dictionary", function()
