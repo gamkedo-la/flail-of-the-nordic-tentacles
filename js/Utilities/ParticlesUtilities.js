@@ -46,6 +46,12 @@ function spawnUnlockEventParticles()
     addParticles(randBtweenTwoNums(8,16),sparkleParticlePic,{min:10,max:20},{min:20,max:40});
 }
 
+function spawnItemUsedParticles()
+{
+	emitters.push(new Emitter(new Vector(player.centerX,player.centerY),Vector.getNewVectorFromAngMag(1, 1), Math.PI));
+    addParticles(randBtweenTwoNums(8,16),sparkleParticlePic,{min:10,max:20},{min:4,max:8});
+}
+
 function spawnFightParticles(enemy)
 {
     let particle = usableParticles.fight[randBtweenTwoNums(0, usableParticles.fight.length - 1)];

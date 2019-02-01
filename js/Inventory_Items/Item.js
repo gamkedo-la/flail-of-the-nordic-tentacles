@@ -23,12 +23,14 @@ Item("wormhole","Pocket Wormhole", function()
 Item("beacon","Alien Beacon", function()
 {
 	console.log("boss incoming!");
+	spawnItemUsedParticles();
 	//enable boss battle
 	//execute any other code related to the boss's arrival like SFX, screen flash, etc.
 },beaconPic);
 Item("tentacle","Decaying Tentacle", function()
 {
 	console.log("beach now accessible");
+	spawnUnlockEventParticles();
 	//open beach level
 },tentaclePic);
 Item("horn","Chaos Horn", function()
@@ -46,6 +48,7 @@ Item("eyepatch","Odin's Eye Patch", function()
 Item("dictionary","Digital Dictionary", function()
 {
 	console.log("the outcast wishes to speak");
+	spawnItemUsedParticles();
 	//enable The Outcast's dialogue
 },dictionaryPic);
 
