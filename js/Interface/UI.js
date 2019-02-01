@@ -24,7 +24,7 @@ function drawStatsBox() {
 	drawRect(32,140, Math.ceil(player.stats.def / player.stats.maxDef* 100),6, "grey");
 	//drawText(`MP: ${player.stats.mp}/${player.stats.maxMp}`, 32, 168, 'black', '10px sans-serif');
 
-	canvasContext.drawImage(statsBezelPic,24,34);
+	canvasContext.drawImage(statsBezelPic,11,19);
 
 
 }
