@@ -34,6 +34,7 @@ var fightRune = document.createElement("img");
 var dustParticlePic = document.createElement("img");
 var deathParticlePic = document.createElement("img");
 var levelupParticlePic = document.createElement("img");
+var sparkleParticlePic = document.createElement("img");
 
 var picToLoad = 0;
 
@@ -59,6 +60,7 @@ function loadImages()
 		{varName: dustParticlePic, fileName: "effects/dust_particle.png"},
 		{varName: deathParticlePic, fileName: "effects/death_particle.png"},
 		{varName: levelupParticlePic, fileName: "effects/levelup_particle.png"},
+		{varName: sparkleParticlePic, fileName: "effects/sparkle_particle.png"},
 
 		// Characters
 		{charName: vikingPic, fileName: "characters/V.png"},

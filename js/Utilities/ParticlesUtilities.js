@@ -43,7 +43,7 @@ function spawnEnemyBasedParticles(whichEnemy)
 function spawnUnlockEventParticles()
 {
 	emitters.push(new Emitter(new Vector(player.centerX,player.centerY),Vector.getNewVectorFromAngMag(1, 1), Math.PI));
-    addParticles(randBtweenTwoNums(8,16),dustParticlePic,{min:10,max:20},{min:16,max:32});
+    addParticles(randBtweenTwoNums(8,16),sparkleParticlePic,{min:10,max:20},{min:20,max:40});
 }
 
 function spawnFightParticles(enemy)
