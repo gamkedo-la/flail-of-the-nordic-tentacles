@@ -123,6 +123,7 @@ function levelUpPlayer()
 	{
 		player.exp.levelBracket++;
 	}
+	player.exp.prevXp = player.exp.nextXp;
 	player.exp.nextXp = calculateXpToNextLvl(player.exp.currentLvl, player.exp.levelBracket);
 	setStats_Player(player.stats,player.exp.currentLvl);
 }

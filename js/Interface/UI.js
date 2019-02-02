@@ -1,32 +1,18 @@
 function drawStatsBox() {
-	// background:
-	// drawRect(24,34, 116,122, "#888");
 	// HP:
-	drawRect(30,40, 104,28, "#ddd");
-	drawText(`HP: ${player.stats.hp}/${player.stats.maxHp}`, 32, 50, 'black', '10px sans-serif');
-	drawRect(32,55, 100,10, "white");
-	drawRect(32,55, Math.ceil(player.stats.hp / player.stats.maxHp * 100),10, "red");
+	drawRect(38,67, 94,11, "white");
+	drawRect(38,67, Math.ceil(player.stats.hp / player.stats.maxHp * 94),11, "#cd1616");
 	// XP:
-	drawRect(30,75, 104,24, "#ddd");
-	drawText(`XP: ${player.exp.currentXp}/${player.exp.nextXp}`, 32, 85, 'black', '10px sans-serif');
-	drawText(`Lvl: ${player.exp.currentLvl} `, 100, 85, 'black', '10px sans-serif');
-	drawRect(32,90, 100,6, "white");
-	drawRect(32,90, Math.ceil( player.exp.currentXp/player.exp.nextXp  * 100),6, "purple");
-	// STR:
-	drawRect(30,106, 104,24, "#ddd");
-	drawText(`STR: ${player.stats.str}/${player.stats.maxStr}`, 32, 118, 'black', '10px sans-serif');
-	drawRect(32,120, 100,6, "blue");
-	drawRect(32,120, Math.ceil(player.stats.str / player.stats.maxStr* 100),6, "grey");
-	// DEF:
-	drawRect(30,126, 104,24, "#ddd");
-	drawText(`DEF: ${player.stats.def}/${player.stats.maxDef}`, 32, 138, 'black', '10px sans-serif');
-	drawRect(32,140, 100,6, "blue");
-	drawRect(32,140, Math.ceil(player.stats.def / player.stats.maxDef* 100),6, "grey");
-	//drawText(`MP: ${player.stats.mp}/${player.stats.maxMp}`, 32, 168, 'black', '10px sans-serif');
+	drawRect(38,82, 94,5, "white");
+	drawRect(38,82, Math.ceil((player.exp.currentXp - player.exp.prevXp) / (player.exp.nextXp - player.exp.prevXp) * 94),5, "purple");
+	
+	canvasContext.drawImage(playerStatsPic,24,24);
 
-	canvasContext.drawImage(statsBezelPic,11,19);
-
-
+	// text on top of stats UI:
+	drawStrokedText(`${player.stats.hp}/${player.stats.maxHp}`, 60, 77, 'white', '11px sans-serif', 'black', 4);
+	drawStrokedText(`${player.stats.str}`, 65, 105, 'white', '11px sans-serif', 'black', 4);
+	drawStrokedText(`${player.stats.def}`, 115, 105, 'white', '11px sans-serif', 'black', 4);
+	drawStrokedText(`level ${player.exp.currentLvl}`, 68, 125, 'white', '11px sans-serif', 'black', 4);
 }
 
 //will go to UI JS once implemented

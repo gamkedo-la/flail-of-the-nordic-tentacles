@@ -28,6 +28,15 @@ function drawText(text, x,y, color, font="13px sans-serif")
 	canvasContext.fillText(text, x,y);
 }
 
+function drawStrokedText(text, x,y, color, font="13px sans-serif", strokeColor="black", strokeWidth="8") {
+    canvasContext.font = font;
+    canvasContext.strokeStyle = strokeColor;
+    canvasContext.lineWidth = strokeWidth;
+    canvasContext.strokeText(text, x, y);
+    canvasContext.fillStyle = color;
+    canvasContext.fillText(text, x, y);
+}
+
 function drawTextWithShadowCentered(text, x,y, color, font="13px sans-serif")
 {
 	canvasContext.textAlign = "center";
