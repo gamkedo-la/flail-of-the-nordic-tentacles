@@ -1,7 +1,5 @@
 var seer = new npcClass();
 var outcast = new npcClass();
-var maleViking = new npcClass();
-var femaleViking = new npcClass();
 
 function npcClass() {
     this.centerX = 75;
@@ -26,9 +24,9 @@ function npcClass() {
     }
 
     this.draw = function () {
-        this.collider.draw();
+        // this.collider.draw();
 
-        drawText("" + this.charName, this.centerX - this.bitmap.width / 2, this.centerY - this.bitmap.height, 'black');
+        // drawText("" + this.charName, this.centerX - this.bitmap.width / 2, this.centerY - this.bitmap.height, 'black');
         canvasContext.drawImage(this.bitmap, this.centerX - this.bitmap.width / 2, this.centerY - this.bitmap.height / 2);
     }
 

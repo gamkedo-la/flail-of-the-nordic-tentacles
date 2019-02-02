@@ -79,8 +79,6 @@ function handleCharacterPositions(whichLevel)
     {
        seer.reset();
        outcast.reset();
-       maleViking.reset();
-       femaleViking.reset();
     }
 
     player.reset();
@@ -108,8 +106,6 @@ function setupCharacters()
   }
 
   player.init(vikingPic, "Ragnar", footStepsPic);
-  maleViking.init(maleVikingPic,"Male Viking",TILE_MALE_VIKING);
-  femaleViking.init(femaleVikingPic,"Female Viking",TILE_FEMALE_VIKING);
   seer.init(seerPic,"The Seer",TILE_SEER);
   outcast.init(outcastPic,"The Outcast",TILE_OUTCAST);
 

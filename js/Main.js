@@ -9,10 +9,8 @@ var isPaused = false;
 var displayItem = false;
 var itemDisplaytimer = 0;
 var debugState = false;
-var gameIsStarted = true;
-/*
-	NOTE: will need a way to save just about everything from state of game to player's current spot in game
-*/
+var gameIsStarted = false;
+
 window.onload = function()
 {
 	gameIsStarted = false;
@@ -43,11 +41,10 @@ function updateAll()
     else {
 		moveAll();
 		battleAll();
+		updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
+		drawAll();
+		emitters = [];
 	}
-
-	updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster
-	drawAll();
-	emitters = [];
 }
 
 function moveAll()

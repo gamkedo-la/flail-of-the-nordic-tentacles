@@ -51,12 +51,6 @@ function Dialogue() {
     }
 }
 
-var maleVikingDialogue = new Dialogue();
-var maleVikingText = ["Hello, I'm a viking.", "The male kind.", "Har har har!"];
-
-var femaleVikingDialogue = new Dialogue();
-var femaleVikingText = ["Hello, I'm a viking.", "The female kind.", "Ohohoho!"];
-
 var outcastDialogue = new Dialogue();
 var outcaseText = ["I'm sad...", "Why, you ask?", "It seems no one likes me...", "I feel like it has something to do with my name."];
 
@@ -69,16 +63,16 @@ function triggerText(npcTextBool) {
 }
 
 function dialogueNotShowing() {
-    return !maleVikingDialogue.isShowing && !femaleVikingDialogue.isShowing && !outcastDialogue.isShowing && !seerDialogue.isShowing;
+    return !outcastDialogue.isShowing && !seerDialogue.isShowing;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //TO-DO refactor
 
-var allNpcs = [maleViking, femaleViking, outcast, seer];
+var allNpcs = [outcast, seer];
 var allNpcNameCols = ["green", "purple", "lightblue", "yellow"];
-var allNpcEvents = [maleVikingDialogue, femaleVikingDialogue, outcastDialogue, seerDialogue];
-var allNpcText = [maleVikingText, femaleVikingText, outcaseText, seerText];
+var allNpcEvents = [outcastDialogue, seerDialogue];
+var allNpcText = [outcaseText, seerText];
 
 function createDialogue() {
     for (var i = 0; i < allNpcEvents.length; i++) {

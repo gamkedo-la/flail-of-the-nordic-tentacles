@@ -1,5 +1,5 @@
 const INVENTORY_W = 180;
-const INVENTORY_H = 230;
+const INVENTORY_H = 130;
 var isInventoryVisible = false;
 
 Inventory = function()
@@ -74,8 +74,9 @@ Inventory = function()
 		drawText("INVENTORY", invX+35, invY-10, "white", "20px Arial");
 		drawRect(invX, invY, INVENTORY_W, INVENTORY_H,"black");
 
-		for(var i = 0; i < 11; i++)
+		for(var i = 0; i < 6; i++)
 		{
+			//draw item images
 			let itemX = invX + itemsMargin + itemOffset * (i%cols),
 				itemY = invY + itemsMargin + itemOffset * (Math.floor(i/cols));
 			drawRect(itemX, itemY, 40, 40,'white');
@@ -103,6 +104,4 @@ Inventory = function()
 function toggleInventoryAndDrawImage(){
 	//hide or show inventory UI when "I" is pressed
 	isInventoryVisible = !isInventoryVisible;
-
-	console.log("Inventory is visible? " + isInventoryVisible);
 }

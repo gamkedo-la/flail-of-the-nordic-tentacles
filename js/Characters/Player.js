@@ -4,7 +4,7 @@ const FOOTSTEP_DISTANCE = 8;
 const PLAYER_BUMP_SPEED = 20;
 
 var player = new playerClass();
-playerInventory = Inventory();
+var playerInventory = Inventory();
 
 function playerClass() {
     this.centerX = 75;
@@ -50,16 +50,19 @@ function playerClass() {
         this.charName = name;
         this.footstepImage = footstepImage;
         this.collider = new colliderClass(this.centerX, this.centerY, 20, 20, 0, 15);
-        this.exp.init('Ragnar');
         this.waitTimeForHpRegen = TIME_UNTIL_HP_STARTS_REGEN;
-        this.stats.init(this.exp.currentLvl, 'Ragnar');
+
+        if((this.exp != null && this.stats != null) || (this.exp != undefined && this.stats != undefined))
+        {
+            this.exp.init('Ragnar');
+            this.stats.init(this.exp.currentLvl, 'Ragnar');
+        }
+
         this.reset();
     }
 
-    this.reset = function () {
-        //reset player stats to last saved stats
-        resetPlayerHealth(this.stats);
-        //reset player health, buffs, etc
+    this.reset = function () 
+    {
         if (this.homeX == undefined || this.hasEnterAnotherLevel) {
             for (var i = 0; i < worldMap[0].length; i++) {
                 placePlayerAtThisSpot(this, i);
@@ -92,6 +95,7 @@ function playerClass() {
             {
                 console.log("The Player has died!");
                 player.reset();
+                resetPlayerHealth(this.stats);
             }
 
             this.directionFaced = undefined;

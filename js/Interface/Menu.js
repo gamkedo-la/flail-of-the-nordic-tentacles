@@ -151,12 +151,13 @@ this.draw = function()
         canvasContext.fill();
         canvasContext.drawImage(logoPic, 75,30, 600,300);
     }
-    else 
+    else if(isPaused) 
     {
         currentPage = PAUSED_PAGE;
         canvasContext.clearRect(itemsX -50,topItemY - rowHeight,
         itemsWidth, rowHeight * menuPageText[currentPage].length + rowHeight  );
     }
+    else {return;}
 
     if (wobble > 13 || wobble < 9) {
       wobbleSpeed *= -1;

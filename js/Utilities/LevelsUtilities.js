@@ -27,8 +27,6 @@ function handleLevelTransition(doorType)
 			loadMap("snowTest");
 			break;
 	}
-
-	handleBackgroundMusic(currentMap);
 }
 
 function saveMap(mapName, grid)
@@ -83,41 +81,40 @@ function saveLayers(layer,grid)
 
 function loadMap(mapName)
 {
-
-  fadingTitles.begin(mapName);
-
-  for(var i = 0; i < allLvls.length; i++)
-  {
-    if(allLvls[i].levelName == mapName)
-    {
-      currentMap = mapName;
+	for(var i = 0; i < allLvls.length; i++)
+	{
+	if(allLvls[i].levelName == mapName)
+	{
+	  currentMap = mapName;
 	  if(gameIsRunning)
-      {
-        worldMap = [];
+	  {
+	    worldMap = [];
 
-        currentLvlIndex = i;
-        currentMapRows = allLvls[currentLvlIndex].rows;
-        currentMapCols = allLvls[currentLvlIndex].cols;
-        currentMapTilesetRow = allLvls[currentLvlIndex].tilesetRow;
-        currentMap = allLvls[currentLvlIndex].levelName;
+	    currentLvlIndex = i;
+	    currentMapRows = allLvls[currentLvlIndex].rows;
+	    currentMapCols = allLvls[currentLvlIndex].cols;
+	    currentMapTilesetRow = allLvls[currentLvlIndex].tilesetRow;
+	    currentMap = allLvls[currentLvlIndex].levelName;
 
-        worldMap = Array.from(allLvls[currentLvlIndex].gridLayers);
-        handleCharacterPositions(currentLvlIndex);
+	    worldMap = Array.from(allLvls[currentLvlIndex].gridLayers);
+	    handleCharacterPositions(currentLvlIndex);
+	    fadingTitles.begin(mapName);
+	    previousLvlName = mapName;
+	  }
+	  else
+	  {
+	    console.log("loading map " + allLvls[i].levelName + " in editor");
+	    editor.grid.map = [];
 
-        previousLvlName = mapName;
-      }
-      else
-      {
-        console.log("loading map " + allLvls[i].levelName + " in editor");
-        editor.grid.map = [];
+	    editor.grid.mapRows = allLvls[i].rows;
+	    editor.grid.mapCols = allLvls[i].cols;
+	    editor.grid.mapTilesetRow = allLvls[i].tilesetRow;
+	    editor.grid.map = Array.from(allLvls[i].gridLayers);
 
-        editor.grid.mapRows = allLvls[i].rows;
-        editor.grid.mapCols = allLvls[i].cols;
-        editor.grid.mapTilesetRow = allLvls[i].tilesetRow;
-        editor.grid.map = Array.from(allLvls[i].gridLayers);
+	    handleCharacterPositions(i);
+	  }
+	}//end of map name check
+	}//end of for loop
 
-        handleCharacterPositions(i);
-      }
-    }//end of map name check
-  }//end of for loop
+	handleBackgroundMusic(currentMap);
 }
