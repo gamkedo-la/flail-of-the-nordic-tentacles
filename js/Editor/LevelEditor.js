@@ -51,7 +51,7 @@ function Editor()
 	{
 		moveCamera(this.grid.mapCols, this.grid.mapRows);
 		this.grid.draw();
-		editorDebugTools();
+		// editorDebugTools();
 	}
 
 	this.setTile = function()

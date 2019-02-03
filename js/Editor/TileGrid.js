@@ -29,7 +29,7 @@ function TileGrid(initTile)
 		var tileRow =  Math.floor((mouseY + camPanY)/TILE_H);
 		var tileIndex = roomTileToIndex(tileCol, tileRow, this.mapCols);
 
-		console.log("Setting layer: " + layer + "\nAt index: " + tileIndex + "\nTo: " + tileType);
+		console.log("Setting layer: " + layer + "\nAt index: " + tileIndex + "\nTo: " + tileType + "\nFrom: " + this.map[layer][tileIndex]);
 		this.map[layer][tileIndex] = tileType;
 	}
 
@@ -38,11 +38,15 @@ function TileGrid(initTile)
 		canvasContext.save();
 		canvasContext.translate(-camPanX, -camPanY);
 
+		objectsWithDepth = [];
 		//draw at layer 0
 		drawVisibleWorld(this.mapCols, 0);
 
 		//draw at layer 1
 		drawVisibleWorld(this.mapCols, 1);
+		drawDepthSortedTiles();
 		canvasContext.restore();
+
+		console.log('drawing tile grid');
 	}
 }

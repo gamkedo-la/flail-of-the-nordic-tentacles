@@ -54,14 +54,17 @@ var mouseX = 0;
 var mouseY = 0;
 
 function setupInput() {
-     document.addEventListener('click', event => {
-     Menu.checkState();
-    });
     canvas.addEventListener('mousemove', updateMousePos);
     canvas.addEventListener('mousedown', function()
         {
-            if(editor != null)
+
+            if(editor != null){
                 checkIfEditorIsOnAndSetTile();
+            }
+            else if (gameIsStarted == false || (isPaused && gameIsRunning)) {
+                Menu.checkState();
+            }
+
             // else
             // {
             //     //spawn particles at mouseX and mouseY
@@ -84,7 +87,10 @@ function updateMousePos(evt) {
 
     mouseX = evt.clientX - rect.left - root.scrollLeft;
     mouseY = evt.clientY - rect.top - root.scrollTop;
-    Menu.menuMouse();
+
+    if(!gameIsStarted || isPaused){
+        Menu.menuMouse();
+    }
 }
 
 function keySet(keyEvent, player, setTo) {
