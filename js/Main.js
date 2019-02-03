@@ -33,7 +33,6 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
-	console.log(gameIsStarted,isPaused,gameIsRunning);
 	if (gameIsStarted == false || (isPaused && gameIsRunning)) {
     	Menu.update();
     	// Menu.draw();

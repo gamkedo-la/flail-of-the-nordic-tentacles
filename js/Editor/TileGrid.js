@@ -46,7 +46,5 @@ function TileGrid(initTile)
 		drawVisibleWorld(this.mapCols, 1);
 		drawDepthSortedTiles();
 		canvasContext.restore();
-
-		console.log('drawing tile grid');
 	}
 }
