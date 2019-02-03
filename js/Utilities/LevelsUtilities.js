@@ -18,11 +18,7 @@ function handleLevelTransition(doorType)
 				loadMap("beachTest");
 			break;
 		case TILE_BEACH_EXIT_DOOR:
-			loadMap("snowTest");
-			break;
 		case TILE_MT_EXIT_DOOR:
-			loadMap("snowTest");
-			break;
 		case TILE_FOREST_EXIT_DOOR:
 			loadMap("snowTest");
 			break;
