@@ -20,6 +20,9 @@ function enemyClass()
 	this.velX = 3.0;
 	this.velY = 3.0;
 
+	this.bumpSlideX = 0.0;
+	this.bumpSlideY = 0.0;
+
 	this.collider;
 	this.bitmap;
 
@@ -231,16 +234,16 @@ function enemyClass()
 			}
 		}
 		
+		nextX += this.bumpSlideX;
+		nextY += this.bumpSlideY;
+		this.bumpSlideX *= 0.92;
+		this.bumpSlideY *= 0.92;
+
 		if (this.chasing) {
-			if (this.velX < 0) {
-			this.velX = -this.velX;
-			}
-			if (this.velY < 0) {
-			this.velY = -this.velY;
-			}
 			rotationTowardPlayer = Math.atan2(this.centerY - player.centerY, this.centerX - player.centerX);
-			nextX -= Math.cos(rotationTowardPlayer) * this.velX;
-			nextY -= Math.sin(rotationTowardPlayer) * this.velY;
+			nextX -= Math.cos(rotationTowardPlayer) * this.minSpeed;
+			nextY -= Math.sin(rotationTowardPlayer) * this.minSpeed; 
+
 			this.superClassMove(nextX,nextY);
 		} else if (this.returning) {
 			if (this.velX < 0) {
@@ -282,7 +285,7 @@ function enemyClass()
 			if(this.doesPlayerHaveAdvantage(player))
 			{
 				console.log ("bad guy bumped:NOT YET WORKING");
-				// this.bumpAwayFrom(player.centerX, player.centerY);
+				this.bumpAwayFrom(player.centerX, player.centerY);
 				calculateDamage(player.stats, this.stats);
 				randomHitSound(true);
 				handleEnemyRemovalAndXpDrop(this);
@@ -325,17 +328,21 @@ function enemyClass()
 	this.bumpAwayFrom = function (fromX, fromY) {
 		this.bumped = true;
 
-        if (this.centerX < fromX) {
-            this.velX = -ENEMY_BUMP_SPEED;
+      /*  if (this.centerX < fromX) {
+            this.bumpSlideX = -ENEMY_BUMP_SPEED;
         } else {
-            this.velX = ENEMY_BUMP_SPEED;
+            this.bumpSlideX = ENEMY_BUMP_SPEED;
         }
 
         if (this.centerY < fromY) {
-            this.velY = -ENEMY_BUMP_SPEED;
+            this.bumpSlideY = -ENEMY_BUMP_SPEED;
         } else {
-            this.velY = ENEMY_BUMP_SPEED;
-        }
+            this.bumpSlideY = ENEMY_BUMP_SPEED;
+        } */
+
+        var angTo = Math.atan2 (fromY - this.centerY, fromX - this.centerX);
+        this.bumpSlideX = Math.cos (angTo) * ENEMY_BUMP_SPEED;
+        this.bumpSlideY = Math.sin (angTo) * ENEMY_BUMP_SPEED;
     }
 
 	this.doesPlayerHaveAdvantage = function(player)
