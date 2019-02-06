@@ -405,16 +405,20 @@ function addToDepthSortedTiles(tileType, tileLeftEgdeX,tileTopEdgeY)
 
 function drawDepthSortedTiles()
 {
-	objectsWithDepth = objectsWithDepth.concat(enemiesList);
-	objectsWithDepth = objectsWithDepth.concat([player]);
+	if(gameIsRunning)
+	{		
+		objectsWithDepth = objectsWithDepth.concat(enemiesList);
+		objectsWithDepth = objectsWithDepth.concat([player]);
 
-	if(currentMap == 'forestTest')
-	{
-	  objectsWithDepth = objectsWithDepth.concat([outcast,seer]);
+		if(currentMap == 'forestTest')
+		{
+		  objectsWithDepth = objectsWithDepth.concat([outcast,seer]);
+		}
+
+		objectsWithDepth = objectsWithDepth.concat(particles);
+
+		objectsWithDepth.sort((objA, objB) => objA.centerY - objB.centerY);
 	}
-	objectsWithDepth = objectsWithDepth.concat(particles);
-
-	objectsWithDepth.sort((objA, objB) => objA.centerY - objB.centerY);
 
 	for(var j = 0; j < objectsWithDepth.length;j++)
 	{
