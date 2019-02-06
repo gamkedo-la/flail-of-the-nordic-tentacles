@@ -62,6 +62,34 @@ const TILE_SNOWY_PIT = 149;
 const TILE_TENT = 150;
 const TILE_SML_BUSH = 151;
 
+const TILE_SNOW_DUNE_1 = 152;
+const TILE_SNOW_DUNE_2 = 153;
+const TILE_SNOW_DUNE_3 = 154;
+const TILE_SNOW_DUNE_4 = 155;
+const TILE_SNOW_DUNE_5 = 156;
+const TILE_SNOW_DUNE_6 = 157;
+const TILE_SNOW_DUNE_7 = 158;
+const TILE_SNOW_DUNE_8 = 159;
+const TILE_SNOW_DUNE_9 = 160;
+const TILE_SNOW_DUNE_10 = 161;
+const TILE_SNOW_DUNE_11 = 162;
+const TILE_SNOW_DUNE_12 = 163;
+
+const TILE_ICE_1 = 164;
+const TILE_ICE_2 = 165;
+const TILE_ICE_3 = 166;
+const TILE_ICE_4 = 167;
+const TILE_ICE_5 = 168;
+const TILE_ICE_6 = 169;
+const TILE_ICE_7 = 170;
+const TILE_ICE_8 = 171;
+const TILE_ICE_9 = 172;
+const TILE_ICE_10 = 173;
+const TILE_ICE_11 = 174;
+const TILE_ICE_12 = 175;
+const TILE_ICE_13 = 176;
+const TILE_ICE_14 = 177;
+
 //Characters from 300 - 450;
 const TILE_PLAYER_NEW_GAME = 300;
 const TILE_WORMEX = 301;
@@ -185,11 +213,11 @@ function drawVisibleWorldHelper(col,row,gridCols,map,layer)
 			if(editor.tileToBeReplaced == tileIndex)
 			{	
 				canvasContext.save();
-				// canvasContext.globalAlpha = 0.5;
+				canvasContext.globalAlpha = 0.5;
 				drawTileBasedOnType(editor.selectedTileType, tileLeftEgdeX,tileTopEdgeY)
 				canvasContext.restore();
 				
-				// outlineRect(tileLeftEgdeX, tileTopEdgeY, TILE_W, TILE_H, 'red');
+				outlineRect(tileLeftEgdeX, tileTopEdgeY, TILE_W, TILE_H, 'red');
 			}
 		}
 	}
@@ -276,6 +304,34 @@ function drawTileBasedOnType(tileType, tileLeftEgdeX,tileTopEdgeY)
 		case TILE_SNOW_GRASS_13: sx = TILE_W * 12; break;
 
 		case TILE_SNOWY_PIT: sx = TILE_W; sy = 0; break;
+
+		case TILE_SNOW_DUNE_1: sx = TILE_W; break;
+		case TILE_SNOW_DUNE_2: sx = TILE_W * 2; break;
+		case TILE_SNOW_DUNE_3: sx = TILE_W * 3; break;
+		case TILE_SNOW_DUNE_4: sx = TILE_W * 4; break;
+		case TILE_SNOW_DUNE_5: sx = TILE_W * 5; break;
+		case TILE_SNOW_DUNE_6: sx = TILE_W * 6; break;
+		case TILE_SNOW_DUNE_7: sx = TILE_W * 7; break;
+		case TILE_SNOW_DUNE_8: sx = TILE_W * 8; break;
+		case TILE_SNOW_DUNE_9: sx = TILE_W * 9; break;
+		case TILE_SNOW_DUNE_10: sx = TILE_W * 10; break;
+		case TILE_SNOW_DUNE_11: sx = TILE_W * 11; break;
+		case TILE_SNOW_DUNE_12: sx = TILE_W * 12; break;
+		
+		case TILE_ICE_1: sx = TILE_W; break;
+		case TILE_ICE_2: sx = TILE_W * 2; break;
+		case TILE_ICE_3: sx = TILE_W * 3; break;
+		case TILE_ICE_4: sx = TILE_W * 4; break;
+		case TILE_ICE_5: sx = TILE_W * 5; break;
+		case TILE_ICE_6: sx = TILE_W * 6; break;
+		case TILE_ICE_7: sx = TILE_W * 7; break;
+		case TILE_ICE_8: sx = TILE_W * 8; break;
+		case TILE_ICE_9: sx = TILE_W * 9; break;
+		case TILE_ICE_10: sx = TILE_W * 10; break;
+		case TILE_ICE_11: sx = TILE_W * 11; break;
+		case TILE_ICE_12: sx = TILE_W * 12; break;
+		case TILE_ICE_13: sx = TILE_W * 13; break;
+		case TILE_ICE_14: sx = TILE_W * 14; break;
 
 		default:
 			sx = sy = 0;
