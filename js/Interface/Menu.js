@@ -61,8 +61,9 @@ this.checkState = function(){
     //MENU PAGE
     case "new*game":
         gameIsStarted = true;
+        this.cursor1 = 0;
         TextScroll.init({});
-        // this.cursor1 = 0;
+        handleBackgroundMusic();
         break;
     case "load game":
         currentPage = RESUME_PAGE;
