@@ -62,6 +62,7 @@ this.checkState = function(){
     case "new*game":
         gameIsStarted = true;
         this.cursor1 = 0;
+        handleBackgroundMusic();
         break;
     case "load game":
         currentPage = RESUME_PAGE;
