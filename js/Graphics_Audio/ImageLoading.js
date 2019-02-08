@@ -15,6 +15,8 @@ var bossPic = document.createElement("img");
 
 //UI
 var logoPic = document.createElement("img");
+var introTextPic = document.createElement("img");
+var introTextPicBtm = document.createElement("img");
 var arrowPic = document.createElement("img");
 var textboxPic = document.createElement("img");
 var hornPic = document.createElement("img");
@@ -43,7 +45,9 @@ function loadImages()
 {
 	var imageList = [
         //Ui
-        {varName: logoPic, fileName: "ui/flail_logo.png"},
+		{varName: logoPic, fileName: "ui/flail_logo.png"},
+		{varName: introTextPic, fileName: "ui/introTextPic.jpg"},
+		{varName: introTextPicBtm, fileName: "ui/introTextPicBtm.jpg"},
         {varName: arrowPic, fileName: "ui/arrow.png"},
 		{varName: textboxPic, fileName: "ui/chatbox.png"},
 		{varName: footStepsPic, fileName: "ui/footstepsSnow.png"},

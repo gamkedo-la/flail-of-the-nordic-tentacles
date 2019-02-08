@@ -49,6 +49,7 @@ const SHIFT = 16;
 const SPACE = 32;
 const ALT = 18;
 const ENTER = 13;
+const ESC = 27;
 
 var mouseX = 0;
 var mouseY = 0;
@@ -207,7 +208,12 @@ function keyPressed(evt) {
             case DOWN_ARROW:
     		case KEY_S:
                 Menu.cursor1++;
-            break;
+                break;
+            case ESC:
+                if (textScrolling) {
+                    textScrolling = false;
+                }
+                break;
         }
     }
 
