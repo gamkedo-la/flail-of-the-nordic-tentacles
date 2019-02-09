@@ -7,23 +7,23 @@ var backgroundMusic = new BackgroundMusicClass();
 
 // enemy sounds
 var enemySfx = {
-	hit: [new SoundOverlapsClass("EnemyHit01"),new SoundOverlapsClass("EnemyHit02"),new SoundOverlapsClass("EnemyHit03")],
-	death: [new SoundOverlapsClass("EnemyDestroy01"),new SoundOverlapsClass("EnemyDestroy02"),new SoundOverlapsClass("EnemyDestroy03")],
-	shooting: [new SoundOverlapsClass("EnemyFire01"),new SoundOverlapsClass("EnemyFire02"),new SoundOverlapsClass("EnemyFire03")],
+	hit: [new SoundOverlapsClass("EnemyHit01", 0.4),new SoundOverlapsClass("EnemyHit02", 0.4),new SoundOverlapsClass("EnemyHit03", 0.4)],
+	death: [new SoundOverlapsClass("EnemyDestroy01", 0.4),new SoundOverlapsClass("EnemyDestroy02", 0.4),new SoundOverlapsClass("EnemyDestroy03", 0.4)],
+	shooting: [new SoundOverlapsClass("EnemyFire01", 0.1),new SoundOverlapsClass("EnemyFire02", 0.1),new SoundOverlapsClass("EnemyFire03", 0.1)],
 };
 
 // player sounds
 
 var playerSfx = {
-	hit: [new SoundOverlapsClass("PlayerHit01"),new SoundOverlapsClass("PlayerHit02"),
-			new SoundOverlapsClass("PlayerHit03"),new SoundOverlapsClass("PlayerHit04")],
-	attack: new SoundOverlapsClass("PlayerAttack"),
-	levelUp: new SoundOverlapsClass("levelUp"),
-	grassStep: [new SoundOverlapsClass("grassFootStep01"),new SoundOverlapsClass("grassFootStep02"),new SoundOverlapsClass("grassFootStep03")],
-	gravelStep: [new SoundOverlapsClass("gravelFootStep01"),new SoundOverlapsClass("gravelFootStep02"),new SoundOverlapsClass("gravelFootStep03")],
-	iceStep: [new SoundOverlapsClass("iceFootStep01"),new SoundOverlapsClass("iceFootStep02"),new SoundOverlapsClass("iceFootStep03")],
-	snowStep: [new SoundOverlapsClass("snowFootStep01"),new SoundOverlapsClass("snowFootStep02"),new SoundOverlapsClass("snowFootStep03")],
-	twigsStep: [new SoundOverlapsClass("twigsFootStep01"),new SoundOverlapsClass("twigsFootStep02")],
+	hit: [new SoundOverlapsClass("PlayerHit01", 0.4),new SoundOverlapsClass("PlayerHit02", 0.4),
+			new SoundOverlapsClass("PlayerHit03", 0.4),new SoundOverlapsClass("PlayerHit04", 0.4)],
+	attack: new SoundOverlapsClass("PlayerAttack", 0.4),
+	levelUp: new SoundOverlapsClass("levelUp", 0.4),
+	grassStep: [new SoundOverlapsClass("grassFootStep01", 0.4),new SoundOverlapsClass("grassFootStep02", 0.4),new SoundOverlapsClass("grassFootStep03", 0.4)],
+	gravelStep: [new SoundOverlapsClass("gravelFootStep01", 0.4),new SoundOverlapsClass("gravelFootStep02", 0.4),new SoundOverlapsClass("gravelFootStep03", 0.4)],
+	iceStep: [new SoundOverlapsClass("iceFootStep01", 0.4),new SoundOverlapsClass("iceFootStep02", 0.4),new SoundOverlapsClass("iceFootStep03", 0.4)],
+	snowStep: [new SoundOverlapsClass("snowFootStep01", 0.4),new SoundOverlapsClass("snowFootStep02", 0.4),new SoundOverlapsClass("snowFootStep03", 0.4)],
+	twigsStep: [new SoundOverlapsClass("twigsFootStep01", 0.4),new SoundOverlapsClass("twigsFootStep02", 0.4)],
 };
 
 function getRndInteger(min, max)
@@ -67,14 +67,14 @@ function setFormat()
 	}
 }
 
-function SoundOverlapsClass(filenameWithPath)
+function SoundOverlapsClass(filenameWithPath, volume)
 {
 
 	setFormat();
 
 	var mainaudio = new Audio("audio/"+filenameWithPath+audioFormat);
 	var altaudio = new Audio("audio/"+filenameWithPath+audioFormat);
-
+	var thisSoundVol = volume;
 	var altaudioTurn = false;
 
 	this.play = function()
@@ -82,11 +82,13 @@ function SoundOverlapsClass(filenameWithPath)
 		if(altaudioTurn)
 		{
 			altaudio.currentTime = 0;
+			altaudio.volume = thisSoundVol;
 			altaudio.play();
 		}
 		else
 		{
 			mainaudio.currentTime = 0;
+			mainaudio.volume = thisSoundVol;
 			mainaudio.play();
 		}
 		altaudioTurn = !this.altaudioTurn;

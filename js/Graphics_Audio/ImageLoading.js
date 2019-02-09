@@ -18,6 +18,8 @@ var bossPic = document.createElement("img");
 
 //UI
 var logoPic = document.createElement("img");
+var introTextPic = document.createElement("img");
+var introTextPicBtm = document.createElement("img");
 var arrowPic = document.createElement("img");
 var textboxPic = document.createElement("img");
 var hornPic = document.createElement("img");
@@ -27,6 +29,7 @@ var beaconPic = document.createElement("img");
 var dictionaryPic = document.createElement("img");
 var tentaclePic = document.createElement("img");
 var statsBezelPic = document.createElement("img");
+var playerStatsPic = document.createElement("img");
 
 //Misc.
 var footStepsPic = document.createElement("img");
@@ -45,7 +48,9 @@ function loadImages()
 {
 	var imageList = [
         //Ui
-        {varName: logoPic, fileName: "ui/flail_logo.png"},
+		{varName: logoPic, fileName: "ui/flail_logo.png"},
+		{varName: introTextPic, fileName: "ui/introTextPic.jpg"},
+		{varName: introTextPicBtm, fileName: "ui/introTextPicBtm.jpg"},
         {varName: arrowPic, fileName: "ui/arrow.png"},
 		{varName: textboxPic, fileName: "ui/chatbox.png"},
 		{varName: footStepsPic, fileName: "ui/footstepsSnow.png"},
@@ -55,7 +60,7 @@ function loadImages()
 		{varName: wormholePic, fileName: "items/wormhole_quick.png"},
 		{varName: dictionaryPic, fileName: "items/dig_dictionary_quick.png"},
 		{varName: beaconPic, fileName: "items/beacon.png"},
-		{varName: statsBezelPic, fileName: "ui/statsBezel.png"},
+		{varName: playerStatsPic, fileName: "ui/playerStatsPic.png"},
 
 		//Effects
 	    {varName: greenSplat, fileName: "effects/green_splatter.png"},
@@ -134,6 +139,34 @@ function loadImages()
 		{worldType: TILE_FOREST_TREES_12, fileName: "environment/forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_TREES_13, fileName: "environment/forestImpaasibleTrees-sheet_crop.png"},
 		{worldType: TILE_FOREST_BIGTREE_1, fileName: "environment/trees/tree.png"},
+
+		{worldType: TILE_SNOW_DUNE_1, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_2, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_3, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_4, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_5, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_6, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_7, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_8, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_9, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_10, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_11, fileName: "environment/impassibleSnowDunes.png"},
+		{worldType: TILE_SNOW_DUNE_12, fileName: "environment/impassibleSnowDunes.png"},
+
+		{worldType: TILE_ICE_1, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_2, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_3, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_4, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_5, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_6, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_7, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_8, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_9, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_10, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_11, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_12, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_13, fileName: "environment/passableIce.png"},
+		{worldType: TILE_ICE_14, fileName: "environment/passableIce.png"},
 
 		// Items (World Draw)
 		{worldType: TILE_HORN, fileName: "items/chaos_horn_quick.png"},

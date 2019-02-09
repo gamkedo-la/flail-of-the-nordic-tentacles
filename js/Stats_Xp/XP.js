@@ -12,6 +12,7 @@ function xpClass()
 	this.nextLvl;
 
 	this.currentXp;
+	this.prevXp = 0;
 	this.nextXp;
 	this.xpModifier;
 	this.xpDrop;

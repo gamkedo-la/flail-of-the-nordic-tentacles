@@ -32,6 +32,19 @@ function moveCharIfAble(tileType)
     case TILE_SNOWY_PIT:
     case TILE_TENT:
     case TILE_SML_BUSH:
+    case TILE_ICE_14:
+    case TILE_SNOW_DUNE_1:
+    case TILE_SNOW_DUNE_2:
+    case TILE_SNOW_DUNE_3:
+    case TILE_SNOW_DUNE_4:
+    case TILE_SNOW_DUNE_5:
+    case TILE_SNOW_DUNE_6:
+    case TILE_SNOW_DUNE_7:
+    case TILE_SNOW_DUNE_8:
+    case TILE_SNOW_DUNE_9:
+    case TILE_SNOW_DUNE_10:
+    case TILE_SNOW_DUNE_11:
+    case TILE_SNOW_DUNE_12:
       return false;
       break;
     default:

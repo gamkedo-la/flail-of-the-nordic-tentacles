@@ -87,7 +87,8 @@ function givePlayerRandomXp()
 	{
 		let rand = Math.floor(Math.random() * (enemiesList.length));
 
-		player.exp.currentXp += enemiesList[rand].exp.gainEnemyXpDrop();
+		//player.exp.currentXp += enemiesList[rand].exp.gainEnemyXpDrop();
+		player.exp.currentXp += Math.floor(Math.random() * 10);
 
 		while (hasPlayerLeveledUp())
 		{

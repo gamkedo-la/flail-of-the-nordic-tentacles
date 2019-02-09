@@ -10,6 +10,7 @@ var displayItem = false;
 var itemDisplaytimer = 0;
 var debugState = false;
 var gameIsStarted = false;
+var textScrolling = false;
 
 window.onload = function()
 {
@@ -33,12 +34,14 @@ function imgsDoneLoadingSoStartGame()
 
 function updateAll()
 {
-	if (gameIsStarted == false || isPaused) {
-    	Menu.update();
+	if (gameIsStarted == false || (isPaused && gameIsRunning)) {
+		Menu.update();
     	// Menu.draw();
     	return;
-  	}
-    else {
+  	} else if (gameIsStarted && textScrolling) {
+		TextScroll.update();
+		return;
+	} else {
 		moveAll();
 		battleAll();
 		updateGroundDecals(0.7); // a higher number here causes the footprints to fade out faster

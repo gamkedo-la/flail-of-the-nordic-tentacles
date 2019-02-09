@@ -123,6 +123,34 @@ function getNameOfTile(tileType)
 		case TILE_FOREST_TREES_12: tileName = "trees 12"; break;
 		case TILE_FOREST_TREES_13: tileName = "trees 13"; break;
 
+		case TILE_SNOW_DUNE_1: tileName = "snow dune 1"; break;
+		case TILE_SNOW_DUNE_2: tileName = "snow dune 2"; break;
+		case TILE_SNOW_DUNE_3: tileName = "snow dune 3"; break;
+		case TILE_SNOW_DUNE_4: tileName = "snow dune 4"; break;
+		case TILE_SNOW_DUNE_5: tileName = "snow dune 5"; break;
+		case TILE_SNOW_DUNE_6: tileName = "snow dune 6"; break;
+		case TILE_SNOW_DUNE_7: tileName = "snow dune 7"; break;
+		case TILE_SNOW_DUNE_8: tileName = "snow dune 8"; break;
+		case TILE_SNOW_DUNE_9: tileName = "snow dune 9"; break;
+		case TILE_SNOW_DUNE_10: tileName = "snow dune 10"; break;
+		case TILE_SNOW_DUNE_11: tileName = "snow dune 11"; break;
+		case TILE_SNOW_DUNE_12: tileName = "snow dune 12"; break;
+
+		case TILE_ICE_1: tileName = "ice 1"; break;
+		case TILE_ICE_2: tileName = "ice 2"; break;
+		case TILE_ICE_3: tileName = "ice 3"; break;
+		case TILE_ICE_4: tileName = "ice 4"; break;
+		case TILE_ICE_5: tileName = "ice 5"; break;
+		case TILE_ICE_6: tileName = "ice 6"; break;
+		case TILE_ICE_7: tileName = "ice 7"; break;
+		case TILE_ICE_8: tileName = "ice 8"; break;
+		case TILE_ICE_9: tileName = "ice 9"; break;
+		case TILE_ICE_10: tileName = "ice 10"; break;
+		case TILE_ICE_11: tileName = "ice 11"; break;
+		case TILE_ICE_12: tileName = "ice 12"; break;
+		case TILE_ICE_13: tileName = "ice 13"; break;
+		case TILE_ICE_14: tileName = "ice 14"; break;
+
 		case TILE_PLAYER_NEW_GAME: tileName = "player start pos"; break;
 		case TILE_WORMEX: tileName = "wormex"; break;
 		case TILE_TANK: tileName = "tank"; break;
@@ -190,6 +218,32 @@ function shouldDrawGroundUnderTile_NonItem(tileType)
 		case TILE_FOREST_TREES_11:
 		case TILE_FOREST_TREES_12:
 		case TILE_FOREST_TREES_13:
+		case TILE_SNOW_DUNE_1:
+		case TILE_SNOW_DUNE_2:
+		case TILE_SNOW_DUNE_3:
+		case TILE_SNOW_DUNE_4:
+		case TILE_SNOW_DUNE_5:
+		case TILE_SNOW_DUNE_6:
+		case TILE_SNOW_DUNE_7:
+		case TILE_SNOW_DUNE_8:
+		case TILE_SNOW_DUNE_9:
+		case TILE_SNOW_DUNE_10: 
+		case TILE_SNOW_DUNE_11: 
+		case TILE_SNOW_DUNE_12:
+		case TILE_ICE_1:
+		case TILE_ICE_2:
+		case TILE_ICE_3:
+		case TILE_ICE_4:
+		case TILE_ICE_5:
+		case TILE_ICE_6:
+		case TILE_ICE_7:
+		case TILE_ICE_8:
+		case TILE_ICE_9:
+		case TILE_ICE_10:
+		case TILE_ICE_11:
+		case TILE_ICE_12: 
+		case TILE_ICE_13: 
+		case TILE_ICE_14: 
 		return true;
 	}
 
