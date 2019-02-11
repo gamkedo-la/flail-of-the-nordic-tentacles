@@ -75,7 +75,6 @@ function colliderClass(x,y,width,height,xDeviation,yDeviation)
             	player.tileTypePickable(nextTileType,nextTileIndex);
             }
 
-            //pass in collider here plus the next tile type and add a collider box to the tile if it's solid and then check if the colliders are colliding
             if (moveCharIfAble(nextTileTypeTR) && moveCharIfAble(nextTileTypeTL) && moveCharIfAble(nextTileTypeBR) && moveCharIfAble(nextTileTypeBL)) 
             {
                	return false;

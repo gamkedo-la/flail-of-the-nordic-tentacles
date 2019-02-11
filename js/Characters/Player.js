@@ -123,8 +123,23 @@ function playerClass() {
             nextX += this.velX;
             nextY += this.velY;
 
-            this.velX *= PLAYER_DECELERATION;
-            this.velY *= PLAYER_DECELERATION;
+            var nextTileIndex = getTileIndexAtRowCol(nextX, nextY, currentMapCols, currentMapRows);
+            var nextTileType = TILE_SNOW;
+
+            if(nextTileIndex != undefined)
+            {
+                nextTileType = worldMap[0][nextTileIndex];
+                if(nextTileType >= TILE_ICE_1 && nextTileType <= TILE_ICE_13)
+                {
+                    this.velX *= 0.90;
+                    this.velY *= 0.90;
+                }
+                else
+                {
+                    this.velX *= PLAYER_DECELERATION;
+                    this.velY *= PLAYER_DECELERATION;
+                }
+            }
 
             if (this.velX > -0.9 && this.velX < 0.06) {
             	this.velX = 0;
