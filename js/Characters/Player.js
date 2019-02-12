@@ -32,6 +32,7 @@ function playerClass() {
     this.waitTimeForHpRegen = 0;
 
     this.distSinceLastFootstep = 0;
+    this.footStepCount = 0;
 
     this.item;
 
@@ -174,6 +175,12 @@ function playerClass() {
                     this.distSinceLastFootstep += Math.hypot(nextX - this.centerX, nextY - this.centerY);
                     if (this.distSinceLastFootstep >= FOOTSTEP_DISTANCE)
                     {
+                        this.footStepCount++;
+
+                        // FIXME: grass gravel ice snow twigs
+                        if (this.footStepCount % 8 == 0)
+                            playerSfx.iceStep[randBtweenTwoNums(0,playerSfx.iceStep.length-1)].play();
+                        
                         addGroundDecal({
                             x: this.centerX,
                             y: this.centerY + 16
