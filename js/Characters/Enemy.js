@@ -7,6 +7,7 @@ const NUM_OF_ENEMIES_ON_SCREEN = 5;
 const CARDINALS = ["North", "East", "South", "West"];
 const ENEMY_BUMP_SPEED = 60;
 const DELAY_AFTER_BUMP = 45;
+const MAX_DIST_TO_SHOOT = 250;
 
 var enemiesList = [];
 var enemiesStartSpots = [];
@@ -273,6 +274,13 @@ function enemyClass()
 		} // end of if this.returning
 	}
 
+	this.distFromPlayer = function() {
+		var dx = this.centerX - player.centerX;
+		var dy = this.centerY - player.centerY;
+		var dist = Math.sqrt(dx * dx + dy * dy);
+		return dist;
+	}
+
 	this.battle = function(playerCollider)
 	{
 		this.isInCombat = this.collider.isCollidingWithOtherCollider(playerCollider);
@@ -305,11 +313,13 @@ function enemyClass()
 
 		if(this.canShoot)
 		{
-			if(Math.random() * 100 < 5)
-			{
-				rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30));
-				enemySfx.shooting[randBtweenTwoNums(0,enemySfx.shooting.length - 1)].play();
-				this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,50,rotationTowardPlayer,fightRune));
+			if (this.distFromPlayer() < MAX_DIST_TO_SHOOT) {
+				if(Math.random() * 100 < 5)
+				{
+					rotationTowardPlayer = Math.atan2(this.centerY - player.centerY + randBtweenTwoNums(-30,30), this.centerX - player.centerX + randBtweenTwoNums(-30,30));
+					enemySfx.shooting[randBtweenTwoNums(0,enemySfx.shooting.length - 1)].play();
+					this.shotList.push(new projectileClass(this.centerX,this.centerY,8,8,50,50,rotationTowardPlayer,fightRune));
+				}
 			}
 		}
 
