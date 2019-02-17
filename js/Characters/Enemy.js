@@ -6,8 +6,8 @@ const FRAME_DELAY = 4;
 const NUM_OF_ENEMIES_ON_SCREEN = 5;
 const CARDINALS = ["North", "East", "South", "West"];
 const ENEMY_BUMP_SPEED = 60;
-const DELAY_AFTER_BUMP = 45;
-const MAX_DIST_TO_SHOOT = 800;
+const DELAY_AFTER_BUMP = 90;
+const MAX_DIST_TO_SHOOT = 500;
 
 var enemiesList = [];
 var enemiesStartSpots = [];
@@ -292,7 +292,6 @@ function enemyClass()
 
 			if(this.doesPlayerHaveAdvantage(player))
 			{
-				console.log ("bad guy bumped:NOT YET WORKING");
 				this.bumpAwayFrom(player.centerX, player.centerY);
 				calculateDamage(player.stats, this.stats);
 				randomHitSound(true);
@@ -300,7 +299,6 @@ function enemyClass()
 			}
 			else
 			{
-				console.log ("player bumped:SHOULD WORK!");
 				player.bumpAwayFrom(this.centerX, this.centerY);
 			//	player.immunity();              // need to determine when damage occurs to start timer
 				if(player.isImmune == false)
@@ -337,18 +335,6 @@ function enemyClass()
 
 	this.bumpAwayFrom = function (fromX, fromY) {
 		this.bumped = true;
-
-      /*  if (this.centerX < fromX) {
-            this.bumpSlideX = -ENEMY_BUMP_SPEED;
-        } else {
-            this.bumpSlideX = ENEMY_BUMP_SPEED;
-        }
-
-        if (this.centerY < fromY) {
-            this.bumpSlideY = -ENEMY_BUMP_SPEED;
-        } else {
-            this.bumpSlideY = ENEMY_BUMP_SPEED;
-        } */
 
         var angTo = Math.atan2 (fromY - this.centerY, fromX - this.centerX);
         this.bumpSlideX = Math.cos (angTo) * ENEMY_BUMP_SPEED;

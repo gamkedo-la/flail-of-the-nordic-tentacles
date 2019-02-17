@@ -19,12 +19,13 @@ function fallenVikingClass()
 
 	this.height = 40;
 	this.width = 40;
+	this.chases = true;
 	
 	this.superClassInit = this.init;
 	this.init = function(name)
 	{
 		this.setupSpeed(3,5);
-		this.superClassInit(name,'Fallen',fallenPic,30,15);
+		this.superClassInit(name,'Fallen',fallenPic,30,15,this.chases);
 		this.reset();
 	}
 
@@ -34,7 +35,11 @@ function fallenVikingClass()
 		var nextX = this.centerX;
 		var nextY = this.centerY;
 
-		if(!this.isSentryModeOn())
+		if (this.chases) 
+		{	
+			this.playerDetected();
+		}
+		if(!this.isSentryModeOn() && !this.returning && !this.chasing)
 		{
 			nextX += this.velX;
 			nextY += this.velY;

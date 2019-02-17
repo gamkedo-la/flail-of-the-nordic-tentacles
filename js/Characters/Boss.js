@@ -42,7 +42,7 @@ function bossClass()
 	{
 		this.setupSpeed(4,5);
 		this.setProjectile(true);
-		this.superClassInit(name,'Boss',bossPic,51,60);
+		this.superClassInit(name,'Boss',bossPic,51,60,this.chases);
 		this.reset();
 	}
 
@@ -52,7 +52,11 @@ function bossClass()
 		var nextX = this.centerX;
 		var nextY = this.centerY;
 
-		if(!this.isSentryModeOn())
+		if (this.chases) 
+		{	
+			this.playerDetected();
+		}
+		if(!this.isSentryModeOn() && !this.returning && !this.chasing)
 		{
 			nextX += this.velX;
 			nextY += this.velY;
