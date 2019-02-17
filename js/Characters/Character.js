@@ -11,6 +11,7 @@ function npcClass() {
         this.bitmap = image;
         this.charName = name;
         this.mapTileType = mapTileType;
+        this.reset();
     }
 
     this.reset = function () {

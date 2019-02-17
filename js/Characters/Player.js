@@ -224,7 +224,7 @@ function playerClass() {
 
             this.collider.update(this.centerX, this.centerY);
 
-            if (currentMap == 'forestTest' && seer.collider != undefined)
+            if (currentMap == 'snowTest' && seer.collider != undefined)
                 handleNpcCollisions(this.collider);
         }
     }

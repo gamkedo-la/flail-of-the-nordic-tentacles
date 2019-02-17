@@ -410,7 +410,7 @@ function drawDepthSortedTiles()
 		objectsWithDepth = objectsWithDepth.concat(enemiesList);
 		objectsWithDepth = objectsWithDepth.concat([player]);
 
-		if(currentMap == 'forestTest')
+		if(currentMap == 'snowTest')
 		{
 		  objectsWithDepth = objectsWithDepth.concat([outcast,seer]);
 		}
