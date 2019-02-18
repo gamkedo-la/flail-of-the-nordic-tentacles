@@ -24,7 +24,7 @@ Item("beacon","Alien Beacon", function()
 {
 	console.log("boss incoming!");
 	spawnItemUsedParticles();
-	//enable boss battle
+	//spawn boss at x: 1550 and y: 1430
 	//execute any other code related to the boss's arrival like SFX, screen flash, etc.
 },beaconPic);
 Item("tentacle","Decaying Tentacle", function()
