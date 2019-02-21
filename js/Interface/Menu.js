@@ -157,7 +157,8 @@ this.draw = function()
     else if(isPaused) 
     {
         currentPage = PAUSED_PAGE;
-        canvasContext.clearRect(itemsX -50,topItemY - rowHeight,
+        canvasContext.fillStyle = "black";
+        canvasContext.fillRect(itemsX -50,topItemY - rowHeight,
         itemsWidth, rowHeight * menuPageText[currentPage].length + rowHeight  );
     }
     else {return;}
