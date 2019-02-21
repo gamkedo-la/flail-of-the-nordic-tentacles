@@ -209,7 +209,10 @@ this.draw = function()
 
     if(currentPage == CREDITS_PAGE) 
     {
-      drawRect( 0, 0, canvasContext.width, canvasContext.height, "cyan", 0.2);
+      canvasContext.fillStyle = "black";
+      canvasContext.globalAlpha = 0.5; 
+      canvasContext.fillRect( 0, 0, canvas.width, canvas.height);
+      canvasContext.globalAlpha = 1.0; 
 
       let creditsX = 11;
       let creditsTopY = 17;
