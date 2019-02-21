@@ -19,7 +19,7 @@ const Menu = new (function() {
     let currentPage = 0;
 
     let textFontFace = "26px Book Antiqua";
-    let textColour = "teal" ;
+    let textColour = "white" ;
 
     let classListMenu = ["new*game", "load game", "settings", "tutorials" , "credits"];
     let classListLoad = ["resume", "select chapter", "back"];
@@ -147,10 +147,11 @@ this.draw = function()
         }
 
         this.redraw();
-        let pattern = canvasContext.createPattern(snowyTile, "repeat");
+        /*let pattern = canvasContext.createPattern(snowyTile, "repeat");
         canvasContext.rect(0,0, 775,800);
         canvasContext.fillStyle = pattern;
-        canvasContext.fill();
+        canvasContext.fill();*/
+        canvasContext.drawImage(titlePic, 0,0);
         canvasContext.drawImage(logoPic, 75,30, 600,300);
     }
     else if(isPaused) 

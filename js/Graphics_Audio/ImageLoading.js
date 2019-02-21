@@ -17,6 +17,7 @@ var vanguardPic = document.createElement("img");
 var bossPic = document.createElement("img");
 
 //UI
+var titlePic = document.createElement("img"); 
 var logoPic = document.createElement("img");
 var introTextPic = document.createElement("img");
 var introTextPicBtm = document.createElement("img");
@@ -49,6 +50,7 @@ function loadImages()
 	var imageList = [
         //Ui
 		{varName: logoPic, fileName: "ui/flail_logo.png"},
+		{varName: titlePic, fileName: "ui/title-background.png"},
 		{varName: introTextPic, fileName: "ui/introTextPic.jpg"},
 		{varName: introTextPicBtm, fileName: "ui/introTextPicBtm.jpg"},
         {varName: arrowPic, fileName: "ui/arrow.png"},
