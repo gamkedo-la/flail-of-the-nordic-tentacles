@@ -19,6 +19,7 @@ const Menu = new (function() {
     let currentPage = 0;
 
     let textFontFace = "26px Book Antiqua";
+    let textFontFaceCredits = "15px Book Antiqua";
     let textColour = "white" ;
 
     let classListMenu = ["new*game", "load game", "settings", "tutorials" , "credits"];
@@ -27,15 +28,51 @@ const Menu = new (function() {
     let classListSettings = ["volume", "controls", "back"];
     let classListHelp= ["gameplay","gamepad","back"];
     let classListPaused= ['save' , 'audio',  'return'];
-    let classListCredits= ['Jaime Rivas' , "back"];
-
+    let classListCredits= ["back"];
 
     let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels, classListPaused];
+
+let creditsText =[
+"                                                                          Flail of the Nordic Tentacles Team",
+"",
+"Jaime Rivas: Project lead, core gameplay, slime enemy, level editor, map switching, terrain tilesheet integration,",
+"   stats implementation, bug fixes, xp rewards and leveling up, collision handling, snow art (bush, tree, pit,",
+"   rebel tent), forest art (portal), inventory menu, depth sorting, spawn code, main enemy code, snow level design",
+"Ryan Malm: Tileset workflow, forest tiles, Wormex sprites, editor improvements, snowygrass tile variations, tall",
+"   tile support, ice and snow dunes tiles, inventory fix, animation manager, internal documentation",
+"Gonzalo Delgado: Boss character sprite, fight particle effect, randomized enemy start direction",
+"Vince McKeown: Main sound code, interface fixes, editor improvements, in-game UI for map name and item pickup,",
+"   mute, Seer and NPC placement, cheat test features, boundary testing, Wormex implementation, randomized hit",
+"   audio integration",
+"Christer \"McFunkypants\" Kaitila: terrain spritesheet, gamepad support, character code cleanup, footprints trail",
+"   feature, fading title on transitions, particles (dust, death, action, sparkles), stats interface art, enemy",
+"   attack range",
+"Vaan Hope Khani: Main character sprite, xp display, in-game and main menu, load/save, additional player stats",
+"Shaun Lindsley: Sounds (enemy hits/attack/defeated, level up, gravel/grass/forest/snow/ice footsteps, item pickup,",
+"   menu sounds, NPC sounds, scene change)",
+"Terrence McDonnell: Road tiles art, player movement fix, projectile improvements, chase AI",
+"Simon J Hoffiz: Pause functionality, main menu music, player and enemy recoil from combat loss",
+"Trolzie: Health and XP bars, enemy health bars, eyepatch implementation, Outcast character, stats UI, scrolling",
+"   intro text",
+"Asix Jin: 3 songs (Rebel Woods, Nordic Snow, Nordic Rage)",
+"Stebs: Logo art and integration",
+"Kise: Dialog feature",
+"Chris Markle: Player hit and player attack sounds",
+"Rémy Lapointe: Snowy grass tile",
+"Matt Sullivan: Enemy AI debug visualization",
+"Nicholas Polchies: W/S key support for menu",
+"Michelly Oliveira: Removal of sprite animation debug behavior",
+"Chris DeLeon: Title background image, game credits",
+"",
+"                     Made by collaborators worldwide in Gamkedo Club - join or find our more at gamkedo.com",
+"",
+"                                                              CLICK ANYWHERE TO RETURN"
+];
 
 this.menuMouse = function(){
      for (let i = 0; i < menuPageText[currentPage].length; i++) {
         if(mouseX > itemsX && mouseX < itemsX + itemsWidth
-            && mouseY > topItemY + (i * rowHeight) && mouseY < topItemY + (i+1) * rowHeight) {
+            && mouseY > topItemY + (i * rowHeight)-20 && mouseY < topItemY + (i+1) * rowHeight-20) {
             this.cursor1 = i;
         }
     }
@@ -152,7 +189,9 @@ this.draw = function()
         canvasContext.fillStyle = pattern;
         canvasContext.fill();*/
         canvasContext.drawImage(titlePic, 0,0);
-        canvasContext.drawImage(logoPic, 75,30, 600,300);
+        if(currentPage != CREDITS_PAGE) {
+            canvasContext.drawImage(logoPic, 75,30, 600,300);
+        }
     }
     else if(isPaused) 
     {
@@ -173,20 +212,22 @@ this.draw = function()
       drawRect( 0, 0, canvasContext.width, canvasContext.height, "cyan", 0.2);
 
       let creditsX = 11;
-      let creditsTopY = 25;
-      let creditsLineSkipY = 55;
+      let creditsTopY = 17;
+      let creditsLineSkipY = 18;
 
-      for (let i = 0; i < classListCredits.length; i++) 
+      for (let i = 0; i < creditsText.length; i++) 
       {
-        drawText(classListCredits[i],creditsX, creditsTopY + creditsLineSkipY * i, textColour, textFontFace, 'left', 'top');
+        creditsTopY += creditsLineSkipY + (creditsText[i].substring(0, 3) == "   " ? -4 : 0);
+        drawText(creditsText[i],creditsX, creditsTopY, textColour, textFontFaceCredits, 'left', 'top');
       }
-    }
+    } else {
 
-    for (let i=0; i<menuPageText[currentPage].length; i++)
-    {
-        drawText(menuPageText[currentPage][i],itemsX,topItemY + rowHeight * i,textColour, textFontFace, 'left', 'top');
-        //Draw cursor
-        canvasContext.drawImage(arrowPic,(itemsX-20) - wobble * i,topItemY + (this.cursor1 * rowHeight) -14);
+        for (let i=0; i<menuPageText[currentPage].length; i++)
+        {
+            drawText(menuPageText[currentPage][i],itemsX,topItemY + rowHeight * i,textColour, textFontFace, 'left', 'top');
+            //Draw cursor
+            canvasContext.drawImage(arrowPic,(itemsX-20) - wobble * i,topItemY + (this.cursor1 * rowHeight) -14);
+        }
     }
 
 }
