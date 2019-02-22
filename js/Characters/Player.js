@@ -192,17 +192,17 @@ function playerClass() {
 
             this.wasIdleLastFrame = this.isIdle; // so we can tell when we just stopped
 
-			if (nextX > TILE_W * currentMapRows)
+			if (nextX >= TILE_W * currentMapRows)
 			{
-				nextX = TILE_W * currentMapRows;
+				nextX = TILE_W * currentMapRows - 1;
 			}
 			if (nextX < 0)
 			{
 				nextX = 0;
 			}
-			if (nextY > TILE_H * currentMapCols)
+			if (nextY >= TILE_H * currentMapCols - 20)
 			{
-				nextY = TILE_H * currentMapCols;
+				nextY = TILE_H * currentMapCols - 21;
 			}
 			if (nextY < 0)
 			{

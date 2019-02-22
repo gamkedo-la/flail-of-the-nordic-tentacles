@@ -25,7 +25,22 @@ Item("beacon","Alien Beacon", function()
 	console.log("boss incoming!");
 	spawnItemUsedParticles();
 	//spawn boss at x: 1550 and y: 1430
-	//execute any other code related to the boss's arrival like SFX, screen flash, etc.
+	var tempEnemy = new enemySpawnPointClass();
+
+	tempEnemy.setup(1550, 1430, TILE_BOSS);
+
+	var tileCol = Math.floor(tempEnemy.x/TILE_W);
+	var tileRow = tempEnemy.y/TILE_H;
+	var newBoss = {col: tileCol, row: tileRow, charType: tempEnemy.charType};
+
+	var tempEnemy = getClassBasedOnType(newBoss.charType);
+
+	tempEnemy.setHome(newBoss.col,newBoss.row);
+	tempEnemy.init('Enemy' + spawnID);
+	spawnID++;
+	enemiesList.push(tempEnemy);
+
+	console.log("Boss fighting");
 },beaconPic);
 Item("tentacle","Decaying Tentacle", function()
 {
