@@ -2,6 +2,7 @@ const PLAYER_ACCELERATION = 4;
 const PLAYER_DECELERATION = 0.70;
 const FOOTSTEP_DISTANCE = 8;
 const PLAYER_BUMP_SPEED = 20;
+const PLAYER_FRAME_DIM = 80;
 
 var player = new playerClass();
 var playerInventory = Inventory();
@@ -327,13 +328,13 @@ function playerClass() {
             this.collider.draw();
 
         canvasContext.drawImage(this.bitmap, // Sprite Sheet reference
-								this.animFrame * FRAME_DIMENSIONS, // Source X, Frame Index
+								this.animFrame * PLAYER_FRAME_DIM, // Source X, Frame Index
 								0, // Source Y
-								FRAME_DIMENSIONS, // Frame width
-								FRAME_DIMENSIONS, // Frame height
+								PLAYER_FRAME_DIM, // Frame width
+								PLAYER_FRAME_DIM, // Frame height
 								this.centerX - this.bitmap.width / 8, // Destination X
 								this.centerY - this.bitmap.height / 2, // Destination Y
-								FRAME_DIMENSIONS, // Frame Width
-								FRAME_DIMENSIONS); // Frame Height
+								PLAYER_FRAME_DIM, // Frame Width
+								PLAYER_FRAME_DIM); // Frame Height
     }
 }

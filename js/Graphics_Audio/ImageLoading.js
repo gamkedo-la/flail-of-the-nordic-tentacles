@@ -73,7 +73,7 @@ function loadImages()
 		{varName: sparkleParticlePic, fileName: "effects/sparkle_particle.png"},
 
 		// Characters
-		{charName: vikingPic, fileName: "characters/V.png"},
+		{charName: vikingPic, fileName: "characters/viking_quick_sheet.png"},
 		{charName: maleVikingPic, fileName: "characters/male_viking.png"},
 		{charName: femaleVikingPic, fileName: "characters/female_viking.png"},
 		{charName: seerPic, fileName: "characters/the_seer_v6.png"},
