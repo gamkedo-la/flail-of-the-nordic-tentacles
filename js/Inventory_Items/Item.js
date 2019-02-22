@@ -20,11 +20,10 @@ Item("wormhole","Pocket Wormhole", function()
 	spawnUnlockEventParticles();
 	areShortcutsEnabled = true;
 },wormholePic);
+
 Item("beacon","Alien Beacon", function()
 {
-	console.log("boss incoming!");
 	spawnItemUsedParticles();
-	//spawn boss at x: 1550 and y: 1430
 	var tempEnemy = new enemySpawnPointClass();
 
 	tempEnemy.setup(1550, 1430, TILE_BOSS);
@@ -39,27 +38,29 @@ Item("beacon","Alien Beacon", function()
 	tempEnemy.init('Enemy' + spawnID);
 	spawnID++;
 	enemiesList.push(tempEnemy);
-
-	console.log("Boss fighting");
 },beaconPic);
+
 Item("tentacle","Decaying Tentacle", function()
 {
 	console.log("beach now accessible");
 	spawnUnlockEventParticles();
 	//open beach level
 },tentaclePic);
+
 Item("horn","Chaos Horn", function()
 {
 	console.log("mountain now accessible");
 	spawnUnlockEventParticles();
 	//open mountain level
 },hornPic);
+
 Item("eyepatch","Odin's Eye Patch", function()
 {
 	console.log("forest now accessible");
 	spawnUnlockEventParticles();
 	//open forest level
 },eyepatchPic);
+
 Item("dictionary","Digital Dictionary", function()
 {
 	console.log("the outcast wishes to speak");

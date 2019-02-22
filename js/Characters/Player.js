@@ -198,21 +198,21 @@ function playerClass() {
 
             this.wasIdleLastFrame = this.isIdle; // so we can tell when we just stopped
 
-			if (nextX >= TILE_W * currentMapRows)
+			if (nextX >= TILE_W * currentMapRows - 20)
 			{
-				nextX = TILE_W * currentMapRows - 1;
+				nextX = TILE_W * currentMapRows - 21;
 			}
-			if (nextX < 0)
+			if (nextX <= 20)
 			{
-				nextX = 0;
+				nextX = 20;
 			}
 			if (nextY >= TILE_H * currentMapCols - 20)
 			{
 				nextY = TILE_H * currentMapCols - 21;
 			}
-			if (nextY < 0)
+			if (nextY <= 20)
 			{
-				nextY = 0;
+				nextY = 20;
 			}
 
 			//play footstep sound based on tile type

@@ -18,8 +18,8 @@ const Menu = new (function() {
 
     let currentPage = 0;
 
-    let textFontFace = "26px Book Antiqua";
-    let textFontFaceCredits = "15px Book Antiqua";
+    let textFontFace = "18px viking-normalregular";
+    let textFontFaceCredits = "8.5px viking-normalregular";
     let textColour = "white" ;
 
     let classListMenu = ["new*game", "load game", "settings", "tutorials" , "credits"];
@@ -190,7 +190,7 @@ this.draw = function()
         canvasContext.fill();*/
         canvasContext.drawImage(titlePic, 0,0);
         if(currentPage != CREDITS_PAGE) {
-            canvasContext.drawImage(logoPic, 75,30, 600,300);
+            canvasContext.drawImage(logoPic, canvas.width/2-160,30, 300,300);
         }
     }
     else if(isPaused) 

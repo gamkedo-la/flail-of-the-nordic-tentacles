@@ -76,6 +76,7 @@ function regenPlayerHpIfAble(player,isIdle,enemiesList)
 		if(enemiesList[i].isInCombat)
 		{
 			isCombatOngoing = true;
+			return;
 		}
 	}
 

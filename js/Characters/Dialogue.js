@@ -24,12 +24,16 @@ function Dialogue() {
                 this.letterCounter += letterSpeed;
             }
             spellout = dialogueList[this.page].substr(0, this.letterCounter)
-            drawText(charName, textX - 15, nameY, nameCol /* indNameCols */, "20px Arial");
-            drawText(spellout, textX, textY, "white", "20px Arial");
+            drawText(charName, textX - 15, nameY, nameCol /* indNameCols */, "20px viking-normalregular");
+            drawText(spellout, textX, textY, "white", "20px viking-normalregular");
         }
     }
 
     this.showBox = function () {
+        canvasContext.save();
+        canvasContext.globalAlpha = 0.6;
+        drawRect(boxX-6,boxY-6,boxPic.width+12,boxPic.height+12,"black");
+        canvasContext.restore();
         canvasContext.drawImage(boxPic, boxX, boxY);
     }
 
@@ -55,7 +59,9 @@ var outcastDialogue = new Dialogue();
 var outcaseText = ["I'm sad...", "Why, you ask?", "It seems no one likes me...", "I feel like it has something to do with my name."];
 
 var seerDialogue = new Dialogue();
-var seerText = ["I've been expecting you.", "How? I saw you walk up to me!"];
+var seerText = ["I've been expecting you.", "Among all the items scattered...", "throughout the area is a beacon.", 
+                "What does it do?", "I haven't a clue but perhaps he does...", "Who? Was talking I in my sleep again?", 
+                "You say you saw alien suit guy?", "There be no such thing!", "Something odd doth indeed...", "exist in the snow labyrinth."];
 
 function triggerText(npcTextBool) {
     //if an npc hasn't been talked to yet, play their event
