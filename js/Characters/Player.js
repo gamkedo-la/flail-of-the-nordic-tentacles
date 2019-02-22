@@ -40,11 +40,16 @@ function playerClass() {
     this.isImmune = false;
     this.immunityTimer = 0;
 
-    this.setupInput = function (north, south, west, east) {
+    this.setupInput = function (north, south, west, east, north2, south2, west2, east2) {
         this.ctrlNorth = north;
         this.ctrlSouth = south;
         this.ctrlWest = west;
         this.ctrlEast = east;
+
+        this.ctrlNorth2 = north2;
+        this.ctrlSouth2 = south2;
+        this.ctrlWest2 = west2;
+        this.ctrlEast2 = east2;
     }
 
     this.init = function (image, name, footstepImage) {

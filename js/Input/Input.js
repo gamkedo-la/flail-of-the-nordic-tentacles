@@ -79,7 +79,7 @@ function setupInput() {
     document.addEventListener('keydown', keyPressed);
     document.addEventListener('keyup', keyReleased);
 
-    player.setupInput(KEY_W, KEY_S, KEY_A, KEY_D);
+    player.setupInput(KEY_W, KEY_S, KEY_A, KEY_D,UP_ARROW,DOWN_ARROW,LEFT_ARROW,RIGHT_ARROW);
 }
 
 function updateMousePos(evt) {
@@ -95,16 +95,16 @@ function updateMousePos(evt) {
 }
 
 function keySet(keyEvent, player, setTo) {
-    if (keyEvent == player.ctrlWest) {
+    if (keyEvent == player.ctrlWest || keyEvent == player.ctrlWest2) {
         player.goingWest = setTo;
     }
-    if (keyEvent == player.ctrlEast) {
+    if (keyEvent == player.ctrlEast || keyEvent == player.ctrlEast2) {
         player.goingEast = setTo;
     }
-    if (keyEvent == player.ctrlNorth) {
+    if (keyEvent == player.ctrlNorth || keyEvent == player.ctrlNorth2) {
         player.goingNorth = setTo;
     }
-    if (keyEvent == player.ctrlSouth) {
+    if (keyEvent == player.ctrlSouth || keyEvent == player.ctrlSouth2) {
         player.goingSouth = setTo;
     }
 }
