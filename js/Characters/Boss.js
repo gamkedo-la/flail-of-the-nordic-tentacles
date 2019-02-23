@@ -3,6 +3,7 @@ bossClass.prototype = new enemyClass();
 function bossClass()
 {
 
+	this.isBoss = true;
 	this.exp = new xpClass();//only for init level within a bracket appropriate to enemy
 	this.stats = new statsClass();
 	this.frame = {x: 0, y: 3}

@@ -96,6 +96,12 @@ function handleEnemyRemovalAndXpDrop(whichEnemy)
 {
 	if(whichEnemy.stats.isCharacterDead)
 	{
+		// handle boss defeat
+		if (whichEnemy.isBoss) {
+			console.log("Boss was defeated! Victory! Game Over!");
+			setTimeout(TriggerEndGame,3000); // wait 3 seconds
+		}
+		
 		spawnEnemyBasedParticles(whichEnemy);
 
 		if(player.exp.currentLvl < 50)
