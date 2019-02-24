@@ -34,18 +34,6 @@ function gameDebugTools()
 		mouseX, mouseY, 'black');
 }
 
-function cheatStopEnemyMovement()
-{
-	if (stopEnemyMovement == true)
-	{
-		stopEnemyMovement = false;
-	} 
-	else
-	{
-		stopEnemyMovement = true;
-	}
-}
-
 function editorDebugTools()
 {
 	var tileCol =  Math.floor((mouseX + camPanX)/TILE_W);

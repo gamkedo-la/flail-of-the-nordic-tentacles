@@ -21,7 +21,7 @@ const TextScroll = new (function() {
             "The Cecleon Empire... As many empires before them, they too faced a shortage of basic necessities and searched for new gathering sources. With their vast network of intelligence they discovered the land of Idrilya, a gold mine of these necessities.",
             "Desperate for relief, they invaded the peaceful farmers of Idrilya, whom were once known for their fierceness in battle and an endless appetite for conflict. The Cecleons weren't inclined to share the resources and unanimously opted for the extermination of the Vikings.",
             "The Vikings fought and fought but to no avail. The technological superiority of their invaders was too much. They fell by the hundreds and soon there was a new endangered species...",
-            "Yet, records speak of a survivor and an outcast who would go on to unite the last of the Vikings and, with their aid, face this tentacled threat. Perhaps today we'll put to rest the debates concerning the victors of the Battle for Idrilya."
+            "Yet, records speak of a survivor and an outcast who would go on to unite the last of the Vikings and, with their aid (and items laying around the area), face this tentacled threat. Perhaps today we'll put to rest the debates concerning the victors of the Battle for Idrilya."
         ];
         this.skipText = "(Press 'esc' to skip introduction)";
 

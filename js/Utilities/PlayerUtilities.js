@@ -1,4 +1,7 @@
 //Player related
+var playerSecondWindTimer = 0;
+var playerStopEnemiesTimer = 0;
+
 function handleNpcCollisions(playerCollider)
 {
 	if(playerCollider.isCollidingWithOtherCollider(seer.collider))
@@ -9,7 +12,8 @@ function handleNpcCollisions(playerCollider)
 	else if(playerCollider.isCollidingWithOtherCollider(outcast.collider))
 	{
 		//console.log("Talking with: " + outcast.charName);
-        triggerText(outcastDialogue);
+		if(playerInventory.hasItem("dictionary",1))
+        	triggerText(outcastDialogue);
 	}
 	else
 	{
@@ -112,6 +116,30 @@ function resetPlayerHealth(playerStats)
 {
 	playerStats.hp = playerStats.maxHp;
 	playerStats.isCharacterDead = false;
+}
+
+function refillPlayerHealth()
+{
+	if(playerSecondWindTimer >= 450)
+	{
+		player.stats.hp = player.stats.maxHp;
+		playerSecondWindTimer = 0;
+	}
+}
+
+function pauseEnemyPatrol()
+{
+	if(playerStopEnemiesTimer >= 360)
+	{
+		stopEnemyMovement = true;
+		resumeEnemyPatrolsTimer = 120;
+		playerStopEnemiesTimer = 0;
+	}
+}
+
+function eliminateEnemyWave()
+{
+	// console.log("killing all enemies");
 }
 
 function levelUpPlayer()

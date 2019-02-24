@@ -7,11 +7,12 @@ const NUM_OF_ENEMIES_ON_SCREEN = 5;
 const CARDINALS = ["North", "East", "South", "West"];
 const ENEMY_BUMP_SPEED = 60;
 const DELAY_AFTER_BUMP = 90;
-const MAX_DIST_TO_SHOOT = 500;
+const MAX_DIST_TO_SHOOT = 250;
 
 var enemiesList = [];
 var enemiesStartSpots = [];
 var stopEnemyMovement = false;
+var resumeEnemyPatrolsTimer = 0;
 
 function enemyClass()
 {

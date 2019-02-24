@@ -176,8 +176,11 @@ function keyPressed(evt) {
             case SPACE:
                 nextDialoguePage();
                 break;
-    		case KEY_L:
-    			cheatStopEnemyMovement();
+    		case KEY_E:
+                pauseEnemyPatrol();
+                break;
+            case KEY_F:
+    			player.toggleImmunityCheat()();
     			break;
     		case KEY_M:
     			muteSFXandBackground();
@@ -188,12 +191,12 @@ function keyPressed(evt) {
     		case KEY_K:
     			toggleDebugMode();
     			break;
-    		case KEY_J:
-    			player.toggleImmunityCheat();
-    			break;
             case KEY_U:
                 givePlayerRandomXp();
                 break;
+            case KEY_R:
+                refillPlayerHealth();
+                break;              
             case NUM_0:
                 particles = [];
                 emitters = [];

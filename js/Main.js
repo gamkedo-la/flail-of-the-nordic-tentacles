@@ -66,6 +66,29 @@ function battleAll()
 		enemiesList[i].battle(player.collider);
 	}
 
+	if(playerInventory.hasItem("horn",1) && playerSecondWindTimer < 450)
+	{
+		playerSecondWindTimer++;
+	}
+	if(playerInventory.hasItem("tentacle",1))
+	{
+		if(playerStopEnemiesTimer < 360)
+		{
+			playerStopEnemiesTimer++;
+		}
+
+		//resumes enemy patrols after 4 seconds only if player has used tentacle item
+		if(resumeEnemyPatrolsTimer > 0)
+		{
+			resumeEnemyPatrolsTimer--;
+			if(resumeEnemyPatrolsTimer <= 0)
+			{
+				resumeEnemyPatrolsTimer = 0;
+				stopEnemyMovement = false;
+			}
+		}
+	}
+
 	regenPlayerHpIfAble(player,player.isIdle,enemiesList);
 }
 

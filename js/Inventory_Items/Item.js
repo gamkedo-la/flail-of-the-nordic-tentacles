@@ -16,9 +16,7 @@ Item.List = {};
 
 Item("wormhole","Pocket Wormhole", function()
 {
-	console.log("shortcuts enabled!");
 	spawnUnlockEventParticles();
-	areShortcutsEnabled = true;
 },wormholePic);
 
 Item("beacon","Alien Beacon", function()
@@ -42,32 +40,23 @@ Item("beacon","Alien Beacon", function()
 
 Item("tentacle","Decaying Tentacle", function()
 {
-	console.log("beach now accessible");
 	spawnUnlockEventParticles();
-	//open beach level
 },tentaclePic);
 
 Item("horn","Chaos Horn", function()
 {
-	console.log("mountain now accessible");
 	spawnUnlockEventParticles();
-	//open mountain level
 },hornPic);
 
 Item("eyepatch","Odin's Eye Patch", function()
 {
-	console.log("forest now accessible");
 	spawnUnlockEventParticles();
-	//open forest level
 },eyepatchPic);
 
 Item("dictionary","Digital Dictionary", function()
 {
-	console.log("the outcast wishes to speak");
 	spawnItemUsedParticles();
-	//enable The Outcast's dialogue
 },dictionaryPic);
-
 
 function itemPickedUp()
 {	
@@ -80,4 +69,33 @@ function itemPickedUp()
 		displayItem = false;
 		itemDisplaytimer = 0;
 	}
+}
+
+function displayItemUseDetailsAndKey(itemName)
+{
+	let string = "";
+
+	switch(itemName)
+	{
+		case "eyepatch":
+		string += "Odin's eyepatch shows alien's life force";
+		break;
+		case "horn":
+		string += "Press R to get a second wind!";
+		break;
+		case "tentacle":
+		string += "Press E to act like an alien!";
+		break;
+		case "beacon":
+		string += "N.O.R.D descends...";
+		break;
+		case "wormhole":
+		string += "Press F to vanquish all foes!";
+		break;
+		case "dictionary":
+		string += "You can now speak Cecleon!";
+		break;
+	}
+
+	return string;
 }

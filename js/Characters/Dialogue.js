@@ -56,12 +56,15 @@ function Dialogue() {
 }
 
 var outcastDialogue = new Dialogue();
-var outcaseText = ["I'm sad...", "Why, you ask?", "It seems no one likes me...", "I feel like it has something to do with my name."];
+var outcaseText = ["I'm sad...", "Why, you ask?", "It seems no one likes me...", "Oh whatever... huh? A beacon?",
+                    "It just summons our overlord: The N.O.R.D.", "You know... The Necro Ohm Ruin Demon.", 
+                    "He'll probably show up somewhere...", "North-East of here in some ice lake."];
 
 var seerDialogue = new Dialogue();
-var seerText = ["I've been expecting you.", "Among all the items scattered...", "throughout the area is a beacon.", 
+var seerText = ["I've been expecting you.", "Among all the items scattered...", "in the map is a beacon.","SOUTH of here.", 
                 "What does it do?", "I haven't a clue but perhaps he does...", "Who? Was talking I in my sleep again?", 
-                "You say you saw alien suit guy?", "There be no such thing!", "Something odd doth indeed...", "exist in the snow labyrinth."];
+                "You say you saw alien suit guy?", "There be no such thing!", "Some odd fella doth indeed...", "exist in the snow labyrinth.",
+                "Don't forget your dictionary!","Oh wait... We're illiterate..."];
 
 function triggerText(npcTextBool) {
     //if an npc hasn't been talked to yet, play their event

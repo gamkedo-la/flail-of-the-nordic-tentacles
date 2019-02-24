@@ -6,7 +6,9 @@ function drawUI()
 		canvasContext.save();
 		canvasContext.globalAlpha = 0.75;
 		drawRect(canvas.width-290,40,290,30,"black");
-		drawText('The Player has picked up a ' + player.item + '!', canvas.width-275, 60, "white");
+		drawText('Picked up a ' + player.item + '!', canvas.width-275, 60, "white");
+		drawRect(canvas.width-290,80,290,30,"black");
+		drawText(displayItemUseDetailsAndKey(player.item) + '!', canvas.width-275, 100, "white");
 		canvasContext.restore();
 		itemPickedUp();
 	}

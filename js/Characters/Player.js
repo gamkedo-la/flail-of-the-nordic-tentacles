@@ -141,6 +141,12 @@ function playerClass() {
                     this.velX *= 0.90;
                     this.velY *= 0.90;
                 }
+                else if((nextTileType >= TILE_SNOW_GRASS_2 && nextTileType <= TILE_SNOW_GRASS_13) 
+                        || nextTileType == TILE_SNOW_GRASS_1)
+                {
+                    this.velX *= 0.30;
+                    this.velY *= 0.30;
+                }
                 else
                 {
                     this.velX *= PLAYER_DECELERATION;
