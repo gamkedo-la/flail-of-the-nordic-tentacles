@@ -289,7 +289,6 @@ function enemyClass()
 		if(this.isInCombat)
         {
             spawnFightParticles(this);
-            playerSfx.attack.play();
 
 			if(this.doesPlayerHaveAdvantage(player))
 			{

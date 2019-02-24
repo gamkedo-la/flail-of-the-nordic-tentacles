@@ -250,16 +250,15 @@ function playerClass() {
             tileType == TILE_WORMHOLE)
         {
             worldMap[0][tileIndex] = TILE_SNOW;
-            console.log('I picked up a ' + tileType + '.');
+            // console.log('I picked up a ' + tileType + '.');
+            if (this.item == undefined){
+                this.item = "nothing";
+            }
             itemPickedUp();
             this.item = getNameOfTile(tileType);
             playerInventory.addItem(this.item,1);
 
             Item.List[this.item].event();
-
-            if (this.item == undefined){
-                this.item = "nothing";
-            }
         }
     }
 

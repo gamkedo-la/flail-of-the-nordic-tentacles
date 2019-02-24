@@ -1,6 +1,5 @@
 function drawUI()
 {
-	drawText(currentMap, 700, 30, font="30px sans-serif");
 	if(displayItem)
 	{
 		canvasContext.save();

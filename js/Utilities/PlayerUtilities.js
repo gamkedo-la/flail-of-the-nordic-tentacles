@@ -124,6 +124,7 @@ function refillPlayerHealth()
 {
 	if(playerSecondWindTimer >= 450)
 	{
+		spawnItemUsedParticles();
 		player.stats.hp = player.stats.maxHp;
 		playerSecondWindTimer = 0;
 	}
@@ -133,6 +134,7 @@ function pauseEnemyPatrol()
 {
 	if(playerStopEnemiesTimer >= 360)
 	{
+		spawnItemUsedParticles();
 		stopEnemyMovement = true;
 		resumeEnemyPatrolsTimer = 120;
 		playerStopEnemiesTimer = 0;
@@ -143,6 +145,7 @@ function playerImmunity()
 {
     if(playerImmunityTimer >= 750)
     {
+    	spawnItemUsedParticles();
     	player.isImmune = true;
     	playerImmunityLimitTimer = 150;
     	playerImmunityTimer = 0;

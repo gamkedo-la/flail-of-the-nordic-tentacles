@@ -94,7 +94,7 @@ function loadMap(mapName)
 
 		    worldMap = Array.from(allLvls[currentLvlIndex].gridLayers);
 		    handleCharacterPositions(currentLvlIndex);
-		    fadingTitles.begin(mapName);
+		    fadingTitles.begin("IDRYLIA");//obly have one map so no need to pass in mapName
 		    previousLvlName = mapName;
 
 			handleBackgroundMusic(currentMap);
