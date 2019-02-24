@@ -95,6 +95,9 @@ function SoundOverlapsClass(filenameWithPath, volume)
 	}
 }
 
+let array_of_in_game_audio_tracks = ["NordicSnow","NordicRage","RebelWoods"];
+let array_of_in_game_audio_tracks_index = 0;
+
 function BackgroundMusicClass()
 {
 
@@ -110,6 +113,17 @@ function BackgroundMusicClass()
 			musicaudio = null;
 		}
 		musicaudio = new Audio("audio/"+filenameWithPath+audioFormat);
+		musicaudio.addEventListener('timeupdate', function(){
+			var buffer = .44;
+		    if(this.currentTime > this.duration - buffer) {
+					array_of_in_game_audio_tracks_index++;
+					if (array_of_in_game_audio_tracks_index > array_of_in_game_audio_tracks.length - 1) {
+						array_of_in_game_audio_tracks_index = 0;
+					}
+					this.src = "audio/" + array_of_in_game_audio_tracks[array_of_in_game_audio_tracks_index] + audioFormat;
+		    	this.currentTime = 0;
+		      this.play();
+		}}, false);
 		musicaudio.loop = true;
 		musicaudio.play();
 	}
@@ -128,7 +142,7 @@ function BackgroundMusicClass()
 }
 
 function handleBackgroundMusic()
-{  
+{
 	if(!gameIsStarted)
 	{
 		backgroundMusic.loopSong('MainMenuSong');
@@ -138,9 +152,11 @@ function handleBackgroundMusic()
 	switch(currentMap)
 	{
 		case 'forestTest':
+			array_of_in_game_audio_tracks_index = 2;
 			backgroundMusic.loopSong('RebelWoods');
 			break;
 		case 'snowTest':
+			array_of_in_game_audio_tracks_index = 0;
 			backgroundMusic.loopSong('NordicSnow');
 			break;
 	}
