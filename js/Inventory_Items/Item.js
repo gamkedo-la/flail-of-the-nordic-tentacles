@@ -90,7 +90,7 @@ function displayItemUseDetailsAndKey(itemName)
 		string += "N.O.R.D descends...";
 		break;
 		case "wormhole":
-		string += "Press F to vanquish all foes!";
+		string += "Press F to gain immunity for a bit!";
 		break;
 		case "dictionary":
 		string += "You can now speak Cecleon!";

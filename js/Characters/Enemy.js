@@ -301,7 +301,6 @@ function enemyClass()
 			else
 			{
 				player.bumpAwayFrom(this.centerX, this.centerY);
-			//	player.immunity();              // need to determine when damage occurs to start timer
 				if(player.isImmune == false)
 				{
 					calculateDamage(this.stats, player.stats);

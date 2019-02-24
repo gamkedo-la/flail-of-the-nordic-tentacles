@@ -196,9 +196,35 @@ this.draw = function()
     else if(isPaused) 
     {
         currentPage = PAUSED_PAGE;
-        canvasContext.fillStyle = "black";
-        canvasContext.fillRect(itemsX -50,topItemY - rowHeight,
-        itemsWidth, rowHeight * menuPageText[currentPage].length + rowHeight  );
+        canvasContext.fillStyle = "#292929";
+        canvasContext.fillRect(itemsX -104,topItemY - 44,
+        308, rowHeight * menuPageText[currentPage].length + rowHeight + 8);
+
+        canvasContext.fillStyle = "#70130F";
+        canvasContext.fillRect(itemsX -100,topItemY - 40,
+        300, rowHeight * menuPageText[currentPage].length + rowHeight);
+
+        canvasContext.fillStyle = "#292929";
+        canvasContext.fillRect(itemsX - 89,topItemY - 29,
+        279, rowHeight * menuPageText[currentPage].length + rowHeight - 20);
+
+        canvasContext.beginPath();              
+        canvasContext.lineWidth = "1";
+        canvasContext.strokeStyle = "white";
+
+        canvasContext.moveTo(itemsX - 90, topItemY - 30);
+        canvasContext.lineTo(itemsX - 90, topItemY + 90);
+
+        canvasContext.moveTo(itemsX - 90, topItemY + 90);
+        canvasContext.lineTo(itemsX - 90 + 280, topItemY + 90);
+
+        canvasContext.moveTo(itemsX - 90 + 280, topItemY + 90);
+        canvasContext.lineTo(itemsX - 90 + 280, topItemY - 30);
+
+        canvasContext.moveTo(itemsX - 90 + 280, topItemY - 30);
+        canvasContext.lineTo(itemsX - 90, topItemY - 30);
+
+        canvasContext.stroke();
     }
     else {return;}
 

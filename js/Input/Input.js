@@ -180,7 +180,7 @@ function keyPressed(evt) {
                 pauseEnemyPatrol();
                 break;
             case KEY_F:
-    			player.toggleImmunityCheat()();
+    			playerImmunity();
     			break;
     		case KEY_M:
     			muteSFXandBackground();

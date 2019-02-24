@@ -1,6 +1,8 @@
 //Player related
 var playerSecondWindTimer = 0;
 var playerStopEnemiesTimer = 0;
+var playerImmunityTimer = 0;
+
 
 function handleNpcCollisions(playerCollider)
 {
@@ -137,9 +139,59 @@ function pauseEnemyPatrol()
 	}
 }
 
-function eliminateEnemyWave()
+function playerImmunity()
 {
-	// console.log("killing all enemies");
+    if(playerImmunityTimer >= 750)
+    {
+    	player.isImmune = true;
+    	playerImmunityLimitTimer = 150;
+    	playerImmunityTimer = 0;
+    }
+}
+
+function handleItemUsageTimers()
+{
+	if(playerInventory.hasItem("horn",1) && playerSecondWindTimer < 450)
+	{
+		playerSecondWindTimer++;
+	}
+
+	if(playerInventory.hasItem("tentacle",1))
+	{
+		if(playerStopEnemiesTimer < 360)
+		{
+			playerStopEnemiesTimer++;
+		}
+
+		//resumes enemy patrols after 4 seconds only if player has used tentacle item
+		if(resumeEnemyPatrolsTimer > 0)
+		{
+			resumeEnemyPatrolsTimer--;
+			if(resumeEnemyPatrolsTimer <= 0)
+			{
+				resumeEnemyPatrolsTimer = 0;
+				stopEnemyMovement = false;
+			}
+		}
+	}
+
+	if(playerInventory.hasItem("wormhole",1))
+	{
+		if(playerImmunityTimer < 750)
+		{
+			playerImmunityTimer++;
+		}
+
+		if(playerImmunityLimitTimer > 0)
+		{
+			playerImmunityLimitTimer--;
+			if(playerImmunityLimitTimer <= 0)
+			{
+				playerImmunityLimitTimer = 0;
+				player.isImmune = false;
+			}
+		}
+	}
 }
 
 function levelUpPlayer()

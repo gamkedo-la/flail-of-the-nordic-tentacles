@@ -6,7 +6,7 @@ let fadingTitles = new function() {
 	let title = "";
 	let subtitle = "";
 	let currentAlpha = 0;
-	const fadeAlphaPerFrame = 0.01;
+	const fadeAlphaPerFrame = 0.005;
 
 	this.begin = function(mainTitle,aboveTitle,belowTitle) {
 
@@ -25,9 +25,9 @@ let fadingTitles = new function() {
 			let midy = Math.round(canvas.height/2);
 			let color = "rgba(255,255,255," + currentAlpha + ")";
 
-			drawTextWithShadowCentered(surtitle,midx,midy-128,color,"32px sans");
-			drawTextWithShadowCentered(title,midx,midy-64,color,"64px sans");
-			drawTextWithShadowCentered(subtitle,midx,midy-32,color,"32px sans");
+			drawTextWithShadowCentered(surtitle,midx,midy-128,color,"32px viking-normalregular");
+			drawTextWithShadowCentered(title,midx,midy-64,color,"64px viking-normalregular");
+			drawTextWithShadowCentered(subtitle,midx,midy-32,color,"32px viking-normalregular");
 
 			currentAlpha -= fadeAlphaPerFrame;
 

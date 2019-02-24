@@ -67,20 +67,18 @@ function fallenVikingClass()
 				break;
 		}
 
-		if(debugState)
-		{
-			this.collider.draw();
-			debugDrawHeading(this);
-		}
-
 		// UI variables
 		let charTopLeftCoordX = this.centerX - this.width/2;
 		let charTopRightCoordY = this.centerY - this.height/2;
 		let frameX = anims.frameSource.x * this.width;
-		let frameY = anims.frameSource.y * this.height; 
+		let frameY = anims.frameSource.y * this.height;
 
-		// draw name
-		drawText(this.charName, charTopLeftCoordX, charTopRightCoordY, 'black');
+		if(debugState)
+		{
+			this.collider.draw();
+			debugDrawHeading(this);
+			drawText(this.charName, charTopLeftCoordX, charTopRightCoordY, 'black');
+		}
 		
 		// draw sprite
 		drawSprite(this.bitmap, frameX, frameY, this.width, this.height, charTopLeftCoordX, charTopRightCoordY);
