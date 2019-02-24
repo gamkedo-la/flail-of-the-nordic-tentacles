@@ -33,11 +33,11 @@ const Menu = new (function() {
     let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels, classListPaused];
 
 let creditsText =[
-"                                                                          Flail of the Nordic Tentacles Team",
+"                                                                Flail of the Nordic Tentacles Team",
 "",
 "Jaime Rivas: Project lead, core gameplay, slime enemy, level editor, map switching, terrain tilesheet integration,",
 "   stats implementation, bug fixes, xp rewards and leveling up, collision handling, snow art (bush, tree, pit,",
-"   rebel tent), forest art (portal), inventory menu, depth sorting, spawn code, main enemy code, snow level design",
+"   rebel tent), forest art (portal), inventory, depth sorting, spawn code, main enemy code, level design, save/load",
 "Ryan Malm: Tileset workflow, forest tiles, Wormex sprites, editor improvements, snowygrass tile variations, tall",
 "   tile support, ice and snow dunes tiles, inventory fix, animation manager, internal documentation",
 "Gonzalo Delgado: Boss character sprite, fight particle effect, randomized enemy start direction",
@@ -46,8 +46,8 @@ let creditsText =[
 "   audio integration",
 "Christer \"McFunkypants\" Kaitila: terrain spritesheet, gamepad support, character code cleanup, footprints trail",
 "   feature, fading title on transitions, particles (dust, death, action, sparkles), stats interface art, enemy",
-"   attack range",
-"Vaan Hope Khani: Main character sprite, xp display, in-game and main menu, load/save, additional player stats",
+"   attack range, ending",
+"Vaan Hope Khani: Main character sprite, xp display, in-game and main menu, additional player stats",
 "Shaun Lindsley: Sounds (enemy hits/attack/defeated, level up, gravel/grass/forest/snow/ice footsteps, item pickup,",
 "   menu sounds, NPC sounds, scene change)",
 "Terrence McDonnell: Road tiles art, player movement fix, projectile improvements, chase AI",
@@ -55,7 +55,7 @@ let creditsText =[
 "Trolzie: Health and XP bars, enemy health bars, eyepatch implementation, Outcast character, stats UI, scrolling",
 "   intro text",
 "Asix Jin: 3 songs (Rebel Woods, Nordic Snow, Nordic Rage)",
-"Stebs: Logo art and integration",
+"Stebs: Logo art and integration, music integration",
 "Kise: Dialog feature",
 "Chris Markle: Player hit and player attack sounds",
 "Rémy Lapointe: Snowy grass tile",
@@ -64,9 +64,9 @@ let creditsText =[
 "Michelly Oliveira: Removal of sprite animation debug behavior",
 "Chris DeLeon: Title background image, game credits",
 "",
-"                     Made by collaborators worldwide in Gamkedo Club - join or find our more at gamkedo.com",
+"                      Made by collaborators worldwide in Gamkedo Club - join or find out more at gamkedo.com",
 "",
-"                                                              CLICK ANYWHERE TO RETURN"
+"                                                                        CLICK ANYWHERE TO RETURN"
 ];
 
 this.menuMouse = function(){
