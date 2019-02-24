@@ -64,7 +64,7 @@ var seerDialogue = new Dialogue();
 var seerText = ["I've been expecting you.", "Among all the items scattered...", "in the map is a beacon.","SOUTH of here.", 
                 "What does it do?", "I haven't a clue but perhaps he does...", "Who? Was talking I in my sleep again?", 
                 "You say you saw alien suit guy?", "There be no such thing!", "Some odd fella doth indeed...", "exist in the snow labyrinth.",
-                "Don't forget your dictionary!","Oh wait... We're illiterate..."];
+                "Don't forget your dictionary!","Oh wait... We're illiterate...","Oh! And \"U\" gives you XP.","In case you want to cheat..."];
 
 function triggerText(npcTextBool) {
     //if an npc hasn't been talked to yet, play their event

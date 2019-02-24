@@ -87,7 +87,7 @@ function displayItemUseDetailsAndKey(itemName)
 		string += "Press E to act like an alien!";
 		break;
 		case "beacon":
-		string += "N.O.R.D descends...";
+		string += "N.O.R.D lands northwest of here!";
 		break;
 		case "wormhole":
 		string += "Press F to gain immunity for a bit!";
