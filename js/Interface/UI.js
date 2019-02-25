@@ -24,6 +24,13 @@ function drawUI()
 	{
 		playerInventory.renderInventory();
 	}
+	canvasContext.textAlign = "right"; 
+	drawText('P to pause/save',canvas.width-10-1, 20-1, 'black', "13px viking-normalregular");
+	drawText('P to pause/save',canvas.width-10+1, 20-1, 'black', "13px viking-normalregular");
+	drawText('P to pause/save',canvas.width-10-1, 20+1, 'black', "13px viking-normalregular");
+	drawText('P to pause/save',canvas.width-10+1, 20+1, 'black', "13px viking-normalregular");
+	drawText('P to pause/save',canvas.width-10, 20, 'yellow', "13px viking-normalregular");
+	canvasContext.textAlign = "left"; 
 
 	fadingTitles.draw();
 }

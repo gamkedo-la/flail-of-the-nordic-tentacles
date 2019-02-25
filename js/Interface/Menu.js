@@ -1,3 +1,4 @@
+let saveConfirmed = "";
 const Menu = new (function() {
     let wobble = 12;
     let wobbleSpeed = .25;
@@ -27,7 +28,7 @@ const Menu = new (function() {
     let classListLevels = ["chapter 1", "chapter 2", "chapter 3", "back"];
     let classListSettings = ["volume", "controls", "back"];
     let classListHelp= ["gameplay","gamepad","back"];
-    let classListPaused= ['save' , 'audio',  'return'];
+    let classListPaused= ['save' , /*'audio',*/  'unpause'];
     let classListCredits= ["back"];
 
     let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels, classListPaused];
@@ -147,7 +148,7 @@ this.checkState = function(){
         break;
 
     //PAUSED PAGE
-    case 'return':
+    case 'unpause':
         isPaused = false;
         this.cursor1 = 0;
         break;
@@ -157,6 +158,7 @@ this.checkState = function(){
         break;
     case 'save':
         saveGame();
+        saveConfirmed = " (done!)";
         this.cursor1 = 0;
         break;
     default:
@@ -214,18 +216,21 @@ this.draw = function()
         canvasContext.strokeStyle = "white";
 
         canvasContext.moveTo(itemsX - 90, topItemY - 30);
-        canvasContext.lineTo(itemsX - 90, topItemY + 90);
+        canvasContext.lineTo(itemsX - 90, topItemY + 60);
 
-        canvasContext.moveTo(itemsX - 90, topItemY + 90);
-        canvasContext.lineTo(itemsX - 90 + 280, topItemY + 90);
+        canvasContext.moveTo(itemsX - 90, topItemY + 60);
+        canvasContext.lineTo(itemsX - 90 + 280, topItemY + 60);
 
-        canvasContext.moveTo(itemsX - 90 + 280, topItemY + 90);
+        canvasContext.moveTo(itemsX - 90 + 280, topItemY + 60);
         canvasContext.lineTo(itemsX - 90 + 280, topItemY - 30);
 
         canvasContext.moveTo(itemsX - 90 + 280, topItemY - 30);
         canvasContext.lineTo(itemsX - 90, topItemY - 30);
 
         canvasContext.stroke();
+
+        drawText(saveConfirmed,itemsX+70, topItemY-5, "yellow", textFontFaceCredits, 'left', 'top');
+
     }
     else {return;}
 

@@ -169,11 +169,15 @@ function keyPressed(evt) {
             //game input
             case KEY_P:
                 isPaused = !isPaused;
+                saveConfirmed = "";
                 break;
             case TAB:
                 useEditorMode();
                 break;
             case SPACE:
+                if (textScrolling) {
+                    textScrolling = false;
+                }
                 nextDialoguePage();
                 break;
     		case KEY_E:
