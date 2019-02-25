@@ -22,7 +22,7 @@ const Menu = new (function() {
     let textFontFaceCredits = "8.5px viking-normalregular";
     let textColour = "white" ;
 
-    let classListMenu = ["new*game", "load game", "settings", "tutorials" , "credits"];
+    let classListMenu = ["new*game", "load game", /*"settings", "tutorials" ,*/ "credits"];
     let classListLoad = ["resume", "select chapter", "back"];
     let classListLevels = ["chapter 1", "chapter 2", "chapter 3", "back"];
     let classListSettings = ["volume", "controls", "back"];
@@ -103,7 +103,8 @@ this.checkState = function(){
         handleBackgroundMusic();
         break;
     case "load game":
-        currentPage = RESUME_PAGE;
+        /*currentPage = RESUME_PAGE;*/ // no chapter select functionality, so doesn't need to a menu layer :)
+        loadGame();
         this.cursor1 = 0;
         break;
     case "settings":
