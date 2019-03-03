@@ -23,15 +23,13 @@ const Menu = new (function() {
     let textFontFaceCredits = "8.5px viking-normalregular";
     let textColour = "white" ;
 
-    let classListMenu = ["new*game", "load game", /*"settings", "tutorials" ,*/ "credits"];
+    let classListMenu = ["new*game", "load game", /*"settings",*/ "tutorial" , "credits"];
     let classListLoad = ["resume", "select chapter", "back"];
     let classListLevels = ["chapter 1", "chapter 2", "chapter 3", "back"];
     let classListSettings = ["volume", "controls", "back"];
     let classListHelp= ["gameplay","gamepad","back"];
     let classListPaused= ['save' , /*'audio',*/  'unpause'];
     let classListCredits= ["back"];
-
-    let menuPageText = [classListMenu, classListLoad, classListSettings, classListHelp, classListCredits, classListLevels, classListPaused];
 
 let creditsText =[
 "                                                                Flail of the Nordic Tentacles Team",
@@ -69,6 +67,11 @@ let creditsText =[
 "",
 "                                                                        CLICK ANYWHERE TO RETURN"
 ];
+
+    let gameplayList = ["      Movement:", "WASD OR Up/Down/Right/Left Arrows", 
+                        "     Game Actions", "P: pause/resume", "Enter/Space: interact", "Z: inventory"];
+
+    let menuPageText = [classListMenu, classListLoad, classListSettings, gameplayList, classListCredits, classListLevels, classListPaused];
 
 this.menuMouse = function(){
      for (let i = 0; i < menuPageText[currentPage].length; i++) {
@@ -112,7 +115,7 @@ this.checkState = function(){
         this.cursor1 = 0;
         currentPage = SETTINGS_PAGE;
         break;
-    case "tutorials":
+    case "tutorial":
         this.cursor1 = 0;
         currentPage  = HELP_PAGE;
         break;
@@ -138,9 +141,6 @@ this.checkState = function(){
     //TUTORIALS PAGE
     case "gameplay":
         console.log("TODO implement how to play");
-        break;
-    case "gamepad":
-        console.log("TODO implement control layout");
         break;
     case "back":
         currentPage  = MENU_PAGE;
@@ -192,7 +192,7 @@ this.draw = function()
         canvasContext.fillStyle = pattern;
         canvasContext.fill();*/
         canvasContext.drawImage(titlePic, 0,0);
-        if(currentPage != CREDITS_PAGE) {
+        if(currentPage != CREDITS_PAGE && currentPage != HELP_PAGE) {
             canvasContext.drawImage(logoPic, canvas.width/2-160,30, 300,300);
         }
     }
@@ -259,12 +259,13 @@ this.draw = function()
 
         for (let i=0; i<menuPageText[currentPage].length; i++)
         {
-            drawText(menuPageText[currentPage][i],itemsX,topItemY + rowHeight * i,textColour, textFontFace, 'left', 'top');
+            drawText(menuPageText[currentPage][i],itemsX - (currentPage == HELP_PAGE ? 275 : 0),topItemY + rowHeight * i - (currentPage == HELP_PAGE ? 325 : 0),
+                    textColour, textFontFace, 'left', 'top');
             //Draw cursor
-            canvasContext.drawImage(arrowPic,(itemsX-20) - wobble * i,topItemY + (this.cursor1 * rowHeight) -14);
+            if(currentPage != HELP_PAGE)
+                canvasContext.drawImage(arrowPic,(itemsX-20) - wobble * i,topItemY + (this.cursor1 * rowHeight) -14);
         }
     }
-
 }
 
 })();
