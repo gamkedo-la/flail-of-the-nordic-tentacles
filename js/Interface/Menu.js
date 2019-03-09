@@ -53,6 +53,7 @@ let creditsText =[
 "Simon J Hoffiz: Pause functionality, main menu music, player and enemy recoil from combat loss",
 "Trolzie: Health and XP bars, enemy health bars, eyepatch implementation, Outcast character, stats UI, scrolling",
 "   intro text",
+"Visyama Menon: Fallen Viking, Alien Tank, and Alien Infantry art",
 "Asix Jin: 3 songs (Rebel Woods, Nordic Snow, Nordic Rage)",
 "Stebs: Logo art and integration, music integration",
 "Kise: Dialog feature",
@@ -68,8 +69,20 @@ let creditsText =[
 "                                                                        CLICK ANYWHERE TO RETURN"
 ];
 
-    let gameplayList = ["      Movement:", "WASD OR Up/Down/Right/Left Arrows", 
-                        "     Game Actions", "P: pause/resume", "Enter/Space: interact", "Z: inventory"];
+    let gameplayList = ["                                                       Basic Gameplay:",
+                        "                           Moving into enemies will either damage them or",
+                        "                           you depending on each character's cardinal facing",
+                        "                                                           Controls:", 
+                        "                           Movement: WASD OR Up/Down/Right/Left Arrows", 
+                        "                           P: pause/resume", 
+                        "                           Enter/Space: Select/Progress Dialogue", 
+                        "                           I: Show/Hide Inventory",
+                        "                                                           Items:",
+                        "                                               *Must first be found*",
+                        "                           Tentacle: Briefly stops enemy movement with \" E \"",
+                        "                           Portal: Briefly gain immunity with \" F \"",
+                        "                           Horn: Regain all health with \" R \"",
+                        "                           Eye Patch: Displays enemy health",];
 
     let menuPageText = [classListMenu, classListLoad, classListSettings, gameplayList, classListCredits, classListLevels, classListPaused];
 
@@ -239,13 +252,16 @@ this.draw = function()
     }
     wobble += wobbleSpeed;
 
+    if(currentPage == CREDITS_PAGE || currentPage == HELP_PAGE)
+    {
+        canvasContext.fillStyle = "black";
+        canvasContext.globalAlpha = 0.5; 
+        canvasContext.fillRect( 0, 0, canvas.width, canvas.height);
+        canvasContext.globalAlpha = 1.0; 
+    }
+
     if(currentPage == CREDITS_PAGE) 
     {
-      canvasContext.fillStyle = "black";
-      canvasContext.globalAlpha = 0.5; 
-      canvasContext.fillRect( 0, 0, canvas.width, canvas.height);
-      canvasContext.globalAlpha = 1.0; 
-
       let creditsX = 11;
       let creditsTopY = 17;
       let creditsLineSkipY = 18;
@@ -260,7 +276,7 @@ this.draw = function()
         for (let i=0; i<menuPageText[currentPage].length; i++)
         {
             drawText(menuPageText[currentPage][i],itemsX - (currentPage == HELP_PAGE ? 275 : 0),topItemY + rowHeight * i - (currentPage == HELP_PAGE ? 325 : 0),
-                    textColour, textFontFace, 'left', 'top');
+                    (currentPage == HELP_PAGE ? "yellow" : textColour), (currentPage == HELP_PAGE ? "11px viking-normalregular" : textFontFace), 'left', 'top');
             //Draw cursor
             if(currentPage != HELP_PAGE)
                 canvasContext.drawImage(arrowPic,(itemsX-20) - wobble * i,topItemY + (this.cursor1 * rowHeight) -14);

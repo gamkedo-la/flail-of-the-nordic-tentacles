@@ -79,9 +79,9 @@ function loadImages()
 		{charName: seerPic, fileName: "characters/the_seer_v6.png"},
 		{charName: outcastPic, fileName: "characters/the_outcast.gif"},
 		{charName: wormexPic, fileName: "enemies/wormex2.png"},
-		{charName: tankPic, fileName: "enemies/slime_blue_sheet.png"},
-		{charName: fallenPic, fileName: "enemies/slime_red_sheet.png"},
-		{charName: vanguardPic, fileName: "enemies/slime_yellow_sheet.png"},
+		{charName: tankPic, fileName: "enemies/alien_tank_sheet.png"},
+		{charName: fallenPic, fileName: "enemies/fallen_viking_sheet.png"},
+		{charName: vanguardPic, fileName: "enemies/alien_infantry_sheet.png"},
 		{charName: bossPic, fileName: "enemies/boss_sheet.png"},
 
 		// Terrain Tiles

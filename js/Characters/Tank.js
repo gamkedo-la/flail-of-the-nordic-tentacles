@@ -9,23 +9,23 @@ function tankClass()
 	this.anims = new AnimManager(this);
 	const { anims } = this;
 	anims.add('walk-up',
-		[{x:2, y:0}],0.1);
+		[{x:3, y:0}],0.1);
 	anims.add('walk-down',
 		[{x:0, y:0}],0.1);
 	anims.add('walk-right',
 		[{x:1, y:0}],0.1);
 	anims.add('walk-left',
-		[{x:3, y:0}],0.1);
+		[{x:2, y:0}],0.1);
 
-	this.height = 40;
-	this.width = 40;
+	this.height = 100;
+	this.width = 100;
 	
 	this.superClassInit = this.init;
 	this.init = function(name)
 	{
 		this.setupSpeed(2,3);
 		this.setProjectile(true);
-		this.superClassInit(name,'Tank',tankPic,30,15);
+		this.superClassInit(name,'Tank',tankPic,60,30);
 		this.reset();
 	}
 

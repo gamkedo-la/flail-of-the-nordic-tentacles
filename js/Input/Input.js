@@ -115,7 +115,7 @@ function keyPressed(evt) {
 
     if (!gameIsRunning) 
     { // are we in editor mode?
-        editorScreenMove(evt);
+        /*editorScreenMove(evt);
 
         // keys that only work in editor mode
         switch (evt.keyCode) 
@@ -159,7 +159,7 @@ function keyPressed(evt) {
                 editor.currentLayer++;
                 editor.changeLayer();
                 break;
-        }
+        }*/
     }
     else // not in editor mode
     {
@@ -172,7 +172,7 @@ function keyPressed(evt) {
                 saveConfirmed = "";
                 break;
             case TAB:
-                useEditorMode();
+                // useEditorMode();
                 break;
             case SPACE:
                 if (textScrolling) {
@@ -187,13 +187,13 @@ function keyPressed(evt) {
     			playerImmunity();
     			break;
     		case KEY_M:
-    			muteSFXandBackground();
+    			// muteSFXandBackground();
     			break;
     		case KEY_I:
     			toggleInventoryAndDrawImage();
     			break;
     		case KEY_K:
-    			toggleDebugMode();
+    			// toggleDebugMode();
     			break;
             case KEY_U:
                 givePlayerRandomXp();
@@ -201,10 +201,10 @@ function keyPressed(evt) {
             case KEY_R:
                 refillPlayerHealth();
                 break;              
-            case NUM_0:
+            /*case NUM_0:
                 particles = [];
                 emitters = [];
-                break;
+                break;*/
             case ENTER:
                 Menu.checkState()
                 break;
