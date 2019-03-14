@@ -110,6 +110,12 @@ this.update = function(){
 
 
 this.checkState = function(){
+    if(currentPage == HELP_PAGE) {
+        currentPage  = MENU_PAGE;
+        this.cursor1 = 0;
+        return;
+    }
+
      switch (menuPageText[currentPage][this.cursor1]) {
 
     //MENU PAGE
